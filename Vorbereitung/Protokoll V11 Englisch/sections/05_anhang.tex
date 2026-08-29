@@ -1,0 +1,17 @@
+\section{Anhang}
+
+\subsection{Python-Code zur Datenauswertung}
+Der folgende Code wurde zur Berechnung der Regressionen und Fehlerfortpflanzung verwendet:
+
+\begin{lstlisting}[language=Python, caption={Auswertungsskript für Auslenkung und Trägheitsmoment}]
+import numpy as np
+import matplotlib.pyplot as plt
+
+# Messdaten laden
+m = np.array([0.10, 0.20, 0.50]) # kg
+s = np.array([2.345, 4.690, 11.725]) # cm
+
+# Lineare Regression
+p, cov = np.polyfit(m, s, 1, cov=True)
+print(f"Steigung: {p[0]:.4f} +/- {np.sqrt(cov[0][0]):.4f}")
+\end{lstlisting}

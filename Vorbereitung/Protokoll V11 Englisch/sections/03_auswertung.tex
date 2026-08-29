@@ -1,0 +1,129 @@
+\section{Data analysis and results}
+
+\subsection{Error propagation and statistical basics}
+For the analysis the followin formulas have been used:
+\begin{itemize}
+    \item \textbf{Mean value of the osciallation period:}
+    \begin{equation}
+        \bar{T} = \frac{1}{n} \sum_{i=1}^{n} T_i
+    \end{equation}
+    
+    \item \textbf{Mean error of the mean value (standard deviation):}
+    \begin{equation}
+        \sigma_{\bar{T}} = \sqrt{\frac{1}{n(n-1)} \sum_{i=1}^{n} (T_i - \bar{T})^2}
+    \end{equation}
+    
+    \item \textbf{Error propagation for the squared oscillation period $T^2$:}
+    As the graphical analysis of the squared oscialltion period $T^2$ is used we have to use gaussian error propagation to determine the uncertainty $\sigma_{T^2}$ of $T^2$:
+    \begin{equation}
+        \sigma_{T^2} = \left| \frac{\mathrm{d}(T^2)}{\mathrm{d}T} \right| \cdot \sigma_{\bar{T}} = 2 \cdot \bar{T} \cdot \sigma_{\bar{T}}
+        \label{eq:fehler_t2}
+    \end{equation}
+\end{itemize}
+
+
+\subsection{Exercise 1: Comparison of the error for the different measuring methods}
+From the 10 measurement series with each measurement being $n=3$ osciallations for a mass of $m = \qty{200}{\gram}$ result in the following numbers:
+\begin{itemize}
+    \item \textbf{Start/stop at maximum displacement:}
+    \begin{align*}
+        \bar{T}_{\text{max}} &= 1{,}587\,\mathrm{s} \\
+        \sigma_T &= 2{,}3 \cdot 10^{-2}\,\mathrm{s} \quad \text{(Error of individual measurement)} \\
+        \sigma_{\bar{T}_{\text{max}}} &= 7{,}7 \cdot 10^{-3}\,\mathrm{s} \quad \text{(Error of the mean value)}
+    \end{align*}
+    
+    \item \textbf{Start/stop at zero passing:}
+    \begin{align*}
+        \bar{T}_{\text{null}} &= 1{,}670\,\mathrm{s} \\
+        \sigma_T &= 6{,}0 \cdot 10^{-3}\,\mathrm{s} \quad \text{(Error of individual measurement)} \\
+        \sigma_{\bar{T}_{\text{null}}} &= 1{,}8 \cdot 10^{-3}\,\mathrm{s} \quad \text{(Error of the mean value)}
+    \end{align*}
+\end{itemize}
+
+\textbf{Result:} The relativ error of the mean value with measuring at zero passing is $\frac{\sigma_{\bar{T}}}{\bar{T}} \approx 0{,}11\%$, while measuring at maximum displacement yields $\approx 0{,}49\%$. The measurement at zero passing is therefore more accurate by a factor of $4$.
+
+\subsection{Exercise 2: Graphically determining the spring constant $D$}
+In determining the spring constant we have plotted the squared oscillation amplitude $T^2$ versus the mass $m$. With the measurements and equation \eqref{eq:fehler_t2} we can determine the error bars with $\sigma_{T^2}$. The results are summarized in table \ref{tab:t2_auswertung}.
+\begin{table}[h]
+    \centering
+    
+    \begin{tabular}{c c c c c}
+        \toprule
+        $m$ [\unit{\kilogram}] & $\bar{T}$ [\unit{\second}] & $\sigma_{\bar{T}}$ [\unit{\second}] & $T^2$ [\unit{\second \squared}] & $\sigma_{T^2} = 2\bar{T}\sigma_{\bar{T}}$ [\unit{\second \squared}] \\
+        \midrule
+        0,050 & 0,907 & $2{,}3 \cdot 10^{-2}$ & 0,823 & 0,042 \\
+        0,100 & 1,233 & $9{,}0 \cdot 10^{-3}$ & 1,520 & 0,022 \\
+        0,150 & 1,498 & $3{,}0 \cdot 10^{-3}$ & 2,244 & 0,009 \\
+        0,200 & 1,674 & $3{,}0 \cdot 10^{-3}$ & 2,802 & 0,010 \\
+        0,250 & 1,849 & $1{,}8 \cdot 10^{-2}$ & 3,419 & 0,067 \\
+        \bottomrule
+    \end{tabular}
+    \caption{Values for oscialltion period $T$ and calculated $T^2$ with error propagation.}
+    \label{tab:t2_auswertung}
+\end{table}
+From graphical linear regression with $y = a \cdot m + b$ for $y = T^2$ we determine the slope $a$:
+\begin{equation}
+    a = \frac{\Delta T^2}{\Delta m} \approx \qty{13.1}{\second \squared \per \kilogram}
+\end{equation}
+Using best fit and worst fit line we determine the uncertainty of the slope to be $\sigma_a \approx \qty{0,5}{\second \squared \per \kilogram}$.
+From equation \eqref{eq:t_quadrat} we determine $a = \frac{4\pi^2}{D}$. From that we determine the spring constant $D$ to be:
+\begin{equation}
+    D = \frac{4\pi^2}{a} = \frac{4\pi^2}{\qty{13.1}{\second \squared \per \kilogram}} \approx \qty{3.01}{\newton \per \meter}
+\end{equation}
+The error of the spring constant $\sigma_D$ is calculated via error propagation:
+\begin{equation}
+    \sigma_D = \left| \frac{\mathrm{d}D}{\mathrm{d}a} \right| \cdot \sigma_a = \frac{4\pi^2}{a^2} \cdot \sigma_a = \frac{4\pi^2}{\qty{13.1}{\second \squared \per \kilogram}} \cdot \qty{0.5}{\second \squared \per \kilogram} \approx \qty{0.11}{\newton \per \meter}
+\end{equation}
+\begin{resultbox}[Endresult: Spring constant]
+    The spring used in the experiment has a spring constant of:
+    \begin{equation}
+        D = \qty{3.01(11)}{\newton \per \meter}
+    \label{eq:ergebnis_federkonstante}
+    \end{equation}
+\end{resultbox}
+
+\subsection{Exercise 3: Graphically determining the earths acceleration $g$}
+The displacement $x$ in relation to the mass $m$ can be viewed as a linear function $x(m)$ and we now have to determine its slope.
+\begin{table}[h!]
+    \centering
+    \begin{tabular}{c c c}
+        \hline
+        $m$ [kg] & Displacement $x$ [m] & Error $\Delta x$ [m] \\
+        \hline
+        0,050 & 0,177 & 0,001 \\
+        0,100 & 0,342 & 0,001 \\
+        0,150 & 0,505 & 0,001 \\
+        0,200 & 0,669 & 0,001 \\
+        0,250 & 0,850 & 0,001 \\
+        \hline
+    \end{tabular}
+    \caption{Measurements of displacement $x$ as a function of mass $m$.}
+    \label{tab:auslenkung_auswertung}
+\end{table}
+
+From best fit line $x = a' \cdot m + x_0$ we can determine $a'$ to he:
+\begin{equation}
+    a' = \frac{\Delta x}{\Delta m} \approx 3{,}36\,\mathrm{\frac{m}{kg}} \quad \text{mit einem abgeschätzten Steigungsfehler } \sigma_{a'} \approx 0{,}04\,\mathrm{\frac{m}{kg}}
+\end{equation}
+From hooks law ($x = \frac{g}{D} \cdot m$) we determine the slope to be $a' = \frac{g}{D}$. From that we get the gravitational accelaration $g$ to be:
+\begin{equation}
+    g = D \cdot a' = \qty{3.01}{\newton \per \meter} \cdot \qty{3.36}{\meter \per \kilogram} \approx \qty{10.13}{\meter \per \second \squared}
+\end{equation}
+As $D$ as well as $a'$ have an error we need to calculate the the resulting error $\sigma_g$ via gaussian error propagation for two variables:
+\begin{align}
+    \sigma_g &= \sqrt{ \left( \frac{\partial g}{\partial D} \cdot \sigma_D \right)^2 + \left( \frac{\partial g}{\partial a'} \cdot \sigma_{a'} \right)^2 } \\
+             &= \sqrt{ (a' \cdot \sigma_D)^2 + (D \cdot \sigma_{a'})^2 } \\
+             &= \sqrt{ (3{,}365 \cdot 0{,}06)^2 + (3{,}041 \cdot 0{,}04)^2 } \approx 0{,}24\,\mathrm{\frac{m}{s^2}}
+\end{align}
+
+
+\begin{resultbox}[Endresult: Gravitational acceleration]
+    \begin{equation}
+        g = (10{,}2 \pm 0{,}2)\,\mathrm{\frac{m}{s^2}}
+    \end{equation}
+\end{resultbox}
+
+
+
+
+

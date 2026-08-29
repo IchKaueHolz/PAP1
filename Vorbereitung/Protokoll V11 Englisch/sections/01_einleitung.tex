@@ -1,0 +1,52 @@
+\section{Introduction}
+
+\subsection{Goal of the experiment}
+The goal of the introduction experiment was to learn basic techniques of experimenting, systematical data measuring and statistical analysis of those data. In detail the key aspects were:
+\begin{itemize}
+    \item Comparison of different measuringg methods to determine the period of oscillation of the spring pendulum (start/stop at mass passing the maximum elongation vs. at the zero passing) as well as determining the uncertainties of each method.
+    \item Graphical calculation of the spring constant $D$ from the period of oscillation $T$ of the mass $m$.
+    \item Determining the earths accaleration $g$ from the displacement $x$ of the mass $m$.
+\end{itemize}
+
+\subsection{Setup and methods of measuring}
+In \cref{fig:schematischer_aufbau} one can see the setup used in the experiment.
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.5\textwidth]{example-image-a}
+    \caption{Unfortunatly I am missing the picture of the setup (next time I will take a picture)}
+    \label{fig:schematischer_aufbau}
+\end{figure}
+
+\subsection{Theoretical background}
+The equation of motion of the ideal, undamped spring pendulum is:
+\begin{equation}
+    m \ddot{x} = -D x
+    \label{eq:dgl}
+\end{equation}
+with $m$ being tha attached mass, $x$ the displacement from the initial position and $D$ the spring constant. The solution of the ODE for the initial condition $x(0)= x_0$ is given by a cosine function:
+\begin{equation}
+    x(t) = x_0 \cos(\omega t) \quad \text{mit} \quad \omega = \sqrt{\frac{D}{m}}
+    \label{eq:loesung}
+\end{equation}
+From the relation $\omega = \frac{2\pi}{T}$ one gets the oscillation period $T$:
+\begin{equation}
+    T = 2\pi \sqrt{\frac{m}{D}}
+    \label{eq:periodendauer}
+\end{equation}
+Squaring equation \ref{eq:periodendauer} yields a linear relation of the form $y = a \cdot x + b$:
+\begin{equation}
+    T^2 = \frac{4\pi^2}{D} \cdot m
+    \label{eq:t_quadrat}
+\end{equation}
+The slope $a = \frac{\Delta T^2}{\Delta m}$ in the $T^2$-$m$-diagramm is therefore $a = \frac{4 \pi^2}{D}$ from which one can determine the spring constant:
+\begin{equation}
+    D = \frac{4\pi^2}{a}
+    \label{eq:federkonstante}
+\end{equation}
+For the displacement $x$ of the mass $m$ due to gravitational accelaration hook's law reads:
+\begin{equation}
+    m g = D x \iff x = \frac{g}{D} \cdot m
+    \label{eq:statisch}
+\end{equation}
+From the slope $a' = \frac{\Delta x}{\Delta m} = \frac{g}{D}$ in the $x$-$m$-diagramm one can then finally determine the gravitational accelaration with $g = D \cdot a'$.
