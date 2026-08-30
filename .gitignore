@@ -1,0 +1,44 @@
+# LaTeX build artifacts
+*.aux
+*.bbl
+*.bcf
+*.blg
+*.fdb_latexmk
+*.fls
+*.log
+*.out
+*.toc
+*.synctex.gz
+*.run.xml
+*.pdfsync
+*.nav
+*.snm
+*.vrb
+*.idx
+*.ilg
+*.ind
+*.lot
+*.lof
+
+# Editor / OS files
+.DS_Store
+Thumbs.db
+*.swp
+*.tmp
+*~
+
+# VS Code
+.vscode/
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+
+# Python / notebooks (falls du mit Python arbeitest)
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+
+# Temporary folders
+build/
+dist/
+tmp/
