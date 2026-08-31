@@ -107,13 +107,13 @@ gerichteten elektrischen Feld E, wirken die Beträge der folgenden Kräfte:
 
 \begin{align}
     F_g &= \frac{4}{3}\pi r^3 \rho_{\text{Öl}} g
-    && \text{(Gewichtskraft)} \\[0.5em]
+    && \text{(Gewichtskraft)} \label{Gravitation} \\[0.5em]
     F_a &= \frac{4}{3}\pi r^3 \rho_{\text{Luft}} g
-    && \text{(Auftriebskraft)} \\[0.5em]
+    && \text{(Auftriebskraft)} \label{Auftrieb} \\[0.5em]
     F_e &= qE = q\frac{U}{d}
-    && \text{(Coulombkraft)} \\[0.5em]
+    && \text{(Coulombkraft)} \label{Coulombkraft} \\[0.5em]
     F_R &= 6\pi\eta r v
-    && \text{(Stokesche Reibungskraft)}
+    && \text{(Stokesche Reibungskraft)} \label{Stokes}
 \end{align}
 
 \medskip
@@ -125,28 +125,71 @@ $q$ die Ladung des Tröpfchens, $E$ die elektrische Feldstärke, $U$ die angeleg
 
 
 \subsection{Theorie}
-Beim antriebslosen Sinken mit konstanter Sinkgeschwindigkeit $v_{\text{f}}$ (Kräftegleichgewicht zwischen Reibungskraft und Gewichtskraft):
+Beim antriebslosen Sinken mit konstanter Sinkgeschwindigkeit $v_{\text{f}}$ 
+(Kräftegleichgewicht zwischen Reibungskraft und Gewichtskraft und Auftriebskraft) gilt mit 
+$\rho = \rho_{\text{Öl}} - \rho_{\text{Luft}}$:
 \begin{equation}
-    F_{\text{R,f}} = F_{\text{G}} \implies 6\pi\eta r v_{\text{f}} = \frac{4}{3}\pi r^3 \rho g
+    F_{\text{R,fall }} = F_{\text{G}} - F_{\text{A}} \implies 6\pi\eta r v_{\text{f}} = \frac{4}{3}\pi r^3 \rho g
 \end{equation}
 Auflösen nach dem Tröpfchenradius $r$:
 \begin{equation}
-    r^2 = \frac{9\eta v_{\text{f}}}{2\rho g} \implies r = \sqrt{\frac{9\eta v_{\text{f}}}{2\rho g}}
+    r^2 = \frac{9\eta v_{\text{f}}}{2\rho g} \implies r = \sqrt{\frac{9\eta}{2\rho g}v_{\text{f}}} \label{radius}
 \end{equation}
 
-
+\noindent
+Wird ein elektrisches Feld so angelegt, dass das geladene Tröpfchen mit konstanter Steiggeschwindigkeit $v_{\text{s}}$ nach oben steigt, wirkt die elektrische Kraft nach oben, während Reibungskraft und Gewichtskraft nach unten wirken:
 \begin{equation}
-    \begin{aligned}
-        \bar{x} = \frac{1}{N}\sum_{i=1}^{N} x_i,
-        \qquad
-        \bar{y} = \frac{1}{N}\sum_{i=1}^{N} y_i.
-    \end{aligned}
+    F_{\text{el}} = F_{\text{G}} + F_{\text{R,s}}
+\end{equation}
+Einsetzen der Kräfte $F_{\text{el}} = q \frac{U}{d}$, $F_{\text{R,s}} = 6\pi\eta r v_{\text{s}}$ sowie $F_{\text{G}} = F_{\text{R,fall}} = 6\pi\eta r v_{\text{f}}$ liefert:
+\begin{align}
+    q \frac{U}{d} &= 6\pi\eta r v_{\text{f}} + 6\pi\eta r v_{\text{s}} \\
+    q \frac{U}{d} &= 6\pi\eta r (v_{\text{f}} + v_{\text{s}})
+\end{align}
+Auflösen nach der Ladung $q$:
+\begin{equation}
+    q = (v_{\text{f}} + v_{\text{s}}) \cdot \frac{6\pi\eta r d}{U}
+\end{equation}
+Setzt man den Radius $r = \sqrt{\frac{9\eta v_{\text{f}}}{2\rho g}}$ in den Ausdruck für $q$ ein, erhält man:
+\begin{equation}
+    q = (v_{\text{f}} + v_{\text{s}}) \frac{6\pi d}{U} \sqrt{\frac{9 v_{\text{f}} \eta^3}{2\rho g}} \label{Ladung}
+\end{equation}
+Die zuvor berechneten Ladungen der Öltröpfchen weisen gegenüber der
+Elementarladung eine systematische Abweichung auf. Der bestimmte Wert ist
+dabei typischerweise um etwa den Faktor $1{,}1$ zu groß. Diese Abweichung
+nimmt für kleinere Tröpfchenradien weiter zu.
+\newline
+Die Ursache liegt darin, dass die Radien der Öltröpfchen ungefähr im Bereich
+von $\SIrange{e-6}{e-7}{\meter}$ liegen und damit eine ähnliche Größenordnung
+wie die mittlere freie Weglänge der Luftmoleküle (\SI{6.8e-8}{\meter}) besitzen. 
+Für eine sehr genaue Bestimmung ist die Annahme einer konstanten Luftviskosität unter diesen Bedingungen nicht mehr ausreichend.
+Sie gilt nur, wenn der Durchmesser der Tröpfchen deutlich größer als die
+mittlere freie Weglänge der Luftmoleküle ist.
+\newline
+Daher wird die Viskosität durch einen radiusabhängigen Korrekturfaktor
+angepasst. Die Cunningham-Korrektur des Stokes'schen Gesetzes lautet:
+\begin{equation}
+    \eta(r) = \eta_0 f(r)
+    = \eta_0\left(1+\frac{B}{pr}\right),
+    \label{Cunningham}
+\end{equation}
+wobei $\eta_0$ die nichtkorrigierte Viskosität, $r$ der Tröpfchenradius,
+$p$ der Luftdruck und $B$ eine empirische Konstante ist.\newline
+Da der Tröpfchenradius $r$ selbst von $\eta(r)$ abhängt,
+würde ein exaktes Einsetzen in die Gleichung für den Radius zu einer quadratischen Gleichung führen.
+Für die praktische Auswertung genügt es jedoch, den Radius $r$ zunächst näherungsweise mit $\eta_0$ zu bestimmen:
+\begin{equation}
+    r \approx \sqrt{\frac{9\eta_0 v_{\text{f}}}{2\rho g}}
+\end{equation}
+Der dadurch bei der Berechnung von $r$ entstehende Fehler von etwa 5\,\% pflanzt sich im Korrekturfaktor $f(r)$ lediglich als Abweichung von circa 0,5\,\% fort,
+was im Rahmen der Messgenauigkeit vernachlässigbar ist.
+Somit bleibt Gleichung\,\eqref{Ladung} vorerst gültig, wobei $\eta$ durch die korrigierte Viskosität $\eta(r)$ ersetzt wird.
+Einsetzen der korrigierten Viskosität $\eta(r)$ in die Gleichung für die Ladung $q$ liefert:
+\begin{equation}
+    q = (v_{\text{f}} + v_{\text{s}}) \frac{6\pi d}{U} \sqrt{\frac{9 v_{\text{f}} (\eta_\text{0}f(r))^3}{2\rho g}} \label{Ladung_korrigiert}
 \end{equation}
 
-Die Standardabweichung einer Messreihe ist
-\begin{equation}
-    s = \sqrt{\frac{1}{N-1}\sum_{i=1}^{N}(x_i - \bar{x})^2 }.
-\end{equation}
+
 
 \section{Versuchsaufbau und Messmethode}
 
