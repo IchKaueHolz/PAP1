@@ -1,0 +1,190 @@
+\documentclass[12pt,a4paper,titlepage]{scrartcl}
+
+\usepackage[main=ngerman,english]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{geometry}
+\geometry{left=2.5cm,right=2.5cm,top=2.5cm,bottom=3cm}
+\usepackage{microtype}
+\usepackage{amsmath,amssymb,mathtools}
+\usepackage{siunitx}
+\sisetup{locale=DE, separate-uncertainty=true, per-mode=fraction}
+\usepackage{booktabs}
+\usepackage{multirow}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage[automark]{scrlayer-scrpage}
+\usepackage[most]{tcolorbox}
+\usepackage{hyperref}
+\hypersetup{colorlinks=true, linkcolor=blue!60!black, urlcolor=blue!60!black, citecolor=blue!60!black}
+
+\clearpairofpagestyles
+
+\chead{%
+    \versuch\hfill\autor\
+    \rule{\textwidth}{0.2pt}%
+}
+\cfoot{%
+    \rule{\textwidth}{0.2pt}\\[-0.5ex]
+    \pagemark\
+}
+\addtokomafont{pagefoot}{\small}
+
+\newtcolorbox{resultbox}[1][]{
+    enhanced,
+    colback=blue!4!white,
+    colframe=blue!65!black,
+    boxrule=0.8pt,
+    arc=2mm,
+    title=#1,
+    fonttitle=\bfseries,
+    drop shadow
+}
+
+\newcommand{\versuch}{Versuch 22}
+\newcommand{\titel}{Titel des Versuchs}
+\newcommand{\praktikum}{Physikalisches Anfängerpraktikum 1}
+\newcommand{\autor}{Jonathan Gießen}
+\newcommand{\gruppe}{Gruppe 8}
+\newcommand{\datum}{\today}
+\newcommand{\betreuer}{Tutor/in}
+
+\begin{document}
+
+\pagestyle{scrheadings}
+
+\begin{titlepage}
+    \centering
+    {\Large \praktikum\par}
+    \vspace{0.8cm}
+    {\LARGE \bfseries \versuch\ -- \titel\par}
+    \vspace{1.5cm}
+
+    \begin{tabular}{ll}
+        \textbf{Autor:} & \autor\\
+        \textbf{Gruppe:} & \gruppe\\
+        \textbf{Betreuer:} & \betreuer\\
+        \textbf{Datum:} & \datum\\
+    \end{tabular}
+
+    \vfill
+    \hrulefill
+\end{titlepage}
+
+\tableofcontents
+\newpage
+
+\section{Ziel des Versuchs}
+
+In diesem Versuch wird die grundlegende physikalische Beziehung zwischen \dots untersucht. Ziel ist es, die Messgrößen systematisch zu erfassen, die Daten auszuwerten und die Ergebnisse mit dem theoretischen Modell zu vergleichen.
+
+\section{Theorie}
+
+Für die Auswertung ist die Beziehung
+\begin{equation}
+    y = a x + b
+\end{equation}
+
+entscheidend. Der lineare Zusammenhang wird durch die Steigung $a$ und den Achsenabschnitt $b$ beschrieben. Für eine Messreihe $x_i$, $y_i$ gilt mit $N$ Messwerten:
+\begin{equation}
+    \bar{x} = \frac{1}{N}\sum_{i=1}^{N} x_i,
+    \qquad
+    \bar{y} = \frac{1}{N}\sum_{i=1}^{N} y_i.
+\end{equation}
+
+Die Standardabweichung einer Messreihe ist
+\begin{equation}
+    s = \sqrt{\frac{1}{N-1}\sum_{i=1}^{N}(x_i - \bar{x})^2 }.
+\end{equation}
+
+\section{Versuchsaufbau und Messmethode}
+
+Der Versuchsaufbau besteht aus \dots. Die Messung wurde mit \dots durchgeführt. Die Messgrößen wurden in folgenden Schritten erfasst:
+\begin{enumerate}
+    \item Messung von \dots
+    \item Wiederholung der Messung für \dots
+    \item Bestimmung der Ausgleichsgeraden bzw. der relevanten physikalischen Größe
+\end{enumerate}
+
+\section{Messwerte}
+
+\begin{table}[H]
+    \centering
+    \caption{Messdaten zur Bestimmung von $x$ und $y$.}
+    \begin{tabular}{S[table-format=2.1] S[table-format=2.3]}
+        \toprule
+        {$x$ / \si{\centi\meter}} & {$y$ / \si{\second}} \\
+        \midrule
+        1.0 & 2.15 \\
+        2.0 & 4.31 \\
+        3.0 & 6.44 \\
+        4.0 & 8.58 \\
+        5.0 & 10.72 \\
+        \bottomrule
+    \end{tabular}
+\end{table}
+
+\section{Auswertung}
+
+Die Messwerte wurden zunächst grafisch dargestellt und anschließend mit einer linearen Ausgleichsrechnung analysiert. Die Gerade hat die Form
+\begin{equation}
+    y = a x + b.
+\end{equation}
+
+Aus der linearen Regression folgt:
+\begin{equation}
+    a = \frac{\sum (x_i-\bar{x})(y_i-\bar{y})}{\sum (x_i-\bar{x})^2},
+    \qquad
+    b = \bar{y} - a\bar{x}.
+\end{equation}
+
+\begin{resultbox}[Ergebnis]
+    Die experimentell bestimmte Steigung beträgt
+    \[
+        a = \SI{2.14}{\second\per\meter}
+    \]
+    und der Achsenabschnitt ist
+    \[
+        b = \SI{0.02}{\second}.
+    \]
+\end{resultbox}
+
+\subsection{Fehlerrechnung}
+
+Die Messunsicherheit wurde mit der Standardabweichung des Mittelwerts bestimmt:
+\begin{equation}
+    u_{\bar{x}} = \frac{s}{\sqrt{N}}.
+\end{equation}
+
+Die relative Abweichung zum erwarteten Wert $y_{\mathrm{theor}}$ ergibt sich aus
+\begin{equation}
+    \Delta = \frac{|y_{\mathrm{exp}} - y_{\mathrm{theor}}|}{y_{\mathrm{theor}}}\times 100\,\%.
+\end{equation}
+
+\subsection{Grafische Darstellung}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{example-image}
+    \caption{Beispielhafte Darstellung der Messdaten mit Ausgleichsgerade.}
+\end{figure}
+
+\section{Diskussion}
+
+Die Ergebnisse zeigen eine gute Übereinstimmung mit dem theoretischen Modell. Die geringe Abweichung von \dots spricht für eine zufriedenstellende Messgenauigkeit. Mögliche Ursachen für systematische Abweichungen sind \dots.
+
+Die Messwerte sind insgesamt konsistent, jedoch sind mögliche Fehlerquellen wie \dots, \dots und \dots zu berücksichtigen. Eine Verfeinerung der Messmethode könnte die Genauigkeit weiter erhöhen.
+
+\section{Fazit}
+
+Der Versuch zeigt, dass \dots dem erwarteten physikalischen Zusammenhang folgt. Die gemessenen Werte bestätigen die Theorie innerhalb der Messunsicherheit. Die gewonnenen Ergebnisse sind für die grundlegende experimentelle Analyse des Praktikums geeignet.
+
+\appendix
+\section{Anhang}
+
+Weitere Messdaten, Berechnungen oder Rohdaten können hier ergänzt werden.
+
+\end{document}
