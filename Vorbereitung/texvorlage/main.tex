@@ -20,6 +20,7 @@
 \usepackage[automark]{scrlayer-scrpage}
 \usepackage[most]{tcolorbox}
 \usepackage{hyperref}
+
 \hypersetup{colorlinks=true, linkcolor=blue!60!black, urlcolor=blue!60!black, citecolor=blue!60!black}
 
 \clearpairofpagestyles
@@ -36,14 +37,15 @@
 
 \newtcolorbox{resultbox}[1][]{
     enhanced,
-    colback=blue!4!white,
-    colframe=blue!65!black,
+    colback=black!4!white,
+    colframe=black!65!black,
     boxrule=0.8pt,
-    arc=0.2mm,
+    arc=0.0mm,
     title=#1,
     fonttitle=\bfseries,
-    drop shadow
+    %drop shadow
 }
+
 
 \newcommand{\versuch}{Versuch 22}
 \newcommand{\titel}{Titel des Versuchs}
@@ -142,7 +144,7 @@ Aus der linearen Regression folgt:
     b = \bar{y} - a\bar{x}.
 \end{equation}
 
-\begin{resultbox}[Ergebnis]
+\begin{resultbox}[67 ergbenis]
     Die experimentell bestimmte Steigung beträgt
     \[
         a = \SI{2.14}{\second\per\meter}
