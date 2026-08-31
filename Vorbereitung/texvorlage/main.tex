@@ -5,7 +5,8 @@
 \usepackage[T1]{fontenc}
 \usepackage{lmodern}
 \usepackage{geometry}
-\geometry{left=2.5cm,right=2.5cm,top=2.5cm,bottom=3cm}
+\geometry{left=2.5cm,right=2.5cm,top=2.5cm,bottom=3cm,head=29pt,foot=25pt}
+\setlength{\footheight}{25pt}
 \usepackage{microtype}
 \usepackage{amsmath,amssymb,mathtools}
 \usepackage{siunitx}
@@ -24,7 +25,7 @@
 \clearpairofpagestyles
 
 \chead{%
-    \versuch\hfill\autor\
+    \textbf{\versuch}\hfill\textbf{\autor}
     \rule{\textwidth}{0.2pt}%
 }
 \cfoot{%
@@ -38,7 +39,7 @@
     colback=blue!4!white,
     colframe=blue!65!black,
     boxrule=0.8pt,
-    arc=2mm,
+    arc=0.2mm,
     title=#1,
     fonttitle=\bfseries,
     drop shadow
