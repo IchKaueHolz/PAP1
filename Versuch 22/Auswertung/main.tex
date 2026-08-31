@@ -21,6 +21,11 @@
 \usepackage[automark]{scrlayer-scrpage}
 \usepackage[most]{tcolorbox}
 \usepackage{hyperref}
+\usepackage{pdfpages}
+\usepackage{csvsimple-l3}
+\usepackage{longtable}
+\usepackage{graphicx}
+
 
 \hypersetup{colorlinks=true, linkcolor=blue!60!black, urlcolor=blue!60!black, citecolor=blue!60!black}
 
@@ -92,7 +97,9 @@ als ihre Vorgänger, zu bestimmen.
 \newline 
 1923 erhielt Millikan dafür den Nobelpreis für Physik.
 
-\subsection{Grundlagen}
+\section{Grundlagen und Theorie}
+
+\subsection{Auf die Öltröpfchen wirkende Kräfte}
 
 Der Versuch basiert auf der Tatsache, dass die Bewegung von Öltröpfchen in einem elektrischen Feld durch die Coulomb-Kraft beeinflusst wird. 
 Die Tröpfchen werden durch die Gravitation nach unten gezogen, während das elektrische Feld eine Kraft in entgegengesetzter Richtung ausübt. 
@@ -116,6 +123,14 @@ gerichteten elektrischen Feld E, wirken die Beträge der folgenden Kräfte:
     && \text{(Stokesche Reibungskraft)} \label{Stokes}
 \end{align}
 
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=0.8\textwidth]{Froces_millikan.png} 
+  \caption{Kräfte auf ein Öltröpfchen in einem elektrischen Feld.} 
+    \label{Kräfteol}
+\end{figure}
+
+
 \medskip
 
 \noindent
@@ -124,7 +139,7 @@ $q$ die Ladung des Tröpfchens, $E$ die elektrische Feldstärke, $U$ die angeleg
 
 
 
-\subsection{Theorie}
+\subsection{Sinkbewegung ohne elektrisches Feld}
 Beim antriebslosen Sinken mit konstanter Sinkgeschwindigkeit $v_{\text{f}}$ 
 (Kräftegleichgewicht zwischen Reibungskraft und Gewichtskraft und Auftriebskraft) gilt mit 
 $\rho = \rho_{\text{Öl}} - \rho_{\text{Luft}}$:
@@ -137,6 +152,8 @@ Auflösen nach dem Tröpfchenradius $r$:
 \end{equation}
 
 \noindent
+\subsection{Steigbewegung im elektrischen Feld}
+
 Wird ein elektrisches Feld so angelegt, dass das geladene Tröpfchen mit konstanter Steiggeschwindigkeit $v_{\text{s}}$ nach oben steigt, wirkt die elektrische Kraft nach oben, während Reibungskraft und Gewichtskraft nach unten wirken:
 \begin{equation}
     F_{\text{el}} = F_{\text{G}} + F_{\text{R,s}}
@@ -154,6 +171,8 @@ Setzt man den Radius $r = \sqrt{\frac{9\eta v_{\text{f}}}{2\rho g}}$ in den Ausd
 \begin{equation}
     q = (v_{\text{f}} + v_{\text{s}}) \frac{6\pi d}{U} \sqrt{\frac{9 v_{\text{f}} \eta^3}{2\rho g}} \label{Ladung}
 \end{equation}
+\subsection{Cunningham-Korrektur}
+
 Die zuvor berechneten Ladungen der Öltröpfchen weisen gegenüber der
 Elementarladung eine systematische Abweichung auf. Der bestimmte Wert ist
 dabei typischerweise um etwa den Faktor $1{,}1$ zu groß. Diese Abweichung
@@ -189,34 +208,90 @@ Einsetzen der korrigierten Viskosität $\eta(r)$ in die Gleichung für die Ladun
     q = (v_{\text{f}} + v_{\text{s}}) \frac{6\pi d}{U} \sqrt{\frac{9 v_{\text{f}} (\eta_\text{0}f(r))^3}{2\rho g}} \label{Ladung_korrigiert}
 \end{equation}
 
+\subsection{Literaturwerte}
 
-
-\section{Versuchsaufbau und Messmethode}
-
-Der Versuchsaufbau besteht aus \dots. Die Messung wurde mit \dots durchgeführt. Die Messgrößen wurden in folgenden Schritten erfasst:
-\begin{enumerate}
-    \item Messung von \dots
-    \item Wiederholung der Messung für \dots
-    \item Bestimmung der Ausgleichsgeraden bzw. der relevanten physikalischen Größe
-\end{enumerate}
-
-\section{Messwerte}
+Für die Auswertung werden folgende Konstanten und Geräteparameter verwendet:
 
 \begin{table}[H]
     \centering
-    \caption{Messdaten zur Bestimmung von $x$ und $y$.}
-    \begin{tabular}{S[table-format=2.1] S[table-format=2.3]}
+    \caption{Für die Auswertung verwendete Konstanten und Geräteparameter.}
+    \begin{tabular}{ll}
         \toprule
-        {$x$ / \si{\centi\meter}} & {$y$ / \si{\second}} \\
+        Größe & Wert \\
         \midrule
-        1.0 & 2.15 \\
-        2.0 & 4.31 \\
-        3.0 & 6.44 \\
-        4.0 & 8.58 \\
-        5.0 & 10.72 \\
+        Viskosität der Luft & $\eta_0 = \SI{1.81e-5}{\newton\second\per\meter\squared}$ \\
+        Schwerebeschleunigung & $g = \SI{9.81}{\meter\per\second\squared}$ \\
+        Dichte des Öls bei \SI{15}{\celsius} & $\rho_{\text{Öl}} = \SI{877}{\kilogram\per\meter\cubed}$ \\
+        Dichte des Öls bei \SI{25}{\celsius} & $\rho_{\text{Öl}} = \SI{871}{\kilogram\per\meter\cubed}$ \\
+        Dichte der Luft & $\rho_{\text{Luft}} = \SI{1.29}{\kilogram\per\meter\cubed}$ \\
+        Konstante im Korrekturfaktor & $b = \SI{7.78e-3}{\pascal\meter}$ \\
+        Abstand der Kondensatorplatten & $d = \SI{6.00 +- 0.05}{\milli\meter}$ \\
+        Skala auf dem Bildschirm & $1\,\mathrm{Skt} = \SI{5.00 +- 0.13 e-5}{\meter}$ \\
         \bottomrule
     \end{tabular}
 \end{table}
+
+
+
+
+
+\section{Messprotokoll}
+
+\subsection{Versuchsaufbau und Aufgaben}
+\includepdf[
+    pages=-,
+    width=\textwidth,
+    height=\textheight,
+    keepaspectratio,
+    pagecommand={\thispagestyle{scrheadings}}
+]{../Messprotokoll 22.pdf}
+
+\subsection{Durchführung}
+
+Zu Beginn des Versuchs wurden der barometrische Luftdruck ${p = 100285 \pm 10\,\text{Pa}}$ sowie
+die Raumtemperatur zu Versuchsbeginn ($T = 295{,}7\pm 1{,}0\,\text{K} \approx 22{,}5\,^\circ\text{C}$) und zum
+Versuchsende ($T = 296{,}2\pm 1{,}0\,\text{K}$) notiert. Am Plattenkondensator wurde eine Spannung von ca.~$500\,\text{V}$ (gemessen: $(500 \pm 4)\,\text{V}$) 
+eingestellt und für die gesamte Messdauer konstant gehalten.
+Über den Ölzerstäuber wurden Tröpfchen in den Kondensatorraum eingebracht und mit dem Mikroskop über den Monitor fokussiert. Die Streckenmessung erfolgte
+anhand der auf dem Monitor eingeblendeten Skala ($1\,\text{Skt} = (5{,}00 \pm 0{,}13)\cdot 10^{-5}\,\text{m}$).
+Für die Messungen wurden bevorzugt langsam steigende Tröpfchen ausgewählt.
+
+\medskip
+Für die Auswertung wurden folgende Messungen durchgeführt:
+\begin{itemize}
+    \item \textbf{Mehrfachmessung an einem Tröpfchen (Aufgabe 2):} An einem einzelnen Öltröpfchen wurden die Fallzeit $t_1$ (im feldfreien Raum, $E=0$) sowie die Steigzeit $t_2$ (mit angelegtem elektrischem Feld, $E \neq 0$) jeweils fünfmal hintereinander über eine definierte Strecke (z.\,B.~$10\,\text{Skt}$) gemessen, um die statistische Streuung der Geschwindigkeitsmessung abzuschätzen.
+    \item \textbf{Messreihe an verschiedenen Tröpfchen (Aufgaben 3 \& 4):} Insgesamt wurden 30 Wertepaare (bestehend aus je einer Fall- und einer Steigzeit, also 60 Einzelzeitmessungen)
+    an unterschiedlichen Öltröpfchen aufgenommen. Dabei wurden sowhol schnellere, als auch lagsamere Tröpfchen berücksichtigt, um eine möglichst große Bandbreite an Tröpfchengeschwindigkeiten zu erfassen.
+    Bei fünf Tröpfchen wurden jeweils fünf Zyklen durchlaufen. 
+\end{itemize}
+Für jedes Tröpfchen wurden Fallweg, Fallzeit, Steigweg und Steigzeit zusammen mit den Umgebungsparametern und der Kondensatorspannung in das vorbereitete Auswerteblatt eingetragen, um über die Cunningham-korrigierten Viskositäten die Tröpfchenradien und Ladungen zu berechnen.
+
+\subsection{Messwerte}
+Für die Bestimmung der Elementarladung werden in einer Exceltabelle die Messwerte eingetragen und die Ladung der Tröpfchen berechnet.
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.8\textwidth]{Hilfsvariable.png} 
+    \caption{Hilfsvariablen.} 
+    \label{Helpvariable}
+
+\end{figure}
+
+\begin{table}[htbp]
+  \centering
+  \small
+  \caption{Messwerte zur Bestimmung der Elementarladung.}
+    \resizebox{\textwidth}{!}{%
+        \csvautotabular{../Versuch22_Values.csv}%
+    }
+\end{table}
+
+
+
+
+
+
+
+
 
 \section{Auswertung}
 
