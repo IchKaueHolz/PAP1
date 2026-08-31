@@ -9,6 +9,7 @@
 \setlength{\footheight}{25pt}
 \usepackage{microtype}
 \usepackage{amsmath,amssymb,mathtools}
+\numberwithin{equation}{section}
 \usepackage{siunitx}
 \sisetup{locale=DE, separate-uncertainty=true, per-mode=fraction}
 \usepackage{booktabs}
@@ -26,7 +27,7 @@
 \clearpairofpagestyles
 
 \chead{%
-    \textbf{\versuch}\hfill\textbf{\autor}
+    \versuch\hfill\autor\
     \rule{\textwidth}{0.2pt}%
 }
 \cfoot{%
@@ -35,7 +36,7 @@
 }
 \addtokomafont{pagefoot}{\small}
 
-\newtcolorbox{resultbox}[1][]{
+\newtcolorbox{resultbox}[1][]{ 
     enhanced,
     colback=black!4!white,
     colframe=black!65!black,
@@ -52,7 +53,7 @@
 \newcommand{\praktikum}{Physikalisches Anfängerpraktikum 1}
 \newcommand{\autor}{Jonathan Gießen}
 \newcommand{\gruppe}{Gruppe 8}
-\newcommand{\datum}{\today}
+\newcommand{\datum}{31. August 2026}
 \newcommand{\betreuer}{Tutor/in}
 
 \begin{document}
@@ -74,28 +75,72 @@
     \end{tabular}
 
     \vfill
-    \hrulefill
+    \hrulefill\
 \end{titlepage}
 
 \tableofcontents
 \newpage
 
-\section{Ziel des Versuchs}
+\section{Einleitung}
+\subsection{Motivation}
 
-In diesem Versuch wird die grundlegende physikalische Beziehung zwischen \dots untersucht. Ziel ist es, die Messgrößen systematisch zu erfassen, die Daten auszuwerten und die Ergebnisse mit dem theoretischen Modell zu vergleichen.
+In diesem Versuch wird die Elementarladung Nach Millikan bestimmt. Dazu wird die Bewegung von Öltröpfchen
+in einem elektrischen Feld untersucht. 
+Ziel ist es, die Ladung der Tröpfchen zu messen und daraus die Elementarladung zu bestimmen.
+Den Physikern Robert Millikan und Harvey Fletcher gelang es 1910, die Elementarladung genauer,
+als ihre Vorgänger, zu bestimmen. 
+\newline 
+1923 erhielt Millikan dafür den Nobelpreis für Physik.
 
-\section{Theorie}
+\subsection{Grundlagen}
 
-Für die Auswertung ist die Beziehung
+Der Versuch basiert auf der Tatsache, dass die Bewegung von Öltröpfchen in einem elektrischen Feld durch die Coulomb-Kraft beeinflusst wird. 
+Die Tröpfchen werden durch die Gravitation nach unten gezogen, während das elektrische Feld eine Kraft in entgegengesetzter Richtung ausübt. 
+Durch die Messung der Geschwindigkeit der Tröpfchen unter verschiedenen Bedingungen kann die Ladung der Tröpfchen bestimmt werden.
+Das annähern homogene elektrische Feld wird durch einen Plattenkondensator erzeugt, dessen Plattenabstand bekannt ist.
+\newline 
+Gemessen wird die Fallgeschiwindigkeit $v_f$ eines Tröpfchens, wenn das elektrische Feld ausgeschaltet ist,
+und die Steiggeschwindigkeit $v_s$, wenn das elektrische Feld eingeschaltet ist.
+Kleine Flüssigkeitströpfchen sind im Allgemeinen geladen. Ihre Ladung ist notwendigerweise ein ganzzahliges Vielfaches der
+Elementarladung. Betrachtet man ein in Luft befindliches geladenes Tröpfchen in einem vertikal
+gerichteten elektrischen Feld E, wirken die Beträge der folgenden Kräfte:
+
+\begin{align}
+    F_g &= \frac{4}{3}\pi r^3 \rho_{\text{Öl}} g
+    && \text{(Gewichtskraft)} \\[0.5em]
+    F_a &= \frac{4}{3}\pi r^3 \rho_{\text{Luft}} g
+    && \text{(Auftriebskraft)} \\[0.5em]
+    F_e &= qE = q\frac{U}{d}
+    && \text{(Coulombkraft)} \\[0.5em]
+    F_R &= 6\pi\eta r v
+    && \text{(Stokesche Reibungskraft)}
+\end{align}
+
+\medskip
+
+\noindent
+Wobei $r$ der Radius des Tröpfchens, $\rho_{\text{Öl}}$ die Dichte des Öls, $\rho_{\text{Luft}}$ die Dichte der Luft, $g$ die Erdbeschleunigung,
+$q$ die Ladung des Tröpfchens, $E$ die elektrische Feldstärke, $U$ die angelegte Spannung, $d$ der Plattenabstand und $\eta$ die Viskosität der Luft ist.
+
+
+
+\subsection{Theorie}
+Beim antriebslosen Sinken mit konstanter Sinkgeschwindigkeit $v_{\text{f}}$ (Kräftegleichgewicht zwischen Reibungskraft und Gewichtskraft):
 \begin{equation}
-    y = a x + b
+    F_{\text{R,f}} = F_{\text{G}} \implies 6\pi\eta r v_{\text{f}} = \frac{4}{3}\pi r^3 \rho g
+\end{equation}
+Auflösen nach dem Tröpfchenradius $r$:
+\begin{equation}
+    r^2 = \frac{9\eta v_{\text{f}}}{2\rho g} \implies r = \sqrt{\frac{9\eta v_{\text{f}}}{2\rho g}}
 \end{equation}
 
-entscheidend. Der lineare Zusammenhang wird durch die Steigung $a$ und den Achsenabschnitt $b$ beschrieben. Für eine Messreihe $x_i$, $y_i$ gilt mit $N$ Messwerten:
+
 \begin{equation}
-    \bar{x} = \frac{1}{N}\sum_{i=1}^{N} x_i,
-    \qquad
-    \bar{y} = \frac{1}{N}\sum_{i=1}^{N} y_i.
+    \begin{aligned}
+        \bar{x} = \frac{1}{N}\sum_{i=1}^{N} x_i,
+        \qquad
+        \bar{y} = \frac{1}{N}\sum_{i=1}^{N} y_i.
+    \end{aligned}
 \end{equation}
 
 Die Standardabweichung einer Messreihe ist
@@ -143,7 +188,6 @@ Aus der linearen Regression folgt:
     \qquad
     b = \bar{y} - a\bar{x}.
 \end{equation}
-
 \begin{resultbox}[67 ergbenis]
     Die experimentell bestimmte Steigung beträgt
     \[
