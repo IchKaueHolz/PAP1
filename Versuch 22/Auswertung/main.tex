@@ -61,7 +61,7 @@
 \newcommand{\autor}{Jonathan Gießen}
 \newcommand{\gruppe}{Gruppe 8}
 \newcommand{\datum}{31. August 2026}
-\newcommand{\betreuer}{Tutor/in}
+\newcommand{\betreuer}{Fabian Mrosek}
 
 \begin{document}
 
@@ -287,7 +287,7 @@ Für die Bestimmung der Elementarladung werden in einer Exceltabelle die Messwer
   \caption{Messwerte zur Bestimmung der Elementarladung.}
     \resizebox{\textwidth}{!}{%
         \csvautotabular{../Versuch22_Values.csv}%
-    }
+    }\label{table: Messung}
 \end{table}
 
 
@@ -431,7 +431,8 @@ Dass die erste Stufe tatsächlich der einfachen Elementarladung $e$ entspricht, 
     des ersten Peaks. Wäre der erste Peak bereits $2e$, müssten Zwischenstufen im Abstand von $1e$ fehlen, was bei einer statistischen Aufladung durch z.B Reibung unplausibel ist.
     \item \textbf{Höhere Ladungsstufen:} Auch die weiter oben liegenden Häufungen (um $\approx 11 \cdot 10^{-19}\,\text{As}$ und $\approx 19 \cdot 10^{-19}\,\text{As}$) 
     entsprechen ganzzahligen Vielfachen ($n=7$ und $n=12$) dieses Grundabstands.
-    Da 7 eine Primzahl ist, kann die Stufe um $11 \cdot 10^{-19}\,\text{As}$ nicht als $2e$ interpretiert, sondern muss ein Vielfaches von $e$ sein.
+    \item \textbf{Messmethode:} Da in der Messmethode besonders langsam steigende Tröpfchen ausgewählt werden ($\frac{8\,\text{s}}{10\,\text{Skt}}$), wird 
+    die Beobachtung von einfach geladenen Tröpfchen begünstigt.
 \end{itemize}
 
 \medskip
@@ -507,7 +508,7 @@ Für die einzelnen relativen Unsicherheiten werden folgende Werte verwendet:
     \end{tabular}
 \end{table}
 \footnotetext{Für die systematische Unsicherheit der Spannungsmessung wird gemäß Aufgabenstellung eine relative Unsicherheit von $0{,}5\,\%$ angenommen,
-was bei $U = 500\,\text{V}$ einer systematischen Geräteunsicherheit von $\Delta U_{\text{sys}} = \pm 2{,}5\,\text{V} \approx \pm 2\,\text{V}$ entspricht.
+was bei $U = 500\,\text{V}$ einer systematischen Geräteunsicherheit von $\Delta U_{\text{sys}} = \pm 2{,}5\,\text{V}$ entspricht.
 Die im Messprotokoll notierte Unsicherheit von $\pm 4\,\text{V}$ berücksichtigt darüber hinaus die beobachtete statistische Schwankung sowie die thermische Drift der Hochspannungsquelle über den gesamten Messzeitraum.}
 
 \medskip
@@ -528,37 +529,126 @@ Einsetzen in die Fehlerfortpflanzung:
     Den größten Beitrag zur Unsicherheit liefern hierbei die Bestimmung des Abbildungsmaßstabs (Skalenteilung) sowie die Viskosität der Luft.
 \end{resultbox}
 
-Die Messunsicherheit wurde mit der Standardabweichung des Mittelwerts bestimmt:
+\subsection{Abschätzung des statistischen Fehlers aus der Mehrfachmessung}
+
+Um den statistischen Fehler abzuschätzen, der im Wesentlichen auf der Unsicherheit der Zeit- und Geschwindigkeitsmessung beruht,
+wird die Streuung der fünf aufeinanderfolgenden Messungen am ersten Tröpfchen (Messungen Nr.~1 bis 5 in Tabelle\,\ref{table: Messung}, Ladungszahl $n=3$) analysiert.
+
+\medskip
+\noindent
+Für die reduzierte Ladung $q_1 = \frac{Q}{n}$ ergeben sich die fünf Einzelwerte:
+\begin{align*}
+    q_{1,1} &= 1{,}584 \cdot 10^{-19}\,\text{As}, & 
+    q_{1,2} &= 1{,}577 \cdot 10^{-19}\,\text{As}, & 
+    q_{1,3} &= 1{,}610 \cdot 10^{-19}\,\text{As}, \\
+    q_{1,4} &= 1{,}633 \cdot 10^{-19}\,\text{As}, & 
+    q_{1,5} &= 1{,}594 \cdot 10^{-19}\,\text{As}.
+\end{align*}
+
+\noindent
+Der Mittelwert dieser 5er-Messreihe beträgt:
 \begin{equation}
-    u_{\bar{x}} = \frac{s}{\sqrt{N}}.
+    \bar{q}_{1,\text{5x}} = \frac{1}{5}\sum_{i=1}^{5} q_{1,i} \approx 1{,}600 \cdot 10^{-19}\,\text{As}
 \end{equation}
 
-Die relative Abweichung zum erwarteten Wert $y_{\mathrm{theor}}$ ergibt sich aus
+\noindent
+Die empirische Standardabweichung einer Einzelmessung $s_q$ berechnet sich nach:
+\begin{align}
+    s_q &= \sqrt{\frac{1}{N-1}\sum_{i=1}^{N}(q_{1,i} - \bar{q}_{1,\text{5x}})^2} \notag \\
+        &= \sqrt{\frac{1}{4} \left( (-0{,}016)^2 + (-0{,}023)^2 + (0{,}010)^2 + (0{,}033)^2 + (-0{,}006)^2 \right) \cdot 10^{-38}\,\text{As}} \notag \\
+        &\approx 0{,}022 \cdot 10^{-19}\,\text{As}
+\end{align}
+
+\noindent
+Dies entspricht einer relativen statistischen Unsicherheit der Einzelmessung von:
 \begin{equation}
-    \Delta = \frac{|y_{\mathrm{exp}} - y_{\mathrm{theor}}|}{y_{\mathrm{theor}}}\times 100\,\%.
+    \frac{s_q}{\bar{q}_{1,\text{5x}}} = \frac{0{,}022 \cdot 10^{-19}\,\text{As}}{1{,}600 \cdot 10^{-19}\,\text{As}} \approx 1{,}4\,\%
 \end{equation}
 
-\subsection{Grafische Darstellung}
+\medskip
+\noindent
+\textbf{Vergleich mit der Excel-Standardabweichung:}\\
+In den Hilfsvariablen des Excel-Arbeitsblatts (Abb.\,\ref{Helpvariable}) ist die Standardabweichung einer Einzelmessung über die Gesamtheit der Tröpfchen mit $n \le 5$ mit $s_{q,\text{Excel}} = 0{,}087 \cdot 10^{-19}\,\text{As}$ angegeben. 
 
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=0.8\textwidth]{example-image}
-    \caption{Beispielhafte Darstellung der Messdaten mit Ausgleichsgerade.}
-\end{figure}
+\begin{resultbox}[Vergleich der statistischen Streuungen]
+    \begin{itemize}
+        \item Standardabweichung an einem einzelnen Tröpfchen (5 Zyklen): $s_q \approx 0{,}022 \cdot 10^{-19}\,\text{As}$ ($1{,}4\,\%$)
+        \item Standardabweichung über verschiedene Tröpfchen (Excel): $s_{q,\text{Excel}} = 0{,}087 \cdot 10^{-19}\,\text{As}$ ($5{,}5\,\%$)\footnotemark
+        
+    \end{itemize}
+    Die Streuung bei Mehrfachmessung an demselben Tröpfchen ist um etwa einen Faktor 4 geringer als im Gesamtdatensatz. Dies ist physikalisch plausibel: An einem festen Tröpfchen werden tröpfchenspezifische Einflüsse (wie unterschiedliche Radien, individuelle Abweichungen der Cunningham-Korrektur und Formeffekte) konstant gehalten, sodass lediglich der menschliche Reaktionszeitfehler beim Stoppen erfasst wird.
+\end{resultbox}
+\footnotetext{$\frac{0.087}{1.583}  = 5.49\,\%$}
 
-\section{Diskussion}
 
-Die Ergebnisse zeigen eine gute Übereinstimmung mit dem theoretischen Modell. Die geringe Abweichung von \dots spricht für eine zufriedenstellende Messgenauigkeit. Mögliche Ursachen für systematische Abweichungen sind \dots.
+\subsection{Vergleich des Ergebnisses mit dem Literaturwert}
 
-Die Messwerte sind insgesamt konsistent, jedoch sind mögliche Fehlerquellen wie \dots, \dots und \dots zu berücksichtigen. Eine Verfeinerung der Messmethode könnte die Genauigkeit weiter erhöhen.
+Zur abschließenden Bestimmung der Elementarladung wird der aus den Messdaten ermittelte Mittelwert herangezogen. Aus der Auswertung der $N = 20$ Tröpfchen mit einer Ladungszahl $n \le 5$ (Abb.\,\ref{Helpvariable}) ergibt sich der experimentelle Mittelwert zu:
+\begin{equation}
+    e_{\text{exp}} = \bar{q}_1 = 1{,}571 \cdot 10^{-19}\,\text{C}
+\end{equation}
 
-\section{Fazit}
+\medskip
+\noindent
+\textbf{Fehlerbilanz (statistischer und systematischer Fehler):}
+\begin{itemize}
+    \item \textbf{Statistischer Fehler des Mittelwerts:} 
+    Die Standardabweichung des Mittelwerts beträgt gemäß Excel-Auswertung (Abb.\,\ref{Helpvariable}):
+    \begin{equation}
+        u_{\text{stat}} = s_{\bar{x}} = \frac{s_q}{\sqrt{N}} = 0{,}020 \cdot 10^{-19}\,\text{C} \quad (\approx 1{,}27\,\%)
+    \end{equation}
+    \item \textbf{Systematischer Fehler:} 
+    Aus der Fehlerfortpflanzung der Geräte- und Parameterunsicherheiten (Abschnitt über die systematische Fehlerabschätzung) wurde die relative systematische Unsicherheit zu $\frac{\Delta q}{q} \approx 5{,}02\,\%$ bestimmt. Dies entspricht einem absoluten systematischen Fehler von:
+    \begin{equation}
+        u_{\text{sys}} = 0{,}0502 \cdot 1{,}571 \cdot 10^{-19}\,\text{C} \approx 0{,}079 \cdot 10^{-19}\,\text{C}
+    \end{equation}
+    \item \textbf{Kombinierte Gesamtunsicherheit:} 
+    Werden statistischer und systematischer Fehler quadratisch addiert ($u_{\text{ges}} = \sqrt{u_{\text{stat}}^2 + u_{\text{sys}}^2}$), ergibt sich:
+    \begin{equation}
+        u_{\text{ges}} = \sqrt{(0{,}020)^2 + (0{,}079)^2} \cdot 10^{-19}\,\text{C} \approx 0{,}081 \cdot 10^{-19}\,\text{C}
+    \end{equation}
+\end{itemize}
 
-Der Versuch zeigt, dass \dots dem erwarteten physikalischen Zusammenhang folgt. Die gemessenen Werte bestätigen die Theorie innerhalb der Messunsicherheit. Die gewonnenen Ergebnisse sind für die grundlegende experimentelle Analyse des Praktikums geeignet.
+\medskip
+\noindent
+Damit lautet das finale Messergebnis für die Elementarladung:
+\begin{equation}
+    e_{\text{exp}} = (1{,}571 \pm 0{,}020_{\text{stat}} \pm 0{,}079_{\text{sys}}) \cdot 10^{-19}\,\text{C} = (1{,}57 \pm 0{,}08) \cdot 10^{-19}\,\text{C}
+\end{equation}
 
-\appendix
-\section{Anhang}
+\medskip
+\noindent
+\textbf{Vergleich mit dem Literaturwert:}
+Der exakte Literaturwert (CODATA) für die Elementarladung beträgt:
+\begin{equation}
+    e_{\text{lit}} = 1{,}602\,176\,634 \cdot 10^{-19}\,\text{C}
+\end{equation}
 
-Weitere Messdaten, Berechnungen oder Rohdaten können hier ergänzt werden.
+\noindent
+Die absolute und relative Abweichung des experimentell bestimmten Werts zum Literaturwert errechnen sich zu:
+\begin{align}
+    \Delta e &= |e_{\text{exp}} - e_{\text{lit}}| = |1{,}571 - 1{,}602| \cdot 10^{-19}\,\text{C} = 0{,}031 \cdot 10^{-19}\,\text{C} \\
+    \text{rel.~Abweichung} &= \frac{|e_{\text{exp}} - e_{\text{lit}}|}{e_{\text{lit}}} \cdot 100\,\% = \frac{0{,}031 \cdot 10^{-19}\,\text{C}}{1{,}602 \cdot 10^{-19}\,\text{C}} \cdot 100\,\% \approx 1{,}93\,\%
+\end{align}
+\medskip
+\noindent
+\textbf{Bewertung der Gesamtunsicherheit:}\\
+Die tatsächliche Abweichung zum Literaturwert beträgt lediglich $\Delta e = 0{,}031 \cdot 10^{-19}\,\text{C}$ ($1{,}9\,\%$). Da diese Abweichung kleiner als die reine systematische Unsicherheit ist ($\Delta e < u_{\text{sys}} = 0{,}079 \cdot 10^{-19}\,\text{C}$), wird der leichte Versatz vollständig durch die bekannten Kalibriertoleranzen und Parameterunsicherheiten der Apparatur erklärt. 
+
+\noindent
+Bezogen auf die kombinierte Gesamtunsicherheit $u_{\text{ges}} \approx 0{,}081 \cdot 10^{-19}\,\text{C}$ beträgt das Verhältnis:
+\begin{equation}
+    \frac{\Delta e}{u_{\text{ges}}} = \frac{0{,}031 \cdot 10^{-19}\,\text{C}}{0{,}081 \cdot 10^{-19}\,\text{C}} \approx 0{,}38
+\end{equation}
+Mit einer Abweichung von weniger als $0{,}4\,\sigma_{\text{ges}}$ liegt der Literaturwert innerhalb des Vertrauensbereichs des experimentellen Ergebnisses.
+\medskip
+\begin{resultbox}[Diskussion der Übereinstimmung]
+    \begin{itemize}
+        \item \textbf{Messwert:} $e_{\text{exp}} = (1{,}57 \pm 0{,}08) \cdot 10^{-19}\,\text{C}$
+        \item \textbf{Literaturwert:} $e_{\text{lit}} = 1{,}602 \cdot 10^{-19}\,\text{C}$
+        \item \textbf{Abweichung:} $\Delta e / e_{\text{lit}} \approx 1{,}9\,\%$
+    \end{itemize}
+    Die relative Abweichung zum Literaturwert beträgt ca.~$1{,}9\,\%$ und liegt damit deutlich innerhalb der systematischen Unsicherheit der Apparatur ($\approx 5{,}0\,\%$) sowie innerhalb der kombinierten Gesamtunsicherheit von $\pm 0{,}08 \cdot 10^{-19}\,\text{C}$. Bezogen auf die reine statistische Standardabweichung des Mittelwerts liegt die Abweichung bei $1{,}55\,\sigma_{\text{stat}}$ und ist damit statistisch konsistent ($p \approx 12\,\%$). Das experimentelle Ergebnis bestätigt den Literaturwert im Rahmen der Messgenauigkeit vollständig.
+\end{resultbox}
 
 \end{document}
