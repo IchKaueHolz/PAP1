@@ -230,6 +230,7 @@ Für die Auswertung werden folgende Konstanten und Geräteparameter verwendet:
         Abstand der Kondensatorplatten & $d = \SI{6.00 +- 0.05}{\milli\meter}$ \\
         Skala auf dem Bildschirm & $1\,\mathrm{Skt} = \SI{5.00 +- 0.13 e-5}{\meter}$ \\
         \bottomrule
+        \label{constants}
     \end{tabular}
 \end{table}
 
@@ -444,8 +445,88 @@ Die Wahl der Grenze von $2{,}4 \cdot 10^{-19}\,\text{C}$ ist nahezu der Mittelwe
 
 
 
-\subsection{Fehlerrechnung}
+\subsection{Systematische Fehlerabschätzung der Tröpfchenladung}
 
+Zur Abschätzung der relativen systematischen Messunsicherheit $\frac{\Delta q}{q}$ wird die Gauß'sche Fehlerfortpflanzung auf die Bestimmungsgleichung der Ladung angewendet:
+\begin{equation}
+    q = (v_f + v_s) \cdot \frac{6\pi d}{U} \sqrt{\frac{9 v_f \eta^3}{2\rho g}}
+    \label{eq:q_exakt}
+\end{equation}
+
+\medskip
+\noindent
+\textbf{Begründung der Vorfaktoren $1/2$ und $3/2$:}\\
+Werden die Geschwindigkeiten durch $v_f = \frac{s_1}{t_1}$ und $v_s = \frac{s_2}{t_2}$ ausgedrückt (wobei für den Fall- und Steigweg die gleiche Skalenteilung $s \propto \text{Skt}$ zugrunde liegt), ergibt sich die funktionale Abhängigkeit der Ladung $q$ von den fehlerbehafteten Eingangsgrößen über die Potenzgesetze:
+\begin{equation}
+    q \propto s \cdot \sqrt{s} \cdot \rho^{-\frac{1}{2}} \cdot \eta^{\frac{3}{2}} \cdot d^1 \cdot U^{-1} = s^{\frac{3}{2}} \cdot \rho^{-\frac{1}{2}} \cdot \eta^{\frac{3}{2}} \cdot d^1 \cdot U^{-1}
+\end{equation}
+Die partiellen logarithmischen Ableitungen liefern die Gewichtungsfaktoren für die relativen Unsicherheiten:
+\begin{itemize}
+    \item \textbf{Vorfaktor $3/2$ bei der Strecke $s$:} Da $s$ linear in der Geschwindigkeitssumme ($v_f + v_s \propto s$) und mit der Potenz $1/2$ im Wurzelausdruck ($\sqrt{v_f} \propto s^{1/2}$) vorkommt, skaliert $q$ insgesamt mit $s^{1 + 1/2} = s^{3/2}$. Es folgt:
+    \begin{equation}
+        \left|\frac{\partial \ln q}{\partial \ln s}\right| = \frac{3}{2}
+    \end{equation}
+    \item \textbf{Vorfaktor $1/2$ bei der Dichte $\rho$:} Die Dichtedifferenz $\rho$ steht im Nenner unter der Quadratwurzel ($q \propto \rho^{-1/2}$). Daraus folgt:
+    \begin{equation}
+        \left|\frac{\partial \ln q}{\partial \ln \rho}\right| = \left|-\frac{1}{2}\right| = \frac{1}{2}
+    \end{equation}
+    \item \textbf{Vorfaktor $3/2$ bei der Viskosität $\eta$:} Die Viskosität tritt in der dritten Potenz unter der Quadratwurzel auf ($q \propto (\eta^3)^{1/2} = \eta^{3/2}$), woraus folgt:
+    \begin{equation}
+        \left|\frac{\partial \ln q}{\partial \ln \eta}\right| = \frac{3}{2}
+    \end{equation}
+    \item \textbf{Vorfaktoren $1$ bei $d$ und $U$:} Der Plattenabstand $d$ geht linear ($d^1$) und die Spannung invers ($U^{-1}$) ein, sodass deren Koeffizienten den Betrag $1$ besitzen.
+\end{itemize}
+
+\medskip
+\noindent
+Zusammengesetzt ergibt sich die Formel für den relativen systematischen Fehler:
+\begin{equation}
+    \frac{\Delta q}{q} = \sqrt{\left(\frac{3\,\Delta s}{2\,s}\right)^2 + \left(\frac{\Delta \rho}{2\,\rho}\right)^2 + \left(\frac{3\,\Delta \eta}{2\,\eta}\right)^2 + \left(\frac{\Delta d}{d}\right)^2 + \left(\frac{\Delta U}{U}\right)^2}
+\end{equation}
+
+\medskip
+\noindent
+\textbf{Numerische Abschätzung:}\\
+Für die einzelnen relativen Unsicherheiten werden folgende Werte verwendet:
+\footnote{Die Unsicherheiten ergeben sich sowohl aus den vorgegebenen Geräteparametern (Tabelle\,\ref{constants}) als auch aus den Vorgaben der Aufgabenstellung.}
+
+
+\begin{table}[H]
+    \centering
+    \caption{Relative Unsicherheiten der Eingangsgrößen.}
+    \begin{tabular}{lll}
+        \toprule
+        \textbf{Größe} & \textbf{Relative Unsicherheit} & \textbf{Wert} \\
+        \midrule
+        Strecke $s$ & $\dfrac{\Delta s}{s}$ & $\dfrac{0{,}13 \cdot 10^{-5}\,\text{m}}{5{,}00 \cdot 10^{-5}\,\text{m}} = 2{,}60\,\% = 0{,}0260$ \\
+        Viskosität $\eta$ & $\dfrac{\Delta \eta}{\eta}$ & $2{,}0\,\% = 0{,}020$ \\
+        Dichte $\rho$ & $\dfrac{\Delta \rho}{\rho}$ & $0{,}5\,\% = 0{,}005$ \\
+        Plattenabstand $d$ & $\dfrac{\Delta d}{d}$ & $\dfrac{0{,}05\,\text{mm}}{6{,}00\,\text{mm}} \approx 0{,}833\,\% = 0{,}00833$ \\
+        Spannung $U$ & $\dfrac{\Delta U}{U}$ & $0{,}5\,\% = 0{,}005$\footnotemark \\
+        \bottomrule
+    \end{tabular}
+\end{table}
+\footnotetext{Für die systematische Unsicherheit der Spannungsmessung wird gemäß Aufgabenstellung eine relative Unsicherheit von $0{,}5\,\%$ angenommen,
+was bei $U = 500\,\text{V}$ einer systematischen Geräteunsicherheit von $\Delta U_{\text{sys}} = \pm 2{,}5\,\text{V} \approx \pm 2\,\text{V}$ entspricht.
+Die im Messprotokoll notierte Unsicherheit von $\pm 4\,\text{V}$ berücksichtigt darüber hinaus die beobachtete statistische Schwankung sowie die thermische Drift der Hochspannungsquelle über den gesamten Messzeitraum.}
+
+\medskip
+\noindent
+Einsetzen in die Fehlerfortpflanzung:
+\begin{align}
+    \frac{\Delta q}{q} &= \sqrt{\left(\frac{3}{2} \cdot 0{,}0260\right)^2 + \left(\frac{1}{2} \cdot 0{,}005\right)^2 + \left(\frac{3}{2} \cdot 0{,}020\right)^2 + (0{,}00833)^2 + (0{,}005)^2} \notag \\
+    &= \sqrt{(0{,}0390)^2 + (0{,}0025)^2 + (0{,}0300)^2 + (0{,}00833)^2 + (0{,}005)^2} \notag \\
+    &= \sqrt{1{,}521 \cdot 10^{-3} + 6{,}25 \cdot 10^{-6} + 9{,}00 \cdot 10^{-4} + 6{,}94 \cdot 10^{-5} + 2{,}50 \cdot 10^{-5}} \notag \\
+    &= \sqrt{2{,}522 \cdot 10^{-3}} \approx 0{,}0502 = 5{,}02\,\%
+\end{align}
+
+\begin{resultbox}[Systematischer Fehler der Ladung]
+    Der relative systematische Fehler der Tröpfchenladung beträgt:
+    \begin{equation*}
+        \frac{\Delta q}{q} \approx 5{,}0\,\%
+    \end{equation*}
+    Den größten Beitrag zur Unsicherheit liefern hierbei die Bestimmung des Abbildungsmaßstabs (Skalenteilung) sowie die Viskosität der Luft.
+\end{resultbox}
 
 Die Messunsicherheit wurde mit der Standardabweichung des Mittelwerts bestimmt:
 \begin{equation}
