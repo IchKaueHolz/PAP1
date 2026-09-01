@@ -27,7 +27,7 @@
 \usepackage{csvsimple-l3}
 \usepackage{longtable}
 \usepackage{graphicx}
-
+\usepackage[nottoc]{tocbibind}
 
 \hypersetup{colorlinks=true, linkcolor=blue!60!black, urlcolor=blue!60!black, citecolor=blue!60!black}
 
@@ -56,7 +56,7 @@
 
 
 \newcommand{\versuch}{Versuch 22}
-\newcommand{\titel}{Titel des Versuchs}
+\newcommand{\titel}{Bestimmung der Elementarladung nach Millikan}
 \newcommand{\praktikum}{Physikalisches Anfängerpraktikum 1}
 \newcommand{\autor}{Jonathan Gießen}
 \newcommand{\gruppe}{Gruppe 8}
@@ -68,7 +68,15 @@
 \pagestyle{scrheadings}
 
 \begin{titlepage}
+    \begin{flushright}
+        \IfFileExists{img/logo_universitaet_heidelberg_auf_weiss.jpg}{%
+            \includegraphics[width=0.4\textwidth]{img/logo_universitaet_heidelberg_auf_weiss.jpg}
+            }{}
+    \end{flushright}
+
     \centering
+    \vspace*{4cm}
+    {\large Universität Heidelberg\par}
     {\Large \praktikum\par}
     \vspace{0.8cm}
     {\LARGE \bfseries \versuch\ -- \titel\par}
@@ -78,7 +86,7 @@
         \textbf{Autor:} & \autor\\
         \textbf{Gruppe:} & \gruppe\\
         \textbf{Betreuer:} & \betreuer\\
-        \textbf{Datum:} & \datum\\
+        \textbf{Versuchsdatum:} & \datum\\
     \end{tabular}
 
     \vfill
@@ -86,6 +94,9 @@
 \end{titlepage}
 
 \tableofcontents
+\newpage
+\listoffigures
+\listoftables
 \newpage
 
 \section{Einleitung}
@@ -392,11 +403,13 @@ Die Intervallbreite beträgt $2 \cdot 10^{-20}$ As.
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=1\textwidth]{img/histogrammA2_2.png}
-    \caption{Computer-generiertes Histogramm der gemessenen Ladungen}
+    \includegraphics[width=1\textwidth]{img/histogrammA2_balken.png}
+    \caption{Matplotlib Histogramm der gemessenen Ladungen}\footnotemark
     \label{fig:histogramm_ladungen_computer}
 \end{figure}
-
+\footnotetext{
+e-Makierungen aus dem Literaturwert
+}
 \subsection{Aufgabe 3: Überprüfung der oberen Grenze}
 
 In den Hilfsvariablen in Abb.\,\ref{Helpvariable} ist als obere Grenze der Ladung für einfach geladene 
@@ -628,7 +641,7 @@ Der exakte Literaturwert (CODATA) für die Elementarladung beträgt:
 Die absolute und relative Abweichung des experimentell bestimmten Werts zum Literaturwert errechnen sich zu:
 \begin{align}
     \Delta e &= |e_{\text{exp}} - e_{\text{lit}}| = |1{,}571 - 1{,}602| \cdot 10^{-19}\,\text{C} = 0{,}031 \cdot 10^{-19}\,\text{C} \\
-    \text{rel.~Abweichung} &= \frac{|e_{\text{exp}} - e_{\text{lit}}|}{e_{\text{lit}}} \cdot 100\,\% = \frac{0{,}031 \cdot 10^{-19}\,\text{C}}{1{,}602 \cdot 10^{-19}\,\text{C}} \cdot 100\,\% \approx 1{,}93\,\%
+    \text{rel.~Abweichung} &= \frac{|e_{\text{exp}} - e_{\text{lit}}|}{e_{\text{lit}}} \cdot 100\,\% = \frac{0{,}031 \cdot 10^{-19}\,\text{C}}{1{,}602 \cdot 10^{-19}\,\text{C}} \cdot 100\,\% \approx 1{,}94\,\%
 \end{align}
 \medskip
 \noindent
@@ -651,4 +664,24 @@ Mit einer Abweichung von weniger als $0{,}4\,\sigma_{\text{ges}}$ liegt der Lite
     Die relative Abweichung zum Literaturwert beträgt ca.~$1{,}9\,\%$ und liegt damit deutlich innerhalb der systematischen Unsicherheit der Apparatur ($\approx 5{,}0\,\%$) sowie innerhalb der kombinierten Gesamtunsicherheit von $\pm 0{,}08 \cdot 10^{-19}\,\text{C}$. Bezogen auf die reine statistische Standardabweichung des Mittelwerts liegt die Abweichung bei $1{,}55\,\sigma_{\text{stat}}$ und ist damit statistisch konsistent ($p \approx 12\,\%$). Das experimentelle Ergebnis bestätigt den Literaturwert im Rahmen der Messgenauigkeit vollständig.
 \end{resultbox}
 
+
+\section{Diskussion}
+\subsection{Interpretation der Signifikanzen ($1{,}55\,\sigma_{\text{stat}}$ vs. $0{,}4\,\sigma_{\text{ges}}$)}
+
+Bei der Gegenüberstellung des experimentellen Ergebnisses mit dem Literaturwert treten zwei unterschiedliche Signifikanzen
+auf, die die Qualität der Messung charakterisieren:
+
+\begin{itemize}
+    \item \textbf{Die Abweichung von $\mathbf{1{,}55\,\sigma_{\text{stat}}}$ (rein statistisch):} \\
+    Betrachtet man ausschließlich die zufälligen Fehler (Reaktionszeiten an der Stoppuhr, Ableseungenauigkeiten am Okular), weicht der gemessene Mittelwert um $1{,}55$ statistische Standardabweichungen vom Literaturwert ab. Ein Wert von $1{,}55\,\sigma$ liegt gut innerhalb des üblichen $2\sigma$-Intervalls und ist statistisch völlig normal. Dass der Literaturwert jedoch nicht exakt im $1\sigma$-Intervall der reinen Messwertstreuung liegt, zeigt physikalisch, dass ein leichter systematischer Versatz (Bias) vorliegt. Die Messung an sich war sehr reproduzierbar, ist aber als Ganzes leicht verschoben.
+    
+    \item \textbf{Die Abweichung von $\mathbf{\approx 0{,}4\,\sigma_{\text{ges}}}$ (Gesamtunsicherheit):} \\
+    Sobald die Toleranzen des Messufbaus als systematischer Fehler in die Bilanz einbezogen werden, vergrößert sich das Fehlerintervall. Die systematischen Einflüsse wie Okularskala, Luftviskosität oder Plattenabstand tragen alle zu der Gesamtunsicherheit bei. Relativ zu dieser kombinierten Gesamtunsicherheit $u_{\text{ges}}$ schrumpft die Abweichung auf winzige $0{,}38\,\sigma_{\text{ges}}$.
+\end{itemize}
+
+\medskip
+\noindent
+
+\subsection{Fazit}
+Zum Ende lässt sich festhalten, dass die experimentelle Bestimmung der Elementarladung mit dem Millikan-Versuch erfolgreich durchgeführt wurde. Die Ergebnisse stimmen innerhalb der Unsicherheiten mit dem Literaturwert überein, und die Analyse der Fehlerquellen liefert wertvolle Einblicke in die Genauigkeit und Präzision des Versuchsaufbaus.
 \end{document}
