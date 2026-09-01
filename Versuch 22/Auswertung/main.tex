@@ -10,6 +10,8 @@
 \usepackage{microtype}
 \usepackage{amsmath,amssymb,mathtools}
 \numberwithin{equation}{section}
+\numberwithin{table}{section}
+\numberwithin{figure}{section}
 \usepackage{siunitx}
 \sisetup{locale=DE, separate-uncertainty=true, per-mode=fraction}
 \usepackage{booktabs}
@@ -32,12 +34,12 @@
 \clearpairofpagestyles
 
 \chead{%
-    \versuch\hfill\autor\
+    \versuch\hfill\autor\\
     \rule{\textwidth}{0.2pt}%
 }
 \cfoot{%
     \rule{\textwidth}{0.2pt}\\[-0.5ex]
-    \pagemark\
+    \pagemark
 }
 \addtokomafont{pagefoot}{\small}
 
@@ -246,6 +248,8 @@ Für die Auswertung werden folgende Konstanten und Geräteparameter verwendet:
     pagecommand={\thispagestyle{scrheadings}}
 ]{../Messprotokoll 22.pdf}
 
+\addtocounter{figure}{1}
+
 \subsection{Durchführung}
 
 Zu Beginn des Versuchs wurden der barometrische Luftdruck ${p = 100285 \pm 10\,\text{Pa}}$ sowie
@@ -287,15 +291,80 @@ Für die Bestimmung der Elementarladung werden in einer Exceltabelle die Messwer
 
 
 
-
-
-
-
-
-
 \section{Auswertung}
 
-Die Messwerte wurden zunächst grafisch dargestellt und anschließend mit einer linearen Ausgleichsrechnung analysiert. Die Gerade hat die Form
+\subsection{Aufgabe 1:Exemplarische Berechnung an einem ausgewählten Tröpfchen}
+Zur Verifikation der vom Excel-Arbeitsblatt berechneten Werte werden die Größen $v_f$, $v_s$, der unkorrigierte Radius $r_0$, der Cunningham-Korrekturfaktor $f(r_0)$ sowie die Ladung $q$ für Messung Nr.~28 beispielhaft von Hand berechnet.
+
+\begin{table}[H]
+    \centering
+    \caption{Mess- und Geräteparameter für die exemplarische Berechnung (Messung 28).}
+    \label{tab:parameter_messung_28}
+    \begin{tabular}{ll}
+        \toprule
+        \textbf{Größe} & \textbf{Wert} \\
+        \midrule
+        Fallstrecke & $s_1 = 10\,\text{Skt} = 5{,}00 \cdot 10^{-4}\,\text{m}$ \\
+        Fallzeit & $t_1 = 11{,}85\,\text{s}$ \\
+        Steigstrecke & $s_2 = 10\,\text{Skt} = 5{,}00 \cdot 10^{-4}\,\text{m}$ \\
+        Steigzeit & $t_2 = 18{,}19\,\text{s}$ \\
+        Skalenteilung & $1\,\text{Skt} = 5{,}00 \cdot 10^{-5}\,\text{m}$ \\
+        Kondensatorspannung & $U = 500\,\text{V}$ \\
+        Plattenabstand & $d = 6{,}00 \cdot 10^{-3}\,\text{m}$ \\
+        Luftdruck & $p = 100285\,\text{Pa}$ \\
+        Erdbeschleunigung & $g = 9{,}81\,\frac{\text{m}}{\text{s}^2}$ \\
+        Dichtedifferenz & $\rho = \rho_{\text{Öl}} - \rho_{\text{Luft}} = 871{,}21\,\frac{\text{kg}}{\text{m}^3}$ \\
+        Unkorrigierte Luftviskosität & $\eta_0 = 1{,}81 \cdot 10^{-5}\,\text{Pa}\cdot\text{s}$ \\
+        Cunningham-Konstante & $b = 7{,}78 \cdot 10^{-3}\,\text{Pa}\cdot\text{m}$ \\
+        \bottomrule
+    \end{tabular}
+\end{table}
+
+\textbf{1. Sink- und Steiggeschwindigkeit ($v_f, v_s$):}
+\begin{align}
+    v_f &= \frac{s_1}{t_1} = \frac{5{,}00 \cdot 10^{-4}\,\text{m}}{11{,}85\,\text{s}} \approx 4{,}2194 \cdot 10^{-5}\,\frac{\text{m}}{\text{s}} \\
+    v_s &= \frac{s_2}{t_2} = \frac{5{,}00 \cdot 10^{-4}\,\text{m}}{18{,}19\,\text{s}} \approx 2{,}7488 \cdot 10^{-5}\,\frac{\text{m}}{\text{s}} \\
+    v_f + v_s &= 4{,}2194 \cdot 10^{-5}\,\frac{\text{m}}{\text{s}} + 2{,}7488 \cdot 10^{-5}\,\frac{\text{m}}{\text{s}} = 6{,}9682 \cdot 10^{-5}\,\frac{\text{m}}{\text{s}}
+\end{align}
+
+\medskip
+\noindent
+\textbf{2. Unkorrigierter Tröpfchenradius ($r_0$):}
+\begin{align}
+    r_0 &= \sqrt{\frac{9\,\eta_0\,v_f}{2\,\rho\,g}} \notag \\
+        &= \sqrt{\frac{9 \cdot 1{,}81 \cdot 10^{-5}\,\text{Pa}\cdot\text{s} \cdot 4{,}2194 \cdot 10^{-5}\,\frac{\text{m}}{\text{s}}}{2 \cdot 871{,}21\,\frac{\text{kg}}{\text{m}^3} \cdot 9{,}81\,\frac{\text{m}}{\text{s}^2}}} \notag \\
+        &= \sqrt{\frac{6{,}8734 \cdot 10^{-9}\,\frac{\text{N}\cdot\text{s}}{\text{m}^2}\cdot\frac{\text{m}}{\text{s}}}{17093{,}14\,\frac{\text{N}}{\text{m}^3}}} = \sqrt{4{,}0211 \cdot 10^{-13}\,\text{m}^2} \approx 6{,}3412 \cdot 10^{-7}\,\text{m}
+\end{align}
+
+\medskip
+\noindent
+\textbf{3. Cunningham-Korrekturfaktor ($f(r_0)$):}
+\begin{align}
+    f(r_0) &= \frac{1}{1 + \frac{b}{p \cdot r_0}} \notag \\
+           &= \frac{1}{1 + \frac{7{,}78 \cdot 10^{-3}\,\text{Pa}\cdot\text{m}}{100285\,\text{Pa} \cdot 6{,}3412 \cdot 10^{-7}\,\text{m}}} = \frac{1}{1 + 0{,}12234} \approx 0{,}8910
+\end{align}
+
+\medskip
+\noindent
+\textbf{4. Korrigierte Tröpfchenladung ($q$):}
+Unter Verwendung der Cunningham-Korrektur ergibt sich die Ladung zu:
+\begin{align}
+    q &= (v_f + v_s) \cdot \frac{6\pi d}{U} \cdot \sqrt{\frac{9 v_f (\eta_0 f(r_0))^3}{2\rho g}} \notag \\
+      &= (v_f + v_s) \cdot \frac{6\pi d}{U} \cdot r_0 \cdot \eta_0 \cdot \big(f(r_0)\big)^{\frac{3}{2}}
+\end{align}
+
+\noindent
+Einsetzen der Zahlenwerte:
+\begin{align}
+    q &= 6{,}9682 \cdot 10^{-5}\,\frac{\text{m}}{\text{s}} \cdot \frac{6\pi \cdot 6{,}00 \cdot 10^{-3}\,\text{m}}{500\,\text{V}} \cdot 6{,}3412 \cdot 10^{-7}\,\text{m} \cdot 1{,}81 \cdot 10^{-5}\,\text{Pa}\cdot\text{s} \cdot (0{,}8910)^{1{,}5} \notag \\
+      &= 6{,}9682 \cdot 10^{-5} \cdot 2{,}2619 \cdot 10^{-4} \cdot 6{,}3412 \cdot 10^{-7} \cdot 1{,}81 \cdot 10^{-5} \cdot 0{,}84107\,\text{A}\cdot\text{s} \notag \\
+      &\approx 1{,}521 \cdot 10^{-19}\,\text{C}
+\end{align}
+
+\medskip
+\noindent
+Ein Vergleich mit Zeile 28 der generierten Auswertungstabelle zeigt, dass sämtliche handgerechneten Werte ($v_f = 4{,}219\cdot 10^{-5}\,\text{m/s}$, $v_s = 2{,}749\cdot 10^{-5}\,\text{m/s}$, $r_0 = 6{,}341\cdot 10^{-7}\,\text{m}$, $f(r_0) = 0{,}891$, $q = 1{,}521 \cdot 10^{-19}\,\text{As}$) exakt mit den Ausgabewerten von Excel übereinstimmen.
+
 \begin{equation}
     y = a x + b.
 \end{equation}
