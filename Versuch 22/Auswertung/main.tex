@@ -127,7 +127,7 @@ gerichteten elektrischen Feld E, wirken die Beträge der folgenden Kräfte:
 
 \begin{figure}[htbp]
   \centering
-  \includegraphics[width=0.8\textwidth]{Froces_millikan.png} 
+  \includegraphics[width=0.8\textwidth]{img/Forces_millikan.png} 
   \caption{Kräfte auf ein Öltröpfchen in einem elektrischen Feld.} 
     \label{Kräfteol}
 \end{figure}
@@ -274,8 +274,8 @@ Für jedes Tröpfchen wurden Fallweg, Fallzeit, Steigweg und Steigzeit zusammen 
 Für die Bestimmung der Elementarladung werden in einer Exceltabelle die Messwerte eingetragen und die Ladung der Tröpfchen berechnet.
 \begin{figure}[htbp]
     \centering
-    \includegraphics[width=0.8\textwidth]{Hilfsvariable.png} 
-    \caption{Hilfsvariablen.} 
+    \includegraphics[width=0.8\textwidth]{img/Hilfsvariable.png} 
+    \caption{Hilfsvariablen} 
     \label{Helpvariable}
 
 \end{figure}
@@ -379,28 +379,73 @@ Einsetzen der Zahlenwerte:
 
 
 \subsection{Aufgabe 2: Histogramm der gemessenen Ladungen}
-Es werden alle Ladungen, die zwischen 0As bis ca. $10^{-19}$As liegen, in einem Histogramm dargestellt.
+Es werden alle Ladungen, die zwischen 0As bis ca. $12 \cdot 10^{-19}$As liegen, in einem Histogramm dargestellt.
 Die Intervallbreite beträgt $2 \cdot 10^{-20}$ As.
 
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\textwidth]{img/HistogrammHand.png}
+    \caption{Histogramm der gemessenen Ladungen}
+    \label{fig:histogramm_ladungen}
+\end{figure}
 
-Aus der linearen Regression folgt:
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\textwidth]{img/histogrammA2_2.png}
+    \caption{Computer-generiertes Histogramm der gemessenen Ladungen}
+    \label{fig:histogramm_ladungen_computer}
+\end{figure}
+
+\subsection{Aufgabe 3: Überprüfung der oberen Grenze}
+
+In den Hilfsvariablen in Abb.\,\ref{Helpvariable} ist als obere Grenze der Ladung für einfach geladene 
+Tröpfchen der Wert $2{,}4 \cdot 10^{-19}\,\text{C}$ festgelegt.
+
+\medskip
+\noindent
+\textbf{1. Bewertung der oberen Grenze ($2{,}4 \cdot 10^{-19}\,\text{C}$):}\\
+Die Wahl dieses Schwellenwerts lässt sich anhand der experimentellen Ladungsverteilung im Histogramm
+(Abb.\,\ref{fig:histogramm_ladungen} und Abb.\,\ref{fig:histogramm_ladungen_computer}) begründen.
+In den Messdaten sind mehrere Peaks erkennbar:
+
+\begin{itemize}
+    \item Die erste Ladungsstufe (einfach geladene Tröpfchen) liegt im Intervall um ca.~$1{,}5\text{--}1{,}6 \cdot 10^{-19}\,\text{As}$.
+    \item Der zweite Cluster (zweifach geladene Tröpfchen) formiert sich im Bereich von etwa $3{,}0\text{--}3{,}3 \cdot 10^{-19}\,\text{As}$.
+\end{itemize}
+
+\noindent
+Zwischen ca.~$2{,}0 \cdot 10^{-19}\,\text{As}$ und $2{,}8 \cdot 10^{-19}\,\text{As}$ tritt eine Messlücke auf, in der kein einziges Tröpfchen registriert wurde.
+Der festgelegte Schwellenwert von $2{,}4 \cdot 10^{-19}\,\text{C}$ liegt in dieser Lücke und trennt den ersten Peak von den höher geladenen Tröpfchen.
+
+\medskip
+\noindent
+\textbf{2. Eindeutigkeit bezüglich $e$ (anstelle von $2e$ oder $3e$):}\\
+Aus einer rein experimentellen Verteilung gemessener Ladungen lässt sich zunächst nur der größte gemeinsame Teiler (ggT) bestimmen. 
+Würden Tröpfchen systematisch nur geradzahlige Vielfache tragen ($q = 2e, 4e, \dots$), würde man die kleinste beobachtete Stufe 
+fälschlicherweise als Elementarladung interpretieren.
+Dass die erste Stufe tatsächlich der einfachen Elementarladung $e$ entspricht, lässt sich über die Peak-Struktur begründen:
+\begin{itemize}
+    \item \textbf{Abstände der Peaks:} Die Differenz zwischen den aufeinanderfolgenden Häufungen (vom 1.~zum 2.~Peak sowie vom 2.~zum 3.~Peak) beträgt
+    jeweils ca.~$\Delta Q \approx 1{,}6 \cdot 10^{-19}\,\text{As}$. Der Abstand der Ladungsstufen untereinander ist somit identisch mit der Lage 
+    des ersten Peaks. Wäre der erste Peak bereits $2e$, müssten Zwischenstufen im Abstand von $1e$ fehlen, was bei einer statistischen Aufladung durch z.B Reibung unplausibel ist.
+    \item \textbf{Höhere Ladungsstufen:} Auch die weiter oben liegenden Häufungen (um $\approx 11 \cdot 10^{-19}\,\text{As}$ und $\approx 19 \cdot 10^{-19}\,\text{As}$) 
+    entsprechen ganzzahligen Vielfachen ($n=7$ und $n=12$) dieses Grundabstands.
+    Da 7 eine Primzahl ist, kann die Stufe um $11 \cdot 10^{-19}\,\text{As}$ nicht als $2e$ interpretiert, sondern muss ein Vielfaches von $e$ sein.
+\end{itemize}
+
+\medskip
+\noindent
+\textit{Zusatzüberlegung:} 
+Die Wahl der Grenze von $2{,}4 \cdot 10^{-19}\,\text{C}$ ist nahezu der Mittelwert zwischen dem ersten
+($\approx 1{,}6 \cdot 10^{-19}\,\text{C}$) und dem zweiten Peak ($\approx 3{,}1 \cdot 10^{-19}\,\text{C}$).
 \begin{equation}
-    a = \frac{\sum (x_i-\bar{x})(y_i-\bar{y})}{\sum (x_i-\bar{x})^2},
-    \qquad
-    b = \bar{y} - a\bar{x}.
+    \text{Mittelwert} = \frac{1{,}6 + 3{,}1}{2} \cdot 10^{-19}\,\text{C} = 2{,}35 \cdot 10^{-19}\,\text{C}
 \end{equation}
-\begin{resultbox}[67 ergbenis]
-    Die experimentell bestimmte Steigung beträgt
-    \[
-        a = \SI{2.14}{\second\per\meter}
-    \]
-    und der Achsenabschnitt ist
-    \[
-        b = \SI{0.02}{\second}.
-    \]
-\end{resultbox}
+
+
 
 \subsection{Fehlerrechnung}
+
 
 Die Messunsicherheit wurde mit der Standardabweichung des Mittelwerts bestimmt:
 \begin{equation}
