@@ -28,7 +28,7 @@
 \usepackage{csvsimple-l3}
 \usepackage{longtable}
 \usepackage{graphicx}
-\usepackage[nottoc]{tocbibind}
+
 
 \hypersetup{colorlinks=true, linkcolor=blue!60!black, urlcolor=blue!60!black, citecolor=blue!60!black}
 
@@ -40,9 +40,11 @@
 }
 \cfoot{%
     \rule{\textwidth}{0.2pt}\\[-0.5ex]
-    \pagemark
+    \pagemark\ 
 }
 \addtokomafont{pagefoot}{\small}
+\setlength{\parindent}{0pt}
+
 
 \newtcolorbox{resultbox}[1][]{ 
     enhanced,
@@ -56,13 +58,13 @@
 }
 
 
-\newcommand{\versuch}{Versuch 22}
-\newcommand{\titel}{Bestimmung der Elementarladung nach Millikan}
+\newcommand{\versuch}{Versuch 23}
+\newcommand{\titel}{Strom- und Spannungsmessung}
 \newcommand{\praktikum}{Physikalisches Anfängerpraktikum 1}
 \newcommand{\autor}{Jonathan Gießen}
 \newcommand{\gruppe}{Gruppe 8}
-\newcommand{\datum}{31. August 2026}
-\newcommand{\betreuer}{Fabian Mrosek}
+\newcommand{\datum}{2. September 2026}
+\newcommand{\betreuer}{Julius Laub}
 
 \begin{document}
 
@@ -96,7 +98,20 @@
 
 \clearpage
 \section{Einleitung}
+Der Versuch 23 \glqq\ Strom- und Spannungsmessung\grqq\ beschäftigt sich
+mit der Untersuchung von Strom- und Spannungsmessungen in Gleichstromkreisen.
+Ein zentrales physikalisches Problem der elektrischen Messtechnik ist, dass reale Messgeräte und Spannungsquellen
+von Idealwerten abweichen.  Jedes reale Messgerät, wie das in diesem Versuch verwendete Drehspulinstrument,
+besitzt einen eigenen Innenwiderstand, der unweigerlich die zu messende Schaltung beeinflusst und das Messergebnis verfälscht.
+Ein erstes Zeil dieses Versuchs ist es daher, diesen systematischen Fehler anhand eines Spannungsteilers praktisch zu erkennen.
+\medspace\ 
 
+Zudem wird gezeigt, wie der Messbereich von Volt- und Amperemetern durch die gezielte Beschaltung mit Parallel- und Serienwiderständen
+theoretisch berechnet und experimentell erweitert werden kann.  Um den verfälschenden Einfluss des Messgeräte-Innenwiderstands bei der 
+Spannungsmessung vollständig zu umgehen, wird im weiteren Verlauf eine Kompensationsschaltung aufgebaut und mithilfe einer Präzisionsspannungsquelle geeicht. 
+Diese Schaltung ermöglicht durch eine Gegenspannung eine nahezu stromlose – und damit exakte – Bestimmung von elektrischen Spannungen.  
+Abschließend wird diese präzise Messmethode angewandt, um das Verhalten einer Batterie (reale Spannungsquelle) unter Belastung zu charakterisieren.
+Durch die Messung der Klemmenspannung bei verschiedenen, gezielt eingestellten Entnahmeströmen von bis zu 200 mA lassen sich die Quellenspannung und der Innenwiderstand der Batterie experimentell bestimmen
 
 \section{Grundlagen und Theorie}
 
