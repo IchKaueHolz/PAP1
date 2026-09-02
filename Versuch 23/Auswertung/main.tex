@@ -33,6 +33,7 @@
 \hypersetup{colorlinks=true, linkcolor=blue!60!black, urlcolor=blue!60!black, citecolor=blue!60!black}
 
 \clearpairofpagestyles
+%latex fuck nicht ab
 
 \chead{%
     \versuch\hfill\autor\\
@@ -97,7 +98,7 @@
 \tableofcontents
 
 \clearpage
-\section{Einleitung}
+\section{Einleitung}\label{Einleitung}
 Der Versuch 23 \glqq\ Strom- und Spannungsmessung\grqq\ beschäftigt sich
 mit der Untersuchung von Strom- und Spannungsmessungen in Gleichstromkreisen.
 Ein zentrales physikalisches Problem der elektrischen Messtechnik ist, dass reale Messgeräte und Spannungsquellen
@@ -161,7 +162,7 @@ der als Innenwiderstand der Spannungsquelle bezeichnet wird, dargestellt werden
 \begin{figure}[H]
     \center
     \includegraphics[width=0.5\textwidth]{img/realeSpannungsquelle.png}
-    \caption{Reale Spannungsquelle}
+    \caption{Reale Spannungsquelle}\cite{PAPskript}
     \label{fig:realeSpannungsquelle}
 \end{figure}
 
@@ -196,7 +197,8 @@ lässt sich das Instrument mithilfe des Ohmschen Gesetzes nicht nur zur Strom-, 
             \flushleft\
             \fbox{\includegraphics[width=.7\linewidth]{img/Drehspulinstrument_unten.png}}
         \end{subfigure}
-    \caption{Aufbau des Drehspulinstruments}\label{fig:Drehspulinstrument}
+    \caption{Aufbau des Drehspulinstruments}\cite{wikiDrehspule}
+    \label{fig:Drehspulinstrument}
 \end{figure}
 
 \begin{center}
@@ -223,7 +225,7 @@ lässt sich das Instrument mithilfe des Ohmschen Gesetzes nicht nur zur Strom-, 
 
 \subsubsection{Einfluss des Messgeräte-Innenwiderstands}
 
-Wegen seines endlichen Innenwiderstands beeinflusst jedes reale Messgerät die Schaltung und verfälscht somit den Messwert~\cite{PAPskript}. 
+Wegen seines endlichen Innenwiderstands beeinflusst jedes reale Messgerät die Schaltung und verfälscht somit den Messwert.
 
 Da ein Amperemeter in Serie zum Verbraucher geschaltet wird,
 addiert sich sein Innenwiderstand $R_{iA}$ zum Lastwiderstand $R_L$ und dem Innenwiderstand der Quelle $R_{iS}$ hinzu.
@@ -264,7 +266,7 @@ Der Serienwiderstand $R_s$ wird nach folgender Formel berechnet:
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.5\textwidth]{img/erweiterung.png}
-    \caption{Erweiterung des Messbereichs eines Drehspulinstruments durch Zuschalten von Widerständen}\label{fig:erweiterungMessinstrument}
+    \caption{Erweiterung des Messbereichs eines Drehspulinstruments durch Zuschalten von Widerständen}\cite{PAPskript}\label{fig:erweiterungMessinstrument}
 \end{figure}
 \subsubsection{Kompensator}
 Die Kompensationsschaltung ermöglicht eine nahezu stromlose und damit sehr exakte Spannungsmessung ohne Verfälschung durch den Geräte-Innenwiderstand. 
@@ -275,7 +277,7 @@ exakt der eingestellten Referenzspannung~\cite{PAPskript}.
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.5\textwidth]{img/kompensator.png}
-    \caption{Schaltbild des verwendeten Kompensators}\label{fig:kompensatorschaltplan}\ 
+    \caption{Schaltbild des verwendeten Kompensators}\label{fig:kompensatorschaltplan}\cite{PAPskript}
 \end{figure}
 
 
@@ -287,7 +289,7 @@ exakt der eingestellten Referenzspannung~\cite{PAPskript}.
 
     
 \includepdf[
-    pages=1,
+    pages=-,
     width=\textwidth,
     height=\textheight,
     keepaspectratio,
@@ -295,10 +297,81 @@ exakt der eingestellten Referenzspannung~\cite{PAPskript}.
 ]{../Messprotokoll 23.pdf}
 
 
-\addtocounter{figure}{1}
+\addtocounter{figure}{4}
+\addtocounter{table}{1}
 
-\subsection{Durchführung}
+\subsection{Durchführung und Messwerte}
+Zunächst wird der mit 6\,V betriebene Kompensator mit einer Referenzspannung 
+von $2.5\,\text{V}$~\footnotemark[1]\ geeicht. Dazu wird der Kompensationsregler auf
+exakt 500\,Skt (entsprechend $2.5\,\text{V}$) eingestellt und der Eichregler
+so lange variiert, bis das Mikroamperemeter keinen Stromfluss mehr anzeigt.
+Er wird so eingestellt, dass 200\,Skt am Kompensationsregler genau 1\,V entsprechen.\label{Umrechnung Kompensator}
+Der Linearitätsfehler des Kompensationspotentiometers beträgt $\pm 0,25\,\%$ der Skala,
+was bei 1000\,Skt Vollausschlag einer systematischen Messunsicherheit von $\pm 2.5\,\text{Skt}$\,\footnotemark[2], entspricht.
 
+
+\footnotetext[1]{%
+Die angegebene Unsicherheit von $(2.5\,\pm\,0.02\%)\,\text{V}$ ist zu klein für die weitere Betrachtung.
+}
+\footnotetext[2]{%
+Die referenzspannung wird auf $2.5\,\text{V}$ gesetzt, da dies in der Mitte des Spannungsbereichs liegt und somit die relative Unsicherheit minimiert wird.
+}
+
+\medskip
+Das Drehspulinstrument ($R_i = 395\,\si{\ohm}$) wird durch Vorschalten eines Dekadenwiderstands als Voltmeter auf einen Messbereich von $5\,\text{V}$ erweitert
+und dessen Gesamtwiderstand bestimmt. 
+\begin{equation}
+    f = \frac{5\,\text{V}}{10\,\text{mA} \cdot 395\,\si{\ohm}} = 3.95\,\si{\volt} = 1.27
+    \implies R_s = (f-1) \cdot R_i = 105\,\si{\ohm}
+\end{equation}
+Anschließend wird ein Spannungsteiler aus zwei gleichen Widerständen aufgebaut. Sowohl mit dem erweiterten Drehspulinstrument als auch mit dem abgeglichenen Kompensator werden die Batteriespannung
+$U_0$ sowie die Teilspannungen $U_{R1}$ und $U_{R2}$ gemessen und verglichen.
+
+\begin{table}[H]
+    \centering
+    \caption{Messwerte der Spannungsmessung mit dem Drehspulinstrument und dem Kompensator.}
+    \label{tab:spannungsteiler_messwerte}
+    \begin{tabular}{lcc}
+        \toprule
+        \textbf{Größe} & \textbf{Drehspulinstrument} & \textbf{Kompensator} \\
+        \midrule
+        Batterie: $I_0$ & $(9.50\pm 0.25)\,\si{\milli\ampere}$ & $(961.4\pm 2.5)\,\text{Skt}$ \\
+        Widerstand 1: $I_\text{R1}$ & $(2.50\pm 0.25)\,\si{\milli\ampere}$ & $(482.2\pm 2.5)\,\text{Skt}$ \\
+        Widerstand 2: $I_\text{R2}$ & $(2.50\pm 0.25)\,\si{\milli\ampere}$ & $(482.2\pm 2.5)\,\text{Skt}$ \\
+        \bottomrule
+    \end{tabular}
+\end{table}
+
+Um die in Tabelle \ref{tab:spannungsteiler_messwerte} notierten Ablesewerte in Spannungen umzurechnen,
+werden die gerätespezifischen Kalibrierfaktoren angewendet. Für das Drehspulinstrument wurde der Messbereich so erweitert,
+dass der Vollausschlag von $10\,\si{\milli\ampere}$ einer Spannung von $5\,\text{V}$ entspricht. Daraus ergibt sich ein linearer
+Umrechnungsfaktor von $0.5\,\frac{\text{V}}{\si{\milli\ampere}}$. Die Spannungen $U$ berechnen sich demnach
+durch $U = I \cdot 0.5\,\frac{\text{V}}{\si{\milli\ampere}}$. 
+Analog überträgt sich dieser Faktor auf die Ableseunsicherheit von $\Delta I = 0.25\,\si{\milli\ampere}$, 
+woraus ein Spannungsfehler von $\Delta U = 0.125\,\text{V}$ (gerundet $0.13\,\text{V}$) resultiert.
+
+Der Skalenfaktor des Kompensators beträgt $\frac{1}{200}\frac{\text{V}}{\text{Skt}}$. Die Multiplikation der abgelesenen Skalenteile mit diesem Faktor liefert die
+jeweilige Spannung. Der aus der Linearitätstoleranz resultierende Fehler von $\pm 2.5\,\text{Skt}$ wird ebenfalls mit diesem Faktor multipliziert,
+was zu einer absoluten Unsicherheit der Spannungsmessung von $\Delta U = 0.0125\,\text{V}$ (gerundet $0.013\,\text{V}$) führt. 
+
+Die mit diesen Faktoren berechneten Spannungen und Messunsicherheiten sind in der folgenden Tabelle \ref{tab:spannungsteiler_umrechnung} zusammengefasst:
+
+\begin{table}[H]
+    \centering
+    \caption{Umrechnung der Messwerte in Spannungen inklusive der zugehörigen Messunsicherheiten.}
+    \label{tab:spannungsteiler_umrechnung}
+    \begin{tabular}{lcc}
+        \toprule
+        \textbf{Größe} & \textbf{Drehspulinstrument} & \textbf{Kompensator} \\
+        \midrule
+        Batterie: $U_0$ & $(4.75 \pm 0.13)\,\text{V}$ & $(4.807 \pm 0.013)\,\text{V}$ \\
+        Widerstand 1: $U_\text{R1}$ & $(1.25 \pm 0.13)\,\text{V}$ & $(2.411 \pm 0.013)\,\text{V}$ \\
+        Widerstand 2: $U_\text{R2}$ & $(1.25 \pm 0.13)\,\text{V}$ & $(2.411 \pm 0.013)\,\text{V}$ \\
+        \bottomrule
+    \end{tabular}   
+\end{table}
+\medskip
+Im zweiten Teil des Versuchs wird das Drehspulinstrument als Amperemeter auf einen Messbereich von $10\,\text{mA}$ erweitert. Dazu wird ein Parallelwider
 \subsection{Messwerte}
 
 
@@ -414,13 +487,14 @@ Einblicke in die Genauigkeit und Präzision des Versuchsaufbaus.
 \begin{thebibliography}{5}
     \bibitem{PAPskript} Dr. J.Wagner, \emph{Physikalisches Anfängerpraktikum}, Stand 11/2024
     \bibitem{ilberg1988physikalisches} W. Ilberg, M. Krötzsch, \emph{Physikalisches Praktikum für Anfänger}, BSB B. G. Teubner Verlagsgesellschaft, Leipzig (1985).
-    \bibitem{demtroeder2017} W. Demtröder, \emph{Experimentalphysik 1: Mechanik und Wärme}, Springer Verlag, Berlin (2017).
+    \bibitem{wikiDrehspule} \emph{Drehspulmesswerk} - Wikipedia, \textit{Abgerufen am 02.09.2026}\\
+    \url{https://de.wikipedia.org/wiki/Drehspulmesswerk} 
 \end{thebibliography}
 
 
 
 \begin{tcolorbox}[colback=gray!5,colframe=gray!60,boxrule=0.8pt,arc=0.01mm,title=KI-Hinweis]
-    Für die sprachliche Formulierung dieses Protokolls wurde in Teilen KI-gestützte Textgenerierung verwendet. 
+    Für die sprachliche Formulierung dieses Protokolls wurde in der {\hyperref[Einleitung]{Einleitung}} KI-gestützte Textgenerierung verwendet. 
 \end{tcolorbox}
 
 \end{document}
