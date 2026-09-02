@@ -216,6 +216,7 @@ lässt sich das Instrument mithilfe des Ohmschen Gesetzes nicht nur zur Strom-, 
     (8) & Maximalausschlag & Maximale Auslenkung des Zeigers \\
     (9) & Ruhelage & Ruhelage des Zeigers \\
     (10) & Spulenkörper & Träger der Drehspule \\
+    %(11) fehlt
     (12) & Zeiger & Anzeige des Messwerts \\
     (13) & Südpol & Pol mit negativem Magnetismus \\
     (14) & Nordpol & Pol mit positivem Magnetismus \\
@@ -301,6 +302,7 @@ exakt der eingestellten Referenzspannung~\cite{PAPskript}.
 \addtocounter{table}{1}
 
 \subsection{Durchführung und Messwerte}
+\subsubsection{1. Teil: Systematischer Fehler des Spannungsmessgeräts}
 Zunächst wird der mit 6\,V betriebene Kompensator mit einer Referenzspannung 
 von $2.5\,\text{V}$~\footnotemark[1]\ geeicht. Dazu wird der Kompensationsregler auf
 exakt 500\,Skt (entsprechend $2.5\,\text{V}$) eingestellt und der Eichregler
@@ -370,8 +372,14 @@ Die mit diesen Faktoren berechneten Spannungen und Messunsicherheiten sind in de
         \bottomrule
     \end{tabular}   
 \end{table}
-\medskip
-Im zweiten Teil des Versuchs wird das Drehspulinstrument als Amperemeter auf einen Messbereich von $10\,\text{mA}$ erweitert. Dazu wird ein Parallelwider
+
+\textbf{Es fällt Auf}, dass die Summe der Spannungen an den beiden Widerständen $U_\text{R1} + U_\text{R2}$ beim Drehspulinstrument sich nicht zur Gesamtspannung $U_0$ addieren,
+beim Kompensator aber schon. Dies zeigt den Einfluss des Messgeräte-Innenwiderstands auf die Spannungsmessung. Der Widerstand des Drehspulinstruments ist mit $395\,\si{\ohm}$ im Vergleich zum
+Widerstand des Spannungns nicht sehr groß, sodass die Spannung am Verbraucher durch das Messgerät verfälscht wird.
+
+\subsubsection{Teil 2: Messen des Spannungsabfall einer realen Spannungsquelle}
+Im zweiten Teil des Versuchs wird das Drehspulinstrument als Amperemeter auf einen Messbereich von $200\,\text{mA}$ erweitert. Dazu wird ein Parallelwiderstand
+nach der Formel \ref{eq:erweiterungAmperemeter} von $R_p = 20.8\,\si{\ohm}$ geschaltet. 
 \subsection{Messwerte}
 
 
