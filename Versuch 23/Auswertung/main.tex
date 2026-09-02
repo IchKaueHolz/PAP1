@@ -29,6 +29,17 @@
 \usepackage{longtable}
 \usepackage{graphicx}
 
+\newcommand{\pdfabbildung}[2]{%
+    \refstepcounter{figure}%
+    \addcontentsline{lof}{figure}{\protect\numberline{\thefigure}#1}%
+    \label{#2}%
+}
+
+\newcommand{\pdftabelle}[2]{%
+    \refstepcounter{table}%
+    \addcontentsline{lot}{table}{\protect\numberline{\thetable}#1}%
+    \label{#2}%
+}
 
 \hypersetup{colorlinks=true, linkcolor=blue!60!black, urlcolor=blue!60!black, citecolor=blue!60!black}
 
@@ -288,18 +299,21 @@ exakt der eingestellten Referenzspannung~\cite{PAPskript}.
 
 \subsection{Versuchsaufbau und Aufgaben}
 
-    
+\pdfabbildung{Messaufbau}{fig:messprotokoll-1}
+\pdfabbildung{Spannungsteiler}{fig:messprotokoll-2}
+\pdfabbildung{Schaltkreis der Messung (A1)}{fig:messprotokoll-3}
+\pdfabbildung{Schaltkreis des Messaufbaus (A2)}{fig:messprotokoll-4}
+\pdftabelle{Gemessene Spannungen (A2)}{tbl:MessungenA2}
+
 \includepdf[
     pages=-,
     width=\textwidth,
     height=\textheight,
     keepaspectratio,
     pagecommand={\thispagestyle{scrheadings}}
-]{../Messprotokoll 23.pdf}
+]{../Messprotokoll 23.pdf}\label{pdf}
 
 
-\addtocounter{figure}{4}
-\addtocounter{table}{1}
 
 \subsection{Durchführung und Messwerte}
 \subsubsection{1. Teil: Systematischer Fehler des Spannungsmessgeräts}
@@ -377,17 +391,85 @@ Die mit diesen Faktoren berechneten Spannungen und Messunsicherheiten sind in de
 beim Kompensator aber schon. Dies zeigt den Einfluss des Messgeräte-Innenwiderstands auf die Spannungsmessung. Der Widerstand des Drehspulinstruments ist mit $395\,\si{\ohm}$ im Vergleich zum
 Widerstand des Spannungns nicht sehr groß, sodass die Spannung am Verbraucher durch das Messgerät verfälscht wird.
 
-\subsubsection{Teil 2: Messen des Spannungsabfall einer realen Spannungsquelle}
+\subsubsection{Teil 2: Messen des Spannungsabfall einer realen Spannungsquelle}\label{sec:messungSpannungsabfall}
 Im zweiten Teil des Versuchs wird das Drehspulinstrument als Amperemeter auf einen Messbereich von $200\,\text{mA}$ erweitert. Dazu wird ein Parallelwiderstand
-nach der Formel \ref{eq:erweiterungAmperemeter} von $R_p = 20.8\,\si{\ohm}$ geschaltet. 
-\subsection{Messwerte}
+nach der Formel \ref{eq:erweiterungAmperemeter} von $R_p = 20.8\,\si{\ohm}$ zuschaltet.
+
+\medskip
+Der Kompensator misst nun die Klemmenspannung der Batterie bei verschiedenen Lasten, die durch einen Schiebewiderstand Abb. \ref{fig:messprotokoll-1} eingestellt werden.
+Die gemessene Stromstärke $I$ wird mit dem erweiterten Amperemeter bestimmt. Die Messwerte sind in Tabelle \ref{tbl:MessungenA2} zusammengefasst.
+Die Umrechnung erfolgt analog zu den vorherigen Messungen.
+
+Die Umrechnung der in Skalenteilen abgelesenen Kompensatorspannung erfolgt identisch zum ersten Versuchsteil mit dem Skalenfaktor von $\frac{1}{200}\,\frac{\text{V}}{\text{Skt}}$. 
+Die Messunsicherheit der Spannung bleibt durch den Linearitätsfehler des Kompensators konstant bei $\Delta U = 0.013\,\text{V}$.
+Für die Strommessung mit dem Drehspulinstrument wird eine systematische Unsicherheit von $2.5\,\%$ bezogen auf den Messbereichsendwert angenommen \cite{PAPskript}. Bei dem hier verwendeten
+Messbereich von $200\,\si{\milli\ampere}$ ergibt sich daraus eine absolute Messunsicherheit für den Strom von $\Delta I = 5\,\si{\milli\ampere}$.
+
+Die gemessenen Skalenteile sowie die daraus resultierenden Klemmenspannungen in Abhängigkeit des entnommenen Stroms sind in Tabelle \ref{tbl:MessungenA2_2} dargestellt.
+
+\begin{table}[H]
+    \centering
+    \caption{Messwerte der Klemmenspannung bei verschiedenen Belastungsströmen. Die systematischen Unsicherheiten betragen $\Delta I = 5\,\si{\milli\ampere}$ und $\Delta U = 0.013\,\text{V}$.}
+    \label{tbl:MessungenA2_2}
+    \begin{tabular}{ccc}
+        \toprule
+        \textbf{Strom $I$ in \si{\milli\ampere}} & \textbf{Ablesewert in Skt} & \textbf{Spannung $U$ in V} \\
+        \midrule
+        0 & 961.8 & 4.809 \\
+        40 & 955.2 & 4.776 \\
+        60 & 952.2 & 4.761 \\
+        80 & 947.8 & 4.739 \\
+        100 & 942.4 & 4.712 \\
+        120 & 938.3 & 4.692 \\
+        140 & 934.7 & 4.674 \\
+        160 & 930.3 & 4.652 \\
+        180 & 926.6 & 4.633 \\
+        200 & 921.8 & 4.609 \\
+        \bottomrule
+    \end{tabular}
+\end{table}
 
 
 
 
 \section{Auswertung}
 
-\subsection{Aufgabe 1:Exemplarische Berechnung an einem ausgewählten Tröpfchen}
+\subsection{Aufgabe 1: Summe der Spannungen an den Widerständen}
+Wenn mithilfe der Maschenregel das Drehspulinstrument als Voltmeter betrachtet wird, 
+lässt sich erwarten, dass die Summe der Spannungen an den beiden Widerständen $U_\text{R1} + U_\text{R2}$ der Gesamtspannung $U_0$ entspricht.
+Dies ist aber nicht der Fall und würde somit den Kirchhoffschen Gesetzen widersprechen. 
+Somit muss es einen weiteren Einfluss geben, der die Spannungsmessung verfälscht. 
+
+\medspace
+Mithilfe der Maschenregel und dem Voltmeter als reales Messgerät lässt sich der Einfluss des Messgeräte-Innenwiderstands auf die Spannungsmessung bestimmen.
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.5\textwidth]{img/Schaltung Widerstand.png}
+    \caption{Schaltkreis des Spannungsteilers mit realem Voltmeter.}\label{fig:Schaltung Spannungsteiler}
+\end{figure}
+
+\medspace
+Für $R_\text{M2}$ ergibt sich:
+\begin{equation}
+    \begin{aligned}
+        R_\text{M2} &= \frac{R_1 \cdot (R_S + R_i)}{R_1 + R_S + R_i} \\[1ex]
+        \text{mit } R_\text{v} &= R_S + R_i \text{ folgt:} \\[1ex]
+        R_\text{M2} &= \frac{R_1 \cdot R_\text{v}}{R_1 + R_\text{v}}
+    \end{aligned}
+\end{equation}
+
+Bei einem Spannungsteiler ergibt sich:
+
+\begin{equation}
+    \begin{aligned}
+        U_m &= U_0 \frac{R_{m_2}}{R_\text{ges}} \\[1ex]
+        &= U_0 \frac{R_{m_2}}{R_{m_2} + R_2} \\[1ex]
+        &= U_0 \frac{\frac{R_1 \cdot R_V}{R_1 + R_V}}{\frac{R_1 \cdot R_V}{R_1 + R_V} + R_2} \\[1ex]
+    \end{aligned}
+\end{equation}
+    
+
+
 
 \begin{comment}
 \begin{table}[H]
@@ -502,7 +584,8 @@ Einblicke in die Genauigkeit und Präzision des Versuchsaufbaus.
 
 
 \begin{tcolorbox}[colback=gray!5,colframe=gray!60,boxrule=0.8pt,arc=0.01mm,title=KI-Hinweis]
-    Für die sprachliche Formulierung dieses Protokolls wurde in der {\hyperref[Einleitung]{Einleitung}} KI-gestützte Textgenerierung verwendet. 
+    Für die sprachliche Formulierung dieses Protokolls wurde in der {\hyperref[Einleitung]{Einleitung}} und 
+    {\hyperref[sec:messungSpannungsabfall]{in Teilen}} der Durchführung KI-gestützte Textgenerierung verwendet. 
 \end{tcolorbox}
 
 \end{document}
