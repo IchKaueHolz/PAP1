@@ -242,14 +242,14 @@ was die abfallende Spannung am Verbraucher verändert zu~\cite{PAPskript}:
 Bei einem sehr großen Innenwiderstand ($R_{iV} \gg R_{iS}R_L$) wird der erste Term im Nenner vernachlässigbar klein.
 Ein Spannungsmessgerät sollte daher immer einen möglichst \underbar{großen} Innenwiderstand besitzen, um den Einfluss auf die Messung gering zu halten~\cite{PAPskript}.
 
-\subsubsection{Erweiterung des Messbereichs}\
+\subsubsection{Erweiterung des Messbereichs}
 Übersteigt eine zu messende Größe den Bereich des Messgeräts, wird dieser durch das Zuschalten von Widerständen erweitert.
 Bei der Nutzung als Amperemeter wird ein Parallelwiderstand zugeschaltet, sodass nur ein definierter Teil des Stroms durch das Instrument fließt.~\cite{PAPskript}.
 
 \medskip
 Um das Messgerät um den Faktor $f$ zu erweitern, wird folgende Formel für den Parallelwiderstand $R_p$ verwendet:
 \begin{equation}
-    R_p = \frac{R_i}{f-1}
+    R_p = \frac{R_i}{f-1}\label{eq:erweiterungAmperemeter}
 \end{equation}
 
 \medskip
@@ -258,10 +258,15 @@ Wird das Instrument als Voltmeter eingesetzt, schaltet man einen Serienwiderstan
 \medskip
 Der Serienwiderstand $R_s$ wird nach folgender Formel berechnet:
 \begin{equation}
-    R_s = (f-1) \cdot R_i
+    R_s = (f-1) \cdot R_i\label{eq:erweiterungVoltmeter}
 \end{equation}
 
-\subsubsection{Kompensator}\
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.5\textwidth]{img/erweiterung.png}
+    \caption{Erweiterung des Messbereichs eines Drehspulinstruments durch Zuschalten von Widerständen}\label{fig:erweiterungMessinstrument}
+\end{figure}
+\subsubsection{Kompensator}
 Die Kompensationsschaltung ermöglicht eine nahezu stromlose und damit sehr exakte Spannungsmessung ohne Verfälschung durch den Geräte-Innenwiderstand. 
 Dabei wird der zu messenden Spannung eine bekannte, regelbare Referenzspannung entgegengeschaltet. Diese Gegenspannung wird so lange variiert,
 bis ein empfindliches Nullinstrument (Mikroamperemeter) keinen Stromfluss mehr anzeigt. In diesem abgeglichenen Zustand entspricht die Messspannung
