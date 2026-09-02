@@ -28,7 +28,7 @@
 \usepackage{csvsimple-l3}
 \usepackage{longtable}
 \usepackage{graphicx}
-\usepackage[nottoc]{tocbibind}
+
 
 \hypersetup{colorlinks=true, linkcolor=blue!60!black, urlcolor=blue!60!black, citecolor=blue!60!black}
 
@@ -40,9 +40,10 @@
 }
 \cfoot{%
     \rule{\textwidth}{0.2pt}\\[-0.5ex]
-    \pagemark
+    \pagemark\ 
 }
 \addtokomafont{pagefoot}{\small}
+\setlength{\parindent}{0pt}
 
 \newtcolorbox{resultbox}[1][]{ 
     enhanced,
