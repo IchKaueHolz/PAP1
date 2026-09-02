@@ -111,14 +111,167 @@ theoretisch berechnet und experimentell erweitert werden kann.  Um den verfälsc
 Spannungsmessung zu umgehen, wird ein Kompensator zur Spannungsmessung eingesetzt und mithilfe einer Spannungsquelle geeicht. 
 Diese Schaltung ermöglicht durch eine Gegenspannung eine nahezu stromlose – und damit exakte – Bestimmung von elektrischen Spannungen.  
 Abschließend wird diese präzise Messmethode angewandt, um das Verhalten einer Batterie (reale Spannungsquelle) unter Belastung zu messen.
-Durch die Messung der Klemmenspannung bei verschiedenen Widerständen, welche Entladeströme von bis zu 200 mA erzeugen, 
+Durch die Messung der Klemmenspannung bei verschiedenen Widerständen, welche Entladeströme von bis zu $200\,\text{mA}$ erzeugen, 
 lassen sich die Quellenspannung und der Innenwiderstand der Batterie experimentell bestimmen.
 
 \section{Grundlagen und Theorie}
+\subsection{Physikalische Gesetze}
+Für die Analyse der in diesem Versuch verwendeten Gleichstromkreise und Spannungsteiler bilden das Ohmsche Gesetz sowie die Kirchhoffschen
+Gesetze die theoretische Grundlage:
 
+\paragraph{Ohmsches Gesetz}\mbox{}\\
+Das Ohmsche Gesetz beschreibt den linearen Zusammenhang zwischen dem Spannungsabfall $U$ an einem ohmschen Bauteil und dem durchfließenden
+elektrischen Strom $I$. Die Proportionalitätskonstante ist dabei der elektrische Widerstand $R$:
 
-\subsection{Literaturwerte}
+\begin{equation}
+    U = R \cdot I
+\end{equation}
 
+\paragraph{Kirchhoffsche Gesetze}\mbox{}\\
+Für elektrische Netzwerke wie die hier betrachteten Kompensations- und Spannungsteilerschaltungen gelten zudem die beiden Kirchhoffschen Regeln:
+\begin{itemize}
+    \item \textbf{Knotenpunktregel (1. Kirchhoffsches Gesetz):} In einem Verzweigungspunkt (Knoten) eines elektrischen Netzwerks ist die Summe der zufließenden Ströme gleich der Summe der abfließenden Ströme. Die algebraische Summe aller Ströme $I_k$ in einem Knotenpunkt ist null:
+    \begin{equation}
+        \sum_{k} I_k = 0
+    \end{equation}
+    \item \textbf{Maschenregel (2. Kirchhoffsches Gesetz):} In jedem geschlossenen Umlauf (Masche) eines Stromkreises ist die algebraische Summe aller Quell- und Teilspannungen $U_k$ gleich null:
+    \begin{equation}
+        \sum_{k} U_k = 0
+    \end{equation}
+\end{itemize}
+\subsection{Ideale und reale Spannungsquellen}
+
+Ideale Spannungsquellen zeichnen sich dadurch aus, dass die Spannung unabhängig vom entnommenem Strom ist.
+Die Spannung an den Ausgangsklemmen entspricht nach Definition der Quellenspannung. Bei realen
+Spannungsquellen hängt dagegen die Spannung an den Anschlussklemmen vom
+entnommenem Strom $I$ ab. Mit zunehmendem Strom sinkt die Klemmenspannung $U$, 
+da die reale Spannungsquelle einen Innenwiderstand besitzt.\cite{PAPskript}
+\medskip\ 
+
+Bei linearen Spannungsquellen ist der Spannungsabfall $\Delta U(I)$ proportional zum
+Strom. Solche Spannungsquellen können durch eine Serienschaltung einer idealen
+Spannungsquelle mit der Quellenspannung U und einem Widerstand $R_\text{i,S}$,
+der als Innenwiderstand der Spannungsquelle bezeichnet wird, dargestellt werden 
+(Abb.\,\ref{fig:realeSpannungsquelle}). Für die Klemmenspannung gilt dann:\cite{PAPskript}
+
+\begin{equation}
+    U_\text{Klemme} = U_\text{Quelle} - I \cdot R_\text{innen}
+    \label{eq:RealSpannung}
+\end{equation}
+\begin{figure}[H]
+    \center
+    \includegraphics[width=0.5\textwidth]{img/realeSpannungsquelle.png}
+    \caption{Reale Spannungsquelle}
+    \label{fig:realeSpannungsquelle}
+\end{figure}
+
+Wird eine reale Spannungsquelle mit einem Lastwiderstand $R_L$ belastet,
+ergibt sich der fließende Strom $I$ aus der Reihenschaltung von Innen- und Lastwiderstand:
+\begin{equation}
+    I = \frac{U_\text{q}}{R_\text{i,S} + R_L}
+\end{equation}
+Die resultierende Klemmenspannung $U$ entspricht dabei dem Spannungsabfall über dem Lastwiderstand $R_L$:
+\begin{equation}
+    U = R_L \cdot I = U_\text{q} \frac{R_L}{R_\text{i,S} + R_L}
+\end{equation}
+Anhand dieser Gleichung wird ersichtlich, dass der Spannungsabfall am Innenwiderstand nur dann vernachlässigt werden kann,
+wenn dieser sehr viel kleiner als der Lastwiderstand ist ($R_\text{i,S} \ll R_L$).
+Nur in diesem Fall entspricht die Klemmenspannung näherungsweise der Quellenspannung.\cite{PAPskript}
+
+\subsection{Messmethoden}
+
+\subsubsection{Drehspulinstrument}
+Ein Drehspulinstrument ist ein Zeigerinstrument, dessen Ausschlag proportional zum hindurchfließenden elektrischen Strom ist. 
+Die Auslenkung entsteht durch die Lorentzkraft auf eine stromdurchflossene Spule im Magnetfeld,
+welche durch das Drehmoment einer Rückstellfeder kompensiert wird. Da der Innenwiderstand bekannt ist,
+lässt sich das Instrument mithilfe des Ohmschen Gesetzes nicht nur zur Strom-, sondern auch zur Spannungsmessung einsetzen~\cite{PAPskript}.
+\begin{figure}[H]
+    \centering
+        \begin{subfigure}{0.5\textwidth}
+            \flushright\
+            \fbox{\includegraphics[width=.7\linewidth]{img/Drehspulinstrument_oben.png}}
+            
+        \end{subfigure}%
+        \begin{subfigure}{.5\textwidth}
+            \flushleft\
+            \fbox{\includegraphics[width=.7\linewidth]{img/Drehspulinstrument_unten.png}}
+        \end{subfigure}
+    \caption{Aufbau des Drehspulinstruments}\label{fig:Drehspulinstrument}
+\end{figure}
+
+\begin{center}
+\begin{tabular}{|c|l|l|}
+    \hline
+    \textbf{Nr.} & \textbf{Komponente} & \textbf{Funktion} \\
+    \hline
+    (1) & Weicheisenkern & Magnetisierung durch Strom \\
+    (2) & Permanentmagnet & Erzeugung eines konstanten Magnetfeldes \\
+    (3) & Polschuhe & Führung des Magnetfeldes \\
+    (4) & Skala & Anzeige des Messwerts \\
+    (5) & Spiegelskala & Vergrößerung der Anzeige \\
+    (6) & Rückstellfeder & Kompenstation des Drehmoments \\
+    (7) & Drehspule & Erzeugung eines Drehmoments durch Strom (Lorentzkraft)\\
+    (8) & Maximalausschlag & Maximale Auslenkung des Zeigers \\
+    (9) & Ruhelage & Ruhelage des Zeigers \\
+    (10) & Spulenkörper & Träger der Drehspule \\
+    (12) & Zeiger & Anzeige des Messwerts \\
+    (13) & Südpol & Pol mit negativem Magnetismus \\
+    (14) & Nordpol & Pol mit positivem Magnetismus \\
+    \hline
+\end{tabular}
+\end{center}
+
+\subsubsection{Einfluss des Messgeräte-Innenwiderstands}
+
+Wegen seines endlichen Innenwiderstands beeinflusst jedes reale Messgerät die Schaltung und verfälscht somit den Messwert~\cite{PAPskript}. 
+
+Da ein Amperemeter in Serie zum Verbraucher geschaltet wird,
+addiert sich sein Innenwiderstand $R_{iA}$ zum Lastwiderstand $R_L$ und dem Innenwiderstand der Quelle $R_{iS}$ hinzu.
+Der gemessene Strom verringert sich dadurch auf den Wert~\cite{PAPskript}:
+
+\begin{equation}
+    I = \frac{U_0}{R_L + R_{iS} + R_{iA}}
+\end{equation}
+Damit diese Abweichung gering ausfällt, muss der Innenwiderstand eines Amperemeters möglichst \underbar{klein} sein.
+Ein Voltmeter wird hingegen parallel zum Verbraucher geschaltet. Dadurch liegt der Lastwiderstand parallel
+zum Innenwiderstand des Voltmeters $R_{iV}$,
+was die abfallende Spannung am Verbraucher verändert zu~\cite{PAPskript}:
+\begin{equation}
+    U = U_q \frac{R_L}{\frac{R_{iS}R_L}{R_{iV}} + R_{iS} + R_L}
+\end{equation}
+Bei einem sehr großen Innenwiderstand ($R_{iV} \gg R_{iS}R_L$) wird der erste Term im Nenner vernachlässigbar klein.
+Ein Spannungsmessgerät sollte daher immer einen möglichst \underbar{großen} Innenwiderstand besitzen, um den Einfluss auf die Messung gering zu halten~\cite{PAPskript}.
+
+\subsubsection{Erweiterung des Messbereichs}\
+Übersteigt eine zu messende Größe den Bereich des Messgeräts, wird dieser durch das Zuschalten von Widerständen erweitert.
+Bei der Nutzung als Amperemeter wird ein Parallelwiderstand zugeschaltet, sodass nur ein definierter Teil des Stroms durch das Instrument fließt.~\cite{PAPskript}.
+
+\medskip
+Um das Messgerät um den Faktor $f$ zu erweitern, wird folgende Formel für den Parallelwiderstand $R_p$ verwendet:
+\begin{equation}
+    R_p = \frac{R_i}{f-1}
+\end{equation}
+
+\medskip
+Wird das Instrument als Voltmeter eingesetzt, schaltet man einen Serienwiderstand (Vorwiderstand) in Reihe, an dem die überschüssige Spannung abfällt.
+
+\medskip
+Der Serienwiderstand $R_s$ wird nach folgender Formel berechnet:
+\begin{equation}
+    R_s = (f-1) \cdot R_i
+\end{equation}
+
+\subsubsection{Kompensator}\
+Die Kompensationsschaltung ermöglicht eine nahezu stromlose und damit sehr exakte Spannungsmessung ohne Verfälschung durch den Geräte-Innenwiderstand. 
+Dabei wird der zu messenden Spannung eine bekannte, regelbare Referenzspannung entgegengeschaltet. Diese Gegenspannung wird so lange variiert,
+bis ein empfindliches Nullinstrument (Mikroamperemeter) keinen Stromfluss mehr anzeigt. In diesem abgeglichenen Zustand entspricht die Messspannung
+exakt der eingestellten Referenzspannung~\cite{PAPskript}.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.5\textwidth]{img/kompensator.png}
+    \caption{Schaltbild des verwendeten Kompensators}\label{fig:kompensatorschaltplan}\ 
+\end{figure}
 
 
 
