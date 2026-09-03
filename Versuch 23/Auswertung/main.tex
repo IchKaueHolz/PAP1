@@ -184,11 +184,11 @@ der als Innenwiderstand der Spannungsquelle bezeichnet wird, dargestellt werden
 Wird eine reale Spannungsquelle mit einem Lastwiderstand $R_L$ belastet,
 ergibt sich der fließende Strom $I$ aus der Reihenschaltung von Innen- und Lastwiderstand:
 \begin{equation}
-    I = \frac{U_\text{q}}{R_\text{i,S} + R_L}
+    I = \frac{U_\text{q}}{R_\text{i,S} + R_L}\label{eq:Strom_Realquelle}
 \end{equation}
 Die resultierende Klemmenspannung $U$ entspricht dabei dem Spannungsabfall über dem Lastwiderstand $R_L$:
 \begin{equation}
-    U = R_L \cdot I = U_\text{q} \frac{R_L}{R_\text{i,S} + R_L}
+    U = R_L \cdot I = U_\text{q} \frac{R_L}{R_\text{i,S} + R_L}\label{eq:realeSpannungquelle}
 \end{equation}
 Anhand dieser Gleichung wird ersichtlich, dass der Spannungsabfall am Innenwiderstand nur dann vernachlässigt werden kann,
 wenn dieser sehr viel kleiner als der Lastwiderstand ist ($R_\text{i,S} \ll R_L$).
@@ -244,20 +244,20 @@ lässt sich das Instrument mithilfe des Ohmschen Gesetzes nicht nur zur Strom-, 
 Wegen seines endlichen Innenwiderstands beeinflusst jedes reale Messgerät die Schaltung und verfälscht somit den Messwert.
 
 Da ein Amperemeter in Serie zum Verbraucher geschaltet wird,
-addiert sich sein Innenwiderstand $R_{iA}$ zum Lastwiderstand $R_L$ und dem Innenwiderstand der Quelle $R_{iS}$ hinzu.
+addiert sich sein Innenwiderstand $R_{iA}$ zum Lastwiderstand $R_L$ und dem Innenwiderstand der Quelle $R_{i{,}S}$ hinzu.
 Der gemessene Strom verringert sich dadurch auf den Wert~\cite{PAPskript}:
 
 \begin{equation}
-    I = \frac{U_0}{R_L + R_{iS} + R_{iA}}
+    I = \frac{U_0}{R_L + R_{i{,}S} + R_{iA}}
 \end{equation}
 Damit diese Abweichung gering ausfällt, muss der Innenwiderstand eines Amperemeters möglichst \underbar{klein} sein.
 Ein Voltmeter wird hingegen parallel zum Verbraucher geschaltet. Dadurch liegt der Lastwiderstand parallel
 zum Innenwiderstand des Voltmeters $R_{iV}$,
 was die abfallende Spannung am Verbraucher verändert zu~\cite{PAPskript}:
 \begin{equation}
-    U = U_q \frac{R_L}{\frac{R_{iS}R_L}{R_{iV}} + R_{iS} + R_L}
+    U = U_q \frac{R_L}{\frac{R_{i{,}S}R_L}{R_{iV}} + R_{i{,}S} + R_L}
 \end{equation}
-Bei einem sehr großen Innenwiderstand ($R_{iV} \gg R_{iS}R_L$) wird der erste Term im Nenner vernachlässigbar klein.
+Bei einem sehr großen Innenwiderstand ($R_{iV} \gg R_{i{,}S}R_L$) wird der erste Term im Nenner vernachlässigbar klein.
 Ein Spannungsmessgerät sollte daher immer einen möglichst \underbar{großen} Innenwiderstand besitzen, um den Einfluss auf die Messung gering zu halten~\cite{PAPskript}.
 
 \subsubsection{Erweiterung des Messbereichs}
@@ -548,14 +548,17 @@ Was im Rahmen der Messunsicherheit von $\Delta U = 0.013\,\text{V}$ mit der Gesa
 
 
 \subsection{Aufgabe 2: U(I)-Diagramm der realen Spannungsquelle}
-
 Reale Spannungsquellen besitzen einen endlichen Innenwiderstand, der zu einem Spannungsabfall an den Anschlussklemmen führt, wenn ein Strom entnommen wird.
 
 \medskip
 Die gemessenen Klemmenspannungen $U$ beii verschiedenen Belastungsströmen $I$ werden der Tabelle \ref{tbl:MessungenA2_2} entnommen.
 Es wird ein linearer Zusammenhang zwischen Spannung und Strom angenommen, sodass die Daten in einem $U(I)$-Diagramm dargestellt werden können.
-Der curve fit mit der linearen Funktion $U(I) = U_0 - R_i \cdot I$ liefert die Werte
-für die Quellenspannung $U_0 = \hyperref[fitVoltage]{4.816\,\text{V}}$ und den Innenwiderstand
+Der curve fit mit der linearen Funktion
+\begin{equation}
+    U(I) = U_0 - R_i \cdot I\label{eq:fit}
+\end{equation} 
+liefert die Werte
+für die Quellenspannung(Y-Achsenabschnitt) $U_0 = \hyperref[fitVoltage]{4.816\,\text{V}}$ und den Innenwiderstand(negative Steigung der Gerade)
 $R_i = \hyperref[fitResistance]{1.019\,\Omega}$.
 
 \begin{figure}[H]
@@ -565,54 +568,106 @@ $R_i = \hyperref[fitResistance]{1.019\,\Omega}$.
     \label{fig:U-I-Diagramm}
 \end{figure}
 
+\paragraph{Diskussion}\mbox{}\\
+Gemäß der theoretischen Erwartung für eine reale Spannungsquelle fällt die Klemmenspannung $U$ mit zunehmendem Entnahmestrom $I$ linear ab.
+Diese funktionale Zusammenhang, welcher durch die Gleichung $U(I) = U_q - R_i \cdot I$ beschrieben wird, wird durch den Verlauf
+der Messpunkte und Fehlerbalken im erstellten $U(I)$-Diagramm bestätigt.
+Die minimale Streuung der Messwerte um die ideale Gerade wird durch diese Fehlerbalken vollständig abgedeckt.
+Dies belegt, dass das lineare Ersatzschaltbild für die Batterie in dem gemessenen Strombereich bis $200\,\si{\milli\ampere}$ valide ist und die 
+Fehlerabschätzung der Instrument den realen Messprozess widerspiegelen.
 
 
-\subsection{Systematische Fehlerabschätzung der Tröpfchenladung}
-
-Zur Abschätzung der relativen systematischen Messunsicherheit $\frac{\Delta q}{q}$ wird die Gauß'sche Fehlerfortpflanzung auf die Bestimmungsgleichung der Ladung angewendet:
+\subsection{Aufgabe 3: Zusammenhang der Leistung mit Lastwiderstand}
+Per Definition der elektrischen Leistung in Gleichstromkreisen $P$ gilt:
 \begin{equation}
-    q = (v_f + v_s) \cdot \frac{6\pi d}{U} \sqrt{\frac{9 v_f \eta^3}{2\rho g}}
-    \label{eq:q_exakt}
+    P = U(I) \cdot I
 \end{equation}
 
-\begin{comment}
-\begin{table}[H]
-    \centering
-    \caption{Relative Unsicherheiten der Eingangsgrößen.}
-    \begin{tabular}{lll}
-        \toprule
-        \textbf{Größe} & \textbf{Relative Unsicherheit} & \textbf{Wert} \\
-        \midrule
-        Strecke $s$ & $\dfrac{\Delta s}{s}$ & $\dfrac{0.13 \cdot 10^{-5}\,\text{m}}{5.00 \cdot 10^{-5}\,\text{m}} = 2.60\,\% = 0.0260$ \\
-        Viskosität $\eta$ & $\dfrac{\Delta \eta}{\eta}$ & $2.0\,\% = 0.020$ \\
-        Dichte $\rho$ & $\dfrac{\Delta \rho}{\rho}$ & $0.5\,\% = 0.005$ \\
-        Plattenabstand $d$ & $\dfrac{\Delta d}{d}$ & $\dfrac{0.05\,\text{mm}}{6.00\,\text{mm}} \approx 0.833\,\% = 0.00833$ \\
-        Spannung $U$ & $\dfrac{\Delta U}{U}$ & $0.5\,\% = 0.005$\footnotemark \\
-        \bottomrule
-    \end{tabular}
-\end{table}
-\footnotetext{Für die systematische Unsicherheit der Spannungsmessung wird gemäß Aufgabenstellung eine relative Unsicherheit von $0.5\,\%$ angenommen,
-was bei $U = 500\,\text{V}$ einer systematischen Geräteunsicherheit von $\Delta U_{\text{sys}} = \pm 2.5\,\text{V}$ entspricht.
-Die im Messprotokoll notierte Unsicherheit von $\pm 4\,\text{V}$ berücksichtigt darüber hinaus die beobachtete statistische Schwankung sowie die thermische Drift der Hochspannungsquelle über den gesamten Messzeitraum.}
-\end{comment}
-
-\subsection{Abschätzung des statistischen Fehlers aus der Mehrfachmessung}
 
 
-\subsection{Vergleich des Ergebnisses mit dem Literaturwert}
+Die maximale Leistung $P_\text{max}$ wird durch durch Differenzieren (Produktregel!) von $P(I)$ nach $I$ bestimmt.
+Die Bedingung für das Maximum lautet:
 
+\begin{equation}
+   \frac{\mathrm{d}P}{\mathrm{d}I} = U(I) + \frac{\partial U(I)}{\partial I} \cdot I \overset{!}{=} 0
+\end{equation}
+
+mit $U(I) = U_q - R_{i{,}S} \cdot I$ (Glechung \ref{eq:fit}) folgt:
+
+\begin{equation}
+    \frac{\mathrm{d}P}{\mathrm{d}I} = U_q - R_{i{,}S} \cdot I + (-R_{i{,}S}) \cdot I = U_q - 2 R_{i{,}S} \cdot I \overset{!}{=} 0\label{eq:dPDI}
+\end{equation}
+
+Da der Strom in einer realen Spannungsquelle nach Gleichumg \ref{eq:Strom_Realquelle} durch $I = \frac{U_q}{R_{i{,}S} + R_L}$ gegeben ist, lassen sich die beiden Terme für $I$ gleichsetzen:
+\begin{equation}
+    \frac{U_q}{2 R_{i{,}S}} = \frac{U_q}{R_{i{,}S} + R_L}
+\end{equation}
+
+
+Durch Bilden des Kehrwerts und anschließendes Umstellen erhält man die Bedingung für den Lastwiderstand:
+\begin{equation}
+    2 R_{i{,}S} = R_{i{,}S} + R_L \quad \Rightarrow \quad R_L = R_{i{,}S}
+\end{equation}
+Die von der Batterie abgegebene Leistung erreicht folglich genau dann ihr Maximum, wenn der äußere Lastwiderstand $R_L$ exakt so groß ist wie der Innenwiderstand $R_{i{,}S}$ der Spannungsquelle. Dieser Zustand wird in der Elektrotechnik als Leistungsanpassung bezeichnet.
+
+Um die zugehörige Klemmenspannung zu ermitteln, wird der ermittelte Strom $I = \frac{U_q}{2 R_{i{,}S}}$ in die Ausgangsgleichung für $U(I)$ eingesetzt:
+\begin{equation}
+    U(I) = U_q - R_{i{,}S} \cdot \left( \frac{U_q}{2 R_{i{,}S}} \right) = U_q - \frac{1}{2} U_q = \frac{1}{2} U_q
+\end{equation}
+Im Fall der Leistungsanpassung bricht die Klemmenspannung demnach exakt auf die halbe Quellenspannung ein.
+
+\medskip
+Der Maximalwert der Leistung wird  $I_\text{max} = \frac{U_q}{2 R_{i{,}S}}$ (Gleichung \ref{eq:dPDI}) erreicht.
+Die maximale Leistung $P_\text{max}$ ergibt sich zu:
+\begin{equation}
+    P_\text{max} = U(I_\text{max}) \cdot I_\text{max} = \left( U_q - R_{i{,}S} \cdot I_\text{max} \right) \cdot I_\text{max} = \frac{U_q^2}{4 R_{i{,}S}}
+\end{equation} 
+
+\medskip    
+Bei unserer Batterie mit $U_q = 4.816\,\text{V}$ und $R_{i{,}S} = 1.019\,\Omega$ ergäbe sich somit bei einem Widerstand von $R_L = 1.019\,\Omega$:
+\begin{equation}
+    I_\text{max} = \frac{U_q}{2 R_{i{,}S}} = \frac{4.816\,\text{V}}{2 \cdot 1.019\,\Omega} = 2.36\,\text{A}
+\end{equation}
+und
+\begin{equation}
+    P_\text{max} = \frac{(4.816\,\text{V})^2}{4 \cdot 1.019\,\Omega} = 5.68\,\text{W}
+\end{equation}
+ein maximaler
+Strom von $I_\text{max} = 2.36\,\text{A}$ und eine maximale Leistung von $P_\text{max} = 5.68\,\text{W}$!
 
 
 \section{Diskussion}
-\subsection{Interpretation der Signifikanzen}
+\subsection{Interpretation der Ergebnisse}
 
-\medskip
-\noindent
+Die durchgeführten Messreihen verdeutlichen den systematischen Einfluss von Messgeräte-Innenwiderständen auf elektrische Schaltungen. 
+
+Im ersten Versuchsteil am Spannungsteiler zeigte sich deutlich, dass das Drehspulinstrument aufgrund seines endlichen Innenwiderstands die zu messende Schaltung stark belastet. 
+Da das Messgerät parallel zum Verbraucher geschaltet wird, sinkt der Gesamtwiderstand dieses Schaltungsabschnitts, was zu einem systematisch zu niedrigen Spannungsmesswert führt.
+Dies äußerte sich darin, dass die Summe der gemessenen Teilspannungen deutlich geringer ausfiel als die gemessene Batteriespannung. Die Kirchhoffsche Maschenregel schien somit verletzt zu sein. 
+
+Die Vergleichsmessung mit dem Kompensator offenbarte hingegen die Überlegenheit einer leistungslosen Messmethode. Durch die Kompensation des Querstroms auf null verhält sich der 
+Kompensator wie ein Voltmeter mit unendlich großem Innenwiderstand. Die damit bestimmten Teilspannungen ergaben in der Summe, was im Rahmen der Messunsicherheit der gemessenen Quellenspannung entsprach. 
+Da diese Abweichung im Bereich der kombinierten Messunsicherheiten liegt,
+konnte die Maschenregel experimentell exakt bestätigt werden.
+
+Im zweiten Versuchsteil wurde das Verhalten einer realen Spannungsquelle unter Belastung untersucht. Das erstellte $U(I)$-Diagramm wies den theoretisch
+geforderten streng linearen Abfall der Klemmenspannung bei steigendem Entnahmestrom auf. Die aus der linearen Regression bestimmten Werte für die Quellenspannung
+($U_q = 4{,}816\,\text{V}$) und den Innenwiderstand der Batterie ($R_i = 1{,}019\,\si{\ohm}$) sind physikalisch plausibel. Die mit dem Multimeter gemessene Batteriespannung von $U_\text{q{,}Mess} = 4.82\,\text{V}$ entspricht dem Wert der Ausgleichsgerade. 
+Des Weiteren zeigt sich, dass die Ausgleichsgerade durchgehend innerhalb der Fehlerkreuze der Messpunkte verläuft, was eine sehr gute Übereinstimmung zwischen dem theoretischen Modell der realen Spannungsquelle und dem experimentellen Befund belegt.
+
+Beim Messen der Spannung an der Batterie in Abhängigkeit des Lastwiderstands sind während der Versuchsdurchführung kleine Probleme aufgetreten.
+Zu Beginn ist die Spannung willkürlich abgefallen, egal wie der Lastwiderstand eingestellt wurde. Dies deutet auf eine nicht ausreichend geladene Batterie hin.
+Nach einer kurzen Wartezeit und dem erneuten Einstellen des Lastwiderstands konnte die Messung jedoch erfolgreich durchgeführt werden. 
 
 \subsection{Fazit}
-Zum Ende lässt sich festhalten, dass die experimentelle Bestimmung der Elementarladung mit dem Millikan-Versuch 
-erfolgreich durchgeführt wurde. Die Ergebnisse stimmen innerhalb der Unsicherheiten mit dem Literaturwert überein, und die Analyse der Fehlerquellen liefert wertvolle 
-Einblicke in die Genauigkeit und Präzision des Versuchsaufbaus.
+Zusammenfassend lässt sich festhalten, dass die experimentelle Untersuchung der Strom- und Spannungsmessung erfolgreich durchgeführt wurde.
+Die Kompensationsschaltung hat sich dabei als äußerst präzises Instrument zur fehlerfreien Spannungsmessung bewährt. Die physikalischen Grundgesetze der Elektrodynamik wie
+das Ohmsche Gesetz, die Maschenregel und das lineare Modell realer Spannungsquellen wurden innerhalb der Messunsicherheiten vollständig verifiziert.
+Zum Ende lässt sich festhalten, dass der Versuch einen Interessanten Einblick in die Funktionsweise von realen Spannungsquellen und den
+Einfluss von Messgeräte-Innenwiderständen auf die Messung bietet. 
+Mir persönlich hat der Versuch gezeigt, dass die theoretischen Grundlagen der Elektrotechnik in der Praxis sehr gut nachvollzogen werden können
+und auch nicht all zu schwer in der Theorie einzubeziehen sind.
+Der Versuch zeigt auch, wie es bereits durch einfache Modelle gelingt, reale physikalische Systeme zu beschreiben.
 
 \clearpage
 
