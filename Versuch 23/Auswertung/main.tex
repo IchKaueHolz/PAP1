@@ -29,6 +29,10 @@
 \usepackage{longtable}
 \usepackage{graphicx}
 
+\input{code/packages.tex}
+
+
+
 \newcommand{\pdfabbildung}[2]{%
     \refstepcounter{figure}%
     \addcontentsline{lof}{figure}{\protect\numberline{\thefigure}#1}%
@@ -546,9 +550,16 @@ Was im Rahmen der Messunsicherheit von $\Delta U = 0.013\,\text{V}$ mit der Gesa
 \subsection{Aufgabe 2: U(I)-Diagramm der realen Spannungsquelle}
 
 Reale Spannungsquellen besitzen einen endlichen Innenwiderstand, der zu einem Spannungsabfall an den Anschlussklemmen führt, wenn ein Strom entnommen wird.
+
 \medskip
 Die gemessenen Klemmenspannungen $U$ beii verschiedenen Belastungsströmen $I$ werden der Tabelle \ref{tbl:MessungenA2_2} entnommen.
+Es wird ein linearer Zusammenhang zwischen Spannung und Strom angenommen, sodass die Daten in einem $U(I)$-Diagramm dargestellt werden können.
+Der curve fit mit der linearen Funktion $U(I) = U_0 - R_i \cdot I$ liefert die Werte
+für die Quellenspannung $U_0 = 4.816\,\text{V}$ und den Innenwiderstand $R_i = 1.019\,\Omega$.
 
+\begin{equation}
+        U(I) = U_0 - R_i \cdot I
+\end{equation}  
 
 
 
@@ -620,4 +631,10 @@ Einblicke in die Genauigkeit und Präzision des Versuchsaufbaus.
     in der Durchführung \ref{sec:messungSpannungsabfall} KI-gestützte Textgenerierung verwendet. 
 \end{tcolorbox}
 
+\clearpage
+\appendix
+\section{Anhang: Jupyter Notebook}
+\input{code/U-I-Diagramm.tex}
 \end{document}
+
+
