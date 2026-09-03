@@ -1,0 +1,87 @@
+
+    
+    \maketitle
+    
+    
+
+    
+    U-I Diagramm
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{1}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{k+kn}{import}\PY{+w}{ }\PY{n+nn}{numpy}\PY{+w}{ }\PY{k}{as}\PY{+w}{ }\PY{n+nn}{np}
+\PY{k+kn}{import}\PY{+w}{ }\PY{n+nn}{matplotlib}\PY{n+nn}{.}\PY{n+nn}{pyplot}\PY{+w}{ }\PY{k}{as}\PY{+w}{ }\PY{n+nn}{plt}
+\PY{k+kn}{from}\PY{+w}{ }\PY{n+nn}{scipy}\PY{n+nn}{.}\PY{n+nn}{optimize}\PY{+w}{ }\PY{k+kn}{import} \PY{n}{curve\PYZus{}fit}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{16}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{n}{I} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{array}\PY{p}{(}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{40}\PY{p}{,} \PY{l+m+mi}{60}\PY{p}{,} \PY{l+m+mi}{80}\PY{p}{,} \PY{l+m+mi}{100}\PY{p}{,} \PY{l+m+mi}{120}\PY{p}{,} \PY{l+m+mi}{140}\PY{p}{,} \PY{l+m+mi}{160}\PY{p}{,} \PY{l+m+mi}{180}\PY{p}{,} \PY{l+m+mi}{200}\PY{p}{]}\PY{p}{)} \PY{c+c1}{\PYZsh{} in mA}
+\PY{n}{I\PYZus{}err} \PY{o}{=} \PY{l+m+mi}{5}
+
+\PY{n}{U} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{array}\PY{p}{(}\PY{p}{[}\PY{l+m+mf}{4.809}\PY{p}{,} \PY{l+m+mf}{4.776}\PY{p}{,} \PY{l+m+mf}{4.761}\PY{p}{,} \PY{l+m+mf}{4.739}\PY{p}{,} \PY{l+m+mf}{4.712}\PY{p}{,} \PY{l+m+mf}{4.692}\PY{p}{,} \PY{l+m+mf}{4.674}\PY{p}{,} \PY{l+m+mf}{4.652}\PY{p}{,} \PY{l+m+mf}{4.633}\PY{p}{,} \PY{l+m+mf}{4.609}\PY{p}{]}\PY{p}{)} \PY{c+c1}{\PYZsh{} in V}
+\PY{n}{U\PYZus{}err} \PY{o}{=} \PY{l+m+mf}{0.013}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{49}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{n}{curve\PYZus{}fit\PYZus{}func} \PY{o}{=} \PY{k}{lambda} \PY{n}{I}\PY{p}{,} \PY{n}{U0}\PY{p}{,} \PY{n}{R}\PY{p}{:} \PY{n}{U0} \PY{o}{\PYZhy{}} \PY{n}{R} \PY{o}{*} \PY{n}{I} \PY{o}{*} \PY{l+m+mf}{1e\PYZhy{}3}  \PY{c+c1}{\PYZsh{}mA to A for fit, func: U0 \PYZhy{} R*I }
+\PY{n}{popt}\PY{p}{,} \PY{n}{pcov} \PY{o}{=} \PY{n}{curve\PYZus{}fit}\PY{p}{(}\PY{n}{curve\PYZus{}fit\PYZus{}func}\PY{p}{,} \PY{n}{I}\PY{p}{,} \PY{n}{U}\PY{p}{,} \PY{n}{sigma}\PY{o}{=}\PY{n}{U\PYZus{}err}\PY{p}{,} \PY{n}{absolute\PYZus{}sigma}\PY{o}{=}\PY{k+kc}{True}\PY{p}{)} \PY{c+c1}{\PYZsh{}nur 1D fit. 2D fit ist nicht soleicht}
+\PY{n}{U0\PYZus{}fit}\PY{p}{,} \PY{n}{R\PYZus{}fit} \PY{o}{=} \PY{n}{popt}
+\PY{n}{U\PYZus{}fit} \PY{o}{=} \PY{n}{curve\PYZus{}fit\PYZus{}func}\PY{p}{(}\PY{n}{I}\PY{p}{,} \PY{o}{*}\PY{n}{popt}\PY{p}{)} 
+\PY{n+nb}{print}\PY{p}{(}\PY{l+s+sa}{f}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+se}{\PYZbs{}n}\PY{l+s+si}{\PYZob{}}\PY{n}{U0\PYZus{}fit}\PY{l+s+si}{=:}\PY{l+s+s1}{.3f}\PY{l+s+si}{\PYZcb{}}\PY{l+s+s1}{ V, }\PY{l+s+si}{\PYZob{}}\PY{n}{R\PYZus{}fit}\PY{l+s+si}{=:}\PY{l+s+s1}{.3f}\PY{l+s+si}{\PYZcb{}}\PY{l+s+s1}{ Ohm}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+\PY{n}{plt}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{I}\PY{p}{,} \PY{n}{U\PYZus{}fit}\PY{p}{,} \PY{n}{color}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{green}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{label}\PY{o}{=}\PY{l+s+sa}{f}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Fit: \PYZdl{}U\PYZus{}0=}\PY{l+s+si}{\PYZob{}}\PY{n}{U0\PYZus{}fit}\PY{l+s+si}{:}\PY{l+s+s1}{.3f}\PY{l+s+si}{\PYZcb{}}\PY{l+s+s1}{\PYZbs{}}\PY{l+s+s1}{,V\PYZdl{}}\PY{l+s+se}{\PYZbs{}n}\PY{l+s+s1}{\PYZdl{}R\PYZus{}i=}\PY{l+s+si}{\PYZob{}}\PY{n}{R\PYZus{}fit}\PY{l+s+si}{:}\PY{l+s+s1}{.3f}\PY{l+s+si}{\PYZcb{}}\PY{l+s+s1}{\PYZbs{}}\PY{l+s+s1}{,}\PY{l+s+s1}{\PYZbs{}}\PY{l+s+s1}{Omega\PYZdl{}}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+
+\PY{n}{plt}\PY{o}{.}\PY{n}{errorbar}\PY{p}{(}\PY{n}{I}\PY{p}{,} \PY{n}{U}\PY{p}{,} \PY{n}{xerr}\PY{o}{=}\PY{n}{I\PYZus{}err}\PY{p}{,} \PY{n}{yerr}\PY{o}{=}\PY{n}{U\PYZus{}err}\PY{p}{,} \PY{n}{fmt}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{.}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{color}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{blue}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{ecolor}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{orange}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{capsize}\PY{o}{=}\PY{l+m+mi}{2}\PY{p}{,} \PY{n}{label}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Messwerte}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{elinewidth}\PY{o}{=}\PY{l+m+mi}{1}\PY{p}{)}
+\PY{n}{plt}\PY{o}{.}\PY{n}{xlabel}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Strom I [mA]}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+\PY{n}{plt}\PY{o}{.}\PY{n}{ylabel}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Spannung U [V]}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+\PY{n}{plt}\PY{o}{.}\PY{n}{title}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{U(I)\PYZhy{}Diagramm reale Spannungsquelle}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+\PY{n}{plt}\PY{o}{.}\PY{n}{legend}\PY{p}{(}\PY{p}{)}
+\PY{n}{plt}\PY{o}{.}\PY{n}{minorticks\PYZus{}on}\PY{p}{(}\PY{p}{)}
+\PY{n}{plt}\PY{o}{.}\PY{n}{grid}\PY{p}{(}\PY{k+kc}{True}\PY{p}{,} \PY{n}{which}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{major}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{linestyle}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{\PYZhy{}}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{linewidth}\PY{o}{=}\PY{l+m+mf}{0.75}\PY{p}{)}
+\PY{n}{plt}\PY{o}{.}\PY{n}{grid}\PY{p}{(}\PY{k+kc}{True}\PY{p}{,} \PY{n}{which}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{minor}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{linestyle}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{\PYZhy{}\PYZhy{}}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{linewidth}\PY{o}{=}\PY{l+m+mf}{0.3}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+<>:6: SyntaxWarning: invalid escape sequence '\textbackslash{},'
+<>:6: SyntaxWarning: invalid escape sequence '\textbackslash{},'
+<>:6: SyntaxWarning: invalid escape sequence '\textbackslash{},'
+<>:6: SyntaxWarning: invalid escape sequence '\textbackslash{},'
+/var/folders/9r/ppvq7f7j3kv69gnk\_v549lcm0000gn/T/ipykernel\_83125/2146580791.py:6
+: SyntaxWarning: invalid escape sequence '\textbackslash{},'
+  plt.plot(I, U\_fit, color='green', label=f'Fit:
+\$U\_0=\{U0\_fit:.3f\}\textbackslash{},V\$\textbackslash{}n\$R\_i=\{R\_fit:.3f\}\textbackslash{},\textbackslash{}Omega\$')
+/var/folders/9r/ppvq7f7j3kv69gnk\_v549lcm0000gn/T/ipykernel\_83125/2146580791.py:6
+: SyntaxWarning: invalid escape sequence '\textbackslash{},'
+  plt.plot(I, U\_fit, color='green', label=f'Fit:
+\$U\_0=\{U0\_fit:.3f\}\textbackslash{},V\$\textbackslash{}n\$R\_i=\{R\_fit:.3f\}\textbackslash{},\textbackslash{}Omega\$')
+    \end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+
+U0\_fit=4.816 V, R\_fit=1.019 Ohm
+    \end{Verbatim}
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{code/U-I-Diagramm3_2.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{ }{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+
+\end{Verbatim}
+\end{tcolorbox}
+
+
+    % Add a bibliography block to the postdoc
+    
+    
+    
