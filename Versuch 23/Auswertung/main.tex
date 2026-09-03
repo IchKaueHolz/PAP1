@@ -498,7 +498,7 @@ Berechnung:
     U_0 = U_\text{R1} + U_\text{R2} = (2.411\pm 0.013)\,\text{V} + (2.411\pm 0.013)\,\text{V} = (4.822\pm 0.019)\,\text{V}
 \end{equation}
 
-Was im Rahmen der Messunsicherheit von $\Delta U = 0.013\,\text{V}$ mit der Gesamtspannung $U_0 = 4.807\,\text{V}$ übereinstimmt.
+Was im Rahmen der Messunsicherheit von $\Delta U = 0.019\,\text{V}$ mit der Gesamtspannung $U_0 = 4.807\,\text{V}$ übereinstimmt.
 
 
 \begin{comment}
@@ -624,16 +624,51 @@ Die maximale Leistung $P_\text{max}$ ergibt sich zu:
 \end{equation} 
 
 \medskip    
-Bei unserer Batterie mit $U_q = 4.816\,\text{V}$ und $R_{i{,}S} = 1.019\,\Omega$ ergäbe sich somit bei einem Widerstand von $R_L = 1.019\,\Omega$:
+Bei unserer Batterie mit $U_q = 4{,}816\,\text{V}$ und $R_{i{,}S} = 1{,}019\,\Omega$ ergäbe sich somit bei einem Widerstand von $R_L = 1{,}019\,\Omega$:
 \begin{equation}
-    I_\text{max} = \frac{U_q}{2 R_{i{,}S}} = \frac{4.816\,\text{V}}{2 \cdot 1.019\,\Omega} = 2.36\,\text{A}
+    I_\text{max} = \frac{U_q}{2 R_{i{,}S}} = \frac{4{,}816\,\text{V}}{2 \cdot 1{,}019\,\Omega} = 2{,}36\,\text{A}
 \end{equation}
 und
 \begin{equation}
-    P_\text{max} = \frac{(4.816\,\text{V})^2}{4 \cdot 1.019\,\Omega} = 5.68\,\text{W}
+    P_\text{max} = \frac{(4{,}816\,\text{V})^2}{4 \cdot 1{,}019\,\Omega} = 5{,}69\,\text{W}
 \end{equation}
-ein maximaler
-Strom von $I_\text{max} = 2.36\,\text{A}$ und eine maximale Leistung von $P_\text{max} = 5.68\,\text{W}$!
+
+Um die Messunsicherheiten des maximalen Stroms $\Delta I_\text{max}$ und der maximalen Leistung $\Delta P_\text{max}$ zu bestimmen, wird die Gaußsche Fehlerfortpflanzung auf die entsprechenden Gleichungen angewendet. Die Unsicherheiten der Fit-Parameter aus der linearen Regression betragen $\Delta U_q = 0{,}0084\,\text{V}$ und $\Delta R_{i{,}S} = 0{,}0676\,\Omega$.
+
+Für den Strom $I_\text{max}$ lautet die Fehlerfortpflanzung:
+\begin{equation}
+    \Delta I_\text{max} = \sqrt{ \left( \frac{\partial I_\text{max}}{\partial U_q} \Delta U_q \right)^2 + \left( \frac{\partial I_\text{max}}{\partial R_{i{,}S}} \Delta R_{i{,}S} \right)^2 } = \sqrt{ \left( \frac{\Delta U_q}{2 R_{i{,}S}} \right)^2 + \left( \frac{U_q \Delta R_{i{,}S}}{2 R_{i{,}S}^2} \right)^2 }
+\end{equation}
+
+Für die maximale Leistung $P_\text{max}$ ergibt sich analog:
+\begin{equation}
+    \Delta P_\text{max} = \sqrt{ \left( \frac{\partial P_\text{max}}{\partial U_q} \Delta U_q \right)^2 + \left( \frac{\partial P_\text{max}}{\partial R_{i{,}S}} \Delta R_{i{,}S} \right)^2 } = \sqrt{ \left( \frac{U_q \Delta U_q}{2 R_{i{,}S}} \right)^2 + \left( \frac{U_q^2 \Delta R_{i{,}S}}{4 R_{i{,}S}^2} \right)^2 }
+\end{equation}
+
+Setzt man die Werte ein, ergeben sich die finalen Fehler $\Delta I_\text{max} = 0{,}16\,\text{A}$ und $\Delta P_\text{max} = 0{,}38\,\text{W}$. Damit betragen der maximale Strom und die maximal abgreifbare Leistung bei Leistungsanpassung:
+\begin{equation}
+    I_\text{max} = (2{,}36 \pm 0{,}16)\,\text{A}
+\end{equation}
+\begin{equation}
+    P_\text{max} = (5{,}69 \pm 0{,}38)\,\text{W}
+\end{equation}
+
+\begin{resultbox}[Ergebnis]
+    Die maximale Leistung wird erreicht, wenn der Lastwiderstand $R_L$ exakt dem Innenwiderstand $R_{i{,}S}$ der Spannungsquelle entspricht. 
+    In diesem Fall gilt:
+    \begin{align*}
+        I_\text{max} &= \frac{U_q}{2 R_{i{,}S}} \\
+        P_\text{max} &= \frac{U_q^2}{4 R_{i{,}S}} \\
+        U(I_\text{max}) &= \frac{U_q}{2}
+    \end{align*}
+    
+    Mit den berechneten Fehlern aus der Ausgleichsrechnung ergeben sich für unsere Batterie folgende Endwerte im Leistungsmaximum:
+    \begin{align*}
+        I_\text{max} &= (2{,}36 \pm 0{,}16)\,\text{A} \\
+        P_\text{max} &= (5{,}69 \pm 0{,}38)\,\text{W} \\
+        U(I_\text{max}) &= (2{,}408 \pm 0{,}004)\,\text{V}
+    \end{align*}
+\end{resultbox}
 
 
 \section{Diskussion}
