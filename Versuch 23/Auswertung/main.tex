@@ -467,10 +467,34 @@ Bei einem Spannungsteiler ergibt sich:
         &= U_0 \frac{\frac{R_1 \cdot R_V}{R_1 + R_V}}{\frac{R_1 \cdot R_V}{R_1 + R_V} + R_2} \\[1ex]
     \end{aligned}
 \end{equation}
-    
 
+Da die Widerstände gleich sind, gilt $R_1 = R_2 = R$:
+\begin{equation}
+    U_m = U_0 \frac{\frac{R \cdot R_V}{R + R_V}}{\frac{R \cdot R_V}{R + R_V} + R} = U_0 \frac{R_V}{R + 2R_V}    
+\end{equation}
 
+Umstellen nach R ergibt:
+\begin{equation}
+    R = R_V \left( \frac{U_0}{U_m} - 2 \right)
+\end{equation}
 
+Mit $R_V = 500\,\si{\ohm}$ und $U_0 = 4{,}75\,\text{V}$, $U_m = 1{,}25\,\text{V}$ ergibt sich:
+\begin{equation}
+    R = 500\,\si{\ohm} \left( \frac{4{,}75\,\text{V}}{1{,}25\,\text{V}} - 2 \right) = 500\,\si{\ohm} \left( 3{,}8 - 2 \right) = 900\,\si{\ohm}
+\end{equation}
+
+\paragraph{Bestätigung der Maschenregel durch den Kompensator}\mbox{}\\
+Da der Kompensator eine nahezu stromlose Spannungsmessung ermöglicht, 
+existiert somit nur eine minimale Stromaufnahme in einer 2. Masche, weshalb diese Masche vernächlässigt werden kann.
+Damit gilt: die Summe der Spannungen an den beiden Widerständen $U_\text{R1} + U_\text{R2}$ entspricht der Gesamtspannung $U_0$.
+
+\medskip
+Berechnung: 
+\begin{equation}
+    U_0 = U_\text{R1} + U_\text{R2} = (2.411\pm 0.013)\,\text{V} + (2.411\pm 0.013)\,\text{V} = (4.822\pm 0.019)\,\text{V}
+\end{equation}
+
+Was im Rahmen der Messunsicherheit von $\Delta U = 0.013\,\text{V}$ mit der Gesamtspannung $U_0 = 4.807\,\text{V}$ übereinstimmt.
 \begin{comment}
 \begin{table}[H]
     \centering
