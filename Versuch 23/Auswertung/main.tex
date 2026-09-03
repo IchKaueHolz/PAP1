@@ -555,11 +555,15 @@ Reale Spannungsquellen besitzen einen endlichen Innenwiderstand, der zu einem Sp
 Die gemessenen Klemmenspannungen $U$ beii verschiedenen Belastungsströmen $I$ werden der Tabelle \ref{tbl:MessungenA2_2} entnommen.
 Es wird ein linearer Zusammenhang zwischen Spannung und Strom angenommen, sodass die Daten in einem $U(I)$-Diagramm dargestellt werden können.
 Der curve fit mit der linearen Funktion $U(I) = U_0 - R_i \cdot I$ liefert die Werte
-für die Quellenspannung $U_0 = 4.816\,\text{V}$ und den Innenwiderstand $R_i = 1.019\,\Omega$.
+für die Quellenspannung $U_0 = \hyperref[fitVoltage]{4.816\,\text{V}}$ und den Innenwiderstand
+$R_i = \hyperref[fitResistance]{1.019\,\Omega}$.
 
-\begin{equation}
-        U(I) = U_0 - R_i \cdot I
-\end{equation}  
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{img/UI diagramm.png}
+    \caption{U(I)-Diagramm der realen Spannungsquelle: Messwerte, Fehler und Ausgleichsgerade.}
+    \label{fig:U-I-Diagramm}
+\end{figure}
 
 
 
@@ -632,8 +636,9 @@ Einblicke in die Genauigkeit und Präzision des Versuchsaufbaus.
 \end{tcolorbox}
 
 \clearpage
+
 \appendix
-\section{Anhang: Jupyter Notebook}
+\section{Anhang: Jupyter Notebook Aufgabe 2}
 \input{code/U-I-Diagramm.tex}
 \end{document}
 
