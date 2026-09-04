@@ -184,39 +184,76 @@ Er berechnet sich aus der Induktivität $L$ und der Kapazität $C$ der Leitung:
 \textbf{Reflexion auf einer Leitung:} Breitet sich ein elektrisches Signale entlang
 einer Leitung aus so können diese an den Änderungen des Wellenwiderstands reflektiert werden. Das passiert vor allem am Ende der Leitung, je nachdem wie
 die Leitung abgeschlossen ist. Betrachtet man einzelne Pulse auf einer Leitung, je nach die Art des Abschlusses der Leitung, so werden diese unterschiedlich reflektiert.
-Treffen diese auf ein offenes Leitungsende so werden diese hier ohne Phasen-
-sprung reflektiert und laufen zurück zum Sender (Reflexion am offenen Ende).
+Treffen diese auf ein offenes Leitungsende so werden diese hier ohne Phasensprung reflektiert und laufen zurück zum Sender (Reflexion am offenen Ende).
 Ist dagegen das Leitungsende kurzgeschlossen so werden die Impulse mit einem
 Phasensprung reflektiert. Der zurücklaufende Impuls hat die umgekehrte Polarität wie die hinlaufende Welle (Reflexion am festen Ende). \cite{PAPskript}
+
+\paragraph{Fourier-Analyse}
+Die Fourier-Analyse ist eine mathematische Methode zur Zerlegung von Signalen in ihre Frequenzkomponenten. Sie basiert auf der Idee, dass jedes periodische Signal als Summe von Sinus- und Kosinusfunktionen unterschiedlicher Frequenzen dargestellt werden kann. Die Fourier-Analyse ermöglicht es, die Frequenzstruktur eines Signals zu untersuchen und die Amplituden und Phasen der einzelnen Frequenzkomponenten zu bestimmen. Sie ist ein unverzichtbares Werkzeug in der Signalverarbeitung, der Kommunikationstechnik und vielen anderen Bereichen der Physik und Technik. Durch die Anwendung der Fourieraufteilung können komplexe Signale in ihre Grundfrequenzen zerlegt werden, was eine detaillierte Analyse und Interpretation der Signalcharakteristika ermöglicht.
+
+\paragraph{Pulsweitenmodulation (PWM)}
+Um moderene LEDs zu dimmen oder Motoren zu steuern, wird häufig die Pulsweitenmodulation (PWM) eingesetzt. Bei der PWM wird die Leistung eines Signals durch die Variation der Pulsbreite gesteuert, während die Frequenz konstant bleibt. Dies ermöglicht eine effiziente Steuerung von elektrischen Geräten, da die Energieübertragung in diskreten Pulsen erfolgt, anstatt kontinuierlich. Die PWM-Technik ist besonders vorteilhaft in Anwendungen, bei denen eine präzise Steuerung der Leistung erforderlich ist, wie z.B. in der Beleuchtungstechnik, der Motorsteuerung und der digitalen Signalverarbeitung. Sie bietet einfachere Aufbauten wie bei der analogen Steuerung und ermöglicht eine höhere Effizienz und Flexibilität in der Leistungsregelung. Mikrocontroller können die PWM-Signale einfach erzeugen, indem sie digitale Ausgänge mit variabler Pulsbreite steuern, was die Integration in moderne elektronische Systeme erleichtert, während analoge Steuerungen oft komplexere Schaltungen erfordern.
+\begin{figure}
+    \centering
+    \includegraphics[width=0.6\textwidth]{img/PWM.png}
+    \caption{Darstellung der Pulsweitenmodulation (PWM) mit unterschiedlichen Tastverhältnissen.}\cite{PAPskript}
+
+    \label{fig:pwm}
+\end{figure}
+
+Der Mittelwert eines PWM-Signals kann durch das Tastverhältnis $D$ = $\frac{t}{T}$ berechnet werden:
+\begin{equation}
+    U_{PWM} = D \cdot U_{max}
+\end{equation}  
+
+Die Effektivspannung eines PWM-Signals kann mit folgender Formel berechnet werden:
+\begin{equation}
+    U_{eff} = \sqrt{D} \cdot U_{max}
+\end{equation}
+
+\paragraph{}
 
 \section{Messprotokoll}
 
 \subsection{Versuchsaufbau und Aufgaben}
-\begin{comment}
-    
+Im folgenden Abschnitt werden die Aufgaben und der Versuchsaufbau beschrieben, die im Rahmen des Oszilloskop-Versuchs durchgeführt wurden. Der Versuchsaufbau besteht aus einem digitalen Speicheroszilloskop (Tektronix TBS1072B), das mit verschiedenen Signalquellen verbunden ist, um unterschiedliche Signalformen zu erzeugen und zu analysieren. 
+
+\begin{itemize}
+    \item \textbf{Aufgabe 1.1:} Untersuchung verschiedener Signalformen, einschließlich Sinuswellen, Aufladekurven eines Kondensators und Pulsweitenmodulationen. Bestimmung und Analyse der Kenngrößen: Amplitude, Frequenz, Spitze-Spitze-Spannung und Gleichspannungsanteil.
+    \item \textbf{Aufgabe 1.2:} Analyse der Frequenzspektren von Schwebungssignalen mithilfe des Oszilloskops und der Fourier-Analyse.
+    \item \textbf{Aufgabe 2:} Bestimmung von Periode, Pulsbreite, Pulshöhe, Effektivspannung und Mittelwert von PWM-Signalen auf eine LED - Untersuchung der Auswirkungen unterschiedlicher Tastverhältnisse auf die LED-Helligkeit.
+    \item \textbf{Aufgabe 3:} Bestimmung der Kabellänge eines Coaxialkabels durch Laufzeitmessung. Untersuchung der Reflexionen an offenen, kurzgeschlossenen und mit einem Potentiometer versehenen Leitungsenden, um die Auswirkungen auf die Signalübertragung zu analysieren.
+\end{itemize}
+
+\pdfabbildung{Messaufbau}{fig:messprotokoll-1}
+\pdfabbildung{Signal 1}{fig:messprotokoll-2}
+\pdfabbildung{Signal 2}{fig:messprotokoll-3}
+\pdfabbildung{Signal 3}{fig:messprotokoll-4}
+\pdfabbildung{Schwebung FFT}{fig:messprotokoll-5}
+\pdfabbildung{Schwebung}{fig:messprotokoll-6}
+\pdfabbildung{PWM-Signal}{fig:messprotokoll-7}
+\pdftabelle{Tabelle der Messungen PWM}{tbl:MessungenA2}
+\pdfabbildung{Generiertes Signal für Messung von Kabellänge}{fig:messprotokoll-8}
+\pdfabbildung{Reflektiertes Signal(Offenes Ende)}{fig:messprotokoll-9}
+\pdfabbildung{Reflektiertes Signal(Kurzgeschlossenes Ende)}{fig:messprotokoll-10}
+
+
 \includepdf[
     pages=-,
     width=\textwidth,
     height=\textheight,
     keepaspectratio,
     pagecommand={\thispagestyle{scrheadings}}
-]{../Messprotokoll 23.pdf}
-
-\end{comment}
-
-\addtocounter{figure}{1}
-
-\subsection{Durchführung}
-Im weiterem Verlauf wird ein exponentiell ansteigender und abklingender Spannungsverlauf bebachtet, dieser Spannungsverlauf ähnelt dem eines Kondensators, der über einen Widerstand aufgeladen und entladen wird.
-
-\subsection{Messwerte}
-
-
-
+]{../Messprotokoll 25.pdf}
 
 \section{Auswertung}
 
-\subsection{Aufgabe 1:Exemplarische Berechnung an einem ausgewählten Tröpfchen}
+\subsection{Aufgabe 1: Berechnung der Schwebungsfrequenzen}
+Gemessene Frequenzen Laut Abbildung \ref{fig:messprotokoll-5} im Messprotokoll:
+\begin{itemize}
+    \item $f_1 = 1.395\pm 0.005\,\text{kHz}$
+    \item $f_2 = 1.580\pm 0.005\,\text{kHz}$
+\end{itemize}
 
 \begin{comment}
 \begin{table}[H]
