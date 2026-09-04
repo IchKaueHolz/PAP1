@@ -29,6 +29,21 @@
 \usepackage{longtable}
 \usepackage{graphicx}
 
+\input{../../jupyterpackages.tex}
+
+
+\newcommand{\pdfabbildung}[2]{%
+    \refstepcounter{figure}%
+    \addcontentsline{lof}{figure}{\protect\numberline{\thefigure}#1}%
+    \label{#2}%
+}
+
+\newcommand{\pdftabelle}[2]{%
+    \refstepcounter{table}%
+    \addcontentsline{lot}{table}{\protect\numberline{\thetable}#1}%
+    \label{#2}%
+}
+
 
 \hypersetup{colorlinks=true, linkcolor=blue!60!black, urlcolor=blue!60!black, citecolor=blue!60!black}
 
