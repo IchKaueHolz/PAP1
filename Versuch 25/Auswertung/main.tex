@@ -118,19 +118,76 @@ Das Oszilloskop bietet die Möglichkeit, sowohl zeitabhängige als auch frequenz
 
 In diesem Versuch wird ein digitales Speicheroszilloskop verwendet (Tektronix TBS1072B), das eine Bandbreite von 70 MHz und eine Abtastrate von 1 GS/s bietet.
 
-Im ersten teil werden verschiedene Signalformen, wie Sinuswellen, Aufladekurven eines Kondensator und Pulsweitenmodulationen untersucht und ihre Kenngrößen, wie Amplitude, Frequen, Spitze-Spitze-Spannung und Gleichspannungsanteil bestimmt und analysiert.
+Im ersten teil werden verschiedene Signalformen, wie Sinuswellen, Aufladekurven eines Kondensator und Pulsweitenmodulationen untersucht und ihre Kenngrößen, wie Amplitude, Frequen, Spitze-Spitze-Spannung und Gleichspannungsanteil bestimmt und analysiert
 Danach wird mit Hilfe des Oszilloskops und der Fourier-Analyse die Frequenzspektren von komplexen Schwebungssignalen untersucht. 
-Zum Abschluss wird 
+Zum Abschluss wird die Kabellänge eines Coaxialkabels mit Hilfe der Laufzeitmessung bestimmt.
 
 
 \section{Grundlagen und Theorie}
-\subsection{}
+\subsection{Physikalische Kenngrößen von Wellen und Signalen}
+\paragraph{Frequenz $f$}
+Die Frequenz $f$ eines periodischen Signals ist mit die charakteristische Größe, die als die Anzahl der Schwingungen pro Zeiteinheit definiert wird. Sie wird in Hertz (Hz) gemessen und ist der Kehrwert der Periodendauer $T$:
+\begin{equation}
+    f = \frac{1}{T}
+\end{equation}
+Die Frequenz ist ein entscheidender Parameter, der die zeitliche Struktur eines Signals beschreibt und in vielen Anwendungen, von der Kommunikationstechnik bis zur Signalverarbeitung, eine zentrale Rolle spielt. Bei Schallwellen bestimmt die Freuquenz den Tonhöhenbereich, während sie bei elektromagnetischen Wellen die Art der Strahlung charakterisiert. Verschiedene Freuqenzen bei Lichtwellen entsprechen unterschiedlichen Farben, während bei Radiowellen die Frequenz die Übertragungsbandbreite und Reichweite beeinflusst. Die präzise Messung und Analyse der Frequenz ist daher von großer Bedeutung in der Physik und Technik.
 
-\subsection{Literaturwerte}
+\paragraph{Periodendauer $T$}
+Die Periodendauer $T$ eines periodischen Signals ist die Zeit, die für eine vollständige Schwingung oder einen Zyklus benötigt wird. Sie ist der Kehrwert der Frequenz $f$ und wird in Sekunden (s) gemessen:
+\begin{equation}
+    T = \frac{1}{f}
+\end{equation}
 
+\paragraph{Wellenlänge $\lambda$}
+Die Wellenlänge $\lambda$ ist die räumliche Länge einer vollständigen Schwingung oder eines Zyklus einer Welle. Sie wird in Metern (m) gemessen und ist mit der Frequenz $f$ und der Ausbreitungsgeschwindigkeit $v$ der Welle verknüpft:
+\begin{equation}
+    \lambda = \frac{v}{f}
+\end{equation}
+Bei Veränderung der Ausbreitungsgeschwindigkeit bleibt die Frequenz erhalten, die Wellenlänge ändert sich jedoch entsprechend. Dies ist besonders relevant bei der Betrachtung von Wellen, die sich in unterschiedlichen Medien ausbreiten, da die Ausbreitungsgeschwindigkeit von den physikalischen Eigenschaften des Mediums abhängt.
 
+\paragraph{Ausbreitungsgeschwindigkeit $v$}
+Die Ausbreitungsgeschwindigkeit $v$ ist die Geschwindigkeit, mit der sich eine Welle durch ein Medium bewegt. Sie hängt von den physikalischen Eigenschaften des Mediums ab und wird in Metern pro Sekunde (m/s) gemessen. Für elektromagnetische Wellen lässt sich aus dem Maxwellschen Gleichungssystem ableiten, dass für die Ausbreitungsgeschwindigkeit im Vakuum ($\epsilon_r = 1{,}\ \mu_r = 1$) gilt:
+\begin{equation}
+    v = c = \frac{1}{\sqrt{\mu_0 \mu_r \epsilon_0 \epsilon_r}} \approx 3 \cdot 10^8 \frac{\text{m}}{\text{s}}
+\end{equation}
 
+\paragraph{Phase $\varphi$}
+Die Phase $\varphi$ ist ein Maß für die Position eines Punktes in einem periodischen Prozess. Sie wird in Radiant (rad) oder Grad (°) gemessen und beschreibt den zeitlichen Versatz einer Welle im Vergleich zu einem Referenzzeitpunkt. Die Phase ist besonders wichtig bei der Analyse von Wellen, da sie den Zusammenhang zwischen verschiedenen Wellen beschreibt und bei der Interferenz von Wellen eine entscheidende Rolle spielt.
 
+In der Wellengleichung wird die Phase $\varphi$ oft als Argument der Sinus- oder Kosinusfunktion verwendet, um die zeitliche Entwicklung der Welle zu beschreiben. Eine Phasenverschiebung kann durch unterschiedliche Wege, Medien oder Quellen verursacht werden und beeinflusst die Überlagerung von Wellen, was zu konstruktiver oder destruktiver Interferenz führen kann.
+
+\paragraph{Amplitude $A$}
+Die Amplitude $A$ ist die maximale Auslenkung einer Welle von ihrer Ruhelage. Sie wird in der Regel in Volt (V) für elektrische Signale oder in Metern (m) für mechanische Wellen gemessen. Die Amplitude ist ein Maß für die Energie, die eine Welle transportiert, und spielt eine entscheidende Rolle bei der Charakterisierung von Signalen. In der Signalverarbeitung wird die Amplitude oft verwendet, um die Stärke eines Signals zu quantifizieren und zu analysieren.
+\begin{figure}
+    \centering
+    \includegraphics[width=0.6\textwidth]{img/Wellencharakter.png}
+    \caption{Darstellung der verschiedenen Kenngrößen einer Welle}
+    \footnotemark
+    \label{fig:amplitude}
+\end{figure}
+\footnotetext{Quelle: \url{https://sengpielaudio.com/WellenSinusZeitAbstandTime.gif}}
+
+\paragraph{Spitzen-Spitzen-Spannung $U_{pp}$}
+Die Spitzen-Spitzen-Spannung $U_{pp}$ ist die Differenz zwischen dem höchsten und dem niedrigsten Punkt eines periodischen Signals. Sie wird in Volt (V) gemessen und ist ein Maß für die maximale Amplitude des Signals. Die Spitzen-Spitzen-Spannung ist besonders relevant bei der Analyse von Wechselspannungen, da sie die gesamte Spannungsdynamik eines Signals beschreibt und in vielen Anwendungen, wie der Signalübertragung und -verarbeitung, eine wichtige Rolle spielt.
+\begin{equation}
+    U_{pp} = 2 \cdot A_U = U_{max} - U_{min}\label{eq:spitzen_spitzen_spannung}
+\end{equation}
+
+\paragraph{Wellenwiderstand und Reflexion auf einer Leitung}
+Der Wellenwiderstand $Z$ ist ein Maß für den Widerstand, den eine Leitung einer Welle entgegensetzt. Er wird in Ohm ($\Omega$) gemessen und hängt von den physikalischen Eigenschaften der Leitung ab, wie dem Material, der Geometrie und der Frequenz des Signals.
+
+Er berechnet sich aus der Induktivität $L$ und der Kapazität $C$ der Leitung:
+\begin{equation}
+    Z = \sqrt{\frac{L}{C}}
+\end{equation}
+
+\textbf{Reflexion auf einer Leitung:} Breitet sich ein elektrisches Signale entlang
+einer Leitung aus so können diese an den Änderungen des Wellenwiderstands reflektiert werden. Das passiert vor allem am Ende der Leitung, je nachdem wie
+die Leitung abgeschlossen ist. Betrachtet man einzelne Pulse auf einer Leitung, je nach die Art des Abschlusses der Leitung, so werden diese unterschiedlich reflektiert.
+Treffen diese auf ein offenes Leitungsende so werden diese hier ohne Phasen-
+sprung reflektiert und laufen zurück zum Sender (Reflexion am offenen Ende).
+Ist dagegen das Leitungsende kurzgeschlossen so werden die Impulse mit einem
+Phasensprung reflektiert. Der zurücklaufende Impuls hat die umgekehrte Polarität wie die hinlaufende Welle (Reflexion am festen Ende). \cite{PAPskript}
 
 \section{Messprotokoll}
 
@@ -267,7 +324,6 @@ Einblicke in die Genauigkeit und Präzision des Versuchsaufbaus.
 \begin{thebibliography}{5}
     \bibitem{PAPskript} Dr. J.Wagner, \emph{Physikalisches Anfängerpraktikum}, Stand 11/2024
     \bibitem{ilberg1988physikalisches} W. Ilberg, M. Krötzsch, \emph{Physikalisches Praktikum für Anfänger}, BSB B. G. Teubner Verlagsgesellschaft, Leipzig (1985).
-    \bibitem{demtroeder2017} W. Demtröder, \emph{Experimentalphysik 1: Mechanik und Wärme}, Springer Verlag, Berlin (2017).
 \end{thebibliography}
 
 
