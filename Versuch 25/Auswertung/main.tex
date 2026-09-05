@@ -203,12 +203,12 @@ Um moderene LEDs zu dimmen oder Motoren zu steuern, wird häufig die Pulsweitenm
 
 Der Mittelwert eines PWM-Signals kann durch das Tastverhältnis $D$ = $\frac{t}{T}$ berechnet werden:
 \begin{equation}
-    U_{PWM} = D \cdot U_{max}
+    U_{PWM} = D \cdot U_{max}\label{PWMMittelwert}
 \end{equation}  
 
 Die Effektivspannung eines PWM-Signals kann mit folgender Formel berechnet werden:
 \begin{equation}
-    U_{eff} = \sqrt{D} \cdot U_{max}
+    U_{eff} = \sqrt{D} \cdot U_{max}\label{PWMEffektiv}
 \end{equation}
 
 \paragraph{}
@@ -247,51 +247,138 @@ Im folgenden Abschnitt werden die Aufgaben und der Versuchsaufbau beschrieben, d
 ]{../Messprotokoll 25.pdf}
 
 \section{Auswertung}
-
 \subsection{Aufgabe 1: Berechnung der Schwebungsfrequenzen}
-Die einzelnen Frequenzen der Schwebung können mit folgender Formel berechnet werden:
+Gemäß der Aufgabenstellung werden aus den im Frequenzspektrum gemessenen Einzelfrequenzen $f_I$ und $f_{II}$ (mit $f_{II} > f_I$) die Größen $f_1$ (mittlere Trägerfrequenz) und $f_2$ (Modulationsfrequenz der Einhüllenden) berechnet:
 \begin{equation}
-    f_{1,2} = \frac{f_I + f_{II}}{2} \pm \frac{f_{II} - f_I}{2} \text{mit} f_I < f_{II}
+    f_1 = \frac{f_{II} + f_I}{2}, \qquad f_2 = \frac{f_{II} - f_I}{2}
 \end{equation}
 
 \medskip
-mit den gemessenen Frequenzen Laut Abbildung \ref{fig:messprotokoll-5} im Messprotokoll:
+Aus dem Messprotokoll (FFT-Spektrum, Abbildung \ref{fig:messprotokoll-5}) entnehmen wir:
 \begin{itemize}
-    \item $f_I = 1.395\pm 0.005\,\text{kHz}$
-    \item $f_{II} = 1.580\pm 0.005\,\text{kHz}$
+    \item $f_I = (1.395 \pm 0.005)\,\text{kHz} = (1395 \pm 5)\,\text{Hz}$
+    \item $f_{II} = (1.580 \pm 0.005)\,\text{kHz} = (1580 \pm 5)\,\text{Hz}$
 \end{itemize}
 
+Nach der Gaußschen Fehlerfortpflanzung gilt für beide theoretischen Größen dieselbe Unsicherheit:
+\begin{equation}
+    \begin{aligned}
+        \sigma_{f_{1,2}} &= \sqrt{\left(\frac{\partial f_{1,2}}{\partial f_I}\right)^2 \sigma_{f_I}^2 + \left(\frac{\partial f_{1,2}}{\partial f_{II}}\right)^2 \sigma_{f_{II}}^2} \\
+        &= \frac{1}{2} \sqrt{(5\,\text{Hz})^2 + (5\,\text{Hz})^2} = \frac{5}{\sqrt{2}}\,\text{Hz} \approx 3.54\,\text{Hz} \approx 4\,\text{Hz}
+    \end{aligned}
+\end{equation}
+
+Damit ergeben sich die theoretisch berechneten Referenzwerte zu:
 \begin{align*}
-    f_1 &= \frac{1.395 + 1.580}{2} = 1.4875\,\text{kHz}\\
-    f_2 &= \frac{1.580 - 1.395}{2} = 0.0925\,\text{kHz}
+    f_1 &= \frac{1580\,\text{Hz} + 1395\,\text{Hz}}{2} = 1487.5\,\text{Hz} \approx (1488 \pm 4)\,\text{Hz} \\
+    f_2 &= \frac{1580\,\text{Hz} - 1395\,\text{Hz}}{2} = 92.5\,\text{Hz} \approx (93 \pm 4)\,\text{Hz}
 \end{align*}
 
+\begin{resultbox}[Ergebnis der theoretischen Berechnung]
+    Die aus den Spektralfrequenzen berechneten Größen lauten:
+    \begin{align*}
+        f_1 &= (1488 \pm 4)\,\text{Hz} = (1.488 \pm 0.004)\,\text{kHz}, \\
+        f_2 &= (93 \pm 4)\,\text{Hz}.
+    \end{align*}
+\end{resultbox}
 
-\begin{comment}
-\begin{table}[H]
+\medskip
+\textbf{Vergleich und Korrektur mit der Cursor-Messung im Zeitbereich:}
+
+Im Messprotokoll (Signal 4) wurde für die schnelle Schwingung über 10 Perioden gemessen:
+\begin{equation*}
+    f_{1,\text{mess}} = (1572 \pm 15)\,\text{Hz}
+\end{equation*}
+
+Für die Schwebung wurde am Oszilloskop ein Zeitintervall von $T_{S,3} = (15.00 \pm 0.06)\,\text{ms}$ abgelesen, woraus zunächst $f_S = 66.67\,\text{Hz}$ berechnet wurde. Wie die visuelle Überprüfung des Signals bei einer Zeitbasis von $2.50\,\text{ms/Div}$ zeigt, entspricht dieses Zeitintervall genau $N = 3$ Schwebungsbäuchen. 
+
+Die tatsächliche Periodendauer eines einzelnen Bauchs beträgt somit:
+\begin{equation}
+    T_{\text{Bauch}} = \frac{T_{S,3}}{3} = \frac{15.00\,\text{ms}}{3} = (5.00 \pm 0.02)\,\text{ms}
+\end{equation}
+Daraus folgt für die experimentelle Frequenz der Schwebungsbäuche $f_{\text{Bauch}}$:
+\begin{equation}
+    f_{\text{Bauch}} = \frac{1}{T_{\text{Bauch}}} = 3 \cdot f_S = 3 \cdot 66.67\,\text{Hz} = (200.0 \pm 0.8)\,\text{Hz}
+\end{equation}
+
+Da ein Schwebungsbauch einer Halbperiode der Einhüllenden entspricht, gilt für die zu $f_2$ analoge Modulationsfrequenz $f_{2,\text{korr}} = \frac{f_{\text{Bauch}}}{2}$:
+\begin{equation}
+    f_{2,\text{korr}} = \frac{200.0\,\text{Hz}}{2} = (100.0 \pm 0.4)\,\text{Hz}
+\end{equation}
+
+\medskip
+\textbf{Statistischer Vergleich und $\sigma$-Abweichungen:}
+
+Zur quantitativen Beurteilung der Übereinstimmung wird die Differenz $d = |f_{\text{mess}} - f_{\text{ber}}|$ im Verhältnis zur kombinierten Unsicherheit $\sigma_{\text{ges}} = \sqrt{\sigma_{\text{mess}}^2 + \sigma_{\text{ber}}^2}$ betrachtet:
+
+\begin{itemize}
+    \item \textbf{Schwingungsfrequenz $f_1$:}
+    \begin{align*}
+        d_1 &= |1572\,\text{Hz} - 1487.5\,\text{Hz}| = 84.5\,\text{Hz} \approx 84\,\text{Hz} \quad (\approx 5.7\,\%) \\
+        \sigma_{\text{ges},1} &= \sqrt{(15\,\text{Hz})^2 + (3.54\,\text{Hz})^2} \approx 15.4\,\text{Hz} \\
+        \frac{d_1}{\sigma_{\text{ges},1}} &= \frac{84.5\,\text{Hz}}{15.4\,\text{Hz}} \approx 5.5\,\sigma
+    \end{align*}
+    
+    \item \textbf{Modulationsfrequenz $f_2$:}
+    \begin{align*}
+        d_2 &= |100.0\,\text{Hz} - 92.5\,\text{Hz}| = 7.5\,\text{Hz} \quad (\approx 8.1\,\%) \\
+        \sigma_{\text{ges},2} &= \sqrt{(0.4\,\text{Hz})^2 + (3.54\,\text{Hz})^2} \approx 3.56\,\text{Hz} \\
+        \frac{d_2}{\sigma_{\text{ges},2}} &= \frac{7.5\,\text{Hz}}{3.56\,\text{Hz}} \approx 2.1\,\sigma
+    \end{align*}
+\end{itemize}
+
+\medskip
+\textbf{Diskussion der Ergebnisse:}
+\begin{itemize}
+    \item Für die Modulationsfrequenz $f_2$ liegt die Diskrepanz nach Korrektur auf 3 Schwebungsbäuche bei $2.1\,\sigma$. Dies liegt im Bereich zweier Standardabweichungen und zeigt eine zufriedenstellende Übereinstimmung zwischen Zeitbereichs- und Frequenzbereichsmessung.
+    \item Bei der Trägerfrequenz $f_1$ beträgt die relative Abweichung lediglich $5.7\,\%$, liegt mit $5.5\,\sigma$ jedoch formal außerhalb des $3\sigma$-Intervalls. Ursache hierfür ist möglicherweise eine Unterschätzung der systematischen Ablesegenauigkeit bei der manuellen Cursorsetzung über die 10 dicht beieinanderliegenden Schwingungsmaxima.
+\end{itemize}
+
+\subsection{Aufgabe 2: Berechnung der Mittel- und Effektivwerte von PWM-Signalen}
+Für ein ideales Rechteck- bzw. PWM-Signal mit Periodendauer $T$, Pulsbreite $\tau$ und Pulshöhe $U_0$ ergeben sich der lineare Mittelwert $\overline{U}$ und der Effektivwert $U_{\text{eff}}$ aus Gleichung \ref{PWMMittelwert} und \ref{PWMEffektiv}:
+\begin{equation}
+    \overline{U} = \frac{\tau}{T} \cdot U_0, \qquad U_{\text{eff}} = \sqrt{\frac{\tau}{T}} \cdot U_0
+\end{equation}
+
+Nach der Gaußschen Fehlerfortpflanzung lauten die Unsicherheiten für beide Größen:
+\begin{align}
+    \sigma_{\overline{U}} &= \overline{U} \cdot \sqrt{\left(\frac{\sigma_\tau}{\tau}\right)^2 + \left(\frac{\sigma_T}{T}\right)^2 + \left(\frac{\sigma_{U_0}}{U_0}\right)^2} \\
+    \sigma_{U_{\text{eff}}} &= U_{\text{eff}} \cdot \sqrt{\frac{1}{4}\left(\frac{\sigma_\tau}{\tau}\right)^2 + \frac{1}{4}\left(\frac{\sigma_T}{T}\right)^2 + \left(\frac{\sigma_{U_0}}{U_0}\right)^2}
+\end{align}
+
+\paragraph{1. Zustand „Dunkel“:}
+Mit $T = (1.02 \pm 0.10)\,\text{ms}$, $\tau = (0.30 \pm 0.10)\,\text{ms}$ und $U_0 = (3.52 \pm 0.04)\,\text{V}$:
+\begin{align*}
+    \overline{U}_{\text{ber}} &= \frac{0.30\,\text{ms}}{1.02\,\text{ms}} \cdot 3.52\,\text{V} = 1.035\,\text{V} \pm 0.360\,\text{V} \approx (1.0 \pm 0.4)\,\text{V} \\
+    U_{\text{eff,ber}} &= \sqrt{\frac{0.30\,\text{ms}}{1.02\,\text{ms}}} \cdot 3.52\,\text{V} = 1.909\,\text{V} \pm 0.332\,\text{V} \approx (1.9 \pm 0.4)\,\text{V}
+\end{align*}
+
+\paragraph{2. Zustand „Hell“:}
+Mit $T = (1.02 \pm 0.10)\,\text{ms}$, $\tau = (0.82 \pm 0.10)\,\text{ms}$ und $U_0 = (3.52 \pm 0.04)\,\text{V}$:
+\begin{align*}
+    \overline{U}_{\text{ber}} &= \frac{0.82\,\text{ms}}{1.02\,\text{ms}} \cdot 3.52\,\text{V} = 2.830\,\text{V} \pm 0.444\,\text{V} \approx (2.8 \pm 0.5)\,\text{V} \\
+    U_{\text{eff,ber}} &= \sqrt{\frac{0.82\,\text{ms}}{1.02\,\text{ms}}} \cdot 3.52\,\text{V} = 3.156\,\text{V} \pm 0.248\,\text{V} \approx (3.16 \pm 0.25)\,\text{V}
+\end{align*}
+
+\begin{table}[h!]
     \centering
-    \caption{Mess- und Geräteparameter für die exemplarische Berechnung (Messung 28).}
-    \label{tab:parameter_messung_28}
-    \begin{tabular}{ll}
+    \caption{Vergleich der berechneten Größen mit den Messwerten des Oszilloskops unter konservativem Aufrunden der Unsicherheiten}
+    \begin{tabular}{lccccc}
         \toprule
-        \textbf{Größe} & \textbf{Wert} \\
+        Zustand & Größe & Berechnet & Gemessen & Abweichung $d$ & $d/\sigma_{\text{ges}}$ \\
         \midrule
-        Fallstrecke & $s_1 = 10\,\text{Skt} = 5.00 \cdot 10^{-4}\,\text{m}$ \\
-        Fallzeit & $t_1 = 11.85\,\text{s}$ \\
-        Steigstrecke & $s_2 = 10\,\text{Skt} = 5.00 \cdot 10^{-4}\,\text{m}$ \\
-        Steigzeit & $t_2 = 18.19\,\text{s}$ \\
-        Skalenteilung & $1\,\text{Skt} = 5.00 \cdot 10^{-5}\,\text{m}$ \\
-        Kondensatorspannung & $U = 500\,\text{V}$ \\
-        Plattenabstand & $d = 6.00 \cdot 10^{-3}\,\text{m}$ \\
-        Luftdruck & $p = 100285\,\text{Pa}$ \\
-        Erdbeschleunigung & $g = 9.81\,\frac{\text{m}}{\text{s}^2}$ \\
-        Dichtedifferenz & $\rho = \rho_{\text{Öl}} - \rho_{\text{Luft}} = 871.21\,\frac{\text{kg}}{\text{m}^3}$ \\
-        Unkorrigierte Luftviskosität & $\eta_0 = 1.81 \cdot 10^{-5}\,\text{Pa}\cdot\text{s}$ \\
-        Cunningham-Konstante & $b = 7.78 \cdot 10^{-3}\,\text{Pa}\cdot\text{m}$ \\
+        Dunkel & $\overline{U}$ & $(1.0 \pm 0.4)\,\text{V}$ & $(1.260 \pm 0.010)\,\text{V}$ & $0.3\,\text{V}$ & $0.6\,\sigma$ \\
+        Dunkel & $U_{\text{eff}}$ & $(1.9 \pm 0.4)\,\text{V}$ & $(1.900 \pm 0.010)\,\text{V}$ & $0.0\,\text{V}$ & $0.03\,\sigma$ \\
+        \midrule
+        Hell & $\overline{U}$ & $(2.8 \pm 0.5)\,\text{V}$ & $(2.660 \pm 0.010)\,\text{V}$ & $0.1\,\text{V}$ & $0.3\,\sigma$ \\
+        Hell & $U_{\text{eff}}$ & $(3.16 \pm 0.25)\,\text{V}$ & $(3.140 \pm 0.010)\,\text{V}$ & $0.02\,\text{V}$ & $0.08\,\sigma$ \\
         \bottomrule
     \end{tabular}
 \end{table}
-\end{comment}
+
+\paragraph{Diskussion:}
+Alle berechneten Werte liegen weit innerhalb des $1\sigma$-Intervalls ($< 0.6\,\sigma$) und bestätigen die theoretischen Erwartungen für das PWM-Signal. Insbesondere die Effektivwerte stimmen mit Abweichungen von deutlich unter $0.1\,\sigma$ hervorragend mit den Messwerten überein.
+
 
 \begin{comment}
     
