@@ -222,7 +222,7 @@ Im folgenden Abschnitt werden die Aufgaben und der Versuchsaufbau beschrieben, d
     \item \textbf{Aufgabe 1.1:} Untersuchung verschiedener Signalformen, einschließlich Sinuswellen, Aufladekurven eines Kondensators und Pulsweitenmodulationen. Bestimmung und Analyse der Kenngrößen: Amplitude, Frequenz, Spitze-Spitze-Spannung und Gleichspannungsanteil.
     \item \textbf{Aufgabe 1.2:} Analyse der Frequenzspektren von Schwebungssignalen mithilfe des Oszilloskops und der Fourier-Analyse.
     \item \textbf{Aufgabe 2:} Bestimmung von Periode, Pulsbreite, Pulshöhe, Effektivspannung und Mittelwert von PWM-Signalen auf eine LED - Untersuchung der Auswirkungen unterschiedlicher Tastverhältnisse auf die LED-Helligkeit.
-    \item \textbf{Aufgabe 3:} Bestimmung der Kabellänge eines Coaxialkabels durch Laufzeitmessung. Untersuchung der Reflexionen an offenen, kurzgeschlossenen und mit einem Potentiometer versehenen Leitungsenden, um die Auswirkungen auf die Signalübertragung zu analysieren.
+    \item \textbf{Aufgabe 3:} Bestimmung der Kabellänge eines Coaxialkabels durch Laufzeitmessung. Untersuchung der Reflexionen an offenen, kurzgeschlossenen und mit einem Potentiometer versehenen Leitungsenden, um die Auswirkungen auf die Signalübertragung zu analysieren. Durch verstellen des Potentiometers wird der Wellenwiderstand der Leitung bestimmt und die Reflexionen minimiert.
 \end{itemize}
 
 \pdfabbildung{Messaufbau}{fig:messprotokoll-1}
@@ -263,7 +263,7 @@ Aus dem Messprotokoll (FFT-Spektrum, Abbildung \ref{fig:messprotokoll-5}) entneh
 Nach der Gaußschen Fehlerfortpflanzung gilt für beide theoretischen Größen dieselbe Unsicherheit:
 \begin{equation}
     \begin{aligned}
-        \sigma_{f_{1,2}} &= \sqrt{\left(\frac{\partial f_{1,2}}{\partial f_I}\right)^2 \sigma_{f_I}^2 + \left(\frac{\partial f_{1,2}}{\partial f_{II}}\right)^2 \sigma_{f_{II}}^2} \\
+        \Delta{f_{1,2}} &= \sqrt{\left(\frac{\partial f_{1,2}}{\partial f_I}\right)^2 \Delta{f_I}^2 + \left(\frac{\partial f_{1,2}}{\partial f_{II}}\right)^2 \Delta{f_{II}}^2} \\
         &= \frac{1}{2} \sqrt{(5\,\text{Hz})^2 + (5\,\text{Hz})^2} = \frac{5}{\sqrt{2}}\,\text{Hz} \approx 3.54\,\text{Hz} \approx 4\,\text{Hz}
     \end{aligned}
 \end{equation}
@@ -309,30 +309,34 @@ Da ein Schwebungsbauch einer Halbperiode der Einhüllenden entspricht, gilt für
 \medskip
 \textbf{Statistischer Vergleich und $\sigma$-Abweichungen:}
 
-Zur quantitativen Beurteilung der Übereinstimmung wird die Differenz $d = |f_{\text{mess}} - f_{\text{ber}}|$ im Verhältnis zur kombinierten Unsicherheit $\sigma_{\text{ges}} = \sqrt{\sigma_{\text{mess}}^2 + \sigma_{\text{ber}}^2}$ betrachtet:
+Zur quantitativen Beurteilung der Übereinstimmung wird die Differenz $d = |f_{\text{mess}} - f_{\text{ber}}|$ im Verhältnis zur kombinierten Unsicherheit $\Delta{\text{ges}} = \sqrt{\Delta{\text{mess}}^2 + \Delta{\text{ber}}^2}$ betrachtet:
 
 \begin{itemize}
     \item \textbf{Schwingungsfrequenz $f_1$:}
     \begin{align*}
         d_1 &= |1572\,\text{Hz} - 1487.5\,\text{Hz}| = 84.5\,\text{Hz} \approx 84\,\text{Hz} \quad (\approx 5.7\,\%) \\
-        \sigma_{\text{ges},1} &= \sqrt{(15\,\text{Hz})^2 + (3.54\,\text{Hz})^2} \approx 15.4\,\text{Hz} \\
-        \frac{d_1}{\sigma_{\text{ges},1}} &= \frac{84.5\,\text{Hz}}{15.4\,\text{Hz}} \approx 5.5\,\sigma
+        \Delta{\text{ges},1} &= \sqrt{(15\,\text{Hz})^2 + (3.54\,\text{Hz})^2} \approx 15.4\,\text{Hz} \\
+        \frac{d_1}{\Delta{\text{ges},1}} &= \frac{84.5\,\text{Hz}}{15.4\,\text{Hz}} \approx 5.5\,\sigma
     \end{align*}
     
     \item \textbf{Modulationsfrequenz $f_2$:}
     \begin{align*}
         d_2 &= |100.0\,\text{Hz} - 92.5\,\text{Hz}| = 7.5\,\text{Hz} \quad (\approx 8.1\,\%) \\
-        \sigma_{\text{ges},2} &= \sqrt{(0.4\,\text{Hz})^2 + (3.54\,\text{Hz})^2} \approx 3.56\,\text{Hz} \\
-        \frac{d_2}{\sigma_{\text{ges},2}} &= \frac{7.5\,\text{Hz}}{3.56\,\text{Hz}} \approx 2.1\,\sigma
+        \Delta{\text{ges},2} &= \sqrt{(0.4\,\text{Hz})^2 + (3.54\,\text{Hz})^2} \approx 3.56\,\text{Hz} \\
+        \frac{d_2}{\Delta{\text{ges},2}} &= \frac{7.5\,\text{Hz}}{3.56\,\text{Hz}} \approx 2.1\,\sigma
     \end{align*}
 \end{itemize}
 
+\begin{resultbox}
+    
+    \textbf{Ergebnis der statistischen Analyse:}
+    \begin{itemize}
+        \item Die Schwingungsfrequenz $f_1$ weicht um $5.5\,\sigma$ von der theoretischen Berechnung ab, was auf eine signifikante Diskrepanz hinweist.
+        \item Die Modulationsfrequenz $f_2$ weicht um $2.1\,\sigma$ von der theoretischen Berechnung ab, was auf eine moderate Abweichung hinweist.
+    \end{itemize}
+\end{resultbox}
 \medskip
-\textbf{Diskussion der Ergebnisse:}
-\begin{itemize}
-    \item Für die Modulationsfrequenz $f_2$ liegt die Diskrepanz nach Korrektur auf 3 Schwebungsbäuche bei $2.1\,\sigma$. Dies liegt im Bereich zweier Standardabweichungen und zeigt eine zufriedenstellende Übereinstimmung zwischen Zeitbereichs- und Frequenzbereichsmessung.
-    \item Bei der Trägerfrequenz $f_1$ beträgt die relative Abweichung lediglich $5.7\,\%$, liegt mit $5.5\,\sigma$ jedoch formal außerhalb des $3\sigma$-Intervalls. Ursache hierfür ist möglicherweise eine Unterschätzung der systematischen Ablesegenauigkeit bei der manuellen Cursorsetzung über die 10 dicht beieinanderliegenden Schwingungsmaxima.
-\end{itemize}
+
 
 \subsection{Aufgabe 2: Berechnung der Mittel- und Effektivwerte von PWM-Signalen}
 Für ein ideales Rechteck- bzw. PWM-Signal mit Periodendauer $T$, Pulsbreite $\tau$ und Pulshöhe $U_0$ ergeben sich der lineare Mittelwert $\overline{U}$ und der Effektivwert $U_{\text{eff}}$ aus Gleichung \ref{PWMMittelwert} und \ref{PWMEffektiv}:
@@ -342,113 +346,144 @@ Für ein ideales Rechteck- bzw. PWM-Signal mit Periodendauer $T$, Pulsbreite $\t
 
 Nach der Gaußschen Fehlerfortpflanzung lauten die Unsicherheiten für beide Größen:
 \begin{align}
-    \sigma_{\overline{U}} &= \overline{U} \cdot \sqrt{\left(\frac{\sigma_\tau}{\tau}\right)^2 + \left(\frac{\sigma_T}{T}\right)^2 + \left(\frac{\sigma_{U_0}}{U_0}\right)^2} \\
-    \sigma_{U_{\text{eff}}} &= U_{\text{eff}} \cdot \sqrt{\frac{1}{4}\left(\frac{\sigma_\tau}{\tau}\right)^2 + \frac{1}{4}\left(\frac{\sigma_T}{T}\right)^2 + \left(\frac{\sigma_{U_0}}{U_0}\right)^2}
+    \Delta{\overline{U}} &= \overline{U} \cdot \sqrt{\left(\frac{\Delta\tau}{\tau}\right)^2 + \left(\frac{\Delta T}{T}\right)^2 + \left(\frac{\Delta U_0}{U_0}\right)^2} \\
+    \Delta{U_{\text{eff}}} &= U_{\text{eff}} \cdot \sqrt{\frac{1}{4}\left(\frac{\Delta\tau}{\tau}\right)^2 + \frac{1}{4}\left(\frac{\Delta T}{T}\right)^2 + \left(\frac{\Delta U_0}{U_0}\right)^2}
 \end{align}
 
+Es fällt auf, dass bei verschieden langen Pulsen die angeschlossene LED dunkel bzw. hell leuchtet. Die Messwerte für die beiden Zustände „Dunkel“ und „Hell“ sind in Tabelle \ref{tbl:MessungenA2} im Messprotokoll zusammengefasst.
 \paragraph{1. Zustand „Dunkel“:}
 Mit $T = (1.02 \pm 0.10)\,\text{ms}$, $\tau = (0.30 \pm 0.10)\,\text{ms}$ und $U_0 = (3.52 \pm 0.04)\,\text{V}$:
-\begin{align*}
+\begin{align}
     \overline{U}_{\text{ber}} &= \frac{0.30\,\text{ms}}{1.02\,\text{ms}} \cdot 3.52\,\text{V} = 1.035\,\text{V} \pm 0.360\,\text{V} \approx (1.0 \pm 0.4)\,\text{V} \\
     U_{\text{eff,ber}} &= \sqrt{\frac{0.30\,\text{ms}}{1.02\,\text{ms}}} \cdot 3.52\,\text{V} = 1.909\,\text{V} \pm 0.332\,\text{V} \approx (1.9 \pm 0.4)\,\text{V}
-\end{align*}
+\end{align}
 
 \paragraph{2. Zustand „Hell“:}
 Mit $T = (1.02 \pm 0.10)\,\text{ms}$, $\tau = (0.82 \pm 0.10)\,\text{ms}$ und $U_0 = (3.52 \pm 0.04)\,\text{V}$:
-\begin{align*}
+\begin{align}
     \overline{U}_{\text{ber}} &= \frac{0.82\,\text{ms}}{1.02\,\text{ms}} \cdot 3.52\,\text{V} = 2.830\,\text{V} \pm 0.444\,\text{V} \approx (2.8 \pm 0.5)\,\text{V} \\
     U_{\text{eff,ber}} &= \sqrt{\frac{0.82\,\text{ms}}{1.02\,\text{ms}}} \cdot 3.52\,\text{V} = 3.156\,\text{V} \pm 0.248\,\text{V} \approx (3.16 \pm 0.25)\,\text{V}
-\end{align*}
+\end{align}
 
-\begin{table}[h!]
-    \centering
-    \caption{Vergleich der berechneten Größen mit den Messwerten des Oszilloskops unter konservativem Aufrunden der Unsicherheiten}
-    \begin{tabular}{lccccc}
-        \toprule
-        Zustand & Größe & Berechnet & Gemessen & Abweichung $d$ & $d/\sigma_{\text{ges}}$ \\
-        \midrule
-        Dunkel & $\overline{U}$ & $(1.0 \pm 0.4)\,\text{V}$ & $(1.260 \pm 0.010)\,\text{V}$ & $0.3\,\text{V}$ & $0.6\,\sigma$ \\
-        Dunkel & $U_{\text{eff}}$ & $(1.9 \pm 0.4)\,\text{V}$ & $(1.900 \pm 0.010)\,\text{V}$ & $0.0\,\text{V}$ & $0.03\,\sigma$ \\
-        \midrule
-        Hell & $\overline{U}$ & $(2.8 \pm 0.5)\,\text{V}$ & $(2.660 \pm 0.010)\,\text{V}$ & $0.1\,\text{V}$ & $0.3\,\sigma$ \\
-        Hell & $U_{\text{eff}}$ & $(3.16 \pm 0.25)\,\text{V}$ & $(3.140 \pm 0.010)\,\text{V}$ & $0.02\,\text{V}$ & $0.08\,\sigma$ \\
-        \bottomrule
-    \end{tabular}
-\end{table}
+$\Delta_\text{ges}$ berechnet sich wieder aus der Gaußschen Fehlerfortpflanzung:
+\begin{align}
+    \Delta{\text{ges}} &= \sqrt{\Delta{\text{ber}}^2 + \Delta{\text{mess}}^2}\\
+    \Delta_{\text{ges,Dunkel}} &= \sqrt{0.4^2 + 0.01^2}\,\text{V} \approx 0.4\,\text{V}\\
+    \Delta_{\text{ges,Hell}} &= \sqrt{0.5^2 + 0.01^2}\,\text{V} \approx 0.5\,\text{V}\\
+    \Delta_{\text{ges,Hell,eff}} &= \sqrt{0.25^2 + 0.01^2}\,\text{V} \approx 0.25\,\text{V}
+\end{align}
 
-\paragraph{Diskussion:}
-Alle berechneten Werte liegen weit innerhalb des $1\sigma$-Intervalls ($< 0.6\,\sigma$) und bestätigen die theoretischen Erwartungen für das PWM-Signal. Insbesondere die Effektivwerte stimmen mit Abweichungen von deutlich unter $0.1\,\sigma$ hervorragend mit den Messwerten überein.
+\begin{resultbox}[Ergebnis]
 
-
-\begin{comment}
-    
-\medskip
-\begin{resultbox}[Ergebnis der exemplarischen Berechnung]
-    Die exemplarisch berechneten Werte für Messung Nr.~28 lauten:
-    \begin{align*}
-        v_f &= 4.219 \cdot 10^{-5}\,\frac{\text{m}}{\text{s}}, \\
-        v_s &= 2.749 \cdot 10^{-5}\,\frac{\text{m}}{\text{s}}, \\
-        r_0 &= 6.341 \cdot 10^{-7}\,\text{m}, \\
-        f(r_0) &= 0.891, \\
-        q &= 1.521 \cdot 10^{-19}\,\text{C}.
-    \end{align*}
-    Ein Vergleich mit Zeile 28 der generierten Auswertungstabelle zeigt, dass sämtliche handgerechneten Werte exakt mit den Ausgabewerten von Excel übereinstimmen.
+        \begin{tabular}{lccccc}
+            Zustand & Größe & Berechnet & Gemessen & Abweichung $d$ & $d/\Delta{\text{ges}}$ \\
+            \midrule
+            Dunkel & $\overline{U}$ & $(1.0 \pm 0.4)\,\text{V}$ & $(1.260 \pm 0.010)\,\text{V}$ & $0.3\,\text{V}$ & $0.6\,\sigma$ \\
+            Dunkel & $U_{\text{eff}}$ & $(1.91 \pm 0.4)\,\text{V}$ & $(1.900 \pm 0.010)\,\text{V}$ & $0.01\,\text{V}$ & $0.03\,\sigma$ \\
+            \midrule
+            Hell & $\overline{U}$ & $(2.8 \pm 0.5)\,\text{V}$ & $(2.660 \pm 0.010)\,\text{V}$ & $0.1\,\text{V}$ & $0.3\,\sigma$ \\
+            Hell & $U_{\text{eff}}$ & $(3.16 \pm 0.25)\,\text{V}$ & $(3.140 \pm 0.010)\,\text{V}$ & $0.02\,\text{V}$ & $0.08\,\sigma$ \\
+            \bottomrule
+        \end{tabular}
 
 \end{resultbox}
-    
-\end{comment}
 
 
-\subsection{Aufgabe 2: Histogramm der gemessenen Ladungen}
+\subsection {Aufgabe 3: Bestimmung der Kabellänge eines Coaxialkabels}
+Die Kabellänge $l$ eines Coaxialkabels kann durch die Laufzeitmessung bestimmt werden. Uns ist bekannt, dass die Ausbreitungsgeschwindigkeit im Kabel des Typs RG58 66\% der Lichtgeschwindigkeit $c$ beträgt. Die Laufzeit $\Delta t$ eines Signals durch das Kabel wird mit dem Oszilloskop gemessen, und die Ausbreitungsgeschwindigkeit $v$ des Signals im Kabel wird durch die Materialeigenschaften des Coaxialkabels bestimmt. Für einen Weg im Kabel gilt die Beziehung: 
 
-
-
-\subsection{Systematische Fehlerabschätzung der Tröpfchenladung}
-
-Zur Abschätzung der relativen systematischen Messunsicherheit $\frac{\Delta q}{q}$ wird die Gauß'sche Fehlerfortpflanzung auf die Bestimmungsgleichung der Ladung angewendet:
 \begin{equation}
-    q = (v_f + v_s) \cdot \frac{6\pi d}{U} \sqrt{\frac{9 v_f \eta^3}{2\rho g}}
-    \label{eq:q_exakt}
+    l = v \cdot \Delta \tau
 \end{equation}
+Da das Signal im Kabel hin und zurück läuft, muss die gemessene Laufzeit $\Delta t$ durch 2 geteilt werden, um die effektive Kabellänge zu berechnen:
+\begin{equation}
+    l = \frac{v \cdot \Delta \tau}{2}\label{Kabellänge}
+\end{equation}
+Die Unsicherheit in der Kabellänge $\Delta l$ ergibt sich aus der Unsicherheit in der Laufzeitmessung $\Delta \tau$ und der Unsicherheit in der Ausbreitungsgeschwindigkeit $\Delta v$\footnote{Für den gegebenen Weet der Ausbreitungsgeschwindigkeit $v$ wiurde keine Unsicherheit vorgegeben}:
+\begin{equation}
+    \Delta l = \sqrt{\left(\frac{v \cdot \Delta \tau}{2}\right)^2 + \left(\frac{\Delta v \cdot \Delta \tau}{2}\right)^2}\label{KabellängeUnsicherheit}
+\end{equation}  
 
-\begin{comment}
-\begin{table}[H]
+Die gegebenen\ Werte betragen:
+\begin{table}
     \centering
-    \caption{Relative Unsicherheiten der Eingangsgrößen.}
-    \begin{tabular}{lll}
+    \caption{Messwerte für die Berechnung der Kabellänge}
+    \begin{tabular}{c|c}
         \toprule
-        \textbf{Größe} & \textbf{Relative Unsicherheit} & \textbf{Wert} \\
+        Größe & Wert\\
         \midrule
-        Strecke $s$ & $\dfrac{\Delta s}{s}$ & $\dfrac{0.13 \cdot 10^{-5}\,\text{m}}{5.00 \cdot 10^{-5}\,\text{m}} = 2.60\,\% = 0.0260$ \\
-        Viskosität $\eta$ & $\dfrac{\Delta \eta}{\eta}$ & $2.0\,\% = 0.020$ \\
-        Dichte $\rho$ & $\dfrac{\Delta \rho}{\rho}$ & $0.5\,\% = 0.005$ \\
-        Plattenabstand $d$ & $\dfrac{\Delta d}{d}$ & $\dfrac{0.05\,\text{mm}}{6.00\,\text{mm}} \approx 0.833\,\% = 0.00833$ \\
-        Spannung $U$ & $\dfrac{\Delta U}{U}$ & $0.5\,\% = 0.005$\footnotemark \\
+        Laufzeit $\Delta t$ & $(248.0 \pm 2.0)\,\text{ns}$ \\
+        Ausbreitungsgeschwindigkeit $v$ & $(0.66 \cdot c = 1.98 \cdot 10^8)\,\text{m/s}$ \\
+        Widerstand $Z$ & $(62.1 \pm 0.3)\,\Omega$ \\
         \bottomrule
     \end{tabular}
 \end{table}
-\footnotetext{Für die systematische Unsicherheit der Spannungsmessung wird gemäß Aufgabenstellung eine relative Unsicherheit von $0.5\,\%$ angenommen,
-was bei $U = 500\,\text{V}$ einer systematischen Geräteunsicherheit von $\Delta U_{\text{sys}} = \pm 2.5\,\text{V}$ entspricht.
-Die im Messprotokoll notierte Unsicherheit von $\pm 4\,\text{V}$ berücksichtigt darüber hinaus die beobachtete statistische Schwankung sowie die thermische Drift der Hochspannungsquelle über den gesamten Messzeitraum.}
-\end{comment}
 
-\subsection{Abschätzung des statistischen Fehlers aus der Mehrfachmessung}
+Mit diesen Werten in Gleichung \ref{Kabellänge} und \ref{KabellängeUnsicherheit} eingesetzt, ergibt sich die Kabellänge zu:
+\begin{equation}
+    l = \frac{1.98 \cdot 10^8\,\text{m/s} \cdot 248.0 \cdot 10^{-9}\,\text{s}}{2} \approx 24.55\,\text{m}
+\end{equation}
+Die Unsicherheit in der Kabellänge beträgt:
+
+\begin{equation}
+    \Delta l = \sqrt{\left(\frac{1.98 \cdot 10^8\,\text{m/s} \cdot 2.0 \cdot 10^{-9}\,\text{s}}{2}\right)^2} = 0.198\,\text{m} \approx 0.20\,\text{m}
+\end{equation}  
+
+Der Literaturwert für die Kabellänge beträgt $l_\text{lit} = 25\,\text{m}$, was eine eine Sigma Abweichung von:
+\begin{equation}
+    \sigma = \frac{|l - l_\text{lit}|}{\Delta l} = \frac{|24.55\,\text{m} - 25\,\text{m}|}{0.20\,\text{m}} \approx 2.25\,\sigma
+\end{equation}
+
+ergibt.
+
+\subsection{Vergleich des Abschlusswiderstands mit dem Wellenwiderstand}
+Am Koaxialkabel vom Typ RG58 wurde der einstellbare Abschlusswiderstand so justiert, dass am Leitungsende keine Reflexion mehr auftrat (reflexionsfreier Leitungsabschluss). Der am Potentiometer gemessene Widerstandswert sowie der nominelle Wellenwiderstand des Kabels lauten:
+\begin{align*}
+    R_0 &= (62.1 \pm 0.3)\,\Omega \\
+    Z_0 &= 50\,\Omega \quad (\text{Herstellerangabe RG58})
+\end{align*}
+
+\paragraph{Abweichung:}
+Die absolute Differenz zwischen dem gemessenen Abschlusswiderstand und dem Soll-Wellenwiderstand beträgt:
+\begin{equation}
+    \Delta R = R_0 - Z_0 = 62.1\,\Omega - 50.0\,\Omega = 12.1\,\Omega
+\end{equation}
+Dies entspricht einer relativen Abweichung von:
+\begin{equation}
+    \frac{\Delta R}{Z_0} = \frac{12.1\,\Omega}{50.0\,\Omega} = 24.2\,\%
+\end{equation}
+
+Bezieht man diese 24\% abweichung auf die reine Messunsicherheit des Widerstandes ($\sigma_R = 0.3\,\Omega$), liegt eine statistische Abweichung von rund $40\,\sigma$ vor (unter Einbeziehung einer Kabeltoleranz von $\pm 2\,\Omega$ verbleiben ca. $6.0\,\sigma$). Der gemessene Widerstand liegt somit signifikant über dem nominellen Wellenwiderstand von $50\,\Omega$.
 
 
-\subsection{Vergleich des Ergebnisses mit dem Literaturwert}
+\begin{resultbox}[Ergebnis der Kabellängenmessung]
+    Die berechnete Kabellänge des Coaxialkabels beträgt:
+    \begin{equation*}
+        l = (24.55 \pm 0.20)\,\text{m}
+    \end{equation*}
+    Die Abweichung ist mit $2.25\,\sigma$ innerhalb der Messunsicherheit.
 
-
+    Der gemessene Abschlusswiderstand des Potentiometers liegt mit $R_0 = (62.1 \pm 0.3)\,\Omega$ signifikant (6-40$\sigma$s) über dem nominalen Wellenwiderstand von $Z_0 = 50\,\Omega$.
+\end{resultbox}
 
 \section{Diskussion}
 \subsection{Interpretation der Signifikanzen}
+Für die Modulationsfrequenz $f_2$ liegt die Abweichung nach Korrektur auf 3 Schwebungsbäuche bei $2.1\,\sigma$. Dies liegt im Bereich zweier Standardabweichungen und zeigt eine zufriedenstellende Übereinstimmung zwischen Zeitbereichs- und Frequenzbereichsmessung.\\
+Bei der Trägerfrequenz $f_1$ beträgt die relative Abweichung lediglich $5.7\,\%$, liegt mit $5.5\,\sigma$ jedoch formal außerhalb des $3\sigma$-Intervalls. Ursache hierfür ist möglicherweise eine Unterschätzung der systematischen Ablesegenauigkeit bei der manuellen Cursorsetzung über die 10 dicht beieinanderliegenden Schwingungsmaxima.
 
-\medskip
-\noindent
+Beim PWM-Signal lagen alle berechneten Werte liegen weit innerhalb des $1\sigma$-Intervalls ($< 0.6\,\sigma$) und bestätigen die theoretischen Erwartungen für das PWM-Signal. Insbesondere die Effektivwerte stimmen mit Abweichungen von deutlich unter $0.1\,\sigma$ hervorragend mit den Messwerten überein. Dies liegt daran, dass die Rechteckigen Balken händisch mithilfe der Cursormessung sehr genau abgelesen werden konnten.
+
+
+
+Die Messung der Kabellänge des Coaxialkabels ergab eine Länge von $l = (24.55 \pm 0.20)\,\text{m}$. Uns wurde Mitgeteilt, dass die länge des Kabels $25\,\text{m}$ beträgt. Die Abweichung von $0.45\,\text{m}$ entspricht einer relativen Abweichung von $1.8\,\%$ (2.25\,\sigma) und liegt damit innerhalb der Messunsicherheit. Selbst dieser Wert könnte wahrscheinlich mit einer gegebenen Unsicherheit der Angabe der Lichtgeschwinndigkeit verbessert werden.\\
+Die Messung des Wellenwiderstand zeigte eine deutlich größere \sigma-Abweichung von $6-40\,\sigma$. Hierbei handelt es sich höchstwahrscheinlich um einen Systematischen Messfehler. Die Ursache hierfür ist vermutlich in den Übergangswiderständen zu suchen, die in Reihe zum Potentiometer liegen. Diese Übergangswiderstände sind nicht bekannt und können die Messung verfälschen.
+In Reihe zum Potentiometer liegen Übergangswiderstände an den BNC-Buchsen und T-Stücken sowie Zuleitungskabeln. Beim Abgleich auf „keine Reflexion“ wird der Abschlusswiderstand so eingestellt, dass die Summe aller Widerstände dem Wellenwiderstand entspricht. Die Übergangswiderstände sind jedoch nicht bekannt und können die Messung verfälschen. Ausserdem war es nicht perfekt möglich die Amplitude des reflektierten Signals auf Null zu bringen, da die Reflexionen nicht vollständig verschwanden. Dies kann ebenfalls zu einer Abweichung führen, da der Bereich sich sehr langsam um das Minimum der Reflexion bewegt.\\
+Die Abweichung von $6-40\,\sigma$ ist daher nicht verwunderlich
+
+
 
 \subsection{Fazit}
-Zum Ende lässt sich festhalten, dass die experimentelle Bestimmung der Elementarladung mit dem Millikan-Versuch 
-erfolgreich durchgeführt wurde. Die Ergebnisse stimmen innerhalb der Unsicherheiten mit dem Literaturwert überein, und die Analyse der Fehlerquellen liefert wertvolle 
-Einblicke in die Genauigkeit und Präzision des Versuchsaufbaus.
+Zum Ende lässt sich festhalten, dass wir den Umgang mit dem Osziloskop bestens geübt und erlernt haben. Uns uwrde gezeigt, welche unterschiedlichen Modi und Funktionen besitzt, und in welcher Situation man sie richtig verwendet. Ausserdem hat sich gezeigt, wo die Messtoleranzen sind, und wieviel Fehler sinnvoll ist. Es lässt sich sagen, dass der Versuch erfolgreich durchgeführt wurde.
 
 \clearpage
 
