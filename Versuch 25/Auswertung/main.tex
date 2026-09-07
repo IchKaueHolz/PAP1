@@ -110,6 +110,10 @@
 
 \tableofcontents
 
+\bigskip
+\begin{tcolorbox}[colback=gray!5,colframe=gray!60,boxrule=0.8pt,arc=0.01mm,title=KI-Hinweis]
+    Für die sprachliche Formulierung dieses Protokolls wurde in Abschnitt \ref{Grundlagen} KI-gestützte Textgenerierung verwendet. 
+\end{tcolorbox}
 \clearpage
 \section{Einleitung}
 Das Oszilloskop ist ein unverzichtbares Werkzeug in der experimentellen Physik, das es ermöglicht, elektrische Signale in Echtzeit zu visualisieren und zu analysieren. In diesem Versuch werden wir die grundlegenden Funktionen eines Oszilloskops kennenlernen, einschließlich der Darstellung von Spannungsverläufen, der Messung von Frequenzen und Amplituden sowie der Untersuchung von Signalformen. Ziel ist es, ein tiefes Verständnis für die Bedienung des Geräts zu entwickeln und die gewonnenen Daten kritisch zu interpretieren.
@@ -118,13 +122,12 @@ Das Oszilloskop bietet die Möglichkeit, sowohl zeitabhängige als auch frequenz
 
 In diesem Versuch wird ein digitales Speicheroszilloskop verwendet (Tektronix TBS1072B), das eine Bandbreite von 70 MHz und eine Abtastrate von 1 GS/s bietet.
 
-Im ersten teil werden verschiedene Signalformen, wie Sinuswellen, Aufladekurven eines Kondensator und Pulsweitenmodulationen untersucht und ihre Kenngrößen, wie Amplitude, Frequen, Spitze-Spitze-Spannung und Gleichspannungsanteil bestimmt und analysiert
+Im ersten Teil werden verschiedene Signalformen, wie Sinuswellen, Aufladekurven eines Kondensator und Pulsweitenmodulationen untersucht und ihre Kenngrößen, wie Amplitude, Frequen, Spitze-Spitze-Spannung und Gleichspannungsanteil bestimmt und analysiert
 Danach wird mit Hilfe des Oszilloskops und der Fourier-Analyse die Frequenzspektren von komplexen Schwebungssignalen untersucht. 
 Zum Abschluss wird die Kabellänge eines Coaxialkabels mit Hilfe der Laufzeitmessung bestimmt.
 
 
-\section{Grundlagen und Theorie}
-\subsection{Physikalische Kenngrößen von Wellen und Signalen}
+\section{Grundlagen und Theorie}\label{Grundlagen}
 \paragraph{Frequenz $f$}
 Die Frequenz $f$ eines periodischen Signals ist mit die charakteristische Größe, die als die Anzahl der Schwingungen pro Zeiteinheit definiert wird. Sie wird in Hertz (Hz) gemessen und ist der Kehrwert der Periodendauer $T$:
 \begin{equation}
@@ -211,8 +214,6 @@ Die Effektivspannung eines PWM-Signals kann mit folgender Formel berechnet werde
     U_{eff} = \sqrt{D} \cdot U_{max}\label{PWMEffektiv}
 \end{equation}
 
-\paragraph{}
-
 \section{Messprotokoll}
 
 \subsection{Versuchsaufbau und Aufgaben}
@@ -290,7 +291,7 @@ Im Messprotokoll (Signal 4) wurde für die schnelle Schwingung über 10 Perioden
     f_{1,\text{mess}} = (1572 \pm 15)\,\text{Hz}
 \end{equation*}
 
-Für die Schwebung wurde am Oszilloskop ein Zeitintervall von $T_{S,3} = (15.00 \pm 0.06)\,\text{ms}$ abgelesen, woraus zunächst $f_S = 66.67\,\text{Hz}$ berechnet wurde. Wie die visuelle Überprüfung des Signals bei einer Zeitbasis von $2.50\,\text{ms/Div}$ zeigt, entspricht dieses Zeitintervall genau $N = 3$ Schwebungsbäuchen. 
+Für die Schwebung wurde am Oszilloskop ein Zeitintervall von $T_{S,3} = (15.00 \pm 0.06)\,\text{ms}$ abgelesen, woraus zunächst $f_S = 66.67\,\text{Hz}$ berechnet wurde. Abbildung \ref{fig:messprotokoll-6} zeigt die Überprüfung des Signals bei einer Zeitbasis von $2.50\,\text{ms/Div}$, wobei dieses Zeitintervall genau $N = 3$ Schwebungsbäuchen entspricht. 
 
 Die tatsächliche Periodendauer eines einzelnen Bauchs beträgt somit:
 \begin{equation}
@@ -498,9 +499,5 @@ Zum Ende lässt sich festhalten, dass wir den Umgang mit dem Osziloskop bestens 
 \end{thebibliography}
 
 
-
-\begin{tcolorbox}[colback=gray!5,colframe=gray!60,boxrule=0.8pt,arc=0.01mm,title=KI-Hinweis]
-    Für die sprachliche Formulierung dieses Protokolls wurde in Teilen KI-gestützte Textgenerierung verwendet. 
-\end{tcolorbox}
 
 \end{document}
