@@ -118,93 +118,111 @@
 
 \clearpage
 \section{Einleitung}
-In 
+Ziel des vorliegenden Versuchs aus dem Physikalischen Anfängerpraktikum ist die experimentelle Bestimmung der Schallgeschwindigkeit in den Gasen Luft und Kohlenstoffdioxid ($CO_2$). Die Ausbreitungsgeschwindigkeit von Schall in Gasen hängt maßgeblich von deren thermodynamischen Eigenschaften ab, wie etwa dem Adiabatenkoeffizienten ($\kappa$), der Molmasse ($M$) sowie der Umgebungstemperatur ($T$). Um diese Zusammenhänge zu untersuchen, werden im Rahmen dieses Versuchs zwei unterschiedliche experimentelle Methoden angewandt.
+
+Im ersten Versuchsteil wird die Schallgeschwindigkeit mithilfe von stehenden Wellen in einem sogenannten Quincke'schen Rohr bestimmt. Eine von einem Lautsprecher erzeugte Schallwelle trifft in dem Rohr auf eine verstellbare Wasseroberfläche, wird an dieser reflektiert und interferiert mit der einfallenden Welle. Durch das Heben und Senken des Wasserspiegels wird die effektive Länge der Luftsäule variiert, wodurch Resonanzfälle eingestellt werden können. Im Resonanzfall befindet sich am Ort des Schallgebers ein Wellenbauch und am Wasser-Reflektor ein Wellenknoten. Um das empfangene Mikrofonsignal von Rauschen und Störgeräuschen zu befreien und die Lautstärkemaxima präzise ermitteln zu können, kommt ein Lock-In-Verstärker zum Einsatz. Aus den Höhendifferenzen zwischen den Resonanzmaxima lässt sich die Wellenlänge und somit die Schallgeschwindigkeit für Luft und $CO_2$ berechnen. Um die Messungen vergleichbar zu machen, werden die bei Raumtemperatur ermittelten Werte anschließend theoretisch auf Normalbedingungen ($0^{\circ}\text{C}$) umgerechnet.
+
+Im zweiten Versuchsteil erfolgt die Bestimmung der Schallgeschwindigkeit (nur für Luft) durch die Laufzeitmessung einer fortschreitenden Schallwelle. Hierbei wird mit einem Zweikanal-Oszilloskop die Phasenverschiebung zwischen dem Sendesignal eines Sinusgenerators und dem von einem verschiebbaren Mikrofon empfangenen Signal gemessen. Durch die Untersuchung der Weglängenänderung zwischen Mikrofon und Lautsprecher, bei der sich die Phase auf dem Oszilloskop um genau eine Wellenlänge (bzw. eine Periode) verschiebt, kann die Ausbreitungsgeschwindigkeit des Schalls ermittelt werden.
+
+Beide Verfahren erlauben abschließend einen direkten Vergleich der experimentell gewonnenen Werte mit den theoretisch erwarteten Schallgeschwindigkeiten.
 
 \section{Grundlagen und Theorie}
+\subsection{Physikalische Formeln}
+Beim Schall handelt es sich um eine mechanische Welle, die sich in einem Medium ausbreitet. Die Geschwindigkeit, mit der sich Schallwellen fortbewegen, hängt von den Eigenschaften des Mediums ab, insbesondere von dessen Dichte und Elastizität. In Gasen, wie Luft, kann die Schallgeschwindigkeit durch die Temperatur beeinflusst werden.
+
+Grundlegend kann die Schallgeschwindigkeit $c$ in einem idealen Gas durch die folgende Formel beschrieben werden:
+\begin{equation}
+    c = \sqrt{\frac{\kappa \cdot R \cdot T}{M}}\label{eq:schallgeschwindigkeit aus Theorie}
+\end{equation}
+wobei $\kappa$ der Adiabatenkoeffizient, $R$ die universelle Gaskonstante, $T$ die absolute Temperatur und $M$ die molare Masse des Gases ist.
+Für Wellen gilt die Beziehung zwischen Frequenz $f$, Wellenlänge $\lambda$ und Schallgeschwindigkeit $c$:
+\begin{equation}
+    c = f \cdot \lambda
+\end{equation}
+
+für die Frequenz $f$ gilt die Beziehung:
+\begin{equation}
+    f = \frac{1}{T}
+\end{equation}
+
+Mithilfe dieser Gleichungen können die experimentell ermittelten Werte der Schallgeschwindigkeit mit den theoretischen Vorhersagen verglichen werden.
+
+Bei der Durchführung wird in der ersten Aufgabe die Schallgeschwindigkeit mithilfe von stehenden Wellen in einem Quincke'schen Rohr bestimmt. Die Resonanzbedingungen werden durch die Variation der Länge der Luftsäule eingestellt. Mithilfe eines Lock-In-Verstärkers werden die Resonanzmaxima ermittelt, und aus den Abständen der Maxima kann die Wellenlänge berechnet werden. Anschließend wird die Schallgeschwindigkeit für Luft und $CO_2$ bestimmt.
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.2\textwidth]{img/Versuchsaufbau_Skizze.png}
+    \caption{Stehende Welle im Quincke'schen Rohr.}\cite{PAPskript}
+    \label{fig:stehende_welle}
+\end{figure}
+
+Für die Abstände gilt:
+\begin{equation}
+    \Delta s = \frac{\lambda}{2}
+\end{equation}
+
+Die Schallgeschwindigkeit kann dann aus der gemessenen Wellenlänge und der bekannten Frequenz des Lautsprechers berechnet werden.
+
+Für die absolute Höhe h der Resonanzmaxima gilt:
+\begin{equation}
+    h = \frac{\left(2n + 1\right)}{4} \lambda = \frac{\left(2n + 1\right)}{4} \frac{c}{f}
+\end{equation}
+ 
+Die Schallgeschwindigkeit kann auch über eine Laufzeitmessung bestimmt werden. Hierbei wird die Phasenverschiebung zwischen dem Sendesignal eines Sinusgenerators und dem von einem verschiebbaren Mikrofon empfangenen Signal gemessen. Durch die Untersuchung der Weglängenänderung zwischen Mikrofon und Lautsprecher, bei der sich die Phase auf dem Oszilloskop um genau eine Wellenlänge (bzw. eine Periode) verschiebt, kann die Ausbreitungsgeschwindigkeit des Schalls ermittelt werden.
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.5\textwidth]{img/Versuchsaufbau_Laufzeitmessung.png}
+    \caption{Laufzeitmessung der Schallgeschwindigkeit.}\cite{PAPskript}
+    \label{fig:laufzeitmessung}
+\end{figure}
+
+Um aus dieser Formel die Schallgeschwindigkeit zu bestimmen, wird die Phasenverschiebung $\Delta \phi$ zwischen dem Sendesignal und dem empfangenen Signal gemessen. Die Schallgeschwindigkeit kann dann aus der bekannten Frequenz $f$ und der gemessenen Phasenverschiebung berechnet werden.
+
+\begin{equation}
+    c = \frac{2\pi f \Delta x}{\Delta \phi}
+\end{equation}
 
 
 \subsection{Literaturwerte}
+Der Literaturwert für die Schallgeschwindigkeit in Luft bei $0^{\circ}\text{C}$ beträgt:
 
+\begin{equation}
+    c_{\text{Luft,0°C}} = 331.4\,\frac{\text{m}}{\text{s}}
+\end{equation}
 
-
+ Bei unseren Messungen wurde die Temperatur der Luft auf $T = 25.0^{\circ}\text{C}$ gemessen, was zu einer theoretischen Schallgeschwindigkeit von:
+\begin{equation}
+    c_{\text{Luft,25°C}} = 346.1\,\frac{\text{m}}{\text{s}}
+\end{equation}
 
 
 \section{Messprotokoll}
 
 \subsection{Versuchsaufbau und Aufgaben}
-\begin{comment}
-    
+Aufgaben
+\begin{itemize}
+    \item Aufgabe 1: Bestimmung der Schallgeschwindigkeit in Luft und $CO_2$ mittels stehender Wellen im Quincke'schen Rohr. Dafür wurden mit einem Voltmeter die Resonanzmaxima der Schallwelle ermittelt, während die Länge der Luftsäule durch Heben des Wasserspiegels variiert wurde.
+    \item Aufgabe 2: Bestimmung der Schallgeschwindigkeit in Luft durch Laufzeitmessung einer fortschreitenden Schallwelle. Hierbei wurde die Phasenverschiebung zwischen dem Sendesignal eines Sinusgenerators und dem von einem verschiebbaren Mikrofon empfangenen Signal mit einem Zweikanal-Oszilloskop gemessen. 
+\end{itemize}
+
+
+
+
 \includepdf[
     pages=-,
     width=\textwidth,
     height=\textheight,
     keepaspectratio,
     pagecommand={\thispagestyle{scrheadings}}
-]{../Messprotokoll 23.pdf}
-
-\end{comment}
-
-\addtocounter{figure}{1}
-
-\subsection{Durchführung}
-
-\subsection{Messwerte}
-
-
-
+]{../Messprotokoll 26.pdf}
 
 \section{Auswertung}
-
-\subsection{Aufgabe 1:Exemplarische Berechnung an einem ausgewählten Tröpfchen}
-
-\begin{comment}
-\begin{table}[H]
-    \centering
-    \caption{Mess- und Geräteparameter für die exemplarische Berechnung (Messung 28).}
-    \label{tab:parameter_messung_28}
-    \begin{tabular}{ll}
-        \toprule
-        \textbf{Größe} & \textbf{Wert} \\
-        \midrule
-        Fallstrecke & $s_1 = 10\,\text{Skt} = 5.00 \cdot 10^{-4}\,\text{m}$ \\
-        Fallzeit & $t_1 = 11.85\,\text{s}$ \\
-        Steigstrecke & $s_2 = 10\,\text{Skt} = 5.00 \cdot 10^{-4}\,\text{m}$ \\
-        Steigzeit & $t_2 = 18.19\,\text{s}$ \\
-        Skalenteilung & $1\,\text{Skt} = 5.00 \cdot 10^{-5}\,\text{m}$ \\
-        Kondensatorspannung & $U = 500\,\text{V}$ \\
-        Plattenabstand & $d = 6.00 \cdot 10^{-3}\,\text{m}$ \\
-        Luftdruck & $p = 100285\,\text{Pa}$ \\
-        Erdbeschleunigung & $g = 9.81\,\frac{\text{m}}{\text{s}^2}$ \\
-        Dichtedifferenz & $\rho = \rho_{\text{Öl}} - \rho_{\text{Luft}} = 871.21\,\frac{\text{kg}}{\text{m}^3}$ \\
-        Unkorrigierte Luftviskosität & $\eta_0 = 1.81 \cdot 10^{-5}\,\text{Pa}\cdot\text{s}$ \\
-        Cunningham-Konstante & $b = 7.78 \cdot 10^{-3}\,\text{Pa}\cdot\text{m}$ \\
-        \bottomrule
-    \end{tabular}
-\end{table}
-\end{comment}
-
-\begin{comment}
-    
-\medskip
-\begin{resultbox}[Ergebnis der exemplarischen Berechnung]
-    Die exemplarisch berechneten Werte für Messung Nr.~28 lauten:
-    \begin{align*}
-        v_f &= 4.219 \cdot 10^{-5}\,\frac{\text{m}}{\text{s}}, \\
-        v_s &= 2.749 \cdot 10^{-5}\,\frac{\text{m}}{\text{s}}, \\
-        r_0 &= 6.341 \cdot 10^{-7}\,\text{m}, \\
-        f(r_0) &= 0.891, \\
-        q &= 1.521 \cdot 10^{-19}\,\text{C}.
-    \end{align*}
-    Ein Vergleich mit Zeile 28 der generierten Auswertungstabelle zeigt, dass sämtliche handgerechneten Werte exakt mit den Ausgabewerten von Excel übereinstimmen.
-
-\end{resultbox}
-    
-\end{comment}
-
-
-\subsection{Aufgabe 2: Histogramm der gemessenen Ladungen}
-
-
+\subsection{Aufgabe 1: Bestimmung mithilfe des Quincke'schen Rohrs}
+Aus den gemessenen Hohendifferenzen der Lufts¨ aule im Quinschen Rohr im
+Resonanzfall (Mittelöert bilden) ist die Schallgeschwindigkeit in Luft bzw. Koh-
+lendioxid zu bestimmen. Nutzen Sie f¨ ur die Berechnung nur die H¨ ohendifferenzen
+zwischen zwei Maxima\cite{PAPskript}
 
 \subsection{Systematische Fehlerabschätzung der Tröpfchenladung}
 
