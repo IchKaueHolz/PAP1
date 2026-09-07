@@ -137,7 +137,7 @@ Grundlegend kann die Schallgeschwindigkeit $c$ in einem idealen Gas durch die fo
 wobei $\kappa$ der Adiabatenkoeffizient, $R$ die universelle Gaskonstante, $T$ die absolute Temperatur und $M$ die molare Masse des Gases ist.
 Für Wellen gilt die Beziehung zwischen Frequenz $f$, Wellenlänge $\lambda$ und Schallgeschwindigkeit $c$:
 \begin{equation}
-    c = f \cdot \lambda
+    c = f \cdot \lambda \label{eq:Wellenzusammenhang}
 \end{equation}
 
 für die Frequenz $f$ gilt die Beziehung:
@@ -208,6 +208,12 @@ Aufgaben
 
 
 
+\pdfabbildung{Messaufbau Foto}{fig:pdf-1}
+\pdfabbildung{gemessenes Signal(A2)}{fig:pdf-2}
+\pdfabbildung{Lissajous-Analyse}{fig:pdf-3}
+\pdftabelle{Messung mit Steigrohr}{tab:pdf-1}
+\pdftabelle{Werte Laufzeitmessung}{tab:pdf-2}
+\pdftabelle{Werte Laufzeitmessung - unterschiedliche Frequenzen}{tab:pdf-3}
 
 \includepdf[
     pages=-,
@@ -219,12 +225,69 @@ Aufgaben
 
 \section{Auswertung}
 \subsection{Aufgabe 1: Bestimmung mithilfe des Quincke'schen Rohrs}
-Aus den gemessenen Hohendifferenzen der Lufts¨ aule im Quinschen Rohr im
-Resonanzfall (Mittelöert bilden) ist die Schallgeschwindigkeit in Luft bzw. Koh-
-lendioxid zu bestimmen. Nutzen Sie f¨ ur die Berechnung nur die H¨ ohendifferenzen
-zwischen zwei Maxima\cite{PAPskript}
+Aus den gemessenen Hohendifferenzen der Luftsäule im Quinschen Rohr im
+Resonanzfall (Mittelwert bilden) ist die Schallgeschwindigkeit in Luft bzw. Koh-
+lendioxid zu bestimmen. Nutzen Sie für die Berechnung nur die Höhendifferenzen
+zwischen zwei Maxima.\cite{PAPskript}
 
-\subsection{Systematische Fehlerabschätzung der Tröpfchenladung}
+Aus Tabelle \ref{tab:pdf-1} lassen sich die Höhendifferenzen $\Delta h$ zwischen den Resonanzmaxima für Luft und $CO_2$ ablesen. Die Wellenlänge $\lambda$ kann aus der Höhendifferenz berechnet werden, da diese der halben Wellenlänge entspricht:
+\begin{equation}
+    \lambda = 2 \cdot \Delta h\label{eq:wellenlaenge}
+\end{equation}
+
+Mithilfe des Angehängten Python-Skripts können die Mittelwerte der Höhendifferenzen und deren Standardabweichungen berechnet werden. 
+Der Kombinierte Fehler berechnet sich durch 
+\begin{equation}
+    \Delta h = \sqrt{\sigma_{Werte}^2 + \Delta h_\text{mess}^2}
+\end{equation}
+Die Ergebnisse betragen:
+
+\begin{table}[H]
+    \centering
+    \caption{Ergebisse der Wellenlängen für Luft und $CO_2$.}
+    \begin{tabular}{lcc}
+        \toprule
+        \textbf{Substanz} & \textbf{Mittelwert} & \textbf{Wellenlänge} $\lambda$\\
+        \midrule
+        Luft & $\left(\Delta h_\text{Luft} = 8.65\pm 0.26\right) \text{cm} $ & $\left(17.3 \pm 0.6\right) \text{cm}$ \\
+        $CO_2$ & $\left(\Delta h_\text{$CO_2$} = 6.8\pm 0.42\footnotemark\right) \text{cm} $ & $\left(14.0\pm 0.9\right)\text{cm}$ \\
+        \bottomrule
+    \end{tabular}
+\end{table}
+\footnotetext{Hier wurde die signikante Stelle missachtet, weil der Fehler dann durch Gleichung \ref{eq:wellenlaenge} zu groß wird.}
+
+
+Aus den Wellenlänge und der Frequenz $\nu = (2.0050\pm 0.0020) \text{kHz}$ kann nun nach Gleichung \ref{eq:Wellenzusammenhang} die Schallgeschwindigkeit berechnet werden.
+
+\medskip
+Der Fehler berechnet sich nach der Gauß'schen Fehlerfortpflanzung:
+\begin{equation}
+    \Delta c = \sqrt{\left(\frac{\partial c}{\partial \lambda} \Delta \lambda\right)^2 + \left(\frac{\partial c}{\partial \nu} \Delta \nu\right)^2} = \sqrt{\left(\nu \cdot \Delta \lambda\right)^2 + \left(\lambda \cdot \Delta \nu\right)^2}
+\end{equation}
+
+Die Ergebnisse betragen:
+\begin{equation}
+    c_\text{Luft} = \lambda_\text{Luft} \cdot \nu = \left(347\pm 12\right) \frac{\text{m}}{\text{s}}
+\end{equation}
+\begin{equation}
+    c_\text{$CO_2$} = \left(281\pm 18\right) \frac{\text{m}}{\text{s}}
+\end{equation}
+
+Rechnung auf Normalbedingungen ($0^{\circ}\text{C}$) mit der Formel:
+\begin{equation}
+    c_0 = c \cdot \sqrt{\frac{T_0}{T}}
+\end{equation}
+
+Es ergibt sich:
+\begin{equation}
+    c_\text{Luft,0°C} = \left(331\pm 11\right) \frac{\text{m}}{\text{s}}
+\end{equation}
+\begin{equation}
+    c_\text{$CO_2$,0°C} = \left(268\pm 17\right) \frac{\text{m}}{\text{s}}
+\end{equation}
+
+
+
 
 Zur Abschätzung der relativen systematischen Messunsicherheit $\frac{\Delta q}{q}$ wird die Gauß'sche Fehlerfortpflanzung auf die Bestimmungsgleichung der Ladung angewendet:
 \begin{equation}
@@ -232,26 +295,45 @@ Zur Abschätzung der relativen systematischen Messunsicherheit $\frac{\Delta q}{
     \label{eq:q_exakt}
 \end{equation}
 
-\begin{comment}
-\begin{table}[H]
-    \centering
-    \caption{Relative Unsicherheiten der Eingangsgrößen.}
-    \begin{tabular}{lll}
-        \toprule
-        \textbf{Größe} & \textbf{Relative Unsicherheit} & \textbf{Wert} \\
-        \midrule
-        Strecke $s$ & $\dfrac{\Delta s}{s}$ & $\dfrac{0.13 \cdot 10^{-5}\,\text{m}}{5.00 \cdot 10^{-5}\,\text{m}} = 2.60\,\% = 0.0260$ \\
-        Viskosität $\eta$ & $\dfrac{\Delta \eta}{\eta}$ & $2.0\,\% = 0.020$ \\
-        Dichte $\rho$ & $\dfrac{\Delta \rho}{\rho}$ & $0.5\,\% = 0.005$ \\
-        Plattenabstand $d$ & $\dfrac{\Delta d}{d}$ & $\dfrac{0.05\,\text{mm}}{6.00\,\text{mm}} \approx 0.833\,\% = 0.00833$ \\
-        Spannung $U$ & $\dfrac{\Delta U}{U}$ & $0.5\,\% = 0.005$\footnotemark \\
-        \bottomrule
-    \end{tabular}
-\end{table}
-\footnotetext{Für die systematische Unsicherheit der Spannungsmessung wird gemäß Aufgabenstellung eine relative Unsicherheit von $0.5\,\%$ angenommen,
-was bei $U = 500\,\text{V}$ einer systematischen Geräteunsicherheit von $\Delta U_{\text{sys}} = \pm 2.5\,\text{V}$ entspricht.
-Die im Messprotokoll notierte Unsicherheit von $\pm 4\,\text{V}$ berücksichtigt darüber hinaus die beobachtete statistische Schwankung sowie die thermische Drift der Hochspannungsquelle über den gesamten Messzeitraum.}
-\end{comment}
+Vergleich mit dem Literaturwert:
+
+\begin{equation}
+    c_\text{Luft,0°C} = 331.4\,\frac{\text{m}}{\text{s}}, \quad c_\text{$CO_2$,0°C} = 259.8\,\frac{\text{m}}{\text{s}}
+\end{equation}
+
+Die Unsicherheit und relative Abweichung der Messwerte von den Literaturwerten beträgt:
+\begin{equation}
+    \Delta c_\text{Luft,0°C} = 11\,\frac{\text{m}}{\text{s}}, \quad \Delta c_\text{$CO_2$,0°C} = 17\,\frac{\text{m}}{\text{s}}
+\end{equation}
+\begin{equation}
+    \text{Abweichung}_\text{Luft} = \frac{|c_\text{Luft,0°C} - c_\text{Luft,0°C,lit}|}{c_\text{Luft,0°C,lit}} \approx 0.12\,\%
+\end{equation}
+\begin{equation}
+    \text{Abweichung}_\text{$CO_2$} = \frac{|c_\text{$CO_2$,0°C} - c_\text{$CO_2$,0°C,lit}|}{c_\text{$CO_2$,0°C,lit}} \approx 3.2\,\%
+\end{equation}
+
+Das entspricht einem \sigma-Bereich von:
+\begin{equation}
+    \sigma_\text{Luft} = \frac{|c_\text{Luft,0°C} - c_\text{Luft,0°C,lit}|}{\Delta c_\text{Luft,0°C}} \approx 0.11 \Rightarrow 0.11\sigma
+\end{equation}
+\begin{equation}
+    \sigma_\text{$CO_2$} = \frac{|c_\text{$CO_2$,0°C} - c_\text{$CO_2$,0°C,lit}|}{\Delta c_\text{$CO_2$,0°C}} \approx 0.94 \Rightarrow 0.94\sigma
+\end{equation} 
+
+\begin{resultbox}[Ergebnisse der Schallgeschwindigkeitsmessung]
+    \begin{itemize}
+        \item Schallgeschwindigkeit in Luft bei $0^{\circ}\text{C}$: $c_\text{Luft,0°C} = (331\pm 11)\,\frac{\text{m}}{\text{s}}$
+        \item Schallgeschwindigkeit in $CO_2$ bei $0^{\circ}\text{C}$: $c_\text{$CO_2$,0°C} = (268\pm 17)\,\frac{\text{m}}{\text{s}}$
+        \item Abweichung von Literaturwerten:
+        \begin{itemize}
+            \item Luft: $\approx 0.12\,\%$ ($\approx 0.11\sigma$)
+            \item $CO_2$: $\approx 3.2\,\%$ ($\approx 0.94\sigma$)
+        \end{itemize}
+    \end{itemize}
+    Das zeigt dass die bestimmten Werte innerhalb der Unsicherheiten mit den Literaturwerten übereinstimmen.
+\end{resultbox}
+
+
 
 \subsection{Abschätzung des statistischen Fehlers aus der Mehrfachmessung}
 
