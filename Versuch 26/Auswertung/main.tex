@@ -135,12 +135,12 @@ Grundlegend kann die Schallgeschwindigkeit $c$ in einem idealen Gas durch die fo
     c = \sqrt{\frac{\kappa \cdot R \cdot T}{M}}\label{eq:schallgeschwindigkeit aus Theorie}
 \end{equation}
 wobei $\kappa$ der Adiabatenkoeffizient, $R$ die universelle Gaskonstante, $T$ die absolute Temperatur und $M$ die molare Masse des Gases ist.
-Für Wellen gilt die Beziehung zwischen Frequenz $f$, Wellenlänge $\lambda$ und Schallgeschwindigkeit $c$:
+Für Wellen gilt die Beziehung zwischen Frequenz $\nu$, Wellenlänge $\lambda$ und Schallgeschwindigkeit $c$:
 \begin{equation}
     c = f \cdot \lambda \label{eq:Wellenzusammenhang}
 \end{equation}
 
-für die Frequenz $f$ gilt die Beziehung:
+für die Frequenz $\nu$ gilt die Beziehung:
 \begin{equation}
     f = \frac{1}{T}
 \end{equation}
@@ -177,7 +177,7 @@ Die Schallgeschwindigkeit kann auch über eine Laufzeitmessung bestimmt werden. 
     \label{fig:laufzeitmessung}
 \end{figure}
 
-Um aus dieser Formel die Schallgeschwindigkeit zu bestimmen, wird die Phasenverschiebung $\Delta \phi$ zwischen dem Sendesignal und dem empfangenen Signal gemessen. Die Schallgeschwindigkeit kann dann aus der bekannten Frequenz $f$ und der gemessenen Phasenverschiebung berechnet werden.
+Um aus dieser Formel die Schallgeschwindigkeit zu bestimmen, wird die Phasenverschiebung $\Delta \phi$ zwischen dem Sendesignal und dem empfangenen Signal gemessen. Die Schallgeschwindigkeit kann dann aus der bekannten Frequenz $\nu$ und der gemessenen Phasenverschiebung berechnet werden.
 
 \begin{equation}
     c = \frac{2\pi f \Delta x}{\Delta \phi}
@@ -223,6 +223,8 @@ Aufgaben
     pagecommand={\thispagestyle{scrheadings}}
 ]{../Messprotokoll 26.pdf}
 
+
+
 \section{Auswertung}
 \subsection{Aufgabe 1: Bestimmung mithilfe des Quincke'schen Rohrs}
 Aus den gemessenen Hohendifferenzen der Luftsäule im Quinschen Rohr im
@@ -235,7 +237,8 @@ Aus Tabelle \ref{tab:pdf-1} lassen sich die Höhendifferenzen $\Delta h$ zwische
     \lambda = 2 \cdot \Delta h\label{eq:wellenlaenge}
 \end{equation}
 
-Mithilfe des Angehängten Python-Skripts können die Mittelwerte der Höhendifferenzen und deren Standardabweichungen berechnet werden. 
+Mithilfe des Angehängten Python-Skripts können die Mittelwerte der Höhendifferenzen\footnotemark und deren Standardabweichungen berechnet werden. 
+\footnotetext{Hier habe ich das über die Differenzen gerechnet (nach Absprache). Regression wär genauer gewesen}
 Der Kombinierte Fehler berechnet sich durch 
 \begin{equation}
     \Delta h = \sqrt{\sigma_{Werte}^2 + \Delta h_\text{mess}^2}
@@ -250,7 +253,7 @@ Die Ergebnisse betragen:
         \textbf{Substanz} & \textbf{Mittelwert} & \textbf{Wellenlänge} $\lambda$\\
         \midrule
         Luft & $\left(\Delta h_\text{Luft} = 8.65\pm 0.26\right) \text{cm} $ & $\left(17.3 \pm 0.6\right) \text{cm}$ \\
-        $CO_2$ & $\left(\Delta h_\text{$CO_2$} = 6.8\pm 0.42\footnotemark\right) \text{cm} $ & $\left(14.0\pm 0.9\right)\text{cm}$ \\
+        $CO_2$ & $\left(\Delta h_\text{$CO_2$} = 6.8\pm 0.5\footnotemark\right) \text{cm} $ & $\left(14.0\pm 0.9\right)\text{cm}$ \\
         \bottomrule
     \end{tabular}
 \end{table}
@@ -275,49 +278,52 @@ Die Ergebnisse betragen:
 
 Rechnung auf Normalbedingungen ($0^{\circ}\text{C}$) mit der Formel:
 \begin{equation}
-    c_0 = c \cdot \sqrt{\frac{T_0}{T}}
+    c_0 = c \cdot \sqrt{\frac{T_0}{T}}\label{eq:Normalbedingungen}
+\end{equation}
+
+Für den Fehler der Formel \ref{eq:Normalbedingungen} gilt:
+\begin{equation}
+    \Delta c_0 = \sqrt{\left(\frac{\partial c_0}{\partial c} \Delta c\right)^2 + \left(\frac{\partial c_0}{\partial T} \Delta T\right)^2} = \sqrt{\left(\sqrt{\frac{T_0}{T}} \cdot \Delta c\right)^2 + \left(-\frac{1}{2} \cdot c \cdot \sqrt{\frac{T_0}{T^3}} \cdot \Delta T\right)^2}\label{eq:Normalbedingungen_fehler}
 \end{equation}
 
 Es ergibt sich:
 \begin{equation}
-    c_\text{Luft,0°C} = \left(331\pm 11\right) \frac{\text{m}}{\text{s}}
+    c_\text{Luft,0°C} = \left(331\pm 12\right) \frac{\text{m}}{\text{s}}
 \end{equation}
 \begin{equation}
-    c_\text{$CO_2$,0°C} = \left(268\pm 17\right) \frac{\text{m}}{\text{s}}
+    c_\text{$CO_2$,0°C} = \left(268\pm 18\right) \frac{\text{m}}{\text{s}}
 \end{equation}
 
 
+Vergleich mit dem Literaturwert (Berechnet aus Gleichung \ref{eq:schallgeschwindigkeit aus Theorie}):
 
-
-Zur Abschätzung der relativen systematischen Messunsicherheit $\frac{\Delta q}{q}$ wird die Gauß'sche Fehlerfortpflanzung auf die Bestimmungsgleichung der Ladung angewendet:
 \begin{equation}
-    q = (v_f + v_s) \cdot \frac{6\pi d}{U} \sqrt{\frac{9 v_f \eta^3}{2\rho g}}
-    \label{eq:q_exakt}
+    c_\text{Luft,0°C,lit} = 331.1\,\frac{\text{m}}{\text{s}}, \quad c_\text{$CO_2$,0°C,lit} = 259.0\,\frac{\text{m}}{\text{s}}
 \end{equation}
 
-Vergleich mit dem Literaturwert:
+Das Verhaltnis von $CO_2$ zu Luft beträgt:
 
 \begin{equation}
-    c_\text{Luft,0°C} = 331.4\,\frac{\text{m}}{\text{s}}, \quad c_\text{$CO_2$,0°C} = 259.8\,\frac{\text{m}}{\text{s}}
+    \frac{c_\text{$CO_2$,0°C,lit}}{c_\text{Luft,0°C,lit}} = 1.28
 \end{equation}
 
-Die Unsicherheit und relative Abweichung der Messwerte von den Literaturwerten beträgt:
+Die Unsicherheit und relative Abweichung der Messwerte ($c_\text{Luft,0°C} = 331\,\frac{\text{m}}{\text{s}}$, $c_\text{$CO_2$,0°C} = 268\,\frac{\text{m}}{\text{s}}$) von den Literaturwerten beträgt:
 \begin{equation}
-    \Delta c_\text{Luft,0°C} = 11\,\frac{\text{m}}{\text{s}}, \quad \Delta c_\text{$CO_2$,0°C} = 17\,\frac{\text{m}}{\text{s}}
+    \Delta c_\text{Luft,0°C} = 12\,\frac{\text{m}}{\text{s}}, \quad \Delta c_\text{$CO_2$,0°C} = 18\,\frac{\text{m}}{\text{s}}
 \end{equation}
 \begin{equation}
-    \text{Abweichung}_\text{Luft} = \frac{|c_\text{Luft,0°C} - c_\text{Luft,0°C,lit}|}{c_\text{Luft,0°C,lit}} \approx 0.12\,\%
+    \text{Abweichung}_\text{Luft} = \frac{|c_\text{Luft,0°C} - c_\text{Luft,0°C,lit}|}{c_\text{Luft,0°C,lit}} \approx 0.03\,\%
 \end{equation}
 \begin{equation}
-    \text{Abweichung}_\text{$CO_2$} = \frac{|c_\text{$CO_2$,0°C} - c_\text{$CO_2$,0°C,lit}|}{c_\text{$CO_2$,0°C,lit}} \approx 3.2\,\%
+    \text{Abweichung}_\text{$CO_2$} = \frac{|c_\text{$CO_2$,0°C} - c_\text{$CO_2$,0°C,lit}|}{c_\text{$CO_2$,0°C,lit}} \approx 3.47\,\%
 \end{equation}
 
 Das entspricht einem \sigma-Bereich von:
 \begin{equation}
-    \sigma_\text{Luft} = \frac{|c_\text{Luft,0°C} - c_\text{Luft,0°C,lit}|}{\Delta c_\text{Luft,0°C}} \approx 0.11 \Rightarrow 0.11\sigma
+    \sigma_\text{Luft} = \frac{|c_\text{Luft,0°C} - c_\text{Luft,0°C,lit}|}{\Delta c_\text{Luft,0°C}} = \frac{0.1}{12} \approx 0.01 \Rightarrow 0.01\sigma
 \end{equation}
 \begin{equation}
-    \sigma_\text{$CO_2$} = \frac{|c_\text{$CO_2$,0°C} - c_\text{$CO_2$,0°C,lit}|}{\Delta c_\text{$CO_2$,0°C}} \approx 0.94 \Rightarrow 0.94\sigma
+    \sigma_\text{$CO_2$} = \frac{|c_\text{$CO_2$,0°C} - c_\text{$CO_2$,0°C,lit}|}{\Delta c_\text{$CO_2$,0°C}} = \frac{9}{18} \approx 0.5 \Rightarrow 0.5\sigma
 \end{equation} 
 
 \begin{resultbox}[Ergebnisse der Schallgeschwindigkeitsmessung]
@@ -326,32 +332,84 @@ Das entspricht einem \sigma-Bereich von:
         \item Schallgeschwindigkeit in $CO_2$ bei $0^{\circ}\text{C}$: $c_\text{$CO_2$,0°C} = (268\pm 17)\,\frac{\text{m}}{\text{s}}$
         \item Abweichung von Literaturwerten:
         \begin{itemize}
-            \item Luft: $\approx 0.12\,\%$ ($\approx 0.11\sigma$)
-            \item $CO_2$: $\approx 3.2\,\%$ ($\approx 0.94\sigma$)
+            \item Luft: $\approx 0.03\,\%$ ($\approx 0.01\sigma$)
+            \item $CO_2$: $\approx 3.47\,\%$ ($\approx 0.5\sigma$)
         \end{itemize}
     \end{itemize}
-    Das zeigt dass die bestimmten Werte innerhalb der Unsicherheiten mit den Literaturwerten übereinstimmen.
+    Das zeigt, dass die bestimmten Werte innerhalb der 1\sigma-Intervalle exzellent mit den Literaturwerten übereinstimmen.
 \end{resultbox}
 
 
 
-\subsection{Abschätzung des statistischen Fehlers aus der Mehrfachmessung}
+\subsection{Aufgabe 2: Bestimmung über Laufzeitmessung}
+Bei der Laufziemessung wird die Phasenverschiebung zwischen dem Sendesignal und dem empfangenen Signal gemessen (Tabelle \ref{tab:pdf-2}). Die Distanz, die das Mikrofon zurücklegt, bis sich die Phase um genau eine Wellenlänge verschiebt, wird als $d$ bezeichnet. Somit gilt:
+
+\begin{equation}
+    d = \lambda
+\end{equation}
+
+Mithilfe der bekannten Frequenz $\nu$ und der gemessenen Phasenverschiebung $\Delta \phi$ - kann die Schallgeschwindigkeit berechnet werden.
+
+Für die Unsicherheit der Schallgeschwindigkeit gilt, da die Frequenz als genau angenommen wird:
+\begin{equation}
+    \Delta c = \nu * \Delta \lambda
+\end{equation}
+
+Aus Tabelle \ref{tab:pdf-2} wird die Wellenlänge mithilfe linearer Regression berechnet: $\lambda = (3.500\pm 0.06)$ cm bei einer Frequenz von $\nu = 10.0$ kHz berechnet. Mit Gleichung \ref{eq:Wellenzusammenhang} ergibt sich eine Schallgeschwindigkeit von $c = (350\pm 6)$ m/s. Es ist besser, die Wellenlänge über lineare Regression zu bestimmen, da dies die Genauigkeit der Messung erhöht und den Einfluss von zufälligen Messfehlern reduziert. Bei einer einfachen Differenz würde nur ein einzelner Messwert verwendet werden, was die Unsicherheit erhöht. Durch die Verwendung mehrerer Messpunkte und die Anpassung einer linearen Funktion an die Daten kann ein präziserer Wert für die Wellenlänge ermittelt werden, was zu einer genaueren Bestimmung der Schallgeschwindigkeit führt.
+
+\medskip
+Mithilfe des Lissajous-Verfahrens wurde bei gleicher Frequenz eine Wellenlänge von $\lambda = (3.507\pm 0.027)\,\text{cm}$ bestimmt.
+Daraus ergibt sich nach Gleichung \ref{eq:Wellenzusammenhang} eine Schallgeschwindigkeit von $c = 350.7\pm 2.7\,\text{m/s}$.
 
 
-\subsection{Vergleich des Ergebnisses mit dem Literaturwert}
+In Aufgabe 3.3 wurde ausserdem gefordert, durch eine qualitative Messung zu zeigen, dass die Schallgeschwindigkeit nicht von der Frequenz abhängt. Hierzu wurde die Frequenz des Sinusgenerators variiert und die Phasenverschiebung zwischen dem Sendesignal und dem empfangenen Signal gemessen (Tabelle \ref{tab:pdf-3}).
+Es wurde sich für das Lissajous-Verfahren entschieden, da dieses eine höhere Genauigkeit aufweist. Mithilfe linearer Regression wurde die Wellenlänge berechnet: 
+\begin{itemize}
+    \item c = $352\pm\,4$ m/s bei einer Frequenz von $\nu = 5.0$ kHz
+    \item c = $472\pm\,11.3$ m/s bei einer Frequenz von $\nu = 2.0$ kHz.\\
+    Dieses Ergebnis weicht sehr stark von den anderen Ergebnissen ab, was auf einen Messfehler zurückzuführen ist. In Aufgabe 1 wurde bei einer Frequenz von 2000 Hz eine Schallgeschwindigkeit von 352 m/s bestimmt, was belegt, dassdie Schallgeschwindigkeit nicht von der Frequenz abhängt. Ich schätze, dass ich die Skala falschrum abgelesen habe. Bei 11.3\,cm ergäbe sich eine Schallgeschwindigkeit von 352\,m/s, was mit den anderen Ergebnissen übereinstimmt.
+\end{itemize}
+
+Umrechnung der Werte auf Normalbedingungen ($0^{\circ}\text{C}$) mit der Formel \ref{eq:Normalbedingungen} und \ref{eq:Normalbedingungen_fehler}:
+
+\begin{equation}
+    c_\text{Normal,0°C} = (335\pm 6)\,\frac{\text{m}}{\text{s}}
+\end{equation}
+\begin{equation}
+    c_\text{Lissajous,0°C} = (335.7\pm 2.6)\,\frac{\text{m}}{\text{s}}
+\end{equation}
+
+Die Standabweichung der Messwerte zum Literaturwert beträgt:
+
+\begin{equation}
+    \sigma = \frac{|c_\text{Lissajous,0°C} - c_\text{Lit,0°C}|}{\Delta c_\text{Lissajous,0°C}} = \frac{|335.7 - 331.1|}{2.6} \approx 1.77 \Rightarrow 1.77\sigma
+\end{equation}
+\
+
+\begin{resultbox}[Ergebnisse der Schallgeschwindigkeitsmessung über Laufzeitmessung]
+    Die Schallgeschwindigkeit in Luft, ermittelt durch die Laufzeitmessung bei $0^{\circ}\text{C}$ beträgt:
+    \begin{equation}
+        c_\text{Luft,0°C} = (335.7\pm 2.6)\,\frac{\text{m}}{\text{s}}
+    \end{equation}
+    Die Abweichung vom Literaturwert beträgt:
+    \begin{equation}
+        \sigma = 1.77\sigma
+    \end{equation}
+\end{resultbox}
 
 
 
 \section{Diskussion}
-\subsection{Interpretation der Signifikanzen}
+
+Die experimentell bestimmten Werte der Schallgeschwindigkeit in Luft und Kohlenstoffdioxid liegen innerhalb der Unsicherheiten in guter Übereinstimmung mit den theoretischen Literaturwerten. Die Abweichungen von den Literaturwerten sind minimal, was auf eine erfolgreiche Durchführung des Experiments hinweist. Insbesondere die Schallgeschwindigkeit in Luft zeigt eine sehr geringe Abweichung von nur 0.03\%, was auf eine hohe Genauigkeit der Messungen hindeutet.
+Die Schallgeschwindigkeit in Kohlenstoffdioxid weist eine etwas größere Abweichung von 3.47\% auf, was jedoch immer noch innerhalb der Unsicherheiten liegt. Dies deutet darauf hin, dass die experimentellen Bedingungen und die Messmethoden für beide Gase zuverlässig waren. Die Ergebnisse bestätigen die theoretischen Erwartungen und zeigen, dass die verwendeten Methoden zur Bestimmung der Schallgeschwindigkeit in Gasen effektiv sind.
+Der Versuchsaufbau war relativ einfach, und die Messungen konnten mit den verfügbaren Geräten präzise durchgeführt werden. Die Verwendung eines Lock-In-Verstärkers zur Ermittlung der Resonanzmaxima im Quincke'schen Rohr trug wesentlich zur Genauigkeit der Messungen bei, da er Störgeräusche effektiv unterdrückte. Die Laufzeitmessung mit dem Zweikanal-Oszilloskop ermöglichte eine direkte Beobachtung der Phasenverschiebung und lieferte konsistente Ergebnisse.
 
 \medskip
 \noindent
 
 \subsection{Fazit}
-Zum Ende lässt sich festhalten, dass die experimentelle Bestimmung der Elementarladung mit dem Millikan-Versuch 
-erfolgreich durchgeführt wurde. Die Ergebnisse stimmen innerhalb der Unsicherheiten mit dem Literaturwert überein, und die Analyse der Fehlerquellen liefert wertvolle 
-Einblicke in die Genauigkeit und Präzision des Versuchsaufbaus.
+Zum Ende lässt sich festhalten, dass die experimentelle Bestimmung der Schallgeschwindigkeit in Luft und Kohlenstoffdioxid erfolgreich durchgeführt wurde. Die Ergebnisse stimmen innerhalb der Unsicherheiten mit den theoretisch berechneten Literaturwerten überein, und die Analyse der Fehlerquellen liefert wertvolle Einblicke in die Genauigkeit und Präzision des Versuchsaufbaus. Persönlich hat mir der Versuch sehr gut gefallen, da er sowohl theoretische als auch praktische Aspekte der Physik miteinander verbindet und ein tieferes Verständnis für die Ausbreitung von Schall in verschiedenen Medien vermittelt. 
 
 \clearpage
 
