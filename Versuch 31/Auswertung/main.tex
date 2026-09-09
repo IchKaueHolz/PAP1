@@ -116,7 +116,7 @@
 
 \bigskip
 \begin{tcolorbox}[colback=gray!5,colframe=gray!60,boxrule=0.8pt,arc=0.01mm,title=KI-Hinweis]
-    Für die sprachliche Formulierung dieses Protokolls wurde in der Einleitung \ref{sec:einleitung} KI-gestützte Textgenerierung verwendet. 
+    Für die sprachliche Formulierung dieses Protokolls wurde in den Abschnitten Einleitung \ref{sec:einleitung} und Grundlagen \ref{sec:grundlagen} KI-gestützte Textgenerierung verwendet. 
 \end{tcolorbox}
 
 
@@ -124,7 +124,7 @@
 \section{Einleitung}\label{sec:einleitung}
 Der Versuch 31 „Optische Abbildung“ behandelt die fundamentalen Prinzipien der geometrischen Optik sowie die physikalischen Grenzen optischer Instrumente, die durch wellenoptische Effekte bedingt sind. Im Zentrum des Experiments steht die Untersuchung der Bildentstehung durch die Brechung von Lichtbündeln an sphärischen Linsen, mit deren Hilfe sich reelle und virtuelle Bilder erzeugen lassen.  Ein zentraler Parameter abbildender Systeme ist die Brennweite, welche den Zusammenhang zwischen Gegenstands- und Bildweite über die optische Abbildungsgleichung beschreibt. Um die Brennweite einer Sammellinse präzise zu messen und Messfehler durch unscharfe Definitionen der Hauptebenen zu umgehen, wird im Versuch unter anderem das Bessel-Verfahren angewendet. Da reale dicke Linsen von der idealen paraxialen Näherung abweichen, ist ein weiterer Bestandteil des Versuchs die Untersuchung von typischen Abbildungsfehlern. Hierzu zählen die sphärische Aberration, bei der achsenferne Strahlen nicht in denselben Brennpunkt gelangen, sowie die chromatische Aberration, welche durch die wellenlängenabhängige Dispersion des Linsenmaterials verursacht wird.  Aufbauend auf den Eigenschaften einzelner Linsen wird im letzten Teil des Versuchs die Funktionsweise komplexerer optischer Instrumente erarbeitet, indem ein vollständiges Mikroskop aus Objektiv und Okular auf einer optischen Bank konstruiert wird. Abschließend wird das Auflösungsvermögen dieses Systems experimentell analysiert. Obwohl die Vergrößerung theoretisch durch die Wahl entsprechender Linsenbrennweiten und Tubuslängen stark gesteigert werden könnte, ist das nutzbare Auflösungsvermögen in der Realität durch die Beugung des Lichts (beschrieben durch das Rayleigh-Kriterium) physikalisch limitiert. Ziel des Versuchs ist es, diese geometrischen Gesetzmäßigkeiten der Abbildung zu überprüfen, Linsenfehler zu quantifizieren und die wellenoptischen Grenzen des Auflösungsvermögens nachzuvollziehen.
 
-\section{Grundlagen und Theorie}
+\section{Grundlagen und Theorie}\label{sec:grundlagen}
 
 \subsection{Reelle und virtuelle Bilder sowie geometrische Abbildung}
 Bei der optischen Abbildung werden Lichtbündel, die von einem Objektpunkt ausgehen, durch optische Systeme (wie Spiegel oder Linsen) so gebrochen oder reflektiert, dass sie sich in einem Bildpunkt wieder vereinigen. Dabei werden zwei Arten von Bildern unterschieden:
@@ -163,6 +163,7 @@ Die direkte Messung von Bild- und Gegenstandsweite ist fehleranfällig, da sich 
 präzise berechnen.
 
 \subsection{Abbildungsfehler (Aberrationen)}
+Beim Bessel-Verfahren lassen sich ebenfalls Abbildungsfehler beobachten.\\ 
 Reale Linsen weichen von der idealisierten paraxialen Näherung ab, was zu Abbildungsfehlern führt:
 \begin{itemize}
     \item \textbf{Sphärische Aberration:} Lichtbündel, die am Rand der Linse (achsenfern) auftreffen, werden nicht in denselben Brennpunkt fokussiert wie achsennahe Strahlen. Dieser Fehler lässt sich durch die Nutzung von Blenden verringern, was allerdings die Lichtstärke reduziert, oder durch den aufwendigen Einsatz asphärischer Linsen beheben.
@@ -177,6 +178,13 @@ Ein Mikroskop erzielt weitaus höhere Vergrößerungen durch die Kombination zwe
     \item Das Objektiv befindet sich nahe am Objekt und erzeugt ein reelles, vergrößertes sowie umgekehrtes Zwischenbild.
     \item Das Okular fungiert anschließend als Lupe, indem das Zwischenbild in der Brennebene des Okulars liegt und vom Auge auf Unendlich akkommodiert betrachtet wird. 
 \end{itemize}
+\begin{figure}
+    \centering
+    \includegraphics[width=0.5\textwidth]{img/Mikroskop.png}
+    \caption{Schema eines Mikroskops}
+    \label{fig:mikroskop}
+\end{figure}
+
 Die Gesamtvergrößerung $V_M$ ergibt sich aus dem Produkt der Einzelvergrößerungen und beträgt
 \begin{equation}
     V_M = \frac{s_0 \cdot t}{f_1 \cdot f_2}
@@ -184,7 +192,7 @@ Die Gesamtvergrößerung $V_M$ ergibt sich aus dem Produkt der Einzelvergrößer
 wobei $t$ die Tubuslänge darstellt.
 
 \subsection{Wellenoptische Auflösungsgrenze}
-Die nutzbare Vergrößerung eines Mikroskops kann nicht beliebig gesteigert werden, da die endliche Linsenöffnung als Blende wirkt und Beugungsmuster (Interferenzerscheinungen) erzeugt. Das Auflösungsvermögen wird durch das Rayleigh-Kriterium definiert: Zwei Objektpunkte gelten als gerade noch unterscheidbar, wenn das zentrale Beugungsmaximum des einen Punktes in das erste Beugungsminimum des anderen Punktes fällt. Der minimal auflösbare Abstand $G_{\text{min}}$ berechnet sich durch die Gleichung
+Die nutzbare Vergrößerung eines Mikroskops kann nicht beliebig gesteigert werden, da die endliche Linsenöffnung als Blende wirkt und Beugungsmuster (Interferenzerscheinungen) erzeugt. Das Auflösungsvermögen wird durch das Rayleigh-Kriterium definiert: Zwei Objektpunkte gelten als gerade noch unterscheidbar, wenn das zentrale Beugungsmaximum des einen Punktes in das erste Beugungsminimum des anderen Punktes fällt. Der minimal auflösbare Abstand $G_{\text{min}}$ berechnet sich durch die Gleichung: \cite{PAPskript}
 \begin{equation}
     G_{\text{min}} = 0{,}61 \cdot \frac{\lambda}{NA}
 \end{equation}
@@ -196,7 +204,6 @@ Die nutzbare Vergrößerung eines Mikroskops kann nicht beliebig gesteigert werd
 \section{Messprotokoll}
 
 \subsection{Versuchsaufbau und Aufgaben}
-\begin{comment}
     
 \includepdf[
     pages=-,
@@ -204,11 +211,13 @@ Die nutzbare Vergrößerung eines Mikroskops kann nicht beliebig gesteigert werd
     height=\textheight,
     keepaspectratio,
     pagecommand={\thispagestyle{scrheadings}}
-]{../Messprotokoll 23.pdf}
+]{../Messprotokoll 31.pdf}
 
-\end{comment}
+\pdfabbildung{Messaufbau}{fig:pdfabbildung-1}
+\pdfabbildung{Messaufbau Aufgabe 2}{fig:pdfabbildung-2}
+\pdftabelle{}{}
+\pdftabelle{Messwerte}{fig:pdftabelle-1}
 
-\addtocounter{figure}{1}
 
 \subsection{Durchführung}
 
