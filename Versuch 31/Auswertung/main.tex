@@ -323,9 +323,69 @@ Anschließend wird die Brennweite graphisch bestimmt. Dazu wird die Gegenstandsw
 Der Fehler wird auf $\pm 0.5\,\si{\centi\meter}$ geschätzt, da die Schnittpunkte nicht exakt auf einer Geraden liegen und die Brennweite nur ungefähr abgelesen werden kann. 
 Es ergibt sich eine Brenweite von $f = (10.0 \pm 0.5)\,\si{\centi\meter}$, was mit der berechneten Brennweite übereinstimmt. 
 
+\begin{resultbox}[Ergebnis Aufgabe 1]
+    Die Brennweite der Sammellinse beträgt $f = (10.0 \pm 0.5)\,\si{\centi\meter}$.
+    Die Ergebnisse sind konsistent mit den Messwerten und den theoretischen Erwartungen.
+\end{resultbox}
+
 
 \subsection{Aufgabe 2: Auswertung der Messung zum Besselverfahren}
-Mithillfe der Formel \ref{eq:bessel} lässt sich die Brennweite der Sammellinse aus den Messwerten der Tabelle \ref{tbl:pdftabelle-2} berechnen. Die Brennweite beträgt:
+Mithillfe des Bessel-Verfahrens (Gleichun \ref{eq:bessel}) lässt sich die Brennweite einer Linse aus den Messwerten der Tabelle \ref{tbl:pdftabelle-2} berechnen. Es handelt sich nun um eine neue Bikonvexe Linse.
+Die Einzelfehler werden mit der Gaußschen Fehlerfortpflanzung berechnet\footnotemark :
+\footnotetext{Siehe Pyhton Code im Anhang.}
+\begin{align}
+    \Delta d &= \sqrt{\left(u_\text{stat}^2 + u_\text{sys}^2\right)} = 0.21\\
+    \Delta L &= u_\text{sys} = 0.15
+\end{align}
+
+für die Formel \ref{eq:bessel} ergibt sich dann:
+\begin{equation}
+    \Delta f = \sqrt{\left(\frac{\partial f}{\partial L} \Delta L\right)^2 + \left(\frac{\partial f}{\partial d} \Delta d\right)^2} = \sqrt{\left(\frac{L^2 + d^2}{4L^2} \Delta L\right)^2 + \left(\frac{-d}{2L} \Delta d\right)^2}\label{eq:Fehler_bessel}
+\end{equation}
+
+Mit dem Abstand zwischen den scharfefn Punkten $d = (28.77\pm 0.43)\,\si{\centi\meter}$ und dem Abstand zwischen Schirm und Objekt $L = (62.00\pm 0.15)\,\si{\centi\meter}$ ergibt und Verwendung von Gleichung \ref{eq:bessel} und \ref{eq:Fehler_bessel} eine Brennweite von:
+\begin{equation}
+    f_\text{Bessel} = (12.162\pm 0.104)\,\si{\centi\meter} \Rightarrow f_\text{Bessel} = (12.16\pm 0.11)\,\si{\centi\meter}
+\end{equation}
+
+Die Linse war mit einer Brenweite von $f = 12.0\,\si{\centi\meter}$ angegeben. Daraus folgt eine Relative Abweichung von:
+\begin{equation}
+    \frac{f_\text{Bessel} - f_\text{angabe}}{f_\text{angabe}} = \frac{12.16 - 12.0}{12.0} = 0.0133 \Rightarrow 1.33\%
+\end{equation}
+
+Das Entspricht einer Sigma Abweichung von:
+\begin{equation}
+    \sigma = \frac{f_\text{Bessel} - f_\text{angabe}}{\Delta f_\text{Bessel}} = \frac{12.16 - 12.0}{0.11} = 1.45 \Rightarrow 1.45\sigma
+\end{equation}
+
+\begin{resultbox}[Ergebnis Aufgabe 2]
+    Die Brennweite der Bikonvexen Linse beträgt $f_\text{Bessel} = (12.16\pm 0.06)\,\si{\centi\meter}$.
+    Die Abweichung von der angegebenen Brennweite von $f = 12.0\,\si{\centi\meter}$ beträgt $1.33\%$ bzw. $1.45\sigma$. Im Rahmen der Messunsicherheit ist die Abweichung noch akzeptabel.
+\end{resultbox}
+
+\subsection{Aufgabe 3: Brennweitenbestimmung mit Farbfiltern}
+In dieser Aufgabe wird mithilfe des Bessel-Verfahrens die Brennweite der Bikonvexen Linse mit Farbfiltern bestimmt. Die Ergebnisse sind in Tabelle \ref{tbl:pdftabelle-3} dargestellt.
+Mit den im Python Code im Anhang berechneten Mittelwerten und Standardabweichungen ergibt sich für $L = (61.8\pm 0.15)\,\si{\centi\meter}$: 
+\begin{align*}
+    d_\text{rot} &= (28.50\pm 0.44)\,\si{\centi\meter}\\
+    d_\text{blau} &= (29.20\pm 0.44)\,\si{\centi\meter}\\
+\end{align*}
+
+Und für die mittlere Brennweite nach Gleichung \ref{eq:bessel} und \ref{eq:Fehler_bessel}:
+\begin{align*}
+    f_\text{rot} = (12.1642\pm 0.1112)\,\si{\centi\meter} &=(12.16\pm 0.12)\,\si{\centi\meter}\\
+    f_\text{blau} = (12.0008\pm 0.1136)\,\si{\centi\meter} &=(12.00\pm 0.12)\,\si{\centi\meter}\\
+\end{align*}
+
+\begin{resultbox}[Ergebnis Aufgabe 3]
+    Die Brennweite der Bikonvexen Linse beträgt mit rotem Filter $f_\text{rot} = (12.16\pm 0.12)\,\si{\centi\meter}$ und mit blauem Filter $f_\text{blau} = (12.00\pm 0.12)\,\si{\centi\meter}$.
+    Es fällt auf, dass die Brennweite mit blauem Filter kleiner ist als mit rotem Filter, was auf die chromatische Aberration zurückzuführen ist.
+    
+\end{resultbox}
+
+
+\section{Diskussion}
+In Aufgabe 2 sind die Messwerte der Bessel-Messung mit den angegebenen Werten der Linse verglichen worden. Die Abweichung von $1.33\%$ bzw. $1.45\sigma$ ist im Rahmen der Messunsicherheit noch akzeptabel, jedoch wird das Besselverfahren als sehr genau angesehen. Die Abweichung könnte auf systematische Fehler zurückzuführen sein, wie z.B. ungenaue Positionierung der Linse oder des Schirms. Bei der Messung des Achromaten in Aufgabe 1 wäre eine Abweichung eher durch statische Fehler zu erklären, da die Gaußsche Linsengleichung für Achsennahe Strahlen gilt und die Abbildung von achsenfernen Strahlen zu Abweichungen führen kann. Die Messung der Brennweite des Achromaten in Aufgabe 1 ist jedoch konsistent mit den theoretischen Erwartungen und den Messwerten, was auf eine gute Genauigkeit der Messung hinweist.
 
 
 \clearpage
@@ -336,7 +396,7 @@ Mithillfe der Formel \ref{eq:bessel} lässt sich die Brennweite der Sammellinse 
 \listoftables
 
 \begin{thebibliography}{5}
-    \bibitem{PAPskript} Dr. J.Wagner, \emph{Physikalisches Anfängerpraktikum}, Stand 11/2024
+    \bibitem{PAPskript} Dr. J.Wagner, \emph{Physikalisches Anfängerpraktikum}, Stand 09/2026
     \bibitem{ilberg1988physikalisches} W. Ilberg, M. Krötzsch, \emph{Physikalisches Praktikum für Anfänger}, BSB B. G. Teubner Verlagsgesellschaft, Leipzig (1985).
 \end{thebibliography}
 
