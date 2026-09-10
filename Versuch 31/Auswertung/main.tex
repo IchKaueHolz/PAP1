@@ -196,7 +196,7 @@ wobei $t$ die Tubuslänge darstellt.
 \subsection{Wellenoptische Auflösungsgrenze}
 Die nutzbare Vergrößerung eines Mikroskops kann nicht beliebig gesteigert werden, da die endliche Linsenöffnung als Blende wirkt und Beugungsmuster (Interferenzerscheinungen) erzeugt. Das Auflösungsvermögen wird durch das Rayleigh-Kriterium definiert: Zwei Objektpunkte gelten als gerade noch unterscheidbar, wenn das zentrale Beugungsmaximum des einen Punktes in das erste Beugungsminimum des anderen Punktes fällt. Der minimal auflösbare Abstand $G_{\text{min}}$ berechnet sich durch die Gleichung: \cite{PAPskript}
 \begin{equation}
-    G_{\text{min}} = 0{,}61 \cdot \frac{\lambda}{NA}
+    G_{\text{min}} = 0.61 \cdot \frac{\lambda}{NA}\label{eq:Rayleigh}
 \end{equation}
 . Hierbei steht $\lambda$ für die Wellenlänge des Lichts und $NA$ für die numerische Apertur des Objektivs.
 
@@ -381,6 +381,54 @@ Und für die mittlere Brennweite nach Gleichung \ref{eq:bessel} und \ref{eq:Fehl
     Die Brennweite der Bikonvexen Linse beträgt mit rotem Filter $f_\text{rot} = (12.16\pm 0.12)\,\si{\centi\meter}$ und mit blauem Filter $f_\text{blau} = (12.00\pm 0.12)\,\si{\centi\meter}$.
     Es fällt auf, dass die Brennweite mit blauem Filter kleiner ist als mit rotem Filter, was auf die chromatische Aberration zurückzuführen ist.
     
+\end{resultbox}
+
+\subsection{Aufgabe 4: Mikroskop auf der optischen Bank}
+
+\paragraph{Fehlerbetrachtung}
+Die Fehlerfortpflanzung erfolgt nach dem Gaußschen Fehlerfortpflanzungsgesetz. Mit der exakten Objektivbrennweite $f_1$ folgt für die Unsicherheit des Abbildungsmaßstabs $\beta$ (aus Gl. \ref{eq:Verhältnis}):
+\begin{equation}
+    \Delta \beta = \frac{\Delta b}{f_1}
+\end{equation}
+Für die Unsicherheit des Strichabstands $\Delta B_{\text{Strich}} = \frac{\Delta B}{n}$ und der experimentellen Gitterkonstante $G_{\text{Strich}}$ ergibt sich:
+\begin{equation}
+    \Delta G_{\text{Strich}} = G_{\text{Strich}} \cdot \sqrt{ \left( \frac{\Delta B_{\text{Strich}}}{B_{\text{Strich}}} \right)^2 + \left( \frac{\Delta \beta}{\beta} \right)^2 }
+\end{equation}
+Die numerische Apertur $NA$ und das theoretische Auflösungsvermögen $G_{\text{min, theo}}$ hängen von Spaltbreite $D$ und Abstand $s$ ab. Ihre Unsicherheiten betragen:
+\begin{align}
+    \Delta NA &= NA \cdot \sqrt{ \left( \frac{\Delta D}{D} \right)^2 + \left( \frac{\Delta s}{s} \right)^2 } \\
+    \Delta G_{\text{min, theo}} &= G_{\text{min, theo}} \cdot \frac{\Delta NA}{NA}
+\end{align}
+
+\paragraph{Bestimmung der Gitterkonstante des Kreuzgitters}
+Mit $f_1 = 4.0\,\text{cm}$ und $b = 25.00 \pm 0.10\,\text{cm}$ berechnet sich der Maßstab nach Gl. \ref{eq:Linsengleichung} und \ref{eq:Verhältnis} zu $\beta = \frac{b}{f_1} - 1 = 5.25 \pm 0.03$. 
+Im Zwischenbild wurde über $n = 16$ Striche eine Strecke von $B = 8.0 \pm 0.3\,\text{mm}$ gemessen. Der Einzelabstand im Zwischenbild ist somit $B_{\text{Strich}} = 0.50 \pm 0.02\,\text{mm}$.
+Nach Gl. \ref{eq:Verhältnis} folgt für die experimentelle Gitterkonstante:
+\begin{equation}
+    G_{\text{min, exp}} = \frac{B_{\text{Strich}}}{\beta} = 95.2 \pm 3.6\,\text{\mu m}
+\end{equation}
+Da exakt diese Gitterlinien bei Spaltverengung verschwinden, entspricht dieser Wert dem experimentellen Auflösungsvermögen.
+
+\paragraph{Theoretisches Auflösungsvermögen}
+Für grünes Licht ($\lambda = 550\,\text{nm}$) ergab sich eine kritische Spaltbreite von $D_{\text{grün}} = 0.267 \pm 0.03\,\text{mm}$ bei einem Spaltabstand $s = 37.67\,\text{mm}$. 
+Die numerische Apertur beträgt $NA \approx \frac{D}{2s} \approx 0.00354 \pm 0.0004$. 
+Nach dem Rayleigh-Kriterium (Gl. \ref{eq:rayleigh}) berechnet sich das theoretische Auflösungsvermögen zu:
+\begin{equation}
+    G_{\text{min, theo}} = 0.61 \cdot \frac{\lambda}{NA} = 94.8 \pm 10.7\,\text{\mu m}
+\end{equation}
+Das experimentelle ($95.2\,\text{\mu m}$) und das theoretische ($94.8\,\text{\mu m}$) Auflösungsvermögen stimmen im Rahmen der Unsicherheiten sehr gut überein und bestätigen die Beugungsbegrenzung.
+
+\paragraph{Einfluss der Wellenlänge (qualitativ)}
+Für blaues Licht (kleineres $\lambda$) verschwanden die Linien bei $D_{\text{blau}} = 0.200\,\text{mm}$, für rotes Licht (größeres $\lambda$) erst bei $D_{\text{rot}} \approx 0.367\,\text{mm}$. Dies bestätigt die direkte Proportionalität ($G_{\text{min}} \propto \lambda$) der Rayleigh-Gleichung: Kurzwelliges Licht beugt sich schwächer, weshalb feinere Strukturen auflösbar bleiben.
+
+\paragraph{Literaturvergleich}
+Der Vergleich der bestimmten Gitterkonstante mit dem Literaturwert ($G_{\text{lit}} = 100\,\text{\mu m}$) liefert die Abweichung:
+\begin{equation}
+    \frac{|G_{\text{min, exp}} - G_{\text{lit}}|}{G_{\text{lit}}} = 4.8\% \quad \text{bzw.} \quad \sigma = \frac{|95.2 - 100|}{3.6} = 1.33\sigma
+\end{equation}   
+
+\begin{resultbox}[Ergebnis Aufgabe 4]
+    Das experimentelle Auflösungsvermögen ($G_{\text{min, exp}} = 95.2 \pm 3.6\,\text{\mu m}$) und der theoretische Wert ($G_{\text{min, theo}} = 94.8 \pm 10.7\,\text{\mu m}$) stimmen hervorragend überein. Die Abweichung vom Literaturwert ($100\,\text{\mu m}$) beträgt nur $4.8\%$ ($1.33\sigma$) und liegt damit innerhalb einer akzeptablen Messunsicherheit.
 \end{resultbox}
 
 
