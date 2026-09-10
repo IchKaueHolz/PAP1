@@ -162,6 +162,8 @@ Die direkte Messung von Bild- und Gegenstandsweite ist fehleranfällig, da sich 
 \end{equation}
 präzise berechnen.
 
+Der Mittelwert der beiden Stellung eins beträgt
+
 \subsection{Abbildungsfehler (Aberrationen)}
 Beim Bessel-Verfahren lassen sich ebenfalls Abbildungsfehler beobachten.\\ 
 Reale Linsen weichen von der idealisierten paraxialen Näherung ab, was zu Abbildungsfehlern führt:
@@ -247,43 +249,44 @@ Die Abbildungsmaßstäbe für die verschiedenen Gegenstandsweiten g und Bildweit
 \begin{table}[h]
     \centering
     \caption{Berechnung Abbildungsmaßstäbe}
-    
+    \label{tbl:Abbildungsmaßstäbe}
     \medskip
     \renewcommand{\arraystretch}{1.5}
 
     \begin{tabular}{|c|c|c|c|c|c|c|c|}
         \hline
         \textbf{Bereich} & \textbf{$g$} & \textbf{$b$} & \textbf{$G$} & \textbf{$B$} & \textbf{Art} & \textbf{Richtung} & \textbf{$\beta$} \\
-        & [cm] & [cm] & [mm] & [mm] & & & \\
+        \textbf{Einheit} & [cm] & [cm] & [mm] & [mm] & & & [cm] \\
+        \textbf{Fehler} &$\pm 0.15$ & $\pm 0.3$ &$\pm 0$ &$\pm 0.5$ & & & \\
         \hline
-        \multirow{3}{*}{$\infty > g > 2f$} & 25,0 & 16,5 & 8 & 5,0 & reel & umgekehrt & $0.6600\pm 0.0013 $ \\
+        \multirow{3}{*}{$\infty > g > 2f$} & 25,0 & 16,5 & 8 & 5,0 & reel & umgekehrt & $0.6600\pm 0.013 $ \\
         \cline{2-8}
-        & 37,0 & 16 & 8 & 4,1 & r & u & $ $ \\
+        & 37,0 & 16 & 8 & 4,1 & r & u & $0.433\pm 0.009 $ \\
         \cline{2-8}
-        & 40,85 & 14,5 & 8 & 2,5 & r & u & $ $ \\
+        & 40,85 & 14,5 & 8 & 2,5 & r & u & $0.355\pm 0.007 $ \\
         \hline
-        $g = 2f$ & 20,0 & 19,4 & 8 & 8,0 & r & u & $ $ \\
+        $g = 2f$ & 20,0 & 19,4 & 8 & 8,0 & r & u & $0.970\pm 0.017 $ \\
         \hline
-        \multirow{3}{*}{$2f > g > f$} & 13,9 & 33,9 & 8 & 20,0 & r & u & $ $ \\
+        \multirow{3}{*}{$2f > g > f$} & 13,9 & 33,9 & 8 & 20,0 & r & u & $2.44\pm 0.04 $ \\
         \cline{2-8}
-        & 12,0 & 61,5 & 8 & 42,0 & r & u & $ $ \\
+        & 12,0 & 61,5 & 8 & 42,0 & r & u & $5.125\pm 0.07 $ \\
         \cline{2-8}
-        & 16,0 & 26,3 & 8 & 13,0 & r & u & $ $ \\
+        & 16,0 & 26,3 & 8 & 13,0 & r & u & $1.644\pm 0.025 $ \\
         \hline
-        $g = f$ & 10,0 & $\infty$ & 8 & $\infty$ & r & u & $ $ \\
+        $g = f$ & 10,0 & $\infty$ & 8 & $\infty$ & r & u & $\infty $ \\
         \hline
-        $f > g$ & 9,0 & $\infty$ & 8 & $\infty$ & virtuell & aufrecht & $ $ \\
+        $f > g$ & 9,0 & $\infty$ & 8 & $\infty$ & virtuell & aufrecht & $\infty $ \\
         \hline
     \end{tabular}
 \end{table}
 
 
-Das stimmt mit den Beobachtungen aus Tabelle \ref{tbl:pdftabelle-1} überein. 
-Beispielrechnung: Für g = 25 cm und b = 16.5 cm ergibt sich $\beta = \frac{16.5}{25} = 0.66$\footnotemark.
-\footnotetext{Die Unsicherheit würde nichts an $1 < \beta < 0$ ändern.}
-Für g = 12 cm und b = 61.5 cm ergibt sich $\beta = \frac{61.5}{12} = 5.125$.
 
-Die folgenden Skizzen zeigen die verschiedenen Strahlengänge für die verschiedenen Abbildungsfälle. Die Strahlen sind in der paraxialen Näherung gezeichnet, also nur für kleine Winkel zur optischen Achse. Die Strahlen, die von der Gegenstandsseite kommen, werden durch die Linse gebrochen und treffen sich auf der Bildseite. Die Strahlen, die von der Bildseite kommen, werden durch die Linse gebrochen und treffen sich auf der Gegenstandsseite.
+Das stimmt mit den Beobachtungen aus Tabellen \ref{tbl:pdftabelle-1} und \ref{tbl:Abbildungsmaßstäbe} überein. 
+Beispielrechnung: Für g = 25 cm und b = 16.5 cm ergibt sich $\beta = \frac{16.5}{25} = 0.66$\footnotemark. Das Bild ist kleiner, reell und umgekehrt.
+\footnotetext{Die Unsicherheit würde nichts an $1 < \beta < 0$ ändern.}
+Für g = 12 cm und b = 61.5 cm ergibt sich $\beta = \frac{61.5}{12} = 5.125$. Dieses Bild ist größer, reell und umgekehrt.
+
 
 \begin{figure}[H]
     \centering
@@ -305,8 +308,24 @@ Die folgenden Skizzen zeigen die verschiedenen Strahlengänge für die verschied
     \label{fig:linse_strahlen}
 \end{figure}
 
+Die Skizzen zeigen die verschiedenen Strahlengänge für die verschiedenen Abbildungsfälle. Die Strahlen sind in der paraxialen Näherung gezeichnet, also nur für kleine Winkel zur optischen Achse.
+Die Strahlen, die von der Gegenstandsseite kommen, werden durch die Linse gebrochen und treffen sich auf sder Bildseite. Die Strahlen, die von der Bildseite kommen, werden durch die Linse gebrochen und treffen sich auf der Gegenstandsseite.
 
-\subsection{Aufgabe 2: Auswertung der Bessel-Messung}
+Anschließend wird die Brennweite graphisch bestimmt. Dazu wird die Gegenstandsweite g auf der x-Achse und die Bildweite b auf der y-Achse aufgetragen. Die Brennweite f ist der Schnittpunkt der Geraden, die durch die Messpunkte verlaufen:
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.9\textwidth]{img/brennweite_graphisch.png}
+    \caption{Graphische Bestimmung der Brennweite.}
+    \label{fig:linse_graphisch}
+\end{figure}
+
+Der Fehler wird auf $\pm 0.5\,\si{\centi\meter}$ geschätzt, da die Schnittpunkte nicht exakt auf einer Geraden liegen und die Brennweite nur ungefähr abgelesen werden kann. 
+Es ergibt sich eine Brenweite von $f = (10.0 \pm 0.5)\,\si{\centi\meter}$, was mit der berechneten Brennweite übereinstimmt. 
+
+
+\subsection{Aufgabe 2: Auswertung der Messung zum Besselverfahren}
+Mithillfe der Formel \ref{eq:bessel} lässt sich die Brennweite der Sammellinse aus den Messwerten der Tabelle \ref{tbl:pdftabelle-2} berechnen. Die Brennweite beträgt:
 
 
 \clearpage
