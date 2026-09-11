@@ -1,0 +1,256 @@
+
+    
+    Aufgabe 1
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{8}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{k+kn}{import}\PY{+w}{ }\PY{n+nn}{numpy}\PY{+w}{ }\PY{k}{as}\PY{+w}{ }\PY{n+nn}{np}
+\PY{k+kn}{import}\PY{+w}{ }\PY{n+nn}{uncertainties}\PY{+w}{ }\PY{k}{as}\PY{+w}{ }\PY{n+nn}{unc}
+\PY{k+kn}{import}\PY{+w}{ }\PY{n+nn}{uncertainties}\PY{n+nn}{.}\PY{n+nn}{unumpy}\PY{+w}{ }\PY{k}{as}\PY{+w}{ }\PY{n+nn}{unp}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{9}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{n}{b} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{array}\PY{p}{(}\PY{p}{[}\PY{l+m+mf}{16.5}\PY{p}{,} \PY{l+m+mi}{16}\PY{p}{,} \PY{l+m+mf}{14.5}\PY{p}{,} \PY{l+m+mf}{19.4}\PY{p}{,} \PY{l+m+mf}{33.9}\PY{p}{,} \PY{l+m+mf}{61.5}\PY{p}{,} \PY{l+m+mf}{26.3}\PY{p}{,} \PY{n}{np}\PY{o}{.}\PY{n}{inf}\PY{p}{,} \PY{n}{np}\PY{o}{.}\PY{n}{inf}\PY{p}{]}\PY{p}{)} \PY{c+c1}{\PYZsh{} Gegenstandweite in cm}
+\PY{n}{g} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{array}\PY{p}{(}\PY{p}{[}\PY{l+m+mf}{25.0}\PY{p}{,} \PY{l+m+mf}{37.0}\PY{p}{,} \PY{l+m+mf}{40.85}\PY{p}{,} \PY{l+m+mi}{20}\PY{p}{,} \PY{l+m+mf}{13.9}\PY{p}{,} \PY{l+m+mf}{12.0}\PY{p}{,} \PY{l+m+mf}{16.0}\PY{p}{,} \PY{l+m+mf}{10.0}\PY{p}{,} \PY{l+m+mf}{9.0}\PY{p}{]}\PY{p}{)} \PY{c+c1}{\PYZsh{} Brennweite in cm}
+\PY{n}{f} \PY{o}{=} \PY{l+m+mi}{10}
+\PY{n}{uncertainty\PYZus{}b} \PY{o}{=} \PY{l+m+mf}{0.3}
+\PY{n}{uncertainty\PYZus{}g} \PY{o}{=} \PY{l+m+mf}{0.15}
+\PY{n}{uncertainty\PYZus{}f} \PY{o}{=} \PY{l+m+mf}{0.8}
+
+\PY{n}{b} \PY{o}{=} \PY{n}{unp}\PY{o}{.}\PY{n}{uarray}\PY{p}{(}\PY{n}{b}\PY{p}{,} \PY{n}{uncertainty\PYZus{}b}\PY{p}{)}
+\PY{n}{g} \PY{o}{=} \PY{n}{unp}\PY{o}{.}\PY{n}{uarray}\PY{p}{(}\PY{n}{g}\PY{p}{,} \PY{n}{uncertainty\PYZus{}g}\PY{p}{)}
+\PY{n}{f} \PY{o}{=} \PY{n}{unc}\PY{o}{.}\PY{n}{ufloat}\PY{p}{(}\PY{n}{f}\PY{p}{,} \PY{n}{uncertainty\PYZus{}f}\PY{p}{)}
+
+\PY{n}{func} \PY{o}{=} \PY{k}{lambda} \PY{n}{b}\PY{p}{,} \PY{n}{g}\PY{p}{:} \PY{n}{b} \PY{o}{/} \PY{n}{g}
+
+\PY{n}{res} \PY{o}{=} \PY{n}{func}\PY{p}{(}\PY{n}{b}\PY{p}{,} \PY{n}{g}\PY{p}{)}
+\PY{n}{res}
+\end{Verbatim}
+\end{tcolorbox}
+
+            \begin{tcolorbox}[breakable, size=fbox, boxrule=.5pt, pad at break*=1mm, opacityfill=0]
+\prompt{Out}{outcolor}{9}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+array([0.66+/-0.012636518507880246,
+       0.43243243243243246+/-0.008295468180020906,
+       0.35495716034271724+/-0.007458706621064426,
+       0.97+/-0.016671101493302715,
+       2.4388489208633093+/-0.03403642979964403,
+       5.125+/-0.06876775338957933, 1.64375+/-0.024270051826261393,
+       inf+/-inf, inf+/-inf], dtype=object)
+\end{Verbatim}
+\end{tcolorbox}
+        
+    Bessel Verfahren
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{10}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{n}{x1} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{array}\PY{p}{(}\PY{p}{[}\PY{l+m+mf}{36.7}\PY{p}{,} \PY{l+m+mf}{36.60}\PY{p}{,} \PY{l+m+mf}{36.80}\PY{p}{]}\PY{p}{)}
+\PY{n}{x2} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{array}\PY{p}{(}\PY{p}{[}\PY{l+m+mf}{65.5}\PY{p}{,} \PY{l+m+mf}{65.5}\PY{p}{,} \PY{l+m+mf}{65.4}\PY{p}{]}\PY{p}{)}
+\PY{n}{d} \PY{o}{=} \PY{n}{x2} \PY{o}{\PYZhy{}} \PY{n}{x1}
+\PY{n}{std\PYZus{}d} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{std}\PY{p}{(}\PY{n}{d}\PY{p}{,} \PY{n}{ddof}\PY{o}{=}\PY{l+m+mi}{1}\PY{p}{)}
+\PY{n+nb}{print}\PY{p}{(}\PY{n}{d}\PY{p}{)}
+\PY{n}{L} \PY{o}{=} \PY{l+m+mf}{62.0}
+\PY{n}{error\PYZus{}L} \PY{o}{=} \PY{l+m+mf}{0.15}
+\PY{n}{error\PYZus{}d} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{sqrt}\PY{p}{(}\PY{l+m+mf}{0.4}\PY{o}{*}\PY{o}{*}\PY{l+m+mi}{2} \PY{o}{+} \PY{n}{std\PYZus{}d}\PY{o}{*}\PY{o}{*}\PY{l+m+mi}{2}\PY{p}{)} \PY{c+c1}{\PYZsh{}2.5mm pro ablesung}
+
+\PY{n+nb}{print}\PY{p}{(}\PY{l+s+sa}{f}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Mean d: }\PY{l+s+si}{\PYZob{}}\PY{n}{np}\PY{o}{.}\PY{n}{mean}\PY{p}{(}\PY{n}{d}\PY{p}{)}\PY{l+s+si}{:}\PY{l+s+s2}{.2f}\PY{l+s+si}{\PYZcb{}}\PY{l+s+s2}{ ± }\PY{l+s+si}{\PYZob{}}\PY{n}{error\PYZus{}d}\PY{l+s+si}{:}\PY{l+s+s2}{.2f}\PY{l+s+si}{\PYZcb{}}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\PY{n+nb}{print}\PY{p}{(}\PY{l+s+sa}{f}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Mean L: }\PY{l+s+si}{\PYZob{}}\PY{n}{L}\PY{l+s+si}{:}\PY{l+s+s2}{.2f}\PY{l+s+si}{\PYZcb{}}\PY{l+s+s2}{ ± }\PY{l+s+si}{\PYZob{}}\PY{n}{error\PYZus{}L}\PY{l+s+si}{:}\PY{l+s+s2}{.2f}\PY{l+s+si}{\PYZcb{}}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+[28.8 28.9 28.6]
+Mean d: 28.77 ± 0.43
+Mean L: 62.00 ± 0.15
+    \end{Verbatim}
+
+    Bessel-Verfahren mit Filter (rot)
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{11}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{n}{x1} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{array}\PY{p}{(}\PY{p}{[}\PY{l+m+mf}{36.6}\PY{p}{,} \PY{l+m+mf}{36.70}\PY{p}{,} \PY{l+m+mf}{36.80}\PY{p}{]}\PY{p}{)}
+\PY{n}{x2} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{array}\PY{p}{(}\PY{p}{[}\PY{l+m+mf}{65.3}\PY{p}{,} \PY{l+m+mf}{65.1}\PY{p}{,} \PY{l+m+mf}{65.2}\PY{p}{]}\PY{p}{)}
+\PY{n}{d} \PY{o}{=} \PY{n}{x2} \PY{o}{\PYZhy{}} \PY{n}{x1}
+\PY{n}{std\PYZus{}d} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{std}\PY{p}{(}\PY{n}{d}\PY{p}{,} \PY{n}{ddof}\PY{o}{=}\PY{l+m+mi}{1}\PY{p}{)}
+\PY{n+nb}{print}\PY{p}{(}\PY{n}{std\PYZus{}d}\PY{p}{)}
+\PY{n}{L} \PY{o}{=} \PY{l+m+mf}{61.8}
+\PY{n}{error\PYZus{}L} \PY{o}{=} \PY{l+m+mf}{0.10} \PY{c+c1}{\PYZsh{} fucking messprotokoll hat aufeinamal 0.10 angegeben, obwohl es vorher 0.15 war}
+\PY{n}{error\PYZus{}d} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{sqrt}\PY{p}{(}\PY{l+m+mf}{0.4}\PY{o}{*}\PY{o}{*}\PY{l+m+mi}{2} \PY{o}{+} \PY{n}{std\PYZus{}d}\PY{o}{*}\PY{o}{*}\PY{l+m+mi}{2}\PY{p}{)}
+
+\PY{n+nb}{print}\PY{p}{(}\PY{l+s+sa}{f}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Mean d: }\PY{l+s+si}{\PYZob{}}\PY{n}{np}\PY{o}{.}\PY{n}{mean}\PY{p}{(}\PY{n}{d}\PY{p}{)}\PY{l+s+si}{:}\PY{l+s+s2}{.2f}\PY{l+s+si}{\PYZcb{}}\PY{l+s+s2}{ ± }\PY{l+s+si}{\PYZob{}}\PY{n}{error\PYZus{}d}\PY{l+s+si}{:}\PY{l+s+s2}{.2f}\PY{l+s+si}{\PYZcb{}}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\PY{n+nb}{print}\PY{p}{(}\PY{l+s+sa}{f}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Mean L: }\PY{l+s+si}{\PYZob{}}\PY{n}{L}\PY{l+s+si}{:}\PY{l+s+s2}{.2f}\PY{l+s+si}{\PYZcb{}}\PY{l+s+s2}{ ± }\PY{l+s+si}{\PYZob{}}\PY{n}{error\PYZus{}L}\PY{l+s+si}{:}\PY{l+s+s2}{.2f}\PY{l+s+si}{\PYZcb{}}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+0.1732050807568861
+Mean d: 28.50 ± 0.44
+Mean L: 61.80 ± 0.10
+    \end{Verbatim}
+
+    Bessel-Verfahren mit Filter (blau)
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{12}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{n}{x1} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{array}\PY{p}{(}\PY{p}{[}\PY{l+m+mf}{36.4}\PY{p}{,} \PY{l+m+mf}{36.4}\PY{p}{,} \PY{l+m+mf}{36.40}\PY{p}{]}\PY{p}{)}
+\PY{n}{x2} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{array}\PY{p}{(}\PY{p}{[}\PY{l+m+mf}{65.4}\PY{p}{,} \PY{l+m+mf}{65.7}\PY{p}{,} \PY{l+m+mf}{65.7}\PY{p}{]}\PY{p}{)}
+\PY{n}{d} \PY{o}{=} \PY{n}{x2} \PY{o}{\PYZhy{}} \PY{n}{x1}
+\PY{n}{std\PYZus{}d} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{std}\PY{p}{(}\PY{n}{d}\PY{p}{,} \PY{n}{ddof}\PY{o}{=}\PY{l+m+mi}{1}\PY{p}{)}
+\PY{n+nb}{print}\PY{p}{(}\PY{n}{std\PYZus{}d}\PY{p}{)}
+\PY{n}{L} \PY{o}{=} \PY{l+m+mf}{61.8}
+\PY{n}{error\PYZus{}L} \PY{o}{=} \PY{l+m+mf}{0.10} \PY{c+c1}{\PYZsh{} fucking messprotokoll hat aufeinamal 0.10 angegeben, obwohl es vorher 0.15 war}
+\PY{n}{error\PYZus{}d} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{sqrt}\PY{p}{(}\PY{l+m+mf}{0.4}\PY{o}{*}\PY{o}{*}\PY{l+m+mi}{2} \PY{o}{+} \PY{n}{std\PYZus{}d}\PY{o}{*}\PY{o}{*}\PY{l+m+mi}{2}\PY{p}{)}
+
+\PY{n+nb}{print}\PY{p}{(}\PY{l+s+sa}{f}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Mean d: }\PY{l+s+si}{\PYZob{}}\PY{n}{np}\PY{o}{.}\PY{n}{mean}\PY{p}{(}\PY{n}{d}\PY{p}{)}\PY{l+s+si}{:}\PY{l+s+s2}{.2f}\PY{l+s+si}{\PYZcb{}}\PY{l+s+s2}{ ± }\PY{l+s+si}{\PYZob{}}\PY{n}{error\PYZus{}d}\PY{l+s+si}{:}\PY{l+s+s2}{.2f}\PY{l+s+si}{\PYZcb{}}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\PY{n+nb}{print}\PY{p}{(}\PY{l+s+sa}{f}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Mean L: }\PY{l+s+si}{\PYZob{}}\PY{n}{L}\PY{l+s+si}{:}\PY{l+s+s2}{.2f}\PY{l+s+si}{\PYZcb{}}\PY{l+s+s2}{ ± }\PY{l+s+si}{\PYZob{}}\PY{n}{error\PYZus{}L}\PY{l+s+si}{:}\PY{l+s+s2}{.2f}\PY{l+s+si}{\PYZcb{}}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+0.1732050807568861
+Mean d: 29.20 ± 0.44
+Mean L: 61.80 ± 0.10
+    \end{Verbatim}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{13}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{n}{L} \PY{o}{=} \PY{l+m+mf}{61.8}
+\PY{n}{dL} \PY{o}{=} \PY{l+m+mf}{0.15}
+
+\PY{n}{d\PYZus{}rot} \PY{o}{=} \PY{l+m+mf}{28.50}
+\PY{n}{dd\PYZus{}rot} \PY{o}{=} \PY{l+m+mf}{0.44}
+
+\PY{n}{d\PYZus{}blau} \PY{o}{=} \PY{l+m+mf}{29.20}
+\PY{n}{dd\PYZus{}blau} \PY{o}{=} \PY{l+m+mf}{0.44}
+
+\PY{k}{def}\PY{+w}{ }\PY{n+nf}{calc\PYZus{}f}\PY{p}{(}\PY{n}{L}\PY{p}{,} \PY{n}{d}\PY{p}{)}\PY{p}{:}
+    \PY{k}{return} \PY{p}{(}\PY{n}{L}\PY{o}{*}\PY{o}{*}\PY{l+m+mi}{2} \PY{o}{\PYZhy{}} \PY{n}{d}\PY{o}{*}\PY{o}{*}\PY{l+m+mi}{2}\PY{p}{)} \PY{o}{/} \PY{p}{(}\PY{l+m+mi}{4} \PY{o}{*} \PY{n}{L}\PY{p}{)}
+
+\PY{k}{def}\PY{+w}{ }\PY{n+nf}{calc\PYZus{}df}\PY{p}{(}\PY{n}{L}\PY{p}{,} \PY{n}{dL}\PY{p}{,} \PY{n}{d}\PY{p}{,} \PY{n}{dd}\PY{p}{)}\PY{p}{:}
+    \PY{n}{term1} \PY{o}{=} \PY{p}{(}\PY{p}{(}\PY{n}{L}\PY{o}{*}\PY{o}{*}\PY{l+m+mi}{2} \PY{o}{+} \PY{n}{d}\PY{o}{*}\PY{o}{*}\PY{l+m+mi}{2}\PY{p}{)} \PY{o}{/} \PY{p}{(}\PY{l+m+mi}{4} \PY{o}{*} \PY{n}{L}\PY{o}{*}\PY{o}{*}\PY{l+m+mi}{2}\PY{p}{)}\PY{p}{)} \PY{o}{*} \PY{n}{dL}
+    \PY{n}{term2} \PY{o}{=} \PY{p}{(}\PY{o}{\PYZhy{}}\PY{n}{d} \PY{o}{/} \PY{p}{(}\PY{l+m+mi}{2} \PY{o}{*} \PY{n}{L}\PY{p}{)}\PY{p}{)} \PY{o}{*} \PY{n}{dd}
+    \PY{k}{return} \PY{n}{np}\PY{o}{.}\PY{n}{sqrt}\PY{p}{(}\PY{n}{term1}\PY{o}{*}\PY{o}{*}\PY{l+m+mi}{2} \PY{o}{+} \PY{n}{term2}\PY{o}{*}\PY{o}{*}\PY{l+m+mi}{2}\PY{p}{)}
+
+\PY{n}{f\PYZus{}rot} \PY{o}{=} \PY{n}{calc\PYZus{}f}\PY{p}{(}\PY{n}{L}\PY{p}{,} \PY{n}{d\PYZus{}rot}\PY{p}{)}
+\PY{n}{df\PYZus{}rot} \PY{o}{=} \PY{n}{calc\PYZus{}df}\PY{p}{(}\PY{n}{L}\PY{p}{,} \PY{n}{dL}\PY{p}{,} \PY{n}{d\PYZus{}rot}\PY{p}{,} \PY{n}{dd\PYZus{}rot}\PY{p}{)}
+
+\PY{n}{f\PYZus{}blau} \PY{o}{=} \PY{n}{calc\PYZus{}f}\PY{p}{(}\PY{n}{L}\PY{p}{,} \PY{n}{d\PYZus{}blau}\PY{p}{)}
+\PY{n}{df\PYZus{}blau} \PY{o}{=} \PY{n}{calc\PYZus{}df}\PY{p}{(}\PY{n}{L}\PY{p}{,} \PY{n}{dL}\PY{p}{,} \PY{n}{d\PYZus{}blau}\PY{p}{,} \PY{n}{dd\PYZus{}blau}\PY{p}{)}
+
+\PY{n+nb}{print}\PY{p}{(}\PY{l+s+sa}{f}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Red: f = }\PY{l+s+si}{\PYZob{}}\PY{n}{f\PYZus{}rot}\PY{l+s+si}{:}\PY{l+s+s2}{.4f}\PY{l+s+si}{\PYZcb{}}\PY{l+s+s2}{ +/\PYZhy{} }\PY{l+s+si}{\PYZob{}}\PY{n}{df\PYZus{}rot}\PY{l+s+si}{:}\PY{l+s+s2}{.4f}\PY{l+s+si}{\PYZcb{}}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\PY{n+nb}{print}\PY{p}{(}\PY{l+s+sa}{f}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Blue: f = }\PY{l+s+si}{\PYZob{}}\PY{n}{f\PYZus{}blau}\PY{l+s+si}{:}\PY{l+s+s2}{.4f}\PY{l+s+si}{\PYZcb{}}\PY{l+s+s2}{ +/\PYZhy{} }\PY{l+s+si}{\PYZob{}}\PY{n}{df\PYZus{}blau}\PY{l+s+si}{:}\PY{l+s+s2}{.4f}\PY{l+s+si}{\PYZcb{}}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+Red: f = 12.1642 +/- 0.1112
+Blue: f = 12.0008 +/- 0.1136
+    \end{Verbatim}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{15}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{c+c1}{\PYZsh{} Brennweite Objektiv}
+\PY{n}{f\PYZus{}1} \PY{o}{=} \PY{l+m+mf}{40.0}  \PY{c+c1}{\PYZsh{} in mm (4 cm)}
+
+\PY{c+c1}{\PYZsh{} Bildweite b und Fehler}
+\PY{n}{b} \PY{o}{=} \PY{l+m+mf}{250.0}  \PY{c+c1}{\PYZsh{} in mm (25.0 cm)}
+\PY{n}{db} \PY{o}{=} \PY{l+m+mf}{1.0}   \PY{c+c1}{\PYZsh{} in mm (0.1 cm)}
+
+\PY{c+c1}{\PYZsh{} Zwischenbild Messstrecke und Fehler}
+\PY{n}{B} \PY{o}{=} \PY{l+m+mf}{8.0}    \PY{c+c1}{\PYZsh{} in mm}
+\PY{n}{dB} \PY{o}{=} \PY{l+m+mf}{0.3}   \PY{c+c1}{\PYZsh{} in mm}
+\PY{n}{n} \PY{o}{=} \PY{l+m+mf}{16.0}   \PY{c+c1}{\PYZsh{} Anzahl der Striche}
+
+\PY{c+c1}{\PYZsh{} Spaltbreiten für grünes Licht (aus den 3 Messungen)}
+\PY{n}{D\PYZus{}messungen} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{array}\PY{p}{(}\PY{p}{[}\PY{l+m+mf}{0.200}\PY{p}{,} \PY{l+m+mf}{0.300}\PY{p}{,} \PY{l+m+mf}{0.300}\PY{p}{]}\PY{p}{)} \PY{c+c1}{\PYZsh{} in mm}
+\PY{c+c1}{\PYZsh{} Abstand Spalt \PYZhy{} Objekt für grünes Licht}
+\PY{n}{s} \PY{o}{=} \PY{l+m+mf}{38.0}   \PY{c+c1}{\PYZsh{} in mm (laut Protokoll)}
+\PY{n}{ds} \PY{o}{=} \PY{l+m+mf}{0.1}   \PY{c+c1}{\PYZsh{} in mm (angenommener Ablesefehler, anpassen falls nötig)}
+
+\PY{c+c1}{\PYZsh{} Wellenlänge grünes Licht}
+\PY{n}{lam} \PY{o}{=} \PY{l+m+mf}{550e\PYZhy{}6} \PY{c+c1}{\PYZsh{} in mm (550 nm)}
+
+
+\PY{c+c1}{\PYZsh{} \PYZhy{}\PYZhy{}\PYZhy{} 1. Berechnung der Gitterkonstante \PYZhy{}\PYZhy{}\PYZhy{}}
+
+\PY{c+c1}{\PYZsh{} Abbildungsmaßstab beta}
+\PY{n}{beta} \PY{o}{=} \PY{n}{b} \PY{o}{/} \PY{n}{f\PYZus{}1} \PY{o}{\PYZhy{}} \PY{l+m+mi}{1}
+\PY{n}{dbeta} \PY{o}{=} \PY{n}{db} \PY{o}{/} \PY{n}{f\PYZus{}1}  \PY{c+c1}{\PYZsh{} Fehlerfortpflanzung für beta}
+
+\PY{c+c1}{\PYZsh{} Strichabstand im Zwischenbild}
+\PY{n}{B\PYZus{}strich} \PY{o}{=} \PY{n}{B} \PY{o}{/} \PY{n}{n}
+\PY{n}{dB\PYZus{}strich} \PY{o}{=} \PY{n}{dB} \PY{o}{/} \PY{n}{n}
+
+\PY{c+c1}{\PYZsh{} Gitterkonstante des Objekts}
+\PY{n}{G\PYZus{}strich} \PY{o}{=} \PY{n}{B\PYZus{}strich} \PY{o}{/} \PY{n}{beta}
+\PY{c+c1}{\PYZsh{} Gaußsche Fehlerfortpflanzung für G\PYZus{}strich}
+\PY{n}{dG\PYZus{}strich} \PY{o}{=} \PY{n}{G\PYZus{}strich} \PY{o}{*} \PY{n}{np}\PY{o}{.}\PY{n}{sqrt}\PY{p}{(}\PY{p}{(}\PY{n}{dB\PYZus{}strich} \PY{o}{/} \PY{n}{B\PYZus{}strich}\PY{p}{)}\PY{o}{*}\PY{o}{*}\PY{l+m+mi}{2} \PY{o}{+} \PY{p}{(}\PY{n}{dbeta} \PY{o}{/} \PY{n}{beta}\PY{p}{)}\PY{o}{*}\PY{o}{*}\PY{l+m+mi}{2}\PY{p}{)}
+
+\PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{\PYZhy{}\PYZhy{}\PYZhy{} 1. Gitterkonstante \PYZhy{}\PYZhy{}\PYZhy{}}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\PY{n+nb}{print}\PY{p}{(}\PY{l+s+sa}{f}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Abbildungsmaßstab beta = }\PY{l+s+si}{\PYZob{}}\PY{n}{beta}\PY{l+s+si}{:}\PY{l+s+s2}{.3f}\PY{l+s+si}{\PYZcb{}}\PY{l+s+s2}{ +/\PYZhy{} }\PY{l+s+si}{\PYZob{}}\PY{n}{dbeta}\PY{l+s+si}{:}\PY{l+s+s2}{.3f}\PY{l+s+si}{\PYZcb{}}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\PY{n+nb}{print}\PY{p}{(}\PY{l+s+sa}{f}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Strichabstand Zwischenbild B\PYZus{}strich = }\PY{l+s+si}{\PYZob{}}\PY{n}{B\PYZus{}strich}\PY{l+s+si}{:}\PY{l+s+s2}{.4f}\PY{l+s+si}{\PYZcb{}}\PY{l+s+s2}{ +/\PYZhy{} }\PY{l+s+si}{\PYZob{}}\PY{n}{dB\PYZus{}strich}\PY{l+s+si}{:}\PY{l+s+s2}{.4f}\PY{l+s+si}{\PYZcb{}}\PY{l+s+s2}{ mm}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\PY{n+nb}{print}\PY{p}{(}\PY{l+s+sa}{f}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Gitterkonstante G\PYZus{}strich = }\PY{l+s+si}{\PYZob{}}\PY{n}{G\PYZus{}strich}\PY{o}{*}\PY{l+m+mi}{1000}\PY{l+s+si}{:}\PY{l+s+s2}{.1f}\PY{l+s+si}{\PYZcb{}}\PY{l+s+s2}{ +/\PYZhy{} }\PY{l+s+si}{\PYZob{}}\PY{n}{dG\PYZus{}strich}\PY{o}{*}\PY{l+m+mi}{1000}\PY{l+s+si}{:}\PY{l+s+s2}{.1f}\PY{l+s+si}{\PYZcb{}}\PY{l+s+s2}{ µm}\PY{l+s+se}{\PYZbs{}n}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+
+
+\PY{c+c1}{\PYZsh{} \PYZhy{}\PYZhy{}\PYZhy{} 2. Theoretisches Auflösungsvermögen (Rayleigh) \PYZhy{}\PYZhy{}\PYZhy{}}
+
+\PY{c+c1}{\PYZsh{} Mittelwert und Fehler der Spaltbreite D (Standardabweichung des Mittelwerts)}
+\PY{n}{D\PYZus{}mean} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{mean}\PY{p}{(}\PY{n}{D\PYZus{}messungen}\PY{p}{)}
+\PY{n}{dD\PYZus{}mean} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{std}\PY{p}{(}\PY{n}{D\PYZus{}messungen}\PY{p}{,} \PY{n}{ddof}\PY{o}{=}\PY{l+m+mi}{1}\PY{p}{)} \PY{o}{/} \PY{n}{np}\PY{o}{.}\PY{n}{sqrt}\PY{p}{(}\PY{n+nb}{len}\PY{p}{(}\PY{n}{D\PYZus{}messungen}\PY{p}{)}\PY{p}{)}
+
+\PY{c+c1}{\PYZsh{} Numerische Apertur NA (Näherung für kleine Winkel)}
+\PY{n}{NA} \PY{o}{=} \PY{n}{D\PYZus{}mean} \PY{o}{/} \PY{p}{(}\PY{l+m+mi}{2} \PY{o}{*} \PY{n}{s}\PY{p}{)}
+\PY{c+c1}{\PYZsh{} Fehler der NA (Gauß)}
+\PY{n}{dNA} \PY{o}{=} \PY{n}{NA} \PY{o}{*} \PY{n}{np}\PY{o}{.}\PY{n}{sqrt}\PY{p}{(}\PY{p}{(}\PY{n}{dD\PYZus{}mean} \PY{o}{/} \PY{n}{D\PYZus{}mean}\PY{p}{)}\PY{o}{*}\PY{o}{*}\PY{l+m+mi}{2} \PY{o}{+} \PY{p}{(}\PY{n}{ds} \PY{o}{/} \PY{n}{s}\PY{p}{)}\PY{o}{*}\PY{o}{*}\PY{l+m+mi}{2}\PY{p}{)}
+
+\PY{c+c1}{\PYZsh{} Theoretisches Auflösungsvermögen G\PYZus{}min}
+\PY{n}{G\PYZus{}min\PYZus{}theo} \PY{o}{=} \PY{l+m+mf}{0.61} \PY{o}{*} \PY{n}{lam} \PY{o}{/} \PY{n}{NA}
+\PY{c+c1}{\PYZsh{} Fehler für G\PYZus{}min\PYZus{}theo}
+\PY{n}{dG\PYZus{}min\PYZus{}theo} \PY{o}{=} \PY{n}{G\PYZus{}min\PYZus{}theo} \PY{o}{*} \PY{p}{(}\PY{n}{dNA} \PY{o}{/} \PY{n}{NA}\PY{p}{)}
+
+\PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{\PYZhy{}\PYZhy{}\PYZhy{} 2. Theoretisches Auflösungsvermögen \PYZhy{}\PYZhy{}\PYZhy{}}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\PY{n+nb}{print}\PY{p}{(}\PY{l+s+sa}{f}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Kritische Spaltbreite D (Grün) = }\PY{l+s+si}{\PYZob{}}\PY{n}{D\PYZus{}mean}\PY{l+s+si}{:}\PY{l+s+s2}{.4f}\PY{l+s+si}{\PYZcb{}}\PY{l+s+s2}{ +/\PYZhy{} }\PY{l+s+si}{\PYZob{}}\PY{n}{dD\PYZus{}mean}\PY{l+s+si}{:}\PY{l+s+s2}{.4f}\PY{l+s+si}{\PYZcb{}}\PY{l+s+s2}{ mm}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\PY{n+nb}{print}\PY{p}{(}\PY{l+s+sa}{f}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Numerische Apertur NA = }\PY{l+s+si}{\PYZob{}}\PY{n}{NA}\PY{l+s+si}{:}\PY{l+s+s2}{.5f}\PY{l+s+si}{\PYZcb{}}\PY{l+s+s2}{ +/\PYZhy{} }\PY{l+s+si}{\PYZob{}}\PY{n}{dNA}\PY{l+s+si}{:}\PY{l+s+s2}{.5f}\PY{l+s+si}{\PYZcb{}}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\PY{n+nb}{print}\PY{p}{(}\PY{l+s+sa}{f}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Theo. Auflösungsvermögen G\PYZus{}min\PYZus{}theo = }\PY{l+s+si}{\PYZob{}}\PY{n}{G\PYZus{}min\PYZus{}theo}\PY{o}{*}\PY{l+m+mi}{1000}\PY{l+s+si}{:}\PY{l+s+s2}{.1f}\PY{l+s+si}{\PYZcb{}}\PY{l+s+s2}{ +/\PYZhy{} }\PY{l+s+si}{\PYZob{}}\PY{n}{dG\PYZus{}min\PYZus{}theo}\PY{o}{*}\PY{l+m+mi}{1000}\PY{l+s+si}{:}\PY{l+s+s2}{.1f}\PY{l+s+si}{\PYZcb{}}\PY{l+s+s2}{ µm}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+
+\PY{n+nb}{print}\PY{p}{(}\PY{l+s+sa}{f}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+se}{\PYZbs{}n}\PY{l+s+se}{\PYZbs{}n}\PY{l+s+s1}{ich sitze hier im Audimax und verliere meinen}\PY{l+s+se}{\PYZbs{}n}\PY{l+s+s1}{Verstand als ich gesehen habe, dass ich noch mehr Fehlerfortplanzung}\PY{l+s+se}{\PYZbs{}n}\PY{l+s+s1}{machen muss WTRFFTFWYT RUFSAF KSAFDR FHKJL ASFKLJ ASFHASF HSAFKLJA}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+
+\PY{c+c1}{\PYZsh{} das ist AI btw }
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+--- 1. Gitterkonstante ---
+Abbildungsmaßstab beta = 5.250 +/- 0.025
+Strichabstand Zwischenbild B\_strich = 0.5000 +/- 0.0187 mm
+Gitterkonstante G\_strich = 95.2 +/- 3.6 µm
+
+--- 2. Theoretisches Auflösungsvermögen ---
+Kritische Spaltbreite D (Grün) = 0.2667 +/- 0.0333 mm
+Numerische Apertur NA = 0.00351 +/- 0.00044
+Theo. Auflösungsvermögen G\_min\_theo = 95.6 +/- 12.0 µm
+
+
+ich sitze hier im Audimax und verliere meinen
+Verstand als ich gesehen habe, dass ich noch mehr Fehlerfortplanzung
+machen muss WTRFFTFWYT RUFSAF KSAFDR FHKJL ASFKLJ ASFHASF HSAFKLJA
+    \end{Verbatim}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{ }{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+
+\end{Verbatim}
+\end{tcolorbox}
+
+

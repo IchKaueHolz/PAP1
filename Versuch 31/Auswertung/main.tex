@@ -31,6 +31,8 @@
 
 \input{../../jupyterpackages.tex}
 
+
+
 % jupyter nbconvert --to latex 'Path'
 % enferne usepackages und begin{document} und end{document}
 % \input in main.tex mit \input{Path}
@@ -116,7 +118,7 @@
 
 \bigskip
 \begin{tcolorbox}[colback=gray!5,colframe=gray!60,boxrule=0.8pt,arc=0.01mm,title=KI-Hinweis]
-    Für die sprachliche Formulierung dieses Protokolls wurde in den Abschnitten Einleitung \ref{sec:einleitung} und Grundlagen \ref{sec:grundlagen} KI-gestützte Textgenerierung verwendet. 
+    Für die sprachliche Formulierung dieses Protokolls wurde in den Abschnitten Einleitung \ref{sec:einleitung} und Grundlagen \ref{sec:grundlagen} KI-gestützte Textgenerierung verwendet. Im letzten Pyhton Skript wurde für die Fehlerberechnung ebenfalls KI-gestütze Programmierunterstützung genutzt. Die Fehlerformeln wurden einfach zu ehrenlos.
 \end{tcolorbox}
 
 
@@ -412,7 +414,7 @@ Da exakt diese Gitterlinien bei Spaltverengung verschwinden, entspricht dieser W
 \paragraph{Theoretisches Auflösungsvermögen}
 Für grünes Licht ($\lambda = 550\,\text{nm}$) ergab sich eine kritische Spaltbreite von $D_{\text{grün}} = 0.267 \pm 0.03\,\text{mm}$ bei einem Spaltabstand $s = 37.67\,\text{mm}$. 
 Die numerische Apertur beträgt $NA \approx \frac{D}{2s} \approx 0.00354 \pm 0.0004$. 
-Nach dem Rayleigh-Kriterium (Gl. \ref{eq:rayleigh}) berechnet sich das theoretische Auflösungsvermögen zu:
+Nach dem Rayleigh-Kriterium (Gl. \ref{eq:Rayleigh}) berechnet sich das theoretische Auflösungsvermögen zu:
 \begin{equation}
     G_{\text{min, theo}} = 0.61 \cdot \frac{\lambda}{NA} = 94.8 \pm 10.7\,\text{\mu m}
 \end{equation}
@@ -422,24 +424,25 @@ Das experimentelle ($95.2\,\text{\mu m}$) und das theoretische ($94.8\,\text{\mu
 Für blaues Licht (kleineres $\lambda$) verschwanden die Linien bei $D_{\text{blau}} = 0.200\,\text{mm}$, für rotes Licht (größeres $\lambda$) erst bei $D_{\text{rot}} \approx 0.367\,\text{mm}$. Dies bestätigt die direkte Proportionalität ($G_{\text{min}} \propto \lambda$) der Rayleigh-Gleichung: Kurzwelliges Licht beugt sich schwächer, weshalb feinere Strukturen auflösbar bleiben.
 
 \paragraph{Literaturvergleich}
-Der Vergleich der bestimmten Gitterkonstante mit dem Literaturwert ($G_{\text{lit}} = 100\,\text{\mu m}$) liefert die Abweichung:
+Der Vergleich der bestimmten Gitterkonstante mit dem Literaturwert ($G_{\text{lit}} = 100\,\text{\mu m}$), der auf dem Kreuzgitter stand liefert die Abweichung:
 \begin{equation}
     \frac{|G_{\text{min, exp}} - G_{\text{lit}}|}{G_{\text{lit}}} = 4.8\% \quad \text{bzw.} \quad \sigma = \frac{|95.2 - 100|}{3.6} = 1.33\sigma
 \end{equation}   
 
 \begin{resultbox}[Ergebnis Aufgabe 4]
-    Das experimentelle Auflösungsvermögen ($G_{\text{min, exp}} = 95.2 \pm 3.6\,\text{\mu m}$) und der theoretische Wert ($G_{\text{min, theo}} = 94.8 \pm 10.7\,\text{\mu m}$) stimmen hervorragend überein. Die Abweichung vom Literaturwert ($100\,\text{\mu m}$) beträgt nur $4.8\%$ ($1.33\sigma$) und liegt damit innerhalb einer akzeptablen Messunsicherheit.
+    Das experimentelle Auflösungsvermögen ($G_{\text{min, exp}} = 95.2 \pm 3.6\,\text{\mu m}$) und der theoretische Wert ($G_{\text{min, theo}} = 94.8 \pm 10.7\,\text{\mu m}$) stimmen hervorragend überein. Die Abweichung vom Literaturwert ($100\,\text{\mu m}$) beträgt nur $4.8\%$ ($1.33\sigma$) und liegt damit innerhalb einer akzeptablen Messunsicherheit. Die Messung bestätigt die Beugungsbegrenzung des Mikroskops und die Abhängigkeit des Auflösungsvermögens von der Wellenlänge des Lichts.
 \end{resultbox}
 
 
 \section{Diskussion}
-In Aufgabe 2 sind die Messwerte der Bessel-Messung mit den angegebenen Werten der Linse verglichen worden. Die Abweichung von $1.33\%$ bzw. $1.45\sigma$ ist im Rahmen der Messunsicherheit noch akzeptabel, jedoch wird das Besselverfahren als sehr genau angesehen. Die Abweichung könnte auf systematische Fehler zurückzuführen sein, wie z.B. ungenaue Positionierung der Linse oder des Schirms. Bei der Messung des Achromaten in Aufgabe 1 wäre eine Abweichung eher durch statische Fehler zu erklären, da die Gaußsche Linsengleichung für Achsennahe Strahlen gilt und die Abbildung von achsenfernen Strahlen zu Abweichungen führen kann. Die Messung der Brennweite des Achromaten in Aufgabe 1 ist jedoch konsistent mit den theoretischen Erwartungen und den Messwerten, was auf eine gute Genauigkeit der Messung hinweist.
+In Aufgabe 2 sind die Messwerte der Bessel-Messung mit den angegebenen Werten der Linse verglichen worden. Die Abweichung von $1.33\%$ bzw. $1.45\sigma$ ist im Rahmen der Messunsicherheit noch akzeptabel, jedoch wird das Besselverfahren als sehr genau angesehen. Die Abweichung könnte auf systematische Fehler zurückzuführen sein, wie z.B. ungenaue Positionierung der Linse oder des Schirms. Es ist sehr schwer, den genauen Fokuspunkt zu bestimmen, da die Messung von kleinen Abständen abhängt, die in der Praxis oft nicht exakt messbar sind. Vor allen dingen, bei der Position, wo die Linse das Bild verkleinert. Bei der Messung des Achromaten in Aufgabe 1 wäre eine Abweichung eher durch statische Fehler zu erklären, da die Gaußsche Linsengleichung für Achsennahe Strahlen gilt und die Abbildung von achsenfernen Strahlen zu Abweichungen führen kann. Die Messung der Brennweite des Achromaten in Aufgabe 1 ist jedoch konsistent mit den theoretischen Erwartungen und den Messwerten, was auf eine gute Genauigkeit der Messung hinweist. Des Weiteren ist es möglich, dass Schirm, Linsen und Objekt nicht exakt senkrecht zu der optischen Achse ausgerichtet waren, da sich alle Aufbauten frei drehen konnten. Dies könnte zu einer leichten Verzerrung der Abbildung führen, die sich in den Messwerten widerspiegelt. In Aufgabe 4 ist das experimentelle Auflösungsvermögen des Mikroskops mit dem theoretischen Wert und dem Literaturwert verglichen worden. Die Abweichung von $4.8\%$ bzw. $1.33\sigma$ ist im Rahmen der Messunsicherheit noch akzeptabel. Die Messung bestätigt die Beugungsbegrenzung des Mikroskops und die Abhängigkeit des Auflösungsvermögens von der Wellenlänge des Lichts. Insgesamt sind die Ergebnisse der Experimente konsistent mit den theoretischen Erwartungen und den Messwerten, was auf eine gute Genauigkeit der Messungen hinweist. Jedoch war auch hier die Messung erschwert, da nicht immer Verlässlich beobachtet werden konnte, wann die Linien verschwinden. Dies könnte zu einer leichten Verzerrung der Messwerte führen, die sich in den Ergebnissen widerspiegelt.
 
+\section{Fazit}
+Zum Ende lässt sich sagen, dass die Experimente erfolgreich durchgeführt wurden und die Ergebnisse im Rahmen der Messunsicherheiten konsistent mit den theoretischen Erwartungen und den Messwerten sind. Die Bestimmung der Brennweite der Linsen mittels Bessel-Verfahren und die Untersuchung der Abbildungsfehler haben gezeigt, dass die Messungen präzise und zuverlässig waren. Die Analyse des Mikroskops hat die Beugungsbegrenzung und die Abhängigkeit des Auflösungsvermögens von der Wellenlänge des Lichts bestätigt. Insgesamt konnten die grundlegenden Prinzipien der geometrischen Optik und der Wellenoptik erfolgreich veranschaulicht und experimentell überprüft werden. Sehr interessant fande ich auch den Einfluss der Wellenlänge auf das Auflösungsvermögen des Mikroskops, da dies die Bedeutung der Lichtfarbe in der optischen Abbildung verdeutlicht. Die Experimente haben somit nicht nur theoretische Konzepte bestätigt, sondern auch praktische Fähigkeiten in der Durchführung und Auswertung von optischen Messungen vermittelt. Ausserdem war es sehr interessant, die Abbildungsfehler zu beobachten und sehr beeindruckend wie die Ringblende die sphärische Aberration korrigiert. Das war ein wirklicher Wow-Effekt.
 
 \clearpage
 
 \listoffigures
-
 
 \listoftables
 
@@ -448,33 +451,10 @@ In Aufgabe 2 sind die Messwerte der Bessel-Messung mit den angegebenen Werten de
     \bibitem{ilberg1988physikalisches} W. Ilberg, M. Krötzsch, \emph{Physikalisches Praktikum für Anfänger}, BSB B. G. Teubner Verlagsgesellschaft, Leipzig (1985).
 \end{thebibliography}
 
+\appendix{Jupyter Notebook Code}
+\section{Anhang - Jupyter Notebook Code}
+
+\include{code/V31.tex}
 
 
-
-\begin{comment}
-
-\begin{table}[H]
-    \centering
-    \caption{Mess- und Geräteparameter für die exemplarische Berechnung (Messung 28).}
-    \label{tab:parameter_messung_28}
-    \begin{tabular}{ll}
-        \toprule
-        \textbf{Größe} & \textbf{Wert} \\
-        \midrule
-        Fallstrecke & $s_1 = 10\,\text{Skt} = 5.00 \cdot 10^{-4}\,\text{m}$ \\
-        Fallzeit & $t_1 = 11.85\,\text{s}$ \\
-        Steigstrecke & $s_2 = 10\,\text{Skt} = 5.00 \cdot 10^{-4}\,\text{m}$ \\
-        Steigzeit & $t_2 = 18.19\,\text{s}$ \\
-        Skalenteilung & $1\,\text{Skt} = 5.00 \cdot 10^{-5}\,\text{m}$ \\
-        Kondensatorspannung & $U = 500\,\text{V}$ \\
-        Plattenabstand & $d = 6.00 \cdot 10^{-3}\,\text{m}$ \\
-        Luftdruck & $p = 100285\,\text{Pa}$ \\
-        Erdbeschleunigung & $g = 9.81\,\frac{\text{m}}{\text{s}^2}$ \\
-        Dichtedifferenz & $\rho = \rho_{\text{Öl}} - \rho_{\text{Luft}} = 871.21\,\frac{\text{kg}}{\text{m}^3}$ \\
-        Unkorrigierte Luftviskosität & $\eta_0 = 1.81 \cdot 10^{-5}\,\text{Pa}\cdot\text{s}$ \\
-        Cunningham-Konstante & $b = 7.78 \cdot 10^{-3}\,\text{Pa}\cdot\text{m}$ \\
-        \bottomrule
-    \end{tabular}
-\end{table}
-\end{comment}
 \end{document}
