@@ -14,7 +14,7 @@
 \numberwithin{table}{section}
 \numberwithin{figure}{section}
 \usepackage{siunitx}
-\sisetup{locale=DE, separate-uncertainty=true, per-mode=fraction}
+\sisetup{locale=US, separate-uncertainty=true, per-mode=fraction}
 \usepackage{booktabs}
 \usepackage{multirow}
 \usepackage{graphicx}
@@ -149,6 +149,11 @@ Aufgrund von Dispersion ist der Brechungsindex $n$ des Prismas eine Funktion der
 
 Um nun das Emissionsspektrum einer Lichtquelle zu bestimmen wird zunächst die Winkeldispersionskurve $\delta(\lambda)$ des Prismas aufgenommen, indem die bekannten Spektrallinien einer Quecksilberdampflampe vermessen werden. Diese Eichkurve dient im Anschluss dazu, die unbekannten Emissionswellenlängen eines Heliumspektrums präzise zu bestimmen. Im Rahmen des Versuches wird zudem die Rydberg-Konstante experimentell abgeleitet, indem die sichtbare Balmer-Serie im Wasserstoffspektrum vermessen wird. Das experimentelle Verständnis dieser optischen und quantenmechanischen Effekte bildet eine essenzielle Basis für die Spektroskopie in der Experimentalphysik.
 
+Mithilfe der ermittelten Wellenlängen des Wasserstoffspektrums kann die Rydberg-Konstante $R_\infty$ experimentell bestimmt werden. Die Wellenlängen der Übergänge von höheren Energieniveaus zu den niedrigeren Energieniveaus lassen sich durch die Rydberg-Formel beschreiben:
+\begin{equation}
+    \frac{1}{\lambda} = R_\infty \left( \frac{1}{n^2} - \frac{1}{m^2} \right)\label{eq:Rydberg}
+\end{equation}
+wobei $n$ und $m$ ganze Zahlen sind. Da die Balmer-Serie die Übergänge zwischen den Energieniveaus $n=3, 4, 5, ...$ und $m=2$ beschreibt, kann $R_\infty$ durch die Messung der Wellenlängen der Balmer-Linien und die Anwendung der Rydberg-Formel bestimmt werden.
 
 \section{Messprotokoll und Durchführung}
 
@@ -190,9 +195,177 @@ Zuletzt wurde das Spektrometer mit einer Wasserstofflampe beleuchtet. Bei unver�
 
 \subsection{Aufgabe 1: Zeichnen der Eichkurve mit den bekannten Spektrallinien des Quecksilberspektrums}
 
+Mithilfe der Eichkurve, welche die bekannten Spektrallinein des Quecksilberspektrums mit den gemessenen Ablenkwinkeln $\delta$ in Beziehung setzt (Tabelle \ref{tbl: Messwerte_Hg}), können die unbekannten Wellenlängen des Heliumspektrums bestimmt werden. Die Eichkurve wird durch eine Ausgleichsgerade der Messwerte erstellt, wobei die bekannten Wellenlängen der Quecksilberlinien als Referenzpunkte dienen.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\textwidth]{img/Diagramm.JPG}
+    \caption{Eichkurve mit abgelesenen Wellenlängen}
+    \label{fig:eichkurve_hg}
+\end{figure}
+
+Die abgelesen Messwerte des Helium-Spektrums werden in die Eichkurve eingesetzt, um die entsprechenden Wellenlängen zu bestimmen. 
+
+\medskip
+Die Unsicherheiten der Eichkurve berechnen sich aus der Unischerheit der Messwerte der Ablenkwinkel $\delta$. Die Unsicherheiten der Wellenlängen ergeben sich eben so aus der Unsicherheit der Messwerte der Ablenkwinkel $\delta$ und der Eichkurve, sowie dem Ablesefehler der Wellenlängen. Die Unsicherheiten der Literaturwerte sind vernachlässigbar.
+
+Es ergibt sich somit für die Unsicherheit der Winkel:
+
+\begin{equation}
+    \Delta \delta_\text{min} =\sqrt{(\Delta \delta_\text{Ablesefehler})^2 + (\Delta \delta_\text{Eichkurve})^2} = \sqrt{(0.05^\circ)^2 + (0.05^\circ)^2} = 0.07^\circ
+\end{equation}
+
+Die gesamte Unsicherheit der Wellenlängen berechnet sich aus der Unsicherheit der Ablenkwinkel $\delta_\text{min}$ und der Eichkurve, sowie dem Ablesefehler der Wellenlängen:
+
+\begin{equation}
+    \Delta_\text{ges} = \sqrt{\left(\Delta \delta_\text{min}\right)^2 + \left(\Delta \lambda\right)^2} = \sqrt{0.07^2 + 2^2 } = 2.0\label{eq:gesamt_unc}
+\end{equation}
+
+Somit ergibt sich für die abgelesen Wellenlängen des Helium Spektrums eine Gesamtunsicherheit von $\pm 2nm$
+
+Die Ergebnisse für Helium sind: 
+\begin{table}[H]
+    \centering
+    \caption{Abgelesene Messwerte aus der Eichkurve}\label{He-tabelle}
+    \begin{tabular}{|c|c|c|c|}
+        \toprule
+        \textbf{Nr.} & \textbf{Ablenkwinkel $\delta$ [°]} & \textbf{Wellenlänge $\lambda$ [nm]} & \textbf{Literaturwert [nm]}\\
+        \midrule
+        1 & $2.65\pm 0.05$ & $687\pm 2$ & $667.8$ \\
+        2 & $2.08\pm 0.05$ & $595\pm 2$ & $587.6$ \\
+        3 & $1.12\pm 0.05$ & $506\pm 2$ & $501.6$ \\
+        4 & $1.00\pm 0.05$ & $500\pm 2$ & $492.2$ \\
+        5 & $0.62\pm 0.05$ & $480\pm 2$ & $471.3$ \\
+        6 & $0.08\pm 0.05$ & $452\pm 2$ & $447.1$ \\
+    \bottomrule
+    \end{tabular}
+\end{table}
+
+Die relativen Fehler berechnen sich durch:
+
+\begin{equation}
+    \Delta_\text{rel} \lambda = \frac{\lambda_\text{lit} - \lambda_\text{mess}}{\lambda_\text{lit}}
+\end{equation}
+
+Die Sigma-Abweichungen der Wellenlängen berechnen sich über:
+
+\begin{equation}
+    \sigma = \frac{\lambda_\text{lit} - \lambda_\text{mess}}{\Delta_\text{ges}}
+\end{equation}
+
+Die Tabelle \ref{He-tabelle} vervollständigt sich somit zu:
+\begin{table}[H]
+    \centering
+    \caption{Messwerte mit Fehlerangaben}\label{He-tabelle-vollständig}
+    \begin{tabular}{ccccc}
+        \toprule
+        \textbf{Nr.} & \textbf{ $\lambda_\text{mess}$ [nm]} & \textbf{$\lambda_\text{lit}$ [nm]} & \textbf{rel. Fehler} [\%]& \textbf{$\sigma$-Abweichung}\\
+        \midrule
+        1 & $687\pm 2$ & $667.8$ & $ 2.8$ & $9.5$ \\
+        2 & $595\pm 2$ & $587.6$ & $ 1.2$ & $3.7$ \\
+        3 & $506\pm 2$ & $501.6$ & $ 0.9$ & $2.2$ \\
+        4 & $500\pm 2$ & $492.2$ & $ 1.6$ & $3.9$ \\
+        5 & $480\pm 2$ & $471.3$ & $ 1.9$ & $4.3$ \\
+        6 & $452\pm 2$ & $447.1$ & $ 1.1$ & $2.5$ \\
+    \bottomrule
+    \end{tabular}
+\end{table} 
 
 
+\begin{resultbox}[Ergebnis]
+    Die abgelesenen Wellenlängen des Helium-Spektrums weichen im Mittel um $2.0\%$ von den Literaturwerten ab. Die größte Abweichung beträgt $9.5\sigma$.
+\end{resultbox}
 
+\subsection{Aufgabe 2: Bestimmung der Balmer-Serie}
+
+Auf dem Diagramm (Abbildung \ref{fig:eichkurve_hg}) sind die abgelesenen Messwerte des Wasserstoff-Spektrums in die Eichkurve eingesetzt, um die entsprechenden Wellenlängen zu bestimmen. 
+
+Die Gesamtunsicherheit der Wellenlängen beträgt $\pm 2$ nm, wie zuvor in Gleichung \ref{eq:gesamt_unc} berechnet. Je röter die Wellenlänge, desto niedriger ist die Energie des Photons. Somit lassen sich die Werte für die Hauptquantenzahlen $n$ erkennen. Die Balmer-Serie beschreibt die Übergänge auf $ m = 2$. 
+Es ergeben sich folgende Wellenlängen für die Balmer-Serie des Wasserstoff-Spektrums:
+\begin{table}[H]
+    \centering
+    \caption{Abgelesene Messwerte aus der Eichkurve}\label{H-tabelle}
+    \begin{tabular}{c c c c}
+        \toprule
+        \textbf{Nr.} & {\textbf{Ablenkwinkel $\delta$ [$^{\circ}$]}} & {\textbf{Wellenlänge $\lambda$ [nm]}} & \textbf{Hauptquantenzahl $n$} \\
+        \midrule
+        1 & \num{2.57(5)} & \num{666(2)} & 3 \\
+        2 & \num{0.92(5)} & \num{494(2)} & 4 \\
+        3 & \num{359.78(5)} & \num{442(2)} & 5 \\
+        4 & \num{359.17(5)} & \num{416(2)} & 6 \\
+        \bottomrule
+    \end{tabular}
+\end{table}
+
+Die Rydberg-Konstante kann mithilfe der ermittelten Wellenlängen des Wasserstoffspektrums  und Rydberg-Formel bestimmt werden. Die Wellenlängen der Übergänge von höheren Energieniveaus zu den niedrigeren Energieniveaus lassen sich durch die Rydberg-Formel Gleichung \ref{eq:Rydberg} berechnen. 
+Umstellen nach der Rydberg-Konstante $R_\infty$ ergibt sich:
+\begin{equation}
+    R_\infty = \frac{1}{\lambda} \frac{1}{\left( \frac{1}{n^2} - \frac{1}{2^2} \right)}
+\end{equation}
+
+Die Unsicherheit der Rydberg-Konstante berechnet sich aus der Gaus'schen Fehlerfortpflanzung:
+\begin{align}
+    \Delta R_\infty &= \sqrt{\left(\frac{\partial R_\infty}{\partial \lambda} \Delta \lambda\right)^2 + \left(\frac{\partial R_\infty}{\partial n} \Delta n\right)^2}\\
+    \Delta R_infty &= \sqrt{\left(-\frac{1}{\lambda^2} \frac{1}{\left( \frac{1}{n^2} - \frac{1}{2^2} \right)} \Delta \lambda\right)^2 + \left(\frac{1}{\lambda} \frac{2n^{-3}}{\left( \frac{1}{n^2} - \frac{1}{2^2} \right)^2} \Delta n\right)^2}
+\end{align}
+
+\medskip
+Es ergeben sich folgende Werte für die Rydberg-Konstante:
+\begin{table}[H]
+    \centering
+    \caption{Berechnete Werte für die Rydberg-Konstante}\label{Rydberg-tabelle}
+    \begin{tabular}{c c c c}
+        \toprule
+        \textbf{Nr.} & {\textbf{Wellenlänge $\lambda$ [nm]}} & {\textbf{$n$}} & {\textbf{Rydberg-Konstante $R_\infty$ [$\text{m}^{-1}$]}} \\
+        \midrule
+        1 & \num{666(2)} & 3 & \num{1.0811(32)e7} \\
+        2 & \num{494(2)} & 4 & \num{1.080(4)e7} \\
+        3 & \num{442(2)} & 5 & \num{1.077(5)e7} \\
+        4 & \num{416(2)} & 6 & \num{1.082(5)e7} \\
+        \bottomrule
+    \end{tabular}
+\end{table}
+
+Der Mittelwert der Rydberg-Konstante ergibt sich zu:
+\begin{equation}
+    R_\infty = 10799470\pm 19405 \Rightarrow R_\infty =  \num{1.0799(20)e7} \text{m}^{-1}
+\end{equation}
+
+\paragraph{Vergleich mit dem Literaturwert}
+
+Der Literaturwert für die Rydberg-Konstante beträgt:
+\begin{equation}
+    R_\infty^{\text{Literatur}} = \num{1.0973731568157(12)e7} \text{m}^{-1}\cite{wiki:Rydberg}
+\end{equation}
+
+Der relative Fehler der Rydberg-Konstante beträgt:
+\begin{equation}
+    \Delta_\text{rel} R_\infty = \frac{R_\infty^{\text{Literatur}} - R_\infty}{R_\infty^{\text{Literatur}}} = \frac{\left(1.0974- 1.0799\right) \times 10^7}{\num{1.0974e7}} = 0.0159 \approx 1.59\%
+\end{equation}
+
+Die Sigma-Abweichung der Rydberg-Konstante beträgt:
+\begin{equation}
+    \sigma = \frac{R_\infty^{\text{Literatur}} - R_\infty}{\Delta R_\infty} = \frac{1.0974 - 1.0799}{20000} =  8.75\Rightarrow 8.75\sigma
+\end{equation}
+
+\begin{resultbox}[Ergebnis]
+    Die experimentell bestimmte Rydberg-Konstante beträgt $\num{1.0799(20)e7} \text{m}^{-1}$ und weicht um $1.59\%$ vom Literaturwert ab. Die Abweichung beträgt $8.75\sigma$.
+\end{resultbox}
+
+
+\section{Diskussion}
+Die abgelesenen Wellenlängen des Helium-Spektrums weichen im Mittel um $2.0\%$ von den Literaturwerten ab. Die größte Abweichung beträgt $9.5\sigma$. 
+Die experimentell bestimmte Rydberg-Konstante weicht um $1.59\%$ vom Literaturwert ab, was einer Abweichung von $8.75\sigma$ entspricht. 
+
+Eine Abweichung von $8.75\sigma$ wird als sehr groß angesehen und deutet auf systematische Fehler hin.
+Mögliche Urchsachen sind systematische Abweichungen, wie die nicht genaue justierung des Prismenspektrometers. Es war nicht perfekt möglich, die Ablenkwinkel $\delta$ auf den Minimalablenkwinkel einzustellen, um die größtmögliche Genauigkeit zu erreichen. Es war auch nicht immer leicht, das Fadenkreuz perfekt auf die Spektrallinien zu richten, da die Linien sehr schwach waren. 
+
+Ausserdem ist das Anpassen der Eichkurve sehr fehleranfällig, da es sich um eine händische Anpassung handelt. Mit einem Computerprogramm könnte die Eichkurve genauer angepasst werden und noch eine Fehlerabschätzung für den Fit herausgeben, was die Genauigkeit der abgelesenen Wellenlängen verbessern würde. Die größte Abweichung der abgelesenen Wellenlängen des Helium-Spektrums von $9.5\sigma$ ist auf der Eichkurve aufgrund der geringeren Steigung der Kurve im Bereich der roten Spektrallinie zu erklären. Es waren nicht Referenzpunkte in der Nähe der roten Spektrallinie vorhanden, wodurch die Genauigkeit der abgelesenen Wellenlänge verschlechtert wurde.
+
+Insgesamt zeigen die Ergebnisse, dass das Prismenspektrometer eine gute Möglichkeit bietet, die spektrale Zerlegung von Licht zu untersuchen und wichtige physikalische Konstanten zu bestimmen, jedoch sind die Abweichungen von den Literaturwerten nicht unerheblich.
+
+\section{Fazit}
+Insgesamt hat der Versuch 33 gezeigt, dass das Prismenspektrometer eine effektive Methode zur Untersuchung der spektralen Zerlegung von Licht ist. Die experimentell bestimmten Wellenlängen des Helium-Spektrums und die Rydberg-Konstante weichen zwar von den Literaturwerten ab, jedoch liefern die Ergebnisse wertvolle Einblicke in die Funktionsweise optischer Geräte und die Grundlagen der Spektroskopie. Die Abweichungen können auf systematische Fehler und Herausforderungen bei der Justierung des Geräts zurückgeführt werden. Zukünftige Experimente könnten durch den Einsatz von computergestützten Analysemethoden und präziseren Justiertechniken verbessert werden, um die Genauigkeit der Messungen zu erhöhen. Inssgesamt war es jedoch sehr beeindruckend, die bunten Emissionslinien des Helium- und Wasserstoffspektrums zu beobachten und die physikalischen Prinzipien dahinter zu verstehen. 
 
 \clearpage
 
@@ -204,35 +377,9 @@ Zuletzt wurde das Spektrometer mit einer Wasserstofflampe beleuchtet. Bei unver�
 \begin{thebibliography}{5}
     \bibitem{PAPskript} Dr. J.Wagner, \emph{Physikalisches Anfängerpraktikum}, Stand 11/2024
     \bibitem{ilberg1988physikalisches} W. Ilberg, M. Krötzsch, \emph{Physikalisches Praktikum für Anfänger}, BSB B. G. Teubner Verlagsgesellschaft, Leipzig (1985).
+    \bibitem{wiki:Rydberg} Wikipedia, \emph{Rydberg-Konstante}, \\\url{https://de.wikipedia.org/wiki/Rydberg-Konstante}, Stand 10.09.2026
 \end{thebibliography}
 
 
 
-
-\begin{comment}
-
-\begin{table}[H]
-    \centering
-    \caption{Mess- und Geräteparameter für die exemplarische Berechnung (Messung 28).}
-    \label{tab:parameter_messung_28}
-    \begin{tabular}{ll}
-        \toprule
-        \textbf{Größe} & \textbf{Wert} \\
-        \midrule
-        Fallstrecke & $s_1 = 10\,\text{Skt} = 5.00 \cdot 10^{-4}\,\text{m}$ \\
-        Fallzeit & $t_1 = 11.85\,\text{s}$ \\
-        Steigstrecke & $s_2 = 10\,\text{Skt} = 5.00 \cdot 10^{-4}\,\text{m}$ \\
-        Steigzeit & $t_2 = 18.19\,\text{s}$ \\
-        Skalenteilung & $1\,\text{Skt} = 5.00 \cdot 10^{-5}\,\text{m}$ \\
-        Kondensatorspannung & $U = 500\,\text{V}$ \\
-        Plattenabstand & $d = 6.00 \cdot 10^{-3}\,\text{m}$ \\
-        Luftdruck & $p = 100285\,\text{Pa}$ \\
-        Erdbeschleunigung & $g = 9.81\,\frac{\text{m}}{\text{s}^2}$ \\
-        Dichtedifferenz & $\rho = \rho_{\text{Öl}} - \rho_{\text{Luft}} = 871.21\,\frac{\text{kg}}{\text{m}^3}$ \\
-        Unkorrigierte Luftviskosität & $\eta_0 = 1.81 \cdot 10^{-5}\,\text{Pa}\cdot\text{s}$ \\
-        Cunningham-Konstante & $b = 7.78 \cdot 10^{-3}\,\text{Pa}\cdot\text{m}$ \\
-        \bottomrule
-    \end{tabular}
-\end{table}
-\end{comment}
 \end{document}
