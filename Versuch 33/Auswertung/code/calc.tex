@@ -1,0 +1,43 @@
+    
+    Rydberg berechnen
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{12}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{k+kn}{import}\PY{+w}{ }\PY{n+nn}{numpy}\PY{+w}{ }\PY{k}{as}\PY{+w}{ }\PY{n+nn}{np}
+\PY{k+kn}{import}\PY{+w}{ }\PY{n+nn}{uncertainties}\PY{+w}{ }\PY{k}{as}\PY{+w}{ }\PY{n+nn}{unc}
+\PY{k+kn}{import}\PY{+w}{ }\PY{n+nn}{uncertainties}\PY{n+nn}{.}\PY{n+nn}{unumpy}\PY{+w}{ }\PY{k}{as}\PY{+w}{ }\PY{n+nn}{unp}
+\PY{k}{def}\PY{+w}{ }\PY{n+nf}{rydberg\PYZus{}constant}\PY{p}{(}\PY{n}{wavelength}\PY{p}{,} \PY{n}{n}\PY{p}{)}\PY{p}{:}
+    \PY{n}{m} \PY{o}{=} \PY{l+m+mi}{2} 
+    \PY{k}{return} \PY{l+m+mi}{1} \PY{o}{/} \PY{n}{wavelength} \PY{o}{*} \PY{l+m+mi}{1}\PY{o}{/}\PY{p}{(}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1} \PY{o}{/} \PY{n}{n}\PY{o}{*}\PY{o}{*}\PY{l+m+mi}{2} \PY{o}{+} \PY{l+m+mi}{1} \PY{o}{/} \PY{n}{m}\PY{o}{*}\PY{o}{*}\PY{l+m+mi}{2}\PY{p}{)}
+
+\PY{n}{rot} \PY{o}{=} \PY{n}{unc}\PY{o}{.}\PY{n}{ufloat}\PY{p}{(}\PY{l+m+mi}{666}\PY{p}{,} \PY{l+m+mi}{2}\PY{p}{)} \PY{o}{*} \PY{l+m+mf}{1e\PYZhy{}9}
+\PY{n}{tuerkis} \PY{o}{=} \PY{n}{unc}\PY{o}{.}\PY{n}{ufloat}\PY{p}{(}\PY{l+m+mi}{494}\PY{p}{,} \PY{l+m+mi}{2}\PY{p}{)} \PY{o}{*} \PY{l+m+mf}{1e\PYZhy{}9}
+\PY{n}{violett} \PY{o}{=} \PY{n}{unc}\PY{o}{.}\PY{n}{ufloat}\PY{p}{(}\PY{l+m+mi}{442}\PY{p}{,} \PY{l+m+mi}{2}\PY{p}{)} \PY{o}{*} \PY{l+m+mf}{1e\PYZhy{}9}
+\PY{n}{violett\PYZus{}dunkel} \PY{o}{=} \PY{n}{unc}\PY{o}{.}\PY{n}{ufloat}\PY{p}{(}\PY{l+m+mi}{416}\PY{p}{,} \PY{l+m+mi}{2}\PY{p}{)} \PY{o}{*} \PY{l+m+mf}{1e\PYZhy{}9}
+
+\PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{(n=3):}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{rydberg\PYZus{}constant}\PY{p}{(}\PY{n}{rot}\PY{p}{,} \PY{l+m+mi}{3}\PY{p}{)}\PY{p}{)}
+\PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{(n=4):}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{rydberg\PYZus{}constant}\PY{p}{(}\PY{n}{tuerkis}\PY{p}{,} \PY{l+m+mi}{4}\PY{p}{)}\PY{p}{)}
+\PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{(n=5):}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{rydberg\PYZus{}constant}\PY{p}{(}\PY{n}{violett}\PY{p}{,} \PY{l+m+mi}{5}\PY{p}{)}\PY{p}{)}
+\PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{(n=6):}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{rydberg\PYZus{}constant}\PY{p}{(}\PY{n}{violett\PYZus{}dunkel}\PY{p}{,} \PY{l+m+mi}{6}\PY{p}{)}\PY{p}{)}
+
+\PY{n+nb}{all} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{array}\PY{p}{(}\PY{p}{[}\PY{n}{rydberg\PYZus{}constant}\PY{p}{(}\PY{n}{rot}\PY{p}{,} \PY{l+m+mi}{3}\PY{p}{)}\PY{o}{.}\PY{n}{nominal\PYZus{}value}\PY{p}{,} \PY{n}{rydberg\PYZus{}constant}\PY{p}{(}\PY{n}{tuerkis}\PY{p}{,} \PY{l+m+mi}{4}\PY{p}{)}\PY{o}{.}\PY{n}{nominal\PYZus{}value}\PY{p}{,} \PY{n}{rydberg\PYZus{}constant}\PY{p}{(}\PY{n}{violett}\PY{p}{,} \PY{l+m+mi}{5}\PY{p}{)}\PY{o}{.}\PY{n}{nominal\PYZus{}value}\PY{p}{,} \PY{n}{rydberg\PYZus{}constant}\PY{p}{(}\PY{n}{violett\PYZus{}dunkel}\PY{p}{,} \PY{l+m+mi}{6}\PY{p}{)}\PY{o}{.}\PY{n}{nominal\PYZus{}value}\PY{p}{]}\PY{p}{)}
+\PY{n+nb}{print}\PY{p}{(}\PY{l+s+sa}{f}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Mean: }\PY{l+s+si}{\PYZob{}}\PY{n}{np}\PY{o}{.}\PY{n}{mean}\PY{p}{(}\PY{n+nb}{all}\PY{p}{)}\PY{l+s+si}{\PYZcb{}}\PY{l+s+s1}{, Std: }\PY{l+s+si}{\PYZob{}}\PY{n}{np}\PY{o}{.}\PY{n}{std}\PY{p}{(}\PY{n+nb}{all}\PY{p}{,}\PY{+w}{ }\PY{n}{ddof}\PY{o}{=}\PY{l+m+mi}{1}\PY{p}{)}\PY{l+s+si}{\PYZcb{}}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+(n=3): (1.0811+/-0.0032)e+07
+(n=4): (1.080+/-0.004)e+07
+(n=5): (1.077+/-0.005)e+07
+(n=6): (1.082+/-0.005)e+07
+Mean: 10799470.002740126, Std: 19405.381144508712
+    \end{Verbatim}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{ }{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+
+\end{Verbatim}
+\end{tcolorbox}
+
