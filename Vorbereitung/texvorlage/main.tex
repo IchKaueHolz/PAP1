@@ -114,11 +114,18 @@
 
 \tableofcontents
 
+\bigskip
+\begin{tcolorbox}[colback=gray!5,colframe=gray!60,boxrule=0.8pt,arc=0.01mm,title=KI-Hinweis]
+    Für die sprachliche Formulierung dieses Protokolls wurde in der Einleitung \ref{sec:Einleitung} KI-gestützte Textgenerierung verwendet. 
+\end{tcolorbox}
+
 \clearpage
-\section{Einleitung}
 
 
-\section{Grundlagen und Theorie}
+\section{Einleitung}\label{sec:Einleitung}
+
+
+\section{Grundlagen und Theorie}\label{sec:Grundlagen}
 
 
 \subsection{Literaturwerte}
@@ -135,10 +142,11 @@
 \includepdf[
     pages=-,
     width=\textwidth,
-    height=\textheight,
+    height=0.95\textheight,
     keepaspectratio,
-    pagecommand={\thispagestyle{scrheadings}}
-]{../Messprotokoll 23.pdf}
+    pagecommand={\thispagestyle{scrheadings}},
+    pagecommand*={\thispagestyle{scrheadings}\section{Messprotokoll}\subsection{Versuchsaufbau und Aufgaben}}
+]{../Messprotokoll 34.pdf}
 
 \end{comment}
 
@@ -172,9 +180,6 @@
 
 
 
-\begin{tcolorbox}[colback=gray!5,colframe=gray!60,boxrule=0.8pt,arc=0.01mm,title=KI-Hinweis]
-    Für die sprachliche Formulierung dieses Protokolls wurde in Teilen KI-gestützte Textgenerierung verwendet. 
-\end{tcolorbox}
 
 \begin{comment}
 
