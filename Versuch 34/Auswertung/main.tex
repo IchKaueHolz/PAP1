@@ -218,8 +218,58 @@ Jeweils werden immer 5 Messungen pro Länge bzw. Konzentration durchgeführt, um
 \section{Auswertung}
 
 \subsection{Berechnung der Steigung mithilfe des halblogarithmischen Plots}
-Da die lange Küvette aufgrund des unterschiedlichen Brechungsindex der Lösung und der Luft wie eine Sammellinse wirkt, wird die Intensität des Lichts bei der langen Küvette verstärkt. Um die Intensitäten vergleich zu könnbe
+Da die lange Küvette aufgrund des unterschiedlichen Brechungsindex der Lösung und der Luft wie eine Sammellinse wirkt, wird die Intensität des Lichts bei der langen Küvette verstärkt. Um die Intensitäten vergleich zu können, wird der Durchmesser des Lichtkegels gemessen und mit dem Durchmesser des Lichtkegels ohne Küvette verglichen. Die Intensität kann dadurch mit dieser Korrekturformel korrigiert werden:
+\begin{equation}
+    I_\text{corr} = I \cdot \left(\frac{d_\text{ohne Küvette}}{d_\text{mit Küvette}}\right)^2\label{eq:Korrekturformel}
+\end{equation}
 
+Die Fehlerformel der Korrekturformel lautet:
+\begin{equation}
+    \Delta I_\text{corr} = I_\text{corr} \sqrt{\left(\frac{\Delta I}{I}\right)^2 + 4\left(\frac{\Delta d_\text{ohne Küvette}}{d_\text{ohne Küvette}}\right)^2 + 4\left(\frac{\Delta d_\text{mit Küvette}}{d_\text{mit Küvette}}\right)^2}
+\end{equation}
+
+Mit den folgenden Messwerten und Fehlern:
+\begin{table}[H]
+    \centering
+    \caption{Messwerte und Fehler}
+    \begin{tabular}{lc}
+        \toprule
+        Messsung & Wert\\
+        \midrule
+        Durchmesser 12mm: & $d_\text{12mm} = \num{7.0(6)}\,\si{\centi\meter}$\\
+        Durchmesser 24mm: & $d_\text{24mm} = \num{5.4(6)}\,\si{\centi\meter}$\\
+        Durchmesser ohne Küvette: & $d_0 = \num{9.0(6)}\,\si{\centi\meter}$\\
+        Intensität 12mm: & $I_\text{12mm} = \num{2836(5)}$ cts\\
+        Intensität 24mm: & $I_\text{24mm} = \num{241.0(2.9)}$ cts\\
+        \bottomrule
+    \end{tabular}
+\end{table}
+
+ergeben sich mit der Korrekturformel \ref{eq:Korrekturformel} die folgenden korrigierten Intensitäten:
+\begin{align}
+    I_\text{12mm,corr} &= \num{4700(1100)}\\
+    I_\text{24mm,corr} &= \num{670(180)}
+\end{align}
+
+Die korregierten Intensitäten (Aus Tabelle \ref{tbl:pdf-1} und \ref{eq:Korrekturformel} berechnet) betragen nun: 
+
+\begin{table}[H]
+    \centering
+    \caption{Korrigierte Intensitäten}
+    \begin{tabular}{lc}
+        \toprule
+        Küvettenlänge $l$ & Korrigierte Intensität $I_\text{corr}$\\
+        \midrule
+        \SI{1.5}{\centi\meter} & \num{41200(700)}\\
+        \SI{3}{\centi\meter} & \num{26660(170)}\\
+        \SI{6}{\centi\meter} & \num{12952(4)}\\
+        \SI{12}{\centi\meter} & \num{4700(1100)}\\
+        \SI{24}{\centi\meter} & \num{670(180)}\\
+        \bottomrule
+    \end{tabular}
+
+\end{table}
+Nun kann halblogarithmisch die Intensität gegen die Küvettenlänge aufgetragen werden, um die Steigung zu bestimmen. Die Steigung entspricht dem dekadischen Absorptionskoeffizienten $k'$.
 
 \clearpage
 
@@ -232,6 +282,7 @@ Da die lange Küvette aufgrund des unterschiedlichen Brechungsindex der Lösung 
     \bibitem{PAPskript} Dr. J.Wagner, \emph{Physikalisches Anfängerpraktikum}, Stand 11/2024
     \bibitem{ilberg1988physikalisches} W. Ilberg, M. Krötzsch, \emph{Physikalisches Praktikum für Anfänger}, BSB B. G. Teubner Verlagsgesellschaft, Leipzig (1985).
     \bibitem{chebotarev2017} A. Chebotarev, K. Bevziuk, D. Snigur und Y. Bazel, ``The brilliant blue FCF ion-molecular forms in solutions according to the spectrophotometry data'', \emph{Russian Journal of Physical Chemistry A}, 91, 1907--1912 (2017). DOI: \href{https://doi.org/10.1134/S0036024417100089}{10.1134/S0036024417100089}.
+    
 \end{thebibliography}
 
 \begin{tcolorbox}[colback=gray!5,colframe=gray!60,boxrule=0.8pt,arc=0.01mm,title=KI-Hinweis]
