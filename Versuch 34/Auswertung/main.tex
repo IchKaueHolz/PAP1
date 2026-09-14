@@ -76,13 +76,13 @@
 }
 
 
-\newcommand{\versuch}{Versuch 22}
-\newcommand{\titel}{Bestimmung der Elementarladung nach Millikan}
+\newcommand{\versuch}{Versuch 34}
+\newcommand{\titel}{Spektralphotometrie}
 \newcommand{\praktikum}{Physikalisches Anfängerpraktikum 1}
 \newcommand{\autor}{Jonathan Gießen}
 \newcommand{\gruppe}{Gruppe 8}
-\newcommand{\datum}{31. September 2026}
-\newcommand{\betreuer}{Fabian Mrosek}
+\newcommand{\datum}{14. September 2026}
+\newcommand{\betreuer}{Lucija Ruzic}
 
 \begin{document}
 
@@ -114,12 +114,68 @@
 
 \tableofcontents
 
+\bigskip
+\begin{tcolorbox}[colback=gray!5,colframe=gray!60,boxrule=0.8pt,arc=0.01mm,title=KI-Hinweis]
+    Für die sprachliche Formulierung dieses Protokolls wurde in Teilen in Einleitung \ref{sec:Einleitung} Textgenerierung verwendet. 
+\end{tcolorbox}
 \clearpage
-\section{Einleitung}
 
+
+\section{Einleitung}\label{sec:Einleitung}
+In diesem Versuch 34 wird die Fotometrie eingeführt, unter anderem, um die Konzentrationsbestimmung einer Substanz durch die Absorption von Licht zu untersuchen. Das primäre Ziel des Versuches ist es, das Absorptionsspektrum einer Lösung mit der Lebensmittelfarbe Brillantblau FCF aufzunehmen und den molaren Extinktionskoeffizienten zu bestimmen. Die Spektralphotometrie ist eine analytische Technik, die auf der Wechselwirkung von Licht mit Materie basiert. Sie ermöglicht die quantitative Analyse von Substanzen in Lösung, indem sie die Intensität des durch die Probe hindurchgehenden Lichts misst und daraus Rückschlüsse auf die Konzentration der absorbierenden Moleküle zieht. Für die Durchführung der spektralfotometrischen Messungen kommt ein computergesteuertes Gitterspektrometer (Ocean Optics USB4000) zum Einsatz, dessen Spektralbereich über eine Lichtleitfaser eingekoppelt und über ein optisches Gitter auf einen CCD-Sensor abgebildet wird. Die durch die Messreihen gewonnenen Intensitätswerte werden anschließend grafisch ausgewertet, um aus den Steigungen der resultierenden Geraden den dekadischen Absorptionskoeffizienten und die materialspezifische Molarextinktion zu berechnen.
 
 \section{Grundlagen und Theorie}
+\subsection{Fotometrie}
+Als Fotometrie bezeichnet man ein Messverfahren zur Konzentrationsbestimmung einer Substanz, welches auf der Absorption, Streuung oder Fluoreszenz von Licht basiert. Im Rahmen dieses Versuchs beruht das Prinzip auf der Messung der Abschwächung der Intensität eines einfallenden Lichtbündels beim Durchqueren einer mit der zu untersuchenden Substanz gefüllten Messzelle \cite{PAPskript}.
 
+\subsection{Lambertsches Absorptionsgesetz}
+Das Lambertsche Absorptionsgesetz beschreibt, wie die Intensität des Lichts beim Durchdringen eines absorbierenden Mediums exponentiell mit der Schichtdicke abnimmt. In der differentiellen Form lautet der Zusammenhang:
+\begin{equation}
+    \frac{\mathrm{d}I}{I} = -k \,\mathrm{d}l
+\end{equation}
+Anschaulich bedeutet dies, dass die relative Intensitätsabnahme $\mathrm{d}I/I$ bei sehr kleinen Wegstrecken direkt proportional zur durchlaufenen Dicke $\mathrm{d}l$ ist. Durch Integration dieser Differentialgleichung erhält man die Intensität $I$ nach Durchlaufen der Gesamtstrecke $l$:
+\begin{equation}
+    I = I_0 \, \mathrm{e}^{-k l}
+\end{equation}
+Hierbei bezeichnet $I_0$ die anfängliche Intensität beim Eintritt in das Medium, $l$ die optische Weglänge und $k$ die materialspezifische Absorptionskonstante (häufig auch Extinktionskonstante genannt).
+
+Für die grafische Auswertung empfiehlt sich die Überführung in eine lineare Form durch Anwendung des dekadischen Logarithmus auf beide Seiten der Gleichung:
+\begin{equation}
+    \log_{10}(I) = -k' l + \text{const}' \quad \text{mit} \quad k' = \frac{k}{\ln(10)} \quad \text{und} \quad \text{const}' = \log_{10}(I_0)
+    \label{eq:log10I}
+\end{equation}
+Die Konstante $k'$ wird hierbei als dekadischer Absorptionskoeffizient bezeichnet.
+
+Um von der reinen Absorption auf die Konzentration $c$ einer verdünnten Lösung zu schließen, wird zusätzlich das Beersche Gesetz herangezogen. Es besagt, dass $k'$ proportional zur Konzentration der Lösung ist:
+\begin{equation}
+    k' = \epsilon c\label{eq:Beersches Gesetz}
+\end{equation}
+
+Dabei ist $\epsilon$ der molare Extinktionskoeffizient, eine konzentrationsunabhängige Stoffkonstante. Die Kombination beider Gesetzmäßigkeiten liefert das Lambert-Beersche Gesetz, welches die theoretische Grundlage der fotometrischen Konzentrationsbestimmung bildet.
+
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.7\textwidth]{img/principle.png}
+    \caption{Schema des Labertschen Absorptionsgesetzes.\cite{PAPskript}}
+    \caption*{Einfallendes Licht der Intensität $I_0$ wird beim Durchqueren einer absorbierenden Substanz der Dicke $l$ auf die Intensität $I$ abgeschwächt.}
+    \label{fig:absorption}
+\end{figure}
+
+Mit den größen $\epsilon$ und $k'$ lässt sich das Absorptionsgesetz in der Form:
+\begin{equation}
+    I = I_0 \, 10^{-k' l} = I_0 \, 10^{-\epsilon c l}
+\end{equation}
+
+\subsection{Bestimmung des molaren Extinktionskoeffizienten}
+
+Es werden in diesem Versuch 2 Messmethoden verwendet unm den molaren Extinktionskoeffizienten $\epsilon$ zu bestimmen. Zum einen wird die Absorption bei gleichbleibender Konzentratoin $c$ bei einer festen Wellenlänge gemessen. Die Steigung der logarithmierten Intensität gegen die länge liefert den Wert von $k'$. 
+Mit Gleichung \ref{eq:Beersches Gesetz} kann dann $\epsilon$ berechnet werden.
+
+Zum anderen wird die Absorption bei einer festen Wellenlänge für verschiedene Konzentrationen $c$ gemessen. Die Steigung der logarithmierten Intensität gegen die Konzentration liefert den Wert von $\epsilon$. 
+
+
+Dunkelmessun
 
 \subsection{Literaturwerte}
 
@@ -176,30 +232,5 @@
     Für die sprachliche Formulierung dieses Protokolls wurde in Teilen KI-gestützte Textgenerierung verwendet. 
 \end{tcolorbox}
 
-\begin{comment}
 
-\begin{table}[H]
-    \centering
-    \caption{Mess- und Geräteparameter für die exemplarische Berechnung (Messung 28).}
-    \label{tab:parameter_messung_28}
-    \begin{tabular}{ll}
-        \toprule
-        \textbf{Größe} & \textbf{Wert} \\
-        \midrule
-        Fallstrecke & $s_1 = 10\,\text{Skt} = 5.00 \cdot 10^{-4}\,\text{m}$ \\
-        Fallzeit & $t_1 = 11.85\,\text{s}$ \\
-        Steigstrecke & $s_2 = 10\,\text{Skt} = 5.00 \cdot 10^{-4}\,\text{m}$ \\
-        Steigzeit & $t_2 = 18.19\,\text{s}$ \\
-        Skalenteilung & $1\,\text{Skt} = 5.00 \cdot 10^{-5}\,\text{m}$ \\
-        Kondensatorspannung & $U = 500\,\text{V}$ \\
-        Plattenabstand & $d = 6.00 \cdot 10^{-3}\,\text{m}$ \\
-        Luftdruck & $p = 100285\,\text{Pa}$ \\
-        Erdbeschleunigung & $g = 9.81\,\frac{\text{m}}{\text{s}^2}$ \\
-        Dichtedifferenz & $\rho = \rho_{\text{Öl}} - \rho_{\text{Luft}} = 871.21\,\frac{\text{kg}}{\text{m}^3}$ \\
-        Unkorrigierte Luftviskosität & $\eta_0 = 1.81 \cdot 10^{-5}\,\text{Pa}\cdot\text{s}$ \\
-        Cunningham-Konstante & $b = 7.78 \cdot 10^{-3}\,\text{Pa}\cdot\text{m}$ \\
-        \bottomrule
-    \end{tabular}
-\end{table}
-\end{comment}
 \end{document}
