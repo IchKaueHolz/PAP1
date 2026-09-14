@@ -204,24 +204,26 @@ Mithilfe der Eichkurve, welche die bekannten Spektrallinein des Quecksilberspekt
     \label{fig:eichkurve_hg}
 \end{figure}
 
-Die abgelesen Messwerte des Helium-Spektrums werden in die Eichkurve eingesetzt, um die entsprechenden Wellenlängen zu bestimmen. 
+Die abgelesenen Messwerte des Helium-Spektrums werden in die Eichkurve eingesetzt, um die entsprechenden Wellenlängen zu bestimmen.
 
-\medskip
-Die Unsicherheiten der Eichkurve berechnen sich aus der Unischerheit der Messwerte der Ablenkwinkel $\delta$. Die Unsicherheiten der Wellenlängen ergeben sich eben so aus der Unsicherheit der Messwerte der Ablenkwinkel $\delta$ und der Eichkurve, sowie dem Ablesefehler der Wellenlängen. Die Unsicherheiten der Literaturwerte sind vernachlässigbar.
+Die Unsicherheit der Wellenlängen ergibt sich aus der Fortpflanzung der Winkelunsicherheit über die Eichkurve sowie dem direkten Ablesefehler der Wellenlänge auf der x-Achse. Die Unsicherheiten der Literaturwerte sind vernachlässigbar.
 
-Es ergibt sich somit für die Unsicherheit der Winkel:
-
+Für die Unsicherheit des abgelesenen Winkels auf der y-Achse wird ein realistischer Ablesefehler von $0.1^\circ$ angenommen. Es ergibt sich somit für die effektive Winkelunsicherheit:
 \begin{equation}
-    \Delta \delta_\text{min} =\sqrt{(\Delta \delta_\text{Ablesefehler})^2 + (\Delta \delta_\text{Eichkurve})^2} = \sqrt{(0.05^\circ)^2 + (0.05^\circ)^2} = 0.07^\circ
+    \Delta\delta_{\text{min}} = \sqrt{(\Delta\delta_{\text{Ablesefehler}})^2 + (\Delta\delta_{\text{Eichkurve}})^2} = \sqrt{(0.1^\circ)^2 + (0.1^\circ)^2} \approx 0.14^\circ
 \end{equation}
 
-Die gesamte Unsicherheit der Wellenlängen berechnet sich aus der Unsicherheit der Ablenkwinkel $\delta_\text{min}$ und der Eichkurve, sowie dem Ablesefehler der Wellenlängen:
+Da die Winkelunsicherheit in Grad und der Ablesefehler der Wellenlänge in Nanometern vorliegt, dürfen diese nicht direkt addiert werden. Die Winkelunsicherheit muss nach dem Prinzip der Gaußschen Fehlerfortpflanzung zunächst über die lokale Steigung der Eichkurve $\left| \frac{\Delta\lambda}{\Delta\delta} \right|$ in eine Wellenlängenunsicherheit umgerechnet werden. 
 
+Durch Ablesen des Fehlerschlauchs ergibt sich: für $\Delta \lambda = 16nm$ und $\Delta \delta = 0.1^\circ$
 \begin{equation}
-    \Delta_\text{ges} = \sqrt{\left(\Delta \delta_\text{min}\right)^2 + \left(\Delta \lambda\right)^2} = \sqrt{0.07^2 + 2^2 } = 2.0\label{eq:gesamt_unc}
+    \Delta\lambda_{\text{ges}} = \sqrt{\left( \left| \frac{\Delta\lambda}{\Delta\delta} \right| \cdot \Delta\delta_{\text{min}} \right)^2} = \sqrt{\left( \frac{16nm}{0.1^\circ} \cdot 0.14^\circ \right)^2} \approx 22.4\text{nm}
 \end{equation}
 
-Somit ergibt sich für die abgelesen Wellenlängen des Helium Spektrums eine Gesamtunsicherheit von $\pm 2nm$
+
+
+
+Somit ergibt sich für die abgelesen Wellenlängen des Helium Spektrums eine Gesamtunsicherheit von $\pm 22.4nm$.
 
 Die Ergebnisse für Helium sind: 
 \begin{table}[H]
@@ -231,12 +233,12 @@ Die Ergebnisse für Helium sind:
         \toprule
         \textbf{Nr.} & \textbf{Ablenkwinkel $\delta$ [°]} & \textbf{Wellenlänge $\lambda$ [nm]} & \textbf{Literaturwert [nm]}\\
         \midrule
-        1 & $2.65\pm 0.05$ & $687\pm 2$ & $667.8$ \\
-        2 & $2.08\pm 0.05$ & $595\pm 2$ & $587.6$ \\
-        3 & $1.12\pm 0.05$ & $506\pm 2$ & $501.6$ \\
-        4 & $1.00\pm 0.05$ & $500\pm 2$ & $492.2$ \\
-        5 & $0.62\pm 0.05$ & $480\pm 2$ & $471.3$ \\
-        6 & $0.08\pm 0.05$ & $452\pm 2$ & $447.1$ \\
+        1 & $2.65\pm 0.14$ & $687\pm 22.4$ & $667.8$ \\
+        2 & $2.08\pm 0.14$ & $595\pm 22.4$ & $587.6$ \\
+        3 & $1.12\pm 0.14$ & $506\pm 22.4$ & $501.6$ \\
+        4 & $1.00\pm 0.14$ & $500\pm 22.4$ & $492.2$ \\
+        5 & $0.62\pm 0.14$ & $480\pm 22.4$ & $471.3$ \\
+        6 & $0.08\pm 0.14$ & $452\pm 22.4$ & $447.1$ \\
     \bottomrule
     \end{tabular}
 \end{table}
@@ -261,19 +263,19 @@ Die Tabelle \ref{He-tabelle} vervollständigt sich somit zu:
         \toprule
         \textbf{Nr.} & \textbf{ $\lambda_\text{mess}$ [nm]} & \textbf{$\lambda_\text{lit}$ [nm]} & \textbf{rel. Fehler} [\%]& \textbf{$\sigma$-Abweichung}\\
         \midrule
-        1 & $687\pm 2$ & $667.8$ & $ 2.8$ & $9.5$ \\
-        2 & $595\pm 2$ & $587.6$ & $ 1.2$ & $3.7$ \\
-        3 & $506\pm 2$ & $501.6$ & $ 0.9$ & $2.2$ \\
-        4 & $500\pm 2$ & $492.2$ & $ 1.6$ & $3.9$ \\
-        5 & $480\pm 2$ & $471.3$ & $ 1.9$ & $4.3$ \\
-        6 & $452\pm 2$ & $447.1$ & $ 1.1$ & $2.5$ \\
+        1 & $687\pm 22.4$ & $667.8$ & $ 2.8$ & $0.86$ \\
+        2 & $595\pm 22.4$ & $587.6$ & $ 1.2$ & $0.33$ \\
+        3 & $506\pm 22.4$ & $501.6$ & $ 0.9$ & $0.20$ \\
+        4 & $500\pm 22.4$ & $492.2$ & $ 1.6$ & $0.35$ \\
+        5 & $480\pm 22.4$ & $471.3$ & $ 1.9$ & $0.39$ \\
+        6 & $452\pm 22.4$ & $447.1$ & $ 1.1$ & $0.22$ \\
     \bottomrule
     \end{tabular}
 \end{table} 
 
 
 \begin{resultbox}[Ergebnis]
-    Die abgelesenen Wellenlängen des Helium-Spektrums weichen im Mittel um $2.0\%$ von den Literaturwerten ab. Die größte Abweichung beträgt $9.5\sigma$.
+    Die abgelesenen Wellenlängen des Helium-Spektrums weichen im Mittel um $2.0\%$ von den Literaturwerten ab. Die größte Abweichung beträgt $0.86\sigma$.
 \end{resultbox}
 
 \subsection{Aufgabe 2: Bestimmung der Balmer-Serie}
@@ -289,10 +291,10 @@ Es ergeben sich folgende Wellenlängen für die Balmer-Serie des Wasserstoff-Spe
         \toprule
         \textbf{Nr.} & {\textbf{Ablenkwinkel $\delta$ [$^{\circ}$]}} & {\textbf{Wellenlänge $\lambda$ [nm]}} & \textbf{Hauptquantenzahl $n$} \\
         \midrule
-        1 & \num{2.57(5)} & \num{666(2)} & 3 \\
-        2 & \num{0.92(5)} & \num{494(2)} & 4 \\
-        3 & \num{359.78(5)} & \num{442(2)} & 5 \\
-        4 & \num{359.17(5)} & \num{416(2)} & 6 \\
+        1 & \num{2.57(14)} & \num{666(22.4)} & 3 \\
+        2 & \num{0.92(14)} & \num{494(22.4)} & 4 \\
+        3 & \num{359.78(14)} & \num{442(22.4)} & 5 \\
+        4 & \num{359.17(14)} & \num{416(22.4)} & 6 \\
         \bottomrule
     \end{tabular}
 \end{table}
@@ -306,7 +308,7 @@ Umstellen nach der Rydberg-Konstante $R_\infty$ ergibt sich:
 Die Unsicherheit der Rydberg-Konstante berechnet sich aus der Gaus'schen Fehlerfortpflanzung:
 \begin{align}
     \Delta R_\infty &= \sqrt{\left(\frac{\partial R_\infty}{\partial \lambda} \Delta \lambda\right)^2 + \left(\frac{\partial R_\infty}{\partial n} \Delta n\right)^2}\\
-    \Delta R_infty &= \sqrt{\left(-\frac{1}{\lambda^2} \frac{1}{\left( \frac{1}{n^2} - \frac{1}{2^2} \right)} \Delta \lambda\right)^2 + \left(\frac{1}{\lambda} \frac{2n^{-3}}{\left( \frac{1}{n^2} - \frac{1}{2^2} \right)^2} \Delta n\right)^2}
+    \Delta R_\infty &= \sqrt{\left(-\frac{1}{\lambda^2} \frac{1}{\left( \frac{1}{n^2} - \frac{1}{2^2} \right)} \Delta \lambda\right)^2 + \left(\frac{1}{\lambda} \frac{2n^{-3}}{\left( \frac{1}{n^2} - \frac{1}{2^2} \right)^2} \Delta n\right)^2}
 \end{align}
 
 \medskip
@@ -318,10 +320,10 @@ Es ergeben sich folgende Werte für die Rydberg-Konstante:
         \toprule
         \textbf{Nr.} & {\textbf{Wellenlänge $\lambda$ [nm]}} & {\textbf{$n$}} & {\textbf{Rydberg-Konstante $R_\infty$ [$\text{m}^{-1}$]}} \\
         \midrule
-        1 & \num{666(2)} & 3 & \num{1.0811(32)e7} \\
-        2 & \num{494(2)} & 4 & \num{1.080(4)e7} \\
-        3 & \num{442(2)} & 5 & \num{1.077(5)e7} \\
-        4 & \num{416(2)} & 6 & \num{1.082(5)e7} \\
+        1 & \num{666(22.4)} & 3 & \num{1.08(4)e7} \\
+        2 & \num{494(22.4)} & 4 & \num{1.08(4)e7} \\
+        3 & \num{442(22.4)} & 5 & \num{1.08(5)e7} \\
+        4 & \num{416(22.4)} & 6 & \num{1.08(6)e7} \\
         \bottomrule
     \end{tabular}
 \end{table}
@@ -345,7 +347,7 @@ Der relative Fehler der Rydberg-Konstante beträgt:
 
 Die Sigma-Abweichung der Rydberg-Konstante beträgt:
 \begin{equation}
-    \sigma = \frac{R_\infty^{\text{Literatur}} - R_\infty}{\Delta R_\infty} = \frac{1.0974 - 1.0799}{20000} =  8.75\Rightarrow 8.75\sigma
+    \sigma = \frac{R_\infty^{\text{Literatur}} - R_\infty}{\Delta R_\infty} = \frac{1.0974 - 1.0799}{0.0020} =  8.75\Rightarrow 8.75\sigma
 \end{equation}
 
 \begin{resultbox}[Ergebnis]
