@@ -303,14 +303,14 @@ Aus den abgelesenen Steigungsdreiecken ergibt sich:
         \toprule
         Art & $I_2$ [cts] & $I_1$ [cts] & $\Delta l_1$ [cm] & Ergebnis nach Gl. \ref{Steigungformel} [cts/\si{\centi\meter}]\\
         \midrule
-        lower error & 32000 & 110 & 24 & $k' = -0.103$\\
-        Mittelgerade & 38000 & 120 & 20.7 & $k' = -0.121$\\
-        upper error & 18830 & 170& 16.05 & $k' = -0.127$\\
+        lower error & 32000 & 110 & 24 & $k' = 0.103$\\
+        Mittelgerade & 38000 & 120 & 20.7 & $k' = 0.121$\\
+        upper error & 18830 & 170& 16.05 & $k' = 0.127$\\
         \bottomrule
     \end{tabular}
 \end{table}
 
-Somit ergibt sich für $k'$ mit Gleichung \ref{eq:log10I}(vorzeichen) der Wert:
+Somit ergibt sich für $k'$ mit der Wert:
 \begin{equation}
     k' =(\num{0.121(18)})\si{\per\centi\meter}
 \end{equation}
@@ -465,18 +465,16 @@ Die Sigma-Abweichung der beiden Messwerte beträgt:
 
 Die Abweichung der beiden Messmethoden von nur $0.03\sigma$ beweist die Konstenz der Messmethodik. Es ist zu erkennen, dass die Abweichung der Messwerte zum Literaturwert bei beiden Messmethoden größer als $1\sigma$ beträgt. Dies zeigt, dass die Messmethoden zwar konsistent sind, aber systematische Fehler in der Versuchsdurchführung oder in der Kalibrierung des Messgeräts vorliegen könnten. Mögliche Ursachen für diese Abweichungen könnten ungenaue Pipettierungen, Schwankungen in der Lichtquelle oder unzureichende Berücksichtigung von Streulicht sein.
 
-Ausserdem befindet sich die Messwellenlänge bei $\lambda = \SI{629}{\nano\meter}$, während der Literaturwert bei $\lambda = \SI{625}{\nano\meter}$ angegeben ist. Dies könnte ebenfalls zu einer Abweichung führen, da der molare Extinktionskoeffizient wellenlängenabhängig ist.
+Dass der experimentell ermittelte Extinktionskoeffizient deutlich über dem Literaturwert liegt, lässt sich vor allem auf die gewählte Messwellenlänge zurückführen. Die Messung erfolgte im experimentell bestimmten Absorptionsmaximum bei $\lambda = 629\text{ nm}$, während der zitierte Literaturwert für $\lambda = 625\text{ nm}$ angegeben ist. Da der molare Extinktionskoeffizient stark wellenlängenabhängig ist und die Absorption an der Peak-Wellenlänge am stärksten ausfällt, resultiert hieraus physikalisch direkt ein größerer Wert für $\epsilon$. Darüber hinaus können Streuverluste durch winzige Kratzer oder Verunreinigungen (wie Fingerabdrücke) auf den Küvettenwänden die durchtretende Lichtintensität zusätzlich abgeschwächt haben. Dies wird photometrisch als höhere Absorption interpretiert und hebt den Wert von $\epsilon$ weiter künstlich an.
 
 \medskip
-Ein Hinweis auf dem Datenblatt des FCF-Farbstoffs ist \cite{PAPskript}:
+Ein weiterer wichtiger Hinweis zur systematischen Fehlerbetrachtung findet sich im Datenblatt des FCF-Farbstoffs. Dort sind unter anderem die Angaben:
 \begin{quote}
-    \emph{Loss on Drying: $\leq 13\%$}\\
-    \emph{In H$_2$O insoluble matter: $\leq 1\%$}
+    \emph{Loss on Drying: $\le 13\%$}\\
+    \emph{In H2O insoluble matter: $\le 1\%$}
 \end{quote}
 
-Dies bedeutet, dass die Konzentration der Lösung um bis zu $13\%$ abweichen kann, was ebenfalls eine signifikante Fehlerquelle darstellt, da das Pulver hygroskopisch ist und Feuchtigkeit aus der Luft aufnehmen kann. Dies könnte die tatsächliche Konzentration der Lösung beeinflussen und somit die Messungen verfälschen.
-
-Somit sind $\approx 14\%$ der beim Erstellen der Lösung gewogenen Masse kein Farbstoff, sondern Wassser oder andere Verunreinigungen. Somit ist die angegebe ne Konzentration von $\SI{5e-6}{\mole\per\liter}$ nicht korrekt. Dies könnte die Abweichung der Messwerte zum Literaturwert erklären, da die tatsächliche Konzentration der Lösung niedriger ist als angenommen, was zu einem höheren berechneten Extinktionskoeffizienten führt.
+Da das Pulver stark hygroskopisch ist, bedeutet dies, dass bis zu $14\%$ der beim Herstellen der Lösung gewogenen Masse kein reiner Farbstoff, sondern Wasser und andere Verunreinigungen sind. Somit ist die tatsächliche Konzentration der verwendeten Stammlösung niedriger als die nominell angegebenen $5 \cdot 10^{-6} \, \frac{\text{mol}}{\text{L}}$. Da die Konzentration bei der Berechnung des Extinktionskoeffizienten im Nenner steht, würde dieser systematische Fehler rechnerisch jedoch zu einem noch größeren theoretischen Wert für $\epsilon$ führen. Dieser Umstand der mangelnden Reinheit kann die Diskrepanz zum Literaturwert somit nicht erklären, sondern verdeutlicht, dass die Effekte der Wellenlängenabweichung und der Streuverluste dominant sein müssen.
 
 
 
