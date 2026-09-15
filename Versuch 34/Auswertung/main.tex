@@ -218,14 +218,14 @@ Jeweils werden immer 5 Messungen pro Länge bzw. Konzentration durchgeführt, um
 \section{Auswertung}
 
 \subsection{Berechnung der Steigung mithilfe des halblogarithmischen Plots}
-Da die lange Küvette aufgrund des unterschiedlichen Brechungsindex der Lösung und der Luft wie eine Sammellinse wirkt, wird die Intensität des Lichts bei der langen Küvette verstärkt. Um die Intensitäten vergleich zu können, wird der Durchmesser des Lichtkegels gemessen und mit dem Durchmesser des Lichtkegels ohne Küvette verglichen. Die Intensität kann dadurch mit dieser Korrekturformel korrigiert werden:
+Da die lange Küvette aufgrund des unterschiedlichen Brechungsindex der Lösung und der Luft wie eine Sammellinse wirkt, wird die Intensität des Lichts bei der langen Küvette verstärkt. Um die Intensitäten vergleichen zu können, wird der Durchmesser des Lichtkegels gemessen und mit dem Durchmesser des Lichtkegels ohne Küvette verglichen. Die Intensität kann dadurch mit dieser Korrekturformel korrigiert werden:
 \begin{equation}
-    I_\text{corr} = I \cdot \left(\frac{d_\text{ohne Küvette}}{d_\text{mit Küvette}}\right)^2\label{eq:Korrekturformel}
+    I_\text{corr} = I \cdot \left(\frac{d_\text{mit Küvette}}{d_\text{ohne Küvette}}\right)^2\label{eq:Korrekturformel}
 \end{equation}
 
 Die Fehlerformel der Korrekturformel lautet:
 \begin{equation}
-    \Delta I_\text{corr} = I_\text{corr} \sqrt{\left(\frac{\Delta I}{I}\right)^2 + 4\left(\frac{\Delta d_\text{ohne Küvette}}{d_\text{ohne Küvette}}\right)^2 + 4\left(\frac{\Delta d_\text{mit Küvette}}{d_\text{mit Küvette}}\right)^2}
+    \Delta I_\text{corr} = I_\text{corr} \sqrt{\left(\frac{\Delta I}{I}\right)^2 + 4\left(\frac{\Delta d_\text{mit Küvette}}{d_\text{mit Küvette}}\right)^2 + 4\left(\frac{\Delta d_\text{ohne Küvette}}{d_\text{ohne Küvette}}\right)^2}
 \end{equation}
 
 Mit den folgenden Messwerten und Fehlern:
@@ -247,11 +247,12 @@ Mit den folgenden Messwerten und Fehlern:
 
 ergeben sich mit der Korrekturformel \ref{eq:Korrekturformel} die folgenden korrigierten Intensitäten:
 \begin{align}
-    I_\text{12mm,corr} &= \num{4700(1100)}\\
-    I_\text{24mm,corr} &= \num{670(180)}
+    I_\text{12mm,corr} &= \num{1720(370)}\\
+    I_\text{24mm,corr} &= \num{87(23)}
 \end{align}
 
-Die korregierten Intensitäten (Aus Tabelle \ref{tbl:pdf-1} und \ref{eq:Korrekturformel} berechnet) betragen nun: 
+
+Die korrigierten Intensitäten (Aus Tabelle \ref{tbl:pdf-1} und \ref{eq:Korrekturformel} berechnet) betragen nun: 
 
 \begin{table}[H]
     \centering
@@ -263,14 +264,69 @@ Die korregierten Intensitäten (Aus Tabelle \ref{tbl:pdf-1} und \ref{eq:Korrektu
         \SI{1.5}{\centi\meter} & \num{41200(700)}\\
         \SI{3}{\centi\meter} & \num{26660(170)}\\
         \SI{6}{\centi\meter} & \num{12952(4)}\\
-        \SI{12}{\centi\meter} & \num{4700(1100)}\\
-        \SI{24}{\centi\meter} & \num{670(180)}\\
+        \SI{12}{\centi\meter} & \num{1720(370)}\\
+        \SI{24}{\centi\meter} & \num{87(23)}\\
         \bottomrule
     \end{tabular}
-
 \end{table}
+
 Nun kann halblogarithmisch die Intensität gegen die Küvettenlänge aufgetragen werden, um die Steigung zu bestimmen. Die Steigung entspricht dem dekadischen Absorptionskoeffizienten $k'$.
 
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{img/A2.jpg}
+    \caption{Intensitäten auf Halblogarithmischer Skala gegen die Küvettenlänge aufgetragen.}
+    \label{fig:A2}
+\end{figure}
+
+Die Steigung der Geraden in Abbildung \ref{fig:A2} berechnen sich durch:
+\begin{equation}
+    k' = \frac{\log_{10}(I_1) - \log_{10}(I_2)}{l_2 - l_1}\label{Steigungformel}
+\end{equation}
+
+Aus den abgelesenen Steigungsdreiecken ergibt sich:
+\begin{table}[H]
+    \centering
+    \caption{Steigung der Geraden}
+    \begin{tabular}{lcccc}
+        \toprule
+        Art & $I_2$ [cts] & $I_1$ [cts] & $\Delta l_1$ [cm] & Ergebnis nach Gl. \ref{Steigungformel} [cts/\si{\centi\meter}]\\
+        \midrule
+        lower error & 32000 & 110 & 24 & $k' = -0.103$\\
+        Mittelgerade & 38000 & 120 & 20.7 & $k' = -0.121$\\
+        upper error & 18830 & 170& 16.05 & $k' = -0.127$\\
+        \bottomrule
+    \end{tabular}
+\end{table}
+
+Somit ergibt sich für $k'$ mit Gleichung \ref{eq:log10I}(1)\footnotemark der Wert:
+\begin{equation}
+    k' = (\num{0.121(18)})\si{\per\centi\meter}
+\end{equation}
+\footnotetext{Diese Gleichung wegen Vorzeichenänderung}
+
+
+Die verwendeten Küvetten besitzten eine Konzentration von $c = \SI{0.000001}{\mole\per\liter}$.
+Aus dem lambertschen Absorptionsgesetz und dem Beerschen Gesetz (Gleichung \ref{eq:Beersches Gesetz}) ergibt sich für den molaren Extinktionskoeffizienten $\epsilon$:
+\begin{equation}
+    \epsilon = \frac{k'}{c} = \frac{(\num{0.121(18)})\si{\per\centi\meter}}{\num{0.000001}\si{\mole\per\liter}} = \num{1.21(18)e5e}\si{\liter\per\mole\per\centi\meter}
+\end{equation}
+
+Die Sigma-Abweichung  beträgt:
+\begin{equation}
+    \sigma = \frac{|\epsilon_\text{exp} - \epsilon_\text{lit}|}{\Delta \epsilon_\text{exp}} = \frac{|\num{1.21e5} - \num{0.97e5}|}{\num{0.18e5}} = 1.33 \Rightarrow 1.33\sigma
+\end{equation}
+
+
+
+\begin{resultbox}[Ergebnis der Längenmessung]
+    Der molare Extinktionskoeffizient $\epsilon$ beträgt:
+    \begin{equation}
+        \epsilon = \num{1.21(18)e5}\si{\liter\per\mole\per\centi\meter}
+    \end{equation}
+
+Die Abweichung zum Literaturwert beträgt $1.33\sigma$.
+\end{resultbox}
 \clearpage
 
 \listoffigures
