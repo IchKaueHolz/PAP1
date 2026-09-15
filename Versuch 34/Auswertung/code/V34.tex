@@ -1,0 +1,48 @@
+
+    
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{2}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{k+kn}{import}\PY{+w}{ }\PY{n+nn}{numpy}\PY{+w}{ }\PY{k}{as}\PY{+w}{ }\PY{n+nn}{np}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{ }{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{n}{c0} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{array}\PY{p}{(}\PY{p}{[}\PY{l+m+mi}{51545}\PY{p}{,} \PY{l+m+mi}{51483}\PY{p}{,} \PY{l+m+mi}{51625}\PY{p}{,} \PY{l+m+mi}{51615}\PY{p}{,} \PY{l+m+mi}{51549}\PY{p}{]}\PY{p}{)}
+\PY{n}{c1} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{array}\PY{p}{(}\PY{p}{[}\PY{l+m+mi}{47577}\PY{p}{,} \PY{l+m+mi}{47315}\PY{p}{,} \PY{l+m+mi}{47219}\PY{p}{,} \PY{l+m+mi}{47096}\PY{p}{,} \PY{l+m+mi}{47206}\PY{p}{]}\PY{p}{)}
+\PY{n}{c2} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{array}\PY{p}{(}\PY{p}{[}\PY{l+m+mi}{40052}\PY{p}{,} \PY{l+m+mi}{40003}\PY{p}{,} \PY{l+m+mi}{39741}\PY{p}{,} \PY{l+m+mi}{39913}\PY{p}{,} \PY{l+m+mi}{39952}\PY{p}{]}\PY{p}{)}
+\PY{n}{c3} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{array}\PY{p}{(}\PY{p}{[}\PY{l+m+mi}{34170}\PY{p}{,} \PY{l+m+mi}{34188}\PY{p}{,} \PY{l+m+mi}{34145}\PY{p}{,} \PY{l+m+mi}{34061}\PY{p}{,} \PY{l+m+mi}{34315}\PY{p}{]}\PY{p}{)}
+\PY{n}{c4} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{array}\PY{p}{(}\PY{p}{[}\PY{l+m+mi}{18601}\PY{p}{,} \PY{l+m+mi}{18644}\PY{p}{,} \PY{l+m+mi}{18496}\PY{p}{,} \PY{l+m+mi}{18573}\PY{p}{,} \PY{l+m+mi}{18646}\PY{p}{]}\PY{p}{)}
+
+\PY{k}{def}\PY{+w}{ }\PY{n+nf}{calculate\PYZus{}mean}\PY{p}{(}\PY{n}{data}\PY{p}{)}\PY{p}{:}
+    \PY{n}{s} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{std}\PY{p}{(}\PY{n}{data}\PY{p}{,} \PY{n}{ddof}\PY{o}{=}\PY{l+m+mi}{1}\PY{p}{)}\PY{o}{/}\PY{n}{np}\PY{o}{.}\PY{n}{sqrt}\PY{p}{(}\PY{n+nb}{len}\PY{p}{(}\PY{n}{data}\PY{p}{)}\PY{p}{)}
+    \PY{n+nb}{print}\PY{p}{(}\PY{n}{np}\PY{o}{.}\PY{n}{mean}\PY{p}{(}\PY{n}{data}\PY{p}{)}\PY{p}{,} \PY{n}{s}\PY{p}{)}
+    
+\PY{n}{calculate\PYZus{}mean}\PY{p}{(}\PY{n}{c0}\PY{p}{)}
+\PY{n}{calculate\PYZus{}mean}\PY{p}{(}\PY{n}{c1}\PY{p}{)}
+\PY{n}{calculate\PYZus{}mean}\PY{p}{(}\PY{n}{c2}\PY{p}{)}
+\PY{n}{calculate\PYZus{}mean}\PY{p}{(}\PY{n}{c3}\PY{p}{)}
+\PY{n}{calculate\PYZus{}mean}\PY{p}{(}\PY{n}{c4}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+51563.4 25.949181104612915
+47282.6 81.37972720524442
+39932.2 53.23664151691013
+34175.8 41.040711494807205
+18592.0 27.63874092646045
+    \end{Verbatim}
+
+    concentration
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{ }{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{l+m+mi}{67}
+\end{Verbatim}
+\end{tcolorbox}
+
+

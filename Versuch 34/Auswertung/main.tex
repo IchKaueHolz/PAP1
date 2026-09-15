@@ -29,6 +29,7 @@
 \usepackage{longtable}
 \usepackage{graphicx}
 
+
 \input{../../jupyterpackages.tex}
 
 % jupyter nbconvert --to latex 'Path'
@@ -164,8 +165,18 @@ Dabei ist $\epsilon$ der molare Extinktionskoeffizient, eine konzentrationsunabh
 
 Mit den größen $\epsilon$ und $k'$ lässt sich das Absorptionsgesetz in der Form:
 \begin{equation}
-    I = I_0 \, 10^{-k' l} = I_0 \, 10^{-\epsilon c l}
+    I = I_0 \, 10^{-k' l} = I_0 \, 10^{-\epsilon c l}\label{eq:beer}\\
+    = \log_{10}(I) =-\epsilon c l'
 \end{equation}
+
+mit $log_{10}$ auf beiden Seiten
+\begin{equation}
+    \log_{10}(I) = -\epsilon c l + \log_{10}(I_0)\label{Absorption}
+\end{equation}
+
+$\epsilon$ berechnet sich somit aus der Steigung der logarithmierten Intensität gegen die Konzentration $c$ bei einer festen Küvettenlänge $l$.
+
+
 
 \subsection{Bestimmung des molaren Extinktionskoeffizienten}
 
@@ -299,14 +310,10 @@ Aus den abgelesenen Steigungsdreiecken ergibt sich:
     \end{tabular}
 \end{table}
 
-Somit ergibt sich für $k'$ mit Gleichung \ref{eq:log10I}(1)\footnotemark der Wert:
+Somit ergibt sich für $k'$ mit Gleichung \ref{eq:log10I}(vorzeichen) der Wert:
 \begin{equation}
-    k' = (321`1234567890-=-09q  AFGL;[']\
-    \
-    ]'[;./
-     \num{0.121(18)})\si{\per\centi\meter}
+    k' =(\num{0.121(18)})\si{\per\centi\meter}
 \end{equation}
-\footnotetext{Diese Gleichung wegen Vorzeichenänderung}
 
 
 Die verwendeten Küvetten besitzten eine Konzentration von $c = \SI{0.000001}{\mole\per\liter}$.
@@ -315,21 +322,170 @@ Aus dem lambertschen Absorptionsgesetz und dem Beerschen Gesetz (Gleichung \ref{
     \epsilon = \frac{k'}{c} = \frac{(\num{0.121(18)})\si{\per\centi\meter}}{\num{0.000001}\si{\mole\per\liter}} = \num{1.21(18)e5e}\si{\liter\per\mole\per\centi\meter}
 \end{equation}
 
-Die Sigma-Abweichung  beträgt:
+
+
+\medspace
+\begin{resultbox}[Ergebnis der Längenmessung]
+    Der molare Extinktionskoeffizient $\epsilon$ mithilfe der Längenmessung beträgt:
+    \begin{equation*}
+        \epsilon = \num{1.21(18)e5}\si{\liter\per\mole\per\centi\meter}
+    \end{equation*}
+
+\end{resultbox}
+
+\subsection{Berechnung der Steigung mithilfe der Konzentrationsmessung}
+
+Die Konzentration wurde mithilfe von Hinzugeben von verdünnter Lösung in die Küvette verändert. Die Konzentration der verdünnten Lösung wurde mit der Pipette bestimmt. 
+
+Um die Konzentration der Lösung in der Küvette zu bestimmen, wird die Formel:
 \begin{equation}
-    \sigma = \frac{|\epsilon_\text{exp} - \epsilon_\text{lit}|}{\Delta \epsilon_\text{exp}} = \frac{|\num{1.21e5} - \num{0.97e5}|}{\num{0.18e5}} = 1.33 \Rightarrow 1.33\sigma
+    c_k = c_0 \frac{\sum_{i=1}^{k}V_i}{V_0 + \sum_{i=1}^{k}V_i} \text{für } k \in [0{,} 5]\footnotemark
+\end{equation}
+\footnotetext{$\sum_{i=1}^{0} V_i \coloneq 0$}
+verwendet.
+Die Fehlerformel für die Konzentration, wenn $c$ ohne fehler ist:
+\begin{align}
+\Delta c_k &= \sqrt{ \left( \frac{\partial c_k}{\partial V_0} \Delta V_0 \right)^2 + \sum_{i=1}^k \left( \frac{\partial c_k}{\partial V_i} \Delta V_i \right)^2 }\\
+ &=\footnotemark \frac{c_0}{\left(V_0 + \sum_{i=1}^k V_i\right)^2} \sqrt{ \left( \sum_{i=1}^k V_i \right)^2 (\Delta V_0)^2 + V_0^2 \sum_{i=1}^k (\Delta V_i)^2 }\label{Fehlerformel C}
+\end{align}
+\footnotetext{Danke an Daddy Gemini, keine Ahnung wie ich das Ableite}
+
+Mit den folgenden Werten:
+\begin{table}[H]
+    \caption{Parameter für die Konzentrationsberechnung}
+    \centering
+    \begin{tabular}{rl}
+        \toprule
+        Variable & Wert\\
+        \midrule
+        $c_0 = $ & $(\num{5e-6})\,\si{\mole\per\liter}$\\
+        $V_0 = $ & $(\num{21.0(3)})\,\si{\milli\liter}$\\
+        $V_1 = $ & $(\num{1.4(3)})\,\si{\milli\liter}$\\
+        $V_2 = $ & $(\num{1.6(3)})\,\si{\milli\liter}$\\
+        $V_3 = $ & $(\num{4.0(3)})\,\si{\milli\liter}$\\
+        $V_4 = $ & $(\num{14.0(3)})\,\si{\milli\liter}$\\
+        \bottomrule
+    \end{tabular}
+
+\end{table}
+
+ergeben sich die folgenden Konzentrationen und Intensitäten:
+
+\begin{table}[H]
+    \centering
+    \caption{Messwerte der Konzentrationsmessung}
+    \begin{tabular}{lcc}
+        \toprule
+        $i$ & Konzentration $c$ [\si{\mole\per\liter}] & Intensität $I$ [cts]\\
+        \midrule
+        0 & $c_0 = $ 0 & \num{51568(26)}\\
+        1 & $c_1 = $ \num{0.31(6)e-6} & \num{47280(90)}\\
+        2 & $c_2 = $ \num{0.63(8)e-6} & \num{39930(60)}\\
+        3 & $c_3 = $ \num{1.25(7)e-6} & \num{34180(50)}\\
+        4 & $c_4 = $ \num{2.50(4)e-6} & \num{18592(28)}\\
+        \bottomrule
+    \end{tabular}
+\end{table}
+
+Nun werden die logarithmierten Intensitäten gegen die Konzentration aufgetragen, um die Steigung zu bestimmen:
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{img/A3.jpg}
+    \caption{Intensitäten auf Halblogarithmischer Skala gegen die Konzentration aufgetragen.}
+    \label{fig:A3}
+\end{figure}
+
+Der Molare Extinktionskoeffizient $\epsilon$ berechnet sich aus der Steigung der Geraden in Abbildung \ref{fig:A3} und Gleichung \ref{Absorption}:
+
+\begin{equation}
+    \epsilon = \frac{\log_{10}(I_2) - \log_{10}(I_1)}{(c_2 - c_1) \cdot l}\label{Steigungformel_Konzentration}
 \end{equation}
 
+\begin{table}[H]
+    \centering
+    \caption{Werte für die Steigungsberechnung (mit $l = \SI{1.5}{\centi\meter}$)}
+    \begin{tabular}{lcccc}
+        \toprule
+        Art & $I_2$ [cts] & $I_1$ [cts] & $\Delta c$ [\si{\mole\per\liter}] & Ergebnis nach Gl. \ref{Steigungformel_Konzentration} [\si{\liter\per\mole\per\centi\meter}]\\
+        \midrule
+        lower error & 48000 & 14000 & \num{3.375e-6} & $\epsilon = \num{1.06e5}$\\
+        Mittelgerade & 44000 & 17000 & \num{2.3e-6} & $\epsilon = \num{1.20e5}$\\
+        upper error & 50000 & 18000 & \num{2.1e-6} & $\epsilon = \num{1.41e5}$\\
+        \bottomrule
+    \end{tabular}
+\end{table}
 
 
-\begin{resultbox}[Ergebnis der Längenmessung]
-    Der molare Extinktionskoeffizient $\epsilon$ beträgt:
-    \begin{equation}
-        \epsilon = \num{1.21(18)e5}\si{\liter\per\mole\per\centi\meter}
-    \end{equation}
-
-Die Abweichung zum Literaturwert beträgt $1.33\sigma$.
+\begin{resultbox}[Ergebnis der Konzentrationsmessung]
+    Der molare Extinktionskoeffizient $\epsilon$ mithilfe der Konzentrationsmessung beträgt:
+    \begin{equation*}
+        \epsilon = \num{1.20(21)e5}\si{\liter\per\mole\per\centi\meter}
+    \end{equation*}
 \end{resultbox}
+
+
+\subsection{Abweichung der Messwerte}
+
+\begin{table}[H]
+    \centering
+    \caption{Berechnete Werte und Literaturwert}
+    \begin{tabular}{lc}
+        \toprule
+        Methode & $\epsilon$ [\si{\liter\per\mole\per\centi\meter}]\\
+        \midrule
+        Längenmessung & \num{1.21(18)e5}\\  
+        Konzentrationsmessung & \num{1.20(21)e5}\\
+        Literaturwert & \num{0.97e5}\\
+        \bottomrule
+    \end{tabular}
+\end{table}
+
+Die Sigma-Abweichung der Messwerte zum Literaturwert beträgt:
+\begin{align}
+    \sigma_\text{len} &= \frac{|\epsilon_\text{len} - \epsilon_\text{Lit}|}{\Delta \epsilon_\text{len}} = \frac{|\num{1.21e5} - \num{0.97e5}|}{\num{0.18e5}} = 1.33 &\Rightarrow 1.33\sigma\\
+    \sigma_\text{conc} &= \frac{|\epsilon_\text{conc} - \epsilon_\text{Lit}|}{\Delta \epsilon_\text{conc}} = \frac{|\num{1.20e5} - \num{0.97e5}|}{\num{0.21e5}} = 1.10 &\Rightarrow 1.10\sigma
+\end{align}
+
+Die Sigma-Abweichung der beiden Messwerte beträgt:
+\begin{align}
+    \sigma_\text{len-conc} &= \frac{|\epsilon_\text{len} - \epsilon_\text{conc}|}{\sqrt{\Delta \epsilon_\text{len}^2 + \Delta \epsilon_\text{conc}^2}} = \frac{|\num{1.21e5} - \num{1.20e5}|}{\sqrt{\left(\num{0.18e5}\right)^2 + \left(\num{0.21e5}\right)^2}} = 0.03 &\Rightarrow 0.03\sigma
+\end{align}
+
+\begin{resultbox}[Abweichung der Messwerte]
+    Die Abweichungen der Messwerte betragen:
+    \begin{align*}
+        \sigma_\text{len} &= 1.33\sigma\\
+        \sigma_\text{conc} &= 1.10\sigma\\
+        \sigma_\text{len-conc} &= 0.03\sigma
+    \end{align*}
+\end{resultbox}
+
+\section{Diskussion}
+
+Die Abweichung der beiden Messmethoden von nur $0.03\sigma$ beweißt die Konstenz der Messmethodik. Es ist zu erkennen, dass die Abweichung der Messwerte zum Literaturwert bei beiden Messmethoden größer als $1\sigma$ beträgt. Dies zeigt, dass die Messmethoden zwar konsistent sind, aber systematische Fehler in der Versuchsdurchführung oder in der Kalibrierung des Messgeräts vorliegen könnten. Mögliche Ursachen für diese Abweichungen könnten ungenaue Pipettierungen, Schwankungen in der Lichtquelle oder unzureichende Berücksichtigung von Streulicht sein.
+
+Ausserdem befindet sich die Messwellenlänge bei $\lambda = \SI{629}{\nano\meter}$, während der Literaturwert bei $\lambda = \SI{625}{\nano\meter}$ angegeben ist. Dies könnte ebenfalls zu einer Abweichung führen, da der molare Extinktionskoeffizient wellenlängenabhängig ist.
+
+\medskip
+Ein Hinweis auf dem Datenblatt des FCF-Farbstoffs ist \cite{PAPskript}:
+\begin{quote}
+    \emph{Loss on Drying: $\leq 13\%$}\\
+    \emph{In H$_2$O soluble matter: $\leq 1\%$}
+\end{quote}
+
+Dies bedeutet, dass die Konzentration der Lösung um bis zu $13\%$ abweichen kann, was ebenfalls eine signifikante Fehlerquelle darstellt, da das Pulver hygroskopisch ist und Feuchtigkeit aus der Luft aufnehmen kann. Dies könnte die tatsächliche Konzentration der Lösung beeinflussen und somit die Messungen verfälschen.
+
+Somit sind $\approx 14\%$ der beim Erstellen der Lösung gewogenen Masse kein Farbstoff, sondern Wassser oder andere Verunreinigungen. Somit ist die angegebe ne Konzentration von $\SI{5e-6}{\mole\per\liter}$ nicht korrekt. Dies könnte die Abweichung der Messwerte zum Literaturwert erklären, da die tatsächliche Konzentration der Lösung niedriger ist als angenommen, was zu einem höheren berechneten Extinktionskoeffizienten führt.
+
+
+
+\section{Fazit}
+Zum Ende lässt sich sagen, dass die Spektralphotometrie eine effektive Methode zur Bestimmung des molaren Extinktionskoeffizienten von Brillantblau FCF ist. Beide Messmethoden, die Längenmessung und die Konzentrationsmessung, lieferten konsistente Ergebnisse, die jedoch leicht vom Literaturwert abwichen. Die Abweichungen können auf systematische Fehler und Unsicherheiten in der Probenvorbereitung zurückgeführt werden. Zukünftige Experimente könnten durch präzisere Pipettierung, sorgfältigere Kontrolle der Probenkonzentration und Berücksichtigung von Streulicht verbessert werden. Der Versuch war sehr interessant und lehrreich, da er sowohl die theoretischen Grundlagen der Fotometrie als auch praktische Fähigkeiten in der experimentellen Physik vermittelte. Die Messmethode war einfach durchzuführen. 
+
+
+
+
 \clearpage
 
 \listoffigures
@@ -344,9 +500,8 @@ Die Abweichung zum Literaturwert beträgt $1.33\sigma$.
     
 \end{thebibliography}
 
-\begin{tcolorbox}[colback=gray!5,colframe=gray!60,boxrule=0.8pt,arc=0.01mm,title=KI-Hinweis]
-    Für die sprachliche Formulierung dieses Protokolls wurde in Teilen KI-gestützte Textgenerierung verwendet. 
-\end{tcolorbox}
-
+\appendix
+\section{Anhang - Code}
+\include{code/V34.tex}
 
 \end{document}
