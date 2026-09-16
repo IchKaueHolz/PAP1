@@ -142,55 +142,112 @@ Bei höheren Temperaturen \textit{verschwimmt} die Fermi-Energie, da die Elektro
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.6\textwidth]{img/Fermi-energie.png}
-    \caption{Energieverteilung der elektronen in einem Metall}
+    \caption{Energieverteilung der elektronen in einem Metall}\cite{PAPskript}
     \label{fig:energiebandmodell}
 \end{figure}
 
-Die Energetischen Zustände können anhand eines Potentialtops in Abbildung \ref{fig:potentialtopf} veranschaulicht werden. Die Leitungselektronen besetzen dort kontinuierliche Zustände bis zur Fermi-Energie. Um das Metall verlassen zu können, muss ein Elektron die Austrittsarbeit $W_A$ aufbringen. Die Austrittsarbeit ist die Energie, die ein Elektron benötigt, um das Metall zu verlassen. Sie ist materialabhängig und liegt im Bereich von einigen Elektronenvolt.
+Die Energetischen Zustände können anhand eines Potentialtops in Abbildung \ref{fig:potentialtopf} veranschaulicht werden. Die Leitungselektronen besetzen dort kontinuierliche Zustände bis zur Fermi-Energie. Um das Metall verlassen zu können, muss ein Elektron die Austrittsarbeit $A$ aufbringen. Die Austrittsarbeit ist die Energie, die ein Elektron benötigt, um das Metall zu verlassen. Sie ist materialabhängig und liegt im Bereich von einigen Elektronenvolt.
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.6\textwidth]{img/Potentialtopf.png}
-    \caption{Potentialtopfmodell eines Metalls}
+    \caption{Potentialtopfmodell eines Metalls}\cite{PAPskript}
     \label{fig:potentialtopf}
 \end{figure}
 
+\subsection{Energieverhältnisse beim Fotoeffekt}
+Die Energie eines Herausgelösten Elektrons ist die Summe aus der kinetischen Energie $E_{kin}$ und der Austrittsarbeit $A$. 
+
+Die kinetische Energie des Elektrons kann durch die Gegenfeldmethode bestimmt werden. Dabei wird eine Spannung $U$ an die Fotokathode angelegt, die das Elektron aufhält. Die kinetische Energie des Elektrons ist dann gegeben durch:
+
+\begin{equation}
+    h\nu = A + (E_F-E_e) + E_{kin}
+\end{equation}
+
+Die Maximale kinetische Energie der Elektronen findet an der Fermi-Kante statt. Die kinetische Energie der Elektronen ist dann gegeben durch:
+
+\begin{equation}
+    E_{kin,max} = h\nu - A
+\end{equation}
+
+Es wird für die Durchführung dieser Messung eine Fotozelle verwendet, die aus einer Fotokathode und einer Anode besteht. Die Fotokathode ist mit einer Spannung $U$ gegenüber der Anode aufgeladen. Die Anode ist dabei so geschaltet, dass sie die Elektronen, die von der Fotokathode emittiert werden, aufnimmt.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.6\textwidth]{img/Fotozelle.png}
+    \caption{Schematische Darstellung einer Fotozelle}\cite{PAPskript}
+    \label{fig:fotozelle}
+\end{figure}
 
 
+Mithilfe einer Gegenfeldmethode kann die maximale kinetische Energie der Elektronen bestimmt werden. Dabei wird eine Spannung $U$ an die Fotokathode angelegt, die die Elektronen mit steigender Spannnung abbremst. Bei einer Sperrspannnung $U_s$ wird der Strom null. Die kinetische Energie des Elektrons ist dann gegeben durch:
+
+\begin{equation}
+    E_{kin,max} = eU_s
+\end{equation}
+
+Damit wirklich die Fotoelektronen auf die Anode treffen, muss eine hohe positve Saugspannung wirken. Die Saugspannung ist die Spannung, die an der Anode angelegt wird, um die Elektronen aufzufangen. Um $U_s$ bei $T > 0\,\text{K}$ zu bestimmen, muss der funktionale Verlauf der Strom-Spannungs-Kennlinie bekannt sein. Die verwendeete Fotozelle besitzt ungefähr die Funktion:
+\begin{equation}
+    I \propto U^2
+\end{equation}
+
+Bei der Auswertung wird Gerade $\sqrt{I}$ gegen $U$ aufgetragen. Die Schnittstelle mit der Spannung $U$ ist dann die Sperrspannung $U_s$. Die kinetische Energie der Elektronen ist dann gegeben durch:
+\begin{equation}
+    E_{kin,max} = eU_s = h\nu - A 
+\end{equation}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.6\textwidth]{img/Strom-Spannungs-Kennlinie.png}
+    \caption{Strom-Spannungs-Kennlinie}\cite{PAPskript}
+    \label{fig:gegenfeldmethode}
+\end{figure}
 
 
+\subsection{Bestimmung des Planckschen Wirkungsquantums}
 
+Um das Plancksche Wirkungsquantum $h$ zu bestimmen, wird die ermittelte Sperrspannung $U_s$ gegen die Frequenz $\nu$ des eingestrahlten Lichts aufgetragen. Die Frequenz des Lichts berechnet sich aus der Wellenlänge $\lambda$ und der Lichtgeschwindigkeit $c$ durch:
+\begin{equation}
+    \nu = \frac{c}{\lambda}
+\end{equation}
 
+Nach der Einsteinschen Gleichung für den Fotoeffekt besteht zwischen der Sperrspannung und der Frequenz der folgende lineare Zusammenhang:
+\begin{equation}
+    U_s(\nu) = \frac{h}{e} \cdot \nu - \frac{A}{e}
+\end{equation}
 
-
-    
-
-\subsection{Literaturwerte}
-
-
-
-
+Beim Auftragen von $U_s$ gegen $\nu$ ergibt sich somit eine Gerade, deren Steigung $m$ dem Verhältnis $\frac{h}{e}$ entspricht. Das Plancksche Wirkungsquantum berechnet sich daher aus der experimentell ermittelten Steigung der Ausgleichsgeraden multipliziert mit der Elementarladung $e$:
+\begin{equation}
+    h = m \cdot e = \frac{\Delta U_s}{\Delta \nu} \cdot e
+\end{equation}
 
 \section{Messprotokoll}
-
 \subsection{Versuchsaufbau und Aufgaben}
-\begin{comment}
-    
+
 \includepdf[
     pages=-,
     width=\textwidth,
-    height=0.95\textheight,
+    height=\textheight,
     keepaspectratio,
     pagecommand={\thispagestyle{scrheadings}},
-    pagecommand*={\thispagestyle{scrheadings}\section{Messprotokoll}\subsection{Versuchsaufbau und Aufgaben}}
-]{../Messprotokoll 34.pdf}
+    pagecommand*={\thispagestyle{scrheadings}}
+]{../Messprotokoll 35.pdf}
 
-\end{comment}
 
-\subsection{Durchführung}
+\subsection{Hinweis zum Aufbau}
+
+Der Versuchsaufbau basiert auf einem Spektrometer, das zur Erhöhung der Dispersion zwei hintereinander geschaltete Flintglasprismen nutzt. Über einen beweglichen Spiegel werden die einzelnen Spektrallinien des Lichts gezielt durch einen Austrittsspalt auf die Fotokathode einer Fotozelle gelenkt. Zur visuellen Kontrolle und Ausrichtung kann das Licht mit einem schwenkbaren Spiegel vorübergehend auf einen eingebauten Papierschirm geworfen werden; durch die Fluoreszenz des Papiers wird dort sogar die UV-Linie bei $365,0\,\text{nm}$ sichtbar\cite{PAPskript}. 
+
+Da die beim Fotoeffekt emittierten Elektronen nur extrem kleine Fotoströme im Bereich von einigen $10\,\text{pA}$ erzeugen, müssen diese für die Messung verstärkt werden. Dies geschieht durch einen Strom-Spannungswandler, bei dem der von der Fotozelle gelieferte Strom durch einen Widerstand von $1\,\text{G}\Omega$ fließt, und einen nachgeschalteten hochohmigen Verstärker, der das Signal nochmals um den Faktor 11 verstärkt. Der Fotostrom wird somit indirekt über eine proportionale Spannung $U_I$ gemessen, wobei eine abgelesene Spannung von $1\,\text{V}$ einem tatsächlichen Strom von $91\,\text{pA}$ entspricht\cite{PAPskript}.
+
+
+\section{Durchführung}
+Es werden die Spektrallinien der Hg-Spektrallampe nacheinander auf die Fotokathode der Fotozelle gerichtet. Damit die Linie perfekt die Fotokathode erreicht, wird die Spiegelposition durch Maximierung des Photostroms bestimmt. Für jede Spektrallinie wird die Strom-Spannungs-Kennlinie aufgenommen, indem die Spannung $U$ an der Fotokathode variiert und der entsprechende Fotostrom $I$ gemessen wird. Die Messung erfolgt für fünf ausgewählte Spektrallinien im Bereich von $365,0\,\text{nm}$ bis $579,1\,\text{nm}$.
 
 \section{Auswertung}
 
-\subsection{Aufgabe 1:Exemplarische Berechnung an einem ausgewählten Tröpfchen}
+\subsection{Berechnungen der Zahlenwerte}
+
+
 
 
 
