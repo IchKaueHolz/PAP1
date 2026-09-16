@@ -1,0 +1,245 @@
+\begin{table}[H]
+\centering
+\caption{Fehler des Multimeters}
+\begin{tabular}{|c|c|c|}
+    \toprule
+    \textbf{Messbereich} & \textbf{Auflösung $\zeta$} & \textbf{Messgenauigkeit $\eta$}\\
+    \midrule
+    $400\,\text{mV}$ & $100\,\mu\text{V}$ & $\pm(0,25\% + 5\,\text{Digit})$\\
+    $4\,\text{V}$ & $1\,\text{mV}$ & $\pm(0,4\% + 1\,\text{Digit})$\\
+    $40\,\text{V}$ & $10\,\text{mV}$ & $\pm(0,25\% + 1\,\text{Digit})$\\
+    $400\,\text{V}$ & $100\,\text{mV}$ & $\pm(0,25\% + 1\,\text{Digit})$\\
+    $1000\,\text{V}$ & $1\,\text{V}$ & $\pm(0,25\% + 1\,\text{Digit})$\\
+    \bottomrule
+\end{tabular}
+\end{table}
+
+Der Fehler des Messgeräts berechnet sich nach der Formel:
+\begin{equation}
+    \Delta U_{\text{Messgerät}} = \zeta + \eta \cdot U
+\end{equation}
+
+
+Der Gesamtfehler der Messung setzt sich aus dem Ablesefehler und dem Fehler des Messgeräts zusammen. Der Ablesefehler wird auf $0,3,\text{mV}$ geschätzt. Der Gesamtfehler berechnet sich nach der Gaußschen Fehlerfortpflanzung:
+\begin{equation}    
+    \Delta U = \sqrt{(\Delta U_\text{Ablesen})^2 + (\Delta U_\text{Messgerät})^2}
+\end{equation}
+
+
+\subsection{Berechnungen der Zahlenwerte}\label{sec:Berechnungen der Zahlenwerte}
+%% === Tabelle: UV-Linie ($\lambda = 365\,\text{nm}$) ===
+\begin{table}[H]
+\centering
+\caption{Messwerte UV-Linie ($\lambda = 365\,\text{nm}$) (Teil 1)}
+\resizebox{\textwidth}{!}{
+\begin{tabular}{|c|c|c|c|c|c|c|}
+\hline
+ $U\,[\text{V}]$ & $0,0$ & $-0,1$ & $-0,2$ & $-0,3$ & $-0,4$ & $-0,5$ \\\hline
+ $U_I\,[\text{V}]$ & $4.070 \pm 0.020$ & $3.690 \pm 0.016$ & $3.370 \pm 0.015$ & $3.030 \pm 0.013$ & $2.737 \pm 0.012$ & $2.435 \pm 0.011$ \\\hline
+ $U_I - U_{I0}\,[\text{V}]$ & $4.102 \pm 0.020$ & $3.722 \pm 0.016$ & $3.402 \pm 0.015$ & $3.062 \pm 0.013$ & $2.769 \pm 0.012$ & $2.467 \pm 0.011$ \\\hline
+ $\sqrt{U_I - U_{I0}}$ & $2.025 \pm 0.005$ & $1.929 \pm 0.004$ & $1.844 \pm 0.004$ & $1.750 \pm 0.004$ & $1.664 \pm 0.004$ & $1.571 \pm 0.004$ \\\hline
+\end{tabular}
+}
+\end{table}
+
+\begin{table}[H]
+\centering
+\caption{Messwerte UV-Linie ($\lambda = 365\,\text{nm}$) (Teil 2)}
+\resizebox{\textwidth}{!}{
+\begin{tabular}{|c|c|c|c|c|c|c|}
+\hline
+ $U\,[\text{V}]$ & $-0,6$ & $-0,7$ & $-0,8$ & $-0,9$ & $-1,0$ & $-1,1$ \\\hline
+ $U_I\,[\text{V}]$ & $2.143 \pm 0.010$ & $1.861 \pm 0.009$ & $1.619 \pm 0.008$ & $1.386 \pm 0.007$ & $1.176 \pm 0.006$ & $0.985 \pm 0.005$ \\\hline
+ $U_I - U_{I0}\,[\text{V}]$ & $2.175 \pm 0.010$ & $1.893 \pm 0.009$ & $1.651 \pm 0.008$ & $1.418 \pm 0.007$ & $1.208 \pm 0.006$ & $1.017 \pm 0.005$ \\\hline
+ $\sqrt{U_I - U_{I0}}$ & $1.475 \pm 0.003$ & $1.376 \pm 0.003$ & $1.285 \pm 0.003$ & $1.191 \pm 0.003$ & $1.099 \pm 0.003$ & $1.008 \pm 0.003$ \\\hline
+\end{tabular}
+}
+\end{table}
+
+\begin{table}[H]
+\centering
+\caption{Messwerte UV-Linie ($\lambda = 365\,\text{nm}$) (Teil 3)}
+\resizebox{\textwidth}{!}{
+\begin{tabular}{|c|c|c|c|c|c|c|}
+\hline
+ $U\,[\text{V}]$ & $-1,2$ & $-1,3$ & $-1,4$ & $-1,5$ & $-1,6$ & $-1,7$ \\\hline
+ $U_I\,[\text{V}]$ & $0.811 \pm 0.005$ & $0.640 \pm 0.004$ & $0.479 \pm 0.003$ & $0.329 \pm 0.002$ & $0.182 \pm 0.001$ & $0.084 \pm 0.001$ \\\hline
+ $U_I - U_{I0}\,[\text{V}]$ & $0.843 \pm 0.005$ & $0.672 \pm 0.004$ & $0.511 \pm 0.003$ & $0.361 \pm 0.002$ & $0.214 \pm 0.002$ & $0.116 \pm 0.001$ \\\hline
+ $\sqrt{U_I - U_{I0}}$ & $0.918 \pm 0.003$ & $0.820 \pm 0.002$ & $0.715 \pm 0.002$ & $0.601 \pm 0.002$ & $0.463 \pm 0.002$ & $0.340 \pm 0.002$ \\\hline
+\end{tabular}
+}
+\end{table}
+
+\begin{table}[H]
+\centering
+\caption{Messwerte UV-Linie ($\lambda = 365\,\text{nm}$) (Teil 4)}
+\begin{tabular}{|c|c|c|}
+\hline
+ $U\,[\text{V}]$ & $-1,8$ & $-1,9$ \\\hline
+ $U_I\,[\text{V}]$ & $0.013 \pm 0.001$ & $-0.013 \pm 0.001$ \\\hline
+ $U_I - U_{I0}\,[\text{V}]$ & $0.045 \pm 0.001$ & $0.019 \pm 0.001$ \\\hline
+ $\sqrt{U_I - U_{I0}}$ & $0.212 \pm 0.003$ & $0.138 \pm 0.004$ \\\hline
+\end{tabular}
+
+\end{table}
+
+
+% === Tabelle: Violette Linie ($\lambda = 405\,\text{nm}$) ===
+\begin{table}[H]
+\centering
+\caption{Messwerte Violette Linie ($\lambda = 405\,\text{nm}$) (Teil 1)}
+\resizebox{\textwidth}{!}{
+\begin{tabular}{|c|c|c|c|c|c|c|}
+\hline
+ $U\,[\text{V}]$ & $0,3$ & $0,2$ & $0,1$ & $0,0$ & $-0,1$ & $-0,2$ \\\hline
+ $U_I\,[\text{V}]$ & $4.690 \pm 0.022$ & $4.330 \pm 0.021$ & $3.940 \pm 0.017$ & $3.580 \pm 0.016$ & $3.190 \pm 0.014$ & $2.853 \pm 0.013$ \\\hline
+ $U_I - U_{I0}\,[\text{V}]$ & $4.717 \pm 0.022$ & $4.357 \pm 0.021$ & $3.967 \pm 0.017$ & $3.607 \pm 0.016$ & $3.217 \pm 0.014$ & $2.880 \pm 0.013$ \\\hline
+ $\sqrt{U_I - U_{I0}}$ & $2.172 \pm 0.005$ & $2.087 \pm 0.005$ & $1.992 \pm 0.004$ & $1.899 \pm 0.004$ & $1.794 \pm 0.004$ & $1.697 \pm 0.004$ \\\hline
+\end{tabular}
+}
+\end{table}
+
+\begin{table}[H]
+\centering
+\caption{Messwerte Violette Linie ($\lambda = 405\,\text{nm}$) (Teil 2)}
+\resizebox{\textwidth}{!}{
+\begin{tabular}{|c|c|c|c|c|c|c|}
+\hline
+ $U\,[\text{V}]$ & $-0,3$ & $-0,4$ & $-0,5$ & $-0,6$ & $-0,7$ & $-0,8$ \\\hline
+ $U_I\,[\text{V}]$ & $2.482 \pm 0.011$ & $2.182 \pm 0.010$ & $1.862 \pm 0.009$ & $1.584 \pm 0.008$ & $1.325 \pm 0.007$ & $1.089 \pm 0.006$ \\\hline
+ $U_I - U_{I0}\,[\text{V}]$ & $2.509 \pm 0.011$ & $2.209 \pm 0.010$ & $1.889 \pm 0.009$ & $1.611 \pm 0.008$ & $1.352 \pm 0.007$ & $1.116 \pm 0.006$ \\\hline
+ $\sqrt{U_I - U_{I0}}$ & $1.584 \pm 0.004$ & $1.486 \pm 0.003$ & $1.374 \pm 0.003$ & $1.269 \pm 0.003$ & $1.163 \pm 0.003$ & $1.056 \pm 0.003$ \\\hline
+\end{tabular}
+}
+\end{table}
+
+\begin{table}[H]
+\centering
+\caption{Messwerte Violette Linie ($\lambda = 405\,\text{nm}$) (Teil 3)}
+\resizebox{\textwidth}{!}{
+\begin{tabular}{|c|c|c|c|c|c|c|}
+\hline
+ $U\,[\text{V}]$ & $-0,9$ & $-1,0$ & $-1,1$ & $-1,2$ & $-1,3$ & $-1,4$ \\\hline
+ $U_I\,[\text{V}]$ & $0.872 \pm 0.005$ & $0.686 \pm 0.004$ & $0.501 \pm 0.003$ & $0.322 \pm 0.002$ & $0.165 \pm 0.001$ & $0.066 \pm 0.001$ \\\hline
+ $U_I - U_{I0}\,[\text{V}]$ & $0.899 \pm 0.005$ & $0.713 \pm 0.004$ & $0.528 \pm 0.003$ & $0.349 \pm 0.002$ & $0.192 \pm 0.001$ & $0.093 \pm 0.001$ \\\hline
+ $\sqrt{U_I - U_{I0}}$ & $0.948 \pm 0.003$ & $0.844 \pm 0.002$ & $0.726 \pm 0.002$ & $0.591 \pm 0.002$ & $0.438 \pm 0.002$ & $0.305 \pm 0.002$ \\\hline
+\end{tabular}
+}
+\end{table}
+
+\begin{table}[H]
+\centering
+\caption{Messwerte Violette Linie ($\lambda = 405\,\text{nm}$) (Teil 4)}
+\begin{tabular}{|c|c|c|}
+\hline
+ $U\,[\text{V}]$ & $-1,5$ & $-1,6$ \\\hline
+ $U_I\,[\text{V}]$ & $0.006 \pm 0.001$ & $-0.014 \pm 0.001$ \\\hline
+ $U_I - U_{I0}\,[\text{V}]$ & $0.032 \pm 0.001$ & $0.013 \pm 0.001$ \\\hline
+ $\sqrt{U_I - U_{I0}}$ & $0.180 \pm 0.003$ & $0.114 \pm 0.005$ \\\hline
+\end{tabular}
+
+\end{table}
+
+
+% === Tabelle: Blaue Linie ($\lambda = 436\,\text{nm}$) ===
+\begin{table}[H]
+\centering
+\caption{Messwerte Blaue Linie ($\lambda = 436\,\text{nm}$) (Teil 1)}
+\resizebox{\textwidth}{!}{
+\begin{tabular}{|c|c|c|c|c|c|c|}
+\hline
+ $U\,[\text{V}]$ & $0,3$ & $0,2$ & $0,1$ & $0,0$ & $-0,1$ & $-0,2$ \\\hline
+ $U_I\,[\text{V}]$ & $6.080 \pm 0.026$ & $5.580 \pm 0.024$ & $5.040 \pm 0.023$ & $4.560 \pm 0.022$ & $3.990 \pm 0.017$ & $3.544 \pm 0.015$ \\\hline
+ $U_I - U_{I0}\,[\text{V}]$ & $6.119 \pm 0.026$ & $5.619 \pm 0.024$ & $5.079 \pm 0.023$ & $4.599 \pm 0.022$ & $4.029 \pm 0.017$ & $3.583 \pm 0.016$ \\\hline
+ $\sqrt{U_I - U_{I0}}$ & $2.474 \pm 0.005$ & $2.371 \pm 0.005$ & $2.254 \pm 0.005$ & $2.145 \pm 0.005$ & $2.007 \pm 0.004$ & $1.893 \pm 0.004$ \\\hline
+\end{tabular}
+}
+\end{table}
+
+\begin{table}[H]
+\centering
+\caption{Messwerte Blaue Linie ($\lambda = 436\,\text{nm}$) (Teil 2)}
+\resizebox{\textwidth}{!}{
+\begin{tabular}{|c|c|c|c|c|c|c|}
+\hline
+ $U\,[\text{V}]$ & $-0,3$ & $-0,4$ & $-0,5$ & $-0,6$ & $-0,7$ & $-0,8$ \\\hline
+ $U_I\,[\text{V}]$ & $3.097 \pm 0.014$ & $2.654 \pm 0.012$ & $2.252 \pm 0.010$ & $1.840 \pm 0.009$ & $1.479 \pm 0.007$ & $1.175 \pm 0.006$ \\\hline
+ $U_I - U_{I0}\,[\text{V}]$ & $3.136 \pm 0.014$ & $2.693 \pm 0.012$ & $2.291 \pm 0.010$ & $1.879 \pm 0.009$ & $1.518 \pm 0.007$ & $1.214 \pm 0.006$ \\\hline
+ $\sqrt{U_I - U_{I0}}$ & $1.771 \pm 0.004$ & $1.641 \pm 0.004$ & $1.514 \pm 0.003$ & $1.371 \pm 0.003$ & $1.232 \pm 0.003$ & $1.102 \pm 0.003$ \\\hline
+\end{tabular}
+}
+\end{table}
+
+\begin{table}[H]
+\centering
+\caption{Messwerte Blaue Linie ($\lambda = 436\,\text{nm}$) (Teil 3)}
+\resizebox{\textwidth}{!}{
+\begin{tabular}{|c|c|c|c|c|c|c|}
+\hline
+ $U\,[\text{V}]$ & $-0,9$ & $-1,0$ & $-1,1$ & $-1,2$ & $-1,3$ & $-1,4$ \\\hline
+ $U_I\,[\text{V}]$ & $0.870 \pm 0.005$ & $0.577 \pm 0.004$ & $0.310 \pm 0.002$ & $0.119 \pm 0.001$ & $0.013 \pm 0.001$ & $-0.021 \pm 0.001$ \\\hline
+ $U_I - U_{I0}\,[\text{V}]$ & $0.909 \pm 0.005$ & $0.616 \pm 0.004$ & $0.350 \pm 0.002$ & $0.158 \pm 0.001$ & $0.052 \pm 0.001$ & $0.019 \pm 0.001$ \\\hline
+ $\sqrt{U_I - U_{I0}}$ & $0.954 \pm 0.003$ & $0.785 \pm 0.002$ & $0.591 \pm 0.002$ & $0.398 \pm 0.002$ & $0.228 \pm 0.003$ & $0.136 \pm 0.005$ \\\hline
+\end{tabular}
+}
+\end{table}
+
+
+% === Tabelle: Grüne Linie ($\lambda = 546\,\text{nm}$) ===
+\begin{table}[H]
+\centering
+\caption{Messwerte Grüne Linie ($\lambda = 546\,\text{nm}$) (Teil 1)}
+\resizebox{\textwidth}{!}{
+\begin{tabular}{|c|c|c|c|c|c|c|}
+\hline
+ $U\,[\text{V}]$ & $0,3$ & $0,2$ & $0,1$ & $0,0$ & $-0,1$ & $-0,2$ \\\hline
+ $U_I\,[\text{V}]$ & $3.049 \pm 0.013$ & $2.530 \pm 0.011$ & $2.033 \pm 0.009$ & $1.547 \pm 0.007$ & $1.132 \pm 0.006$ & $0.776 \pm 0.004$ \\\hline
+ $U_I - U_{I0}\,[\text{V}]$ & $3.065 \pm 0.014$ & $2.546 \pm 0.011$ & $2.049 \pm 0.009$ & $1.563 \pm 0.008$ & $1.148 \pm 0.006$ & $0.792 \pm 0.004$ \\\hline
+ $\sqrt{U_I - U_{I0}}$ & $1.751 \pm 0.004$ & $1.596 \pm 0.004$ & $1.432 \pm 0.003$ & $1.250 \pm 0.003$ & $1.072 \pm 0.003$ & $0.890 \pm 0.003$ \\\hline
+\end{tabular}
+}
+\end{table}
+
+\begin{table}[H]
+\centering
+\caption{Messwerte Grüne Linie ($\lambda = 546\,\text{nm}$) (Teil 2)}
+\begin{tabular}{|c|c|c|c|c|}
+\hline
+ $U\,[\text{V}]$ & $-0,3$ & $-0,4$ & $-0,5$ & $-0,6$ \\\hline
+ $U_I\,[\text{V}]$ & $0.477 \pm 0.003$ & $0.266 \pm 0.001$ & $0.120 \pm 0.001$ & $0.047 \pm 0.001$ \\\hline
+ $U_I - U_{I0}\,[\text{V}]$ & $0.493 \pm 0.003$ & $0.282 \pm 0.002$ & $0.136 \pm 0.001$ & $0.064 \pm 0.001$ \\\hline
+ $\sqrt{U_I - U_{I0}}$ & $0.702 \pm 0.002$ & $0.531 \pm 0.002$ & $0.369 \pm 0.002$ & $0.252 \pm 0.002$ \\\hline
+\end{tabular}
+
+\end{table}
+
+
+% === Tabelle: Gelbe Linie ($\lambda = 578\,\text{nm}$) ===
+\begin{table}[H]
+\centering
+\caption{Messwerte Gelbe Linie ($\lambda = 578\,\text{nm}$) (Teil 1)}
+\resizebox{\textwidth}{!}{
+\begin{tabular}{|c|c|c|c|c|c|c|}
+\hline
+ $U\,[\text{V}]$ & $0,3$ & $0,2$ & $0,1$ & $0,0$ & $-0,1$ & $-0,2$ \\\hline
+ $U_I\,[\text{V}]$ & $0.584 \pm 0.004$ & $0.405 \pm 0.003$ & $0.262 \pm 0.001$ & $0.164 \pm 0.001$ & $0.099 \pm 0.001$ & $0.066 \pm 0.001$ \\\hline
+ $U_I - U_{I0}\,[\text{V}]$ & $0.591 \pm 0.004$ & $0.412 \pm 0.003$ & $0.269 \pm 0.002$ & $0.171 \pm 0.001$ & $0.106 \pm 0.001$ & $0.073 \pm 0.001$ \\\hline
+ $\sqrt{U_I - U_{I0}}$ & $0.769 \pm 0.002$ & $0.642 \pm 0.002$ & $0.519 \pm 0.002$ & $0.414 \pm 0.002$ & $0.325 \pm 0.002$ & $0.270 \pm 0.002$ \\\hline
+\end{tabular}
+}
+\end{table}
+
+\begin{table}[H]
+\centering
+\caption{Messwerte Gelbe Linie ($\lambda = 578\,\text{nm}$) (Teil 2)}
+\begin{tabular}{|c|c|c|c|c|}
+\hline
+ $U\,[\text{V}]$ & $-0,3$ & $-0,4$ & $-0,5$ & $-0,6$ \\\hline
+ $U_I\,[\text{V}]$ & $0.048 \pm 0.001$ & $0.035 \pm 0.001$ & $0.028 \pm 0.001$ & $0.022 \pm 0.001$ \\\hline
+ $U_I - U_{I0}\,[\text{V}]$ & $0.054 \pm 0.001$ & $0.042 \pm 0.001$ & $0.035 \pm 0.001$ & $0.029 \pm 0.001$ \\\hline
+ $\sqrt{U_I - U_{I0}}$ & $0.233 \pm 0.003$ & $0.205 \pm 0.003$ & $0.187 \pm 0.003$ & $0.169 \pm 0.003$ \\\hline
+\end{tabular}
+\end{table}
+
+
+
