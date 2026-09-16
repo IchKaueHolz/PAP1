@@ -247,10 +247,77 @@ Es werden die Spektrallinien der Hg-Spektrallampe nacheinander auf die Fotokatho
 
 \subsection{Fehlerrechnung}
 
-Der Fehler des Messgeräts ist vom Messbereich abhängig. Auf dem Datenblatt des Mulitmeters lässt sich ablesen:
+Der Fehler des Messgeräts ist vom Messbereich abhängig. Auf dem Datenblatt des Multimeters lässt sich ablesen:
+
+\begin{table}[H]
+    \centering
+    \caption{Fehler des Multimeters}
+    \begin{tabular}{|c|c|c|}
+    \hline
+    \textbf{Messbereich} & \textbf{Auflösung $\zeta$} & \textbf{Messgenauigkeit} \\
+    \hline
+    400\,mV & 100\,$\mu$V & $\pm(0,25\% + 5\,\text{Digit})$ \\
+    4\,V    & 1\,mV       & $\pm(0,4\% + 1\,\text{Digit})$ \\
+    40\,V   & 10\,mV      & $\pm(0,25\% + 1\,\text{Digit})$ \\
+    400\,V  & 100\,mV     & $\pm(0,25\% + 1\,\text{Digit})$ \\
+    1000\,V & 1\,V        & $\pm(0,25\% + 1\,\text{Digit})$ \\
+    \hline
+    \end{tabular}
+\end{table}
+
+Die angegebene Messgenauigkeit setzt sich aus einem prozentualen Anteil des tatsächlichen Messwerts $p$ und einer festen Anzahl an Digits $d$ zusammen. Ein Digit entspricht dabei der Auflösung $\zeta$ des jeweiligen Messbereichs. Der Fehler des Messgeräts berechnet sich demnach nach der Formel:
+\begin{equation}
+    \Delta U_{\text{Messgerät}} = \left( \frac{p}{100} \cdot U \right) + (d \cdot \zeta)
+    \label{eq:messgeraet_fehler}
+\end{equation}
+
+Als Rechenbeispiel betrachten wir eine fiktive gemessene Spannung von $U = 200\,\text{mV}$ im $400\,\text{mV}$-Messbereich. Laut Datenblatt beträgt der prozentuale Fehler $p = 0,25$ und der Fehler in Digits $d = 5$. Die Auflösung beträgt in diesem Bereich $\zeta = 100\,\mu\text{V} = 0,1\,\text{mV}$. Eingesetzt in Formel \ref{eq:messgeraet_fehler} ergibt sich:
+
+\begin{equation*}
+    \Delta U_{\text{Messgerät}} = \left( 0,0025 \cdot 200\,\text{mV} \right) + (5 \cdot 0,1\,\text{mV}) = 0,5\,\text{mV} + 0,5\,\text{mV} = 1,0\,\text{mV}
+\end{equation*}
+
+Zusätzlich zu diesem instrumentellen Fehler muss ein Ablesefehler $\Delta U_{\text{Ablese}}$ berücksichtigt werden, welcher durch Schwankungen der Anzeige auf $0,3\,\text{mV}$ geschätzt wird. Der absolute Gesamtfehler der Spannungsmessung ergibt sich somit aus der Summe beider Fehlerquellen:
+\begin{equation}
+    \Delta U_{\text{ges}} = \sqrt{\Delta U_{\text{Messgerät}}^2 + \Delta U_{\text{Ablese}}^2}
+\end{equation}
+
+
+\subsection{Berechnungen der Zahlenwerte}\label{sec:Berechnungen der Zahlenwerte}
 
 \input{code/V35.txt}
 
+
+\subsection{Diagramme}
+
+Nun werden wird $\sqrt{U_I - U_\text{I,0}}$ gegen $U$ aufgetragen. Die Schnittstelle der Ausgleichsgeraden mit der Spannung $U$ ist dann die Sperrspannung $U_s$.
+
+
+\begin{figure}[H]
+    \centering
+    %\includegraphics[width=0.8\textwidth]{img/kennlinie_365nm.png}
+    \caption{Strom-Spannungs-Kennlinie für die Spektrallinie bei $365,0\,\text{nm}$}
+    \label{fig:kennlinie_365nm}
+\end{figure}
+
+
+
+Die abgelesenen Sperrspannungen betragen: 
+
+\begin{table}
+[H]
+    \centering
+    \caption{Sperrspannungen für die Spektrallinien der Hg-Spektrallampe}
+    \label{tab:sperrspannungen}
+    \begin{tabular}{cc}
+        \toprule
+        \textbf{Wellenlänge $\lambda$ [nm]} & \textbf{Sperrspannung $U_s$ [V]} \\
+        \midrule
+        365,0 & \num{-1,96(3)} \\
+        405,0 & \num{-1,60(5)} \\
+        \bottomrule
+    \end{tabular}
+\end{table}
 
 
 

@@ -1,32 +1,5 @@
-\begin{table}[H]
-\centering
-\caption{Fehler des Multimeters}
-\begin{tabular}{|c|c|c|}
-    \toprule
-    \textbf{Messbereich} & \textbf{Auflösung $\zeta$} & \textbf{Messgenauigkeit $\eta$}\\
-    \midrule
-    $400\,\text{mV}$ & $100\,\mu\text{V}$ & $\pm(0,25\% + 5\,\text{Digit})$\\
-    $4\,\text{V}$ & $1\,\text{mV}$ & $\pm(0,4\% + 1\,\text{Digit})$\\
-    $40\,\text{V}$ & $10\,\text{mV}$ & $\pm(0,25\% + 1\,\text{Digit})$\\
-    $400\,\text{V}$ & $100\,\text{mV}$ & $\pm(0,25\% + 1\,\text{Digit})$\\
-    $1000\,\text{V}$ & $1\,\text{V}$ & $\pm(0,25\% + 1\,\text{Digit})$\\
-    \bottomrule
-\end{tabular}
-\end{table}
-
-Der Fehler des Messgeräts berechnet sich nach der Formel:
-\begin{equation}
-    \Delta U_{\text{Messgerät}} = \zeta + \eta \cdot U
-\end{equation}
 
 
-Der Gesamtfehler der Messung setzt sich aus dem Ablesefehler und dem Fehler des Messgeräts zusammen. Der Ablesefehler wird auf $0,3,\text{mV}$ geschätzt. Der Gesamtfehler berechnet sich nach der Gaußschen Fehlerfortpflanzung:
-\begin{equation}    
-    \Delta U = \sqrt{(\Delta U_\text{Ablesen})^2 + (\Delta U_\text{Messgerät})^2}
-\end{equation}
-
-
-\subsection{Berechnungen der Zahlenwerte}\label{sec:Berechnungen der Zahlenwerte}
 %% === Tabelle: UV-Linie ($\lambda = 365\,\text{nm}$) ===
 \begin{table}[H]
 \centering
