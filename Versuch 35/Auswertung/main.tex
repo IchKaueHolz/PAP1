@@ -116,7 +116,7 @@
 
 \bigskip
 \begin{tcolorbox}[colback=gray!5,colframe=gray!60,boxrule=0.8pt,arc=0.01mm,title=KI-Hinweis]
-    Für die sprachliche Formulierung dieses Protokolls wurde in der Einleitung \ref{sec:Einleitung} KI-gestützte Textgenerierung verwendet. Die Tabellen in der Auswertung \ref{sec:Berechnungen der Zahlenwerte} wurden von KI berechnet.
+    Für die sprachliche Formulierung dieses Protokolls wurde in der Einleitung \ref{sec:Einleitung} KI-gestützte Textgenerierung verwendet. Der Code zur automatischen Latex-Ausgabe \ref{eingabe} wurde von KI optimiert.
 \end{tcolorbox}
 
 \clearpage
@@ -212,12 +212,12 @@ Um das Plancksche Wirkungsquantum $h$ zu bestimmen, wird die ermittelte Sperrspa
 
 Nach der Einsteinschen Gleichung für den Fotoeffekt besteht zwischen der Sperrspannung und der Frequenz der folgende lineare Zusammenhang:
 \begin{equation}
-    U_s(\nu) = \frac{h}{e} \cdot \nu - \frac{A}{e}
+    U_s(\nu) = \frac{h}{e} \cdot \nu - \frac{A}{e}\label{eq:Usperr}
 \end{equation}
 
 Beim Auftragen von $U_s$ gegen $\nu$ ergibt sich somit eine Gerade, deren Steigung $m$ dem Verhältnis $\frac{h}{e}$ entspricht. Das Plancksche Wirkungsquantum berechnet sich daher aus der experimentell ermittelten Steigung der Ausgleichsgeraden multipliziert mit der Elementarladung $e$:
 \begin{equation}
-    h = m \cdot e = \frac{\Delta U_s}{\Delta \nu} \cdot e
+    h = m \cdot e = \frac{\Delta U_s}{\Delta \nu} \cdot e\label{eq:Bestimmungplanck}
 \end{equation}
 
 \section{Messprotokoll}
@@ -323,7 +323,6 @@ Nun wird $\sqrt{U_I - U_\text{I,0}}$ gegen $U$ aufgetragen. Die Schnittstelle de
     \caption{Ermittlung Sperrspannung für die Spektrallinie bei $\lambda = 578\,\text{nm}$}
 \end{figure}
 
-
 Die abgelesenen Sperrspannungen betragen: 
 
 \begin{table}[H]
@@ -366,6 +365,17 @@ Die Frequenzen der Spektrallinien der Hg-Spektrallampe betragen:
     \end{tabular}
 \end{table}
 
+Die Sperrspannung wurde für das Diagramm Positiv gewählt, da dies schöner zu zeichnen ist. Die Sperrspannung $U_s$ ist eigentlich negativ, da sie die Elektronen abbremst. Die Abbildung \ref{Usperr} zeigt die lineare Abhängigkeit der Sperrspannung von der Frequenz des eingestrahlten Lichts. Streng genommen ist das nicht ganz richtig. Die Geradengleichung \ref{eq:Usperr} müsste \begin{equation}
+    U_s(\nu) = -\frac{h}{e} \cdot \nu - \frac{A}{e}
+\end{equation} lauten. Die Ausgleichsgerade wurde jedoch so gewählt, dass die Steigung positiv ist.
+
+Somit würde die Gleichung \ref{eq:Bestimmungplanck}für die Bestimmung für die Plack-Konstante $h$ lauten:
+\begin{equation}
+    h = -m \cdot e
+\end{equation}
+
+
+
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.95\textwidth]{img/Diagramm Usperr.pdf}
@@ -374,7 +384,7 @@ Die Frequenzen der Spektrallinien der Hg-Spektrallampe betragen:
 
 Die Abgelesene Steigung der Ausgleichsgeraden beträgt $m = \num{-5.5(9)e-15}\,\text{V}\cdot\text{s}$. Das Plancksche Wirkungsquantum berechnet sich aus der Steigung multipliziert mit der Elementarladung $e$:
 \begin{equation}
-    h = m \cdot e = \num{-5.5(9)e-15}\,\text{V}\cdot\text{s} \cdot \num{1.602176634e-19}\,\text{C} = \num{8.8(15)e-34}\,\si{\joule\second}
+    h = - m \cdot e = \num{-5.5(9)e-15}\,\text{V}\cdot\text{s} \cdot \num{1.602176634e-19}\,\text{C} = \num{8.8(15)e-34}\,\si{\joule\second}
 \end{equation}
 
 \subsection{Vergleich mit dem Literaturwert}
@@ -415,7 +425,5 @@ Zum Ende lässt sich festhalten, dass der Fotoeffekt erfolgreich nachgewiesen un
 \includepdf[pages=-]{img/Diagramme V35.pdf}
 \includepdf{img/Diagramm Usperr.pdf}
 
-\section{Anhang: Code}
 \include{code/V35.tex}
-
 \end{document}

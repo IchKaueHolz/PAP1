@@ -1,5 +1,4 @@
 
-
 %% === Tabelle: UV-Linie ($\lambda = 365\,\text{nm}$) ===
 \begin{table}[H]
 \centering
@@ -55,7 +54,7 @@
 \end{tabular}
 
 \end{table}
-
+\hrule
 
 % === Tabelle: Violette Linie ($\lambda = 405\,\text{nm}$) ===
 \begin{table}[H]
@@ -112,7 +111,7 @@
 \end{tabular}
 
 \end{table}
-
+\hrule
 
 % === Tabelle: Blaue Linie ($\lambda = 436\,\text{nm}$) ===
 \begin{table}[H]
@@ -157,6 +156,7 @@
 }
 \end{table}
 
+\hrule
 
 % === Tabelle: Grüne Linie ($\lambda = 546\,\text{nm}$) ===
 \begin{table}[H]
@@ -185,7 +185,7 @@
 \end{tabular}
 
 \end{table}
-
+\hrule
 
 % === Tabelle: Gelbe Linie ($\lambda = 578\,\text{nm}$) ===
 \begin{table}[H]
@@ -213,6 +213,7 @@
  $\sqrt{U_I - U_{I0}}$ & $0.233 \pm 0.003$ & $0.205 \pm 0.003$ & $0.187 \pm 0.003$ & $0.169 \pm 0.003$ \\\hline
 \end{tabular}
 \end{table}
+
 
 
 
