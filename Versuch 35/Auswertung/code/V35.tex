@@ -1,0 +1,435 @@
+
+
+    
+    \hypertarget{tabelle-mit-error-berechnen---ausgabe-als-latex}{%
+\section{Tabelle mit error berechnen - ausgabe als
+Latex}\label{tabelle-mit-error-berechnen---ausgabe-als-latex}}
+
+\hypertarget{eingabe}{%
+\subsection{Eingabe:}\label{eingabe}}
+
+Man muss err\_read oben ändern (Ablesefehler)
+
+Und unten ist der Aufbau:
+
+print(generate\_latex\_table(``titel''(str), Saugspannungen(array),
+gemessene Spannungen(array), Spannung Hintergrundrauschen(float)))
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{22}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{k+kn}{import}\PY{+w}{ }\PY{n+nn}{math}
+
+\PY{k}{def}\PY{+w}{ }\PY{n+nf}{calc\PYZus{}error\PYZus{}UI}\PY{p}{(}\PY{n}{U\PYZus{}I}\PY{p}{)}\PY{p}{:}
+    \PY{n}{val} \PY{o}{=} \PY{n+nb}{abs}\PY{p}{(}\PY{n}{U\PYZus{}I}\PY{p}{)}
+    \PY{n}{err\PYZus{}read} \PY{o}{=} \PY{l+m+mf}{0.0003}  \PY{c+c1}{\PYZsh{} Ablesefehler 0.3 mV = 0.0003 V}
+    
+    \PY{c+c1}{\PYZsh{} Bestimmung des Messbereichs und Gerätefehlers laut Foto}
+    \PY{k}{if} \PY{n}{val} \PY{o}{\PYZlt{}} \PY{l+m+mf}{0.4}\PY{p}{:}
+        \PY{c+c1}{\PYZsh{} 400 mV Bereich: 0.25\PYZpc{} + 5 Digit (Auflösung 0.1 mV = 0.0001 V)}
+        \PY{n}{err\PYZus{}device} \PY{o}{=} \PY{l+m+mf}{0.0025} \PY{o}{*} \PY{n}{val} \PY{o}{+} \PY{l+m+mi}{5} \PY{o}{*} \PY{l+m+mf}{0.0001}
+    \PY{k}{elif} \PY{n}{val} \PY{o}{\PYZlt{}} \PY{l+m+mf}{4.0}\PY{p}{:}
+        \PY{c+c1}{\PYZsh{} 4 V Bereich: 0.4\PYZpc{} + 1 Digit (Auflösung 1 mV = 0.001 V)}
+        \PY{n}{err\PYZus{}device} \PY{o}{=} \PY{l+m+mf}{0.004} \PY{o}{*} \PY{n}{val} \PY{o}{+} \PY{l+m+mi}{1} \PY{o}{*} \PY{l+m+mf}{0.001}
+    \PY{k}{else}\PY{p}{:}
+        \PY{c+c1}{\PYZsh{} 40 V Bereich: 0.25\PYZpc{} + 1 Digit (Auflösung 10 mV = 0.01 V)}
+        \PY{n}{err\PYZus{}device} \PY{o}{=} \PY{l+m+mf}{0.0025} \PY{o}{*} \PY{n}{val} \PY{o}{+} \PY{l+m+mi}{1} \PY{o}{*} \PY{l+m+mf}{0.01}
+        
+    \PY{k}{return} \PY{n}{err\PYZus{}device} \PY{o}{+} \PY{n}{err\PYZus{}read}
+
+\PY{k}{def}\PY{+w}{ }\PY{n+nf}{to\PYZus{}latex\PYZus{}val}\PY{p}{(}\PY{n}{val}\PY{p}{,} \PY{n}{err}\PY{p}{,} \PY{n}{decimals}\PY{o}{=}\PY{l+m+mi}{3}\PY{p}{)}\PY{p}{:}
+    \PY{k}{if} \PY{n}{val} \PY{o+ow}{is} \PY{k+kc}{None}\PY{p}{:}
+        \PY{k}{return} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{\PYZhy{}}\PY{l+s+s2}{\PYZdq{}}
+\PY{+w}{    }
+\PY{+w}{    }\PY{l+s+sd}{\PYZsq{}\PYZsq{}\PYZsq{}}
+\PY{l+s+sd}{    }
+\PY{l+s+sd}{    \PYZsq{}\PYZsq{}\PYZsq{}}
+    \PY{c+c1}{\PYZsh{} Formatiert als \PYZdq{}Wert \PYZbs{}pm Fehler\PYZdq{} und ersetzt Punkte durch Kommas muss man einkommentieren wenn man , will. }
+    \PY{n}{val\PYZus{}str} \PY{o}{=} \PY{l+s+sa}{f}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+si}{\PYZob{}}\PY{n}{val}\PY{l+s+si}{:}\PY{l+s+s2}{.}\PY{l+s+si}{\PYZob{}}\PY{n}{decimals}\PY{l+s+si}{\PYZcb{}}\PY{l+s+s2}{f}\PY{l+s+si}{\PYZcb{}}\PY{l+s+s2}{\PYZdq{}}\PY{c+c1}{\PYZsh{}.replace(\PYZsq{}.\PYZsq{}, \PYZsq{},\PYZsq{})}
+    \PY{n}{err\PYZus{}str} \PY{o}{=} \PY{l+s+sa}{f}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+si}{\PYZob{}}\PY{n}{err}\PY{l+s+si}{:}\PY{l+s+s2}{.}\PY{l+s+si}{\PYZob{}}\PY{n}{decimals}\PY{l+s+si}{\PYZcb{}}\PY{l+s+s2}{f}\PY{l+s+si}{\PYZcb{}}\PY{l+s+s2}{\PYZdq{}}\PY{c+c1}{\PYZsh{}.replace(\PYZsq{}.\PYZsq{}, \PYZsq{},\PYZsq{})}
+    \PY{k}{return} \PY{l+s+sa}{f}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{\PYZdl{}}\PY{l+s+si}{\PYZob{}}\PY{n}{val\PYZus{}str}\PY{l+s+si}{\PYZcb{}}\PY{l+s+s2}{ }\PY{l+s+se}{\PYZbs{}\PYZbs{}}\PY{l+s+s2}{pm }\PY{l+s+si}{\PYZob{}}\PY{n}{err\PYZus{}str}\PY{l+s+si}{\PYZcb{}}\PY{l+s+s2}{\PYZdl{}}\PY{l+s+s2}{\PYZdq{}}
+
+\PY{k}{def}\PY{+w}{ }\PY{n+nf}{generate\PYZus{}latex\PYZus{}table}\PY{p}{(}\PY{n}{name}\PY{p}{,} \PY{n}{u\PYZus{}vals}\PY{p}{,} \PY{n}{ui\PYZus{}vals}\PY{p}{,} \PY{n}{ui0}\PY{p}{)}\PY{p}{:}
+    \PY{n}{latex\PYZus{}out} \PY{o}{=} \PY{l+s+sa}{f}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{\PYZpc{} === Tabelle: }\PY{l+s+si}{\PYZob{}}\PY{n}{name}\PY{l+s+si}{\PYZcb{}}\PY{l+s+s2}{ ===}\PY{l+s+se}{\PYZbs{}n}\PY{l+s+s2}{\PYZdq{}}
+    
+    \PY{n}{err\PYZus{}ui0} \PY{o}{=} \PY{n}{calc\PYZus{}error\PYZus{}UI}\PY{p}{(}\PY{n}{ui0}\PY{p}{)}
+    
+    \PY{n}{row\PYZus{}ui\PYZus{}ui0} \PY{o}{=} \PY{p}{[}\PY{p}{]}
+    \PY{n}{row\PYZus{}err\PYZus{}diff} \PY{o}{=} \PY{p}{[}\PY{p}{]}
+    \PY{n}{row\PYZus{}sqrt} \PY{o}{=} \PY{p}{[}\PY{p}{]}
+    \PY{n}{row\PYZus{}err\PYZus{}sqrt} \PY{o}{=} \PY{p}{[}\PY{p}{]}
+    
+    \PY{k}{for} \PY{n}{ui} \PY{o+ow}{in} \PY{n}{ui\PYZus{}vals}\PY{p}{:}
+        \PY{n}{err\PYZus{}ui} \PY{o}{=} \PY{n}{calc\PYZus{}error\PYZus{}UI}\PY{p}{(}\PY{n}{ui}\PY{p}{)}
+        \PY{n}{diff} \PY{o}{=} \PY{n}{ui} \PY{o}{\PYZhy{}} \PY{n}{ui0}
+        \PY{c+c1}{\PYZsh{} Gaußsche Fehlerfortpflanzung für die Differenz}
+        \PY{n}{err\PYZus{}diff} \PY{o}{=} \PY{n}{math}\PY{o}{.}\PY{n}{sqrt}\PY{p}{(}\PY{n}{err\PYZus{}ui}\PY{o}{*}\PY{o}{*}\PY{l+m+mi}{2} \PY{o}{+} \PY{n}{err\PYZus{}ui0}\PY{o}{*}\PY{o}{*}\PY{l+m+mi}{2}\PY{p}{)}
+        
+        \PY{n}{row\PYZus{}ui\PYZus{}ui0}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{diff}\PY{p}{)}
+        \PY{n}{row\PYZus{}err\PYZus{}diff}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{err\PYZus{}diff}\PY{p}{)}
+        
+        \PY{k}{if} \PY{n}{diff} \PY{o}{\PYZgt{}}\PY{o}{=} \PY{l+m+mi}{0}\PY{p}{:}
+            \PY{n}{s\PYZus{}val} \PY{o}{=} \PY{n}{math}\PY{o}{.}\PY{n}{sqrt}\PY{p}{(}\PY{n}{diff}\PY{p}{)}
+            \PY{c+c1}{\PYZsh{} Fehlerfortpflanzung Wurzel: Delta(sqrt(x)) = Delta(x) / (2*sqrt(x))}
+            \PY{n}{s\PYZus{}err} \PY{o}{=} \PY{n}{err\PYZus{}diff} \PY{o}{/} \PY{p}{(}\PY{l+m+mi}{2} \PY{o}{*} \PY{n}{s\PYZus{}val}\PY{p}{)} \PY{k}{if} \PY{n}{s\PYZus{}val} \PY{o}{\PYZgt{}} \PY{l+m+mi}{0} \PY{k}{else} \PY{l+m+mi}{0}
+            \PY{n}{row\PYZus{}sqrt}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{s\PYZus{}val}\PY{p}{)}
+            \PY{n}{row\PYZus{}err\PYZus{}sqrt}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{s\PYZus{}err}\PY{p}{)}
+        \PY{k}{else}\PY{p}{:}
+            \PY{n}{row\PYZus{}sqrt}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{k+kc}{None}\PY{p}{)}
+            \PY{n}{row\PYZus{}err\PYZus{}sqrt}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{k+kc}{None}\PY{p}{)}
+            
+    \PY{c+c1}{\PYZsh{} Aufteilen in kleinere Blöcke, da \PYZbs{}pm viel Platz braucht (max 6 Spalten)}
+    \PY{n}{chunk\PYZus{}size} \PY{o}{=} \PY{l+m+mi}{6}
+    \PY{k}{for} \PY{n}{i} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{,} \PY{n+nb}{len}\PY{p}{(}\PY{n}{u\PYZus{}vals}\PY{p}{)}\PY{p}{,} \PY{n}{chunk\PYZus{}size}\PY{p}{)}\PY{p}{:}
+        \PY{n}{u\PYZus{}chunk} \PY{o}{=} \PY{n}{u\PYZus{}vals}\PY{p}{[}\PY{n}{i}\PY{p}{:}\PY{n}{i}\PY{o}{+}\PY{n}{chunk\PYZus{}size}\PY{p}{]}
+        \PY{n}{ui\PYZus{}chunk} \PY{o}{=} \PY{n}{ui\PYZus{}vals}\PY{p}{[}\PY{n}{i}\PY{p}{:}\PY{n}{i}\PY{o}{+}\PY{n}{chunk\PYZus{}size}\PY{p}{]}
+        
+        \PY{n}{diff\PYZus{}chunk} \PY{o}{=} \PY{n}{row\PYZus{}ui\PYZus{}ui0}\PY{p}{[}\PY{n}{i}\PY{p}{:}\PY{n}{i}\PY{o}{+}\PY{n}{chunk\PYZus{}size}\PY{p}{]}
+        \PY{n}{err\PYZus{}diff\PYZus{}chunk} \PY{o}{=} \PY{n}{row\PYZus{}err\PYZus{}diff}\PY{p}{[}\PY{n}{i}\PY{p}{:}\PY{n}{i}\PY{o}{+}\PY{n}{chunk\PYZus{}size}\PY{p}{]}
+        
+        \PY{n}{sqrt\PYZus{}chunk} \PY{o}{=} \PY{n}{row\PYZus{}sqrt}\PY{p}{[}\PY{n}{i}\PY{p}{:}\PY{n}{i}\PY{o}{+}\PY{n}{chunk\PYZus{}size}\PY{p}{]}
+        \PY{n}{err\PYZus{}sqrt\PYZus{}chunk} \PY{o}{=} \PY{n}{row\PYZus{}err\PYZus{}sqrt}\PY{p}{[}\PY{n}{i}\PY{p}{:}\PY{n}{i}\PY{o}{+}\PY{n}{chunk\PYZus{}size}\PY{p}{]}
+        
+        \PY{n}{cols} \PY{o}{=} \PY{n+nb}{len}\PY{p}{(}\PY{n}{u\PYZus{}chunk}\PY{p}{)}
+        \PY{n}{latex\PYZus{}out} \PY{o}{+}\PY{o}{=} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+se}{\PYZbs{}\PYZbs{}}\PY{l+s+s2}{begin}\PY{l+s+si}{\PYZob{}table\PYZcb{}}\PY{l+s+s2}{[H]}\PY{l+s+se}{\PYZbs{}n}\PY{l+s+se}{\PYZbs{}\PYZbs{}}\PY{l+s+s2}{centering}\PY{l+s+se}{\PYZbs{}n}\PY{l+s+s2}{\PYZdq{}}
+        \PY{k}{if} \PY{n+nb}{len}\PY{p}{(}\PY{n}{u\PYZus{}vals}\PY{p}{)} \PY{o}{\PYZgt{}} \PY{n}{chunk\PYZus{}size}\PY{p}{:}
+            \PY{n}{latex\PYZus{}out} \PY{o}{+}\PY{o}{=} \PY{l+s+sa}{f}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+se}{\PYZbs{}\PYZbs{}}\PY{l+s+s2}{caption}\PY{l+s+se}{\PYZob{}\PYZob{}}\PY{l+s+s2}{Messwerte }\PY{l+s+si}{\PYZob{}}\PY{n}{name}\PY{l+s+si}{\PYZcb{}}\PY{l+s+s2}{ (Teil }\PY{l+s+si}{\PYZob{}}\PY{n}{i}\PY{o}{/}\PY{o}{/}\PY{n}{chunk\PYZus{}size}\PY{+w}{ }\PY{o}{+}\PY{+w}{ }\PY{l+m+mi}{1}\PY{l+s+si}{\PYZcb{}}\PY{l+s+s2}{)}\PY{l+s+se}{\PYZcb{}\PYZcb{}}\PY{l+s+se}{\PYZbs{}n}\PY{l+s+s2}{\PYZdq{}}
+        \PY{k}{else}\PY{p}{:}
+            \PY{n}{latex\PYZus{}out} \PY{o}{+}\PY{o}{=} \PY{l+s+sa}{f}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+se}{\PYZbs{}\PYZbs{}}\PY{l+s+s2}{caption}\PY{l+s+se}{\PYZob{}\PYZob{}}\PY{l+s+s2}{Messwerte }\PY{l+s+si}{\PYZob{}}\PY{n}{name}\PY{l+s+si}{\PYZcb{}}\PY{l+s+se}{\PYZcb{}\PYZcb{}}\PY{l+s+se}{\PYZbs{}n}\PY{l+s+s2}{\PYZdq{}}
+            
+        \PY{n}{latex\PYZus{}out} \PY{o}{+}\PY{o}{=} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+se}{\PYZbs{}\PYZbs{}}\PY{l+s+s2}{resizebox}\PY{l+s+s2}{\PYZob{}}\PY{l+s+se}{\PYZbs{}\PYZbs{}}\PY{l+s+s2}{textwidth\PYZcb{}}\PY{l+s+s2}{\PYZob{}}\PY{l+s+s2}{!\PYZcb{}}\PY{l+s+s2}{\PYZob{}}\PY{l+s+se}{\PYZbs{}n}\PY{l+s+s2}{\PYZdq{}}
+        \PY{n}{latex\PYZus{}out} \PY{o}{+}\PY{o}{=} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+se}{\PYZbs{}\PYZbs{}}\PY{l+s+s2}{begin}\PY{l+s+si}{\PYZob{}tabular\PYZcb{}}\PY{l+s+s2}{\PYZob{}}\PY{l+s+s2}{|c|}\PY{l+s+s2}{\PYZdq{}} \PY{o}{+} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{c|}\PY{l+s+s2}{\PYZdq{}} \PY{o}{*} \PY{n}{cols} \PY{o}{+} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{\PYZcb{}}\PY{l+s+se}{\PYZbs{}n}\PY{l+s+se}{\PYZbs{}\PYZbs{}}\PY{l+s+s2}{hline}\PY{l+s+se}{\PYZbs{}n}\PY{l+s+s2}{\PYZdq{}}
+        
+        \PY{c+c1}{\PYZsh{} U}
+        \PY{n}{latex\PYZus{}out} \PY{o}{+}\PY{o}{=} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{ \PYZdl{}U}\PY{l+s+se}{\PYZbs{}\PYZbs{}}\PY{l+s+s2}{,[}\PY{l+s+se}{\PYZbs{}\PYZbs{}}\PY{l+s+s2}{text}\PY{l+s+si}{\PYZob{}V\PYZcb{}}\PY{l+s+s2}{]\PYZdl{} \PYZam{} }\PY{l+s+s2}{\PYZdq{}} \PY{o}{+} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{ \PYZam{} }\PY{l+s+s2}{\PYZdq{}}\PY{o}{.}\PY{n}{join}\PY{p}{(}\PY{p}{[}\PY{l+s+sa}{f}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{\PYZdl{}}\PY{l+s+si}{\PYZob{}}\PY{n}{x}\PY{l+s+si}{:}\PY{l+s+s2}{.1f}\PY{l+s+si}{\PYZcb{}}\PY{l+s+s2}{\PYZdl{}}\PY{l+s+s2}{\PYZdq{}}\PY{o}{.}\PY{n}{replace}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{.}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{,}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)} \PY{k}{for} \PY{n}{x} \PY{o+ow}{in} \PY{n}{u\PYZus{}chunk}\PY{p}{]}\PY{p}{)} \PY{o}{+} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{ }\PY{l+s+se}{\PYZbs{}\PYZbs{}}\PY{l+s+se}{\PYZbs{}\PYZbs{}}\PY{l+s+se}{\PYZbs{}\PYZbs{}}\PY{l+s+s2}{hline}\PY{l+s+se}{\PYZbs{}n}\PY{l+s+s2}{\PYZdq{}}
+        \PY{c+c1}{\PYZsh{} U\PYZus{}I}
+        \PY{n}{latex\PYZus{}out} \PY{o}{+}\PY{o}{=} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{ \PYZdl{}U\PYZus{}I}\PY{l+s+se}{\PYZbs{}\PYZbs{}}\PY{l+s+s2}{,[}\PY{l+s+se}{\PYZbs{}\PYZbs{}}\PY{l+s+s2}{text}\PY{l+s+si}{\PYZob{}V\PYZcb{}}\PY{l+s+s2}{]\PYZdl{} \PYZam{} }\PY{l+s+s2}{\PYZdq{}} \PY{o}{+} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{ \PYZam{} }\PY{l+s+s2}{\PYZdq{}}\PY{o}{.}\PY{n}{join}\PY{p}{(}\PY{p}{[}\PY{n}{to\PYZus{}latex\PYZus{}val}\PY{p}{(}\PY{n}{ui\PYZus{}chunk}\PY{p}{[}\PY{n}{j}\PY{p}{]}\PY{p}{,} \PY{n}{calc\PYZus{}error\PYZus{}UI}\PY{p}{(}\PY{n}{ui\PYZus{}chunk}\PY{p}{[}\PY{n}{j}\PY{p}{]}\PY{p}{)}\PY{p}{)} \PY{k}{for} \PY{n}{j} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{n}{cols}\PY{p}{)}\PY{p}{]}\PY{p}{)} \PY{o}{+} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{ }\PY{l+s+se}{\PYZbs{}\PYZbs{}}\PY{l+s+se}{\PYZbs{}\PYZbs{}}\PY{l+s+se}{\PYZbs{}\PYZbs{}}\PY{l+s+s2}{hline}\PY{l+s+se}{\PYZbs{}n}\PY{l+s+s2}{\PYZdq{}}
+        \PY{c+c1}{\PYZsh{} U\PYZus{}I \PYZhy{} U\PYZus{}I0}
+        \PY{n}{latex\PYZus{}out} \PY{o}{+}\PY{o}{=} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{ \PYZdl{}U\PYZus{}I \PYZhy{} U\PYZus{}}\PY{l+s+si}{\PYZob{}I0\PYZcb{}}\PY{l+s+se}{\PYZbs{}\PYZbs{}}\PY{l+s+s2}{,[}\PY{l+s+se}{\PYZbs{}\PYZbs{}}\PY{l+s+s2}{text}\PY{l+s+si}{\PYZob{}V\PYZcb{}}\PY{l+s+s2}{]\PYZdl{} \PYZam{} }\PY{l+s+s2}{\PYZdq{}} \PY{o}{+} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{ \PYZam{} }\PY{l+s+s2}{\PYZdq{}}\PY{o}{.}\PY{n}{join}\PY{p}{(}\PY{p}{[}\PY{n}{to\PYZus{}latex\PYZus{}val}\PY{p}{(}\PY{n}{diff\PYZus{}chunk}\PY{p}{[}\PY{n}{j}\PY{p}{]}\PY{p}{,} \PY{n}{err\PYZus{}diff\PYZus{}chunk}\PY{p}{[}\PY{n}{j}\PY{p}{]}\PY{p}{)} \PY{k}{for} \PY{n}{j} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{n}{cols}\PY{p}{)}\PY{p}{]}\PY{p}{)} \PY{o}{+} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{ }\PY{l+s+se}{\PYZbs{}\PYZbs{}}\PY{l+s+se}{\PYZbs{}\PYZbs{}}\PY{l+s+se}{\PYZbs{}\PYZbs{}}\PY{l+s+s2}{hline}\PY{l+s+se}{\PYZbs{}n}\PY{l+s+s2}{\PYZdq{}}
+        \PY{c+c1}{\PYZsh{} Sqrt}
+        \PY{n}{latex\PYZus{}out} \PY{o}{+}\PY{o}{=} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{ \PYZdl{}}\PY{l+s+se}{\PYZbs{}\PYZbs{}}\PY{l+s+s2}{sqrt}\PY{l+s+s2}{\PYZob{}}\PY{l+s+s2}{U\PYZus{}I \PYZhy{} U\PYZus{}}\PY{l+s+si}{\PYZob{}I0\PYZcb{}}\PY{l+s+s2}{\PYZcb{}\PYZdl{} \PYZam{} }\PY{l+s+s2}{\PYZdq{}} \PY{o}{+} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{ \PYZam{} }\PY{l+s+s2}{\PYZdq{}}\PY{o}{.}\PY{n}{join}\PY{p}{(}\PY{p}{[}\PY{n}{to\PYZus{}latex\PYZus{}val}\PY{p}{(}\PY{n}{sqrt\PYZus{}chunk}\PY{p}{[}\PY{n}{j}\PY{p}{]}\PY{p}{,} \PY{n}{err\PYZus{}sqrt\PYZus{}chunk}\PY{p}{[}\PY{n}{j}\PY{p}{]}\PY{p}{)} \PY{k}{for} \PY{n}{j} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{n}{cols}\PY{p}{)}\PY{p}{]}\PY{p}{)} \PY{o}{+} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{ }\PY{l+s+se}{\PYZbs{}\PYZbs{}}\PY{l+s+se}{\PYZbs{}\PYZbs{}}\PY{l+s+se}{\PYZbs{}\PYZbs{}}\PY{l+s+s2}{hline}\PY{l+s+se}{\PYZbs{}n}\PY{l+s+s2}{\PYZdq{}}
+        
+        \PY{n}{latex\PYZus{}out} \PY{o}{+}\PY{o}{=} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+se}{\PYZbs{}\PYZbs{}}\PY{l+s+s2}{end}\PY{l+s+si}{\PYZob{}tabular\PYZcb{}}\PY{l+s+se}{\PYZbs{}n}\PY{l+s+s2}{\PYZcb{}}\PY{l+s+se}{\PYZbs{}n}\PY{l+s+se}{\PYZbs{}\PYZbs{}}\PY{l+s+s2}{end}\PY{l+s+si}{\PYZob{}table\PYZcb{}}\PY{l+s+se}{\PYZbs{}n}\PY{l+s+se}{\PYZbs{}n}\PY{l+s+s2}{\PYZdq{}}
+        
+    \PY{k}{return} \PY{n}{latex\PYZus{}out}
+
+
+\PY{c+c1}{\PYZsh{} \PYZhy{}\PYZhy{}\PYZhy{} DATEN AUS DEM MESSPROTOKOLL \PYZhy{}\PYZhy{}\PYZhy{}}
+
+\PY{c+c1}{\PYZsh{} ui0 ist die Hintergrundspannung bei hoher Spannung. }
+
+\PY{c+c1}{\PYZsh{} 1. UV\PYZhy{}Linie (365 nm)}
+\PY{n}{u\PYZus{}uv} \PY{o}{=} \PY{p}{[}\PY{l+m+mf}{0.0}\PY{p}{,} \PY{o}{\PYZhy{}}\PY{l+m+mf}{0.1}\PY{p}{,} \PY{o}{\PYZhy{}}\PY{l+m+mf}{0.2}\PY{p}{,} \PY{o}{\PYZhy{}}\PY{l+m+mf}{0.3}\PY{p}{,} \PY{o}{\PYZhy{}}\PY{l+m+mf}{0.4}\PY{p}{,} \PY{o}{\PYZhy{}}\PY{l+m+mf}{0.5}\PY{p}{,} \PY{o}{\PYZhy{}}\PY{l+m+mf}{0.6}\PY{p}{,} \PY{o}{\PYZhy{}}\PY{l+m+mf}{0.7}\PY{p}{,} \PY{o}{\PYZhy{}}\PY{l+m+mf}{0.8}\PY{p}{,} \PY{o}{\PYZhy{}}\PY{l+m+mf}{0.9}\PY{p}{,} \PY{o}{\PYZhy{}}\PY{l+m+mf}{1.0}\PY{p}{,} \PY{o}{\PYZhy{}}\PY{l+m+mf}{1.1}\PY{p}{,} \PY{o}{\PYZhy{}}\PY{l+m+mf}{1.2}\PY{p}{,} \PY{o}{\PYZhy{}}\PY{l+m+mf}{1.3}\PY{p}{,} \PY{o}{\PYZhy{}}\PY{l+m+mf}{1.4}\PY{p}{,} \PY{o}{\PYZhy{}}\PY{l+m+mf}{1.5}\PY{p}{,} \PY{o}{\PYZhy{}}\PY{l+m+mf}{1.6}\PY{p}{,} \PY{o}{\PYZhy{}}\PY{l+m+mf}{1.7}\PY{p}{,} \PY{o}{\PYZhy{}}\PY{l+m+mf}{1.8}\PY{p}{,} \PY{o}{\PYZhy{}}\PY{l+m+mf}{1.9}\PY{p}{]}
+\PY{n}{ui\PYZus{}uv} \PY{o}{=} \PY{p}{[}\PY{l+m+mf}{4.07}\PY{p}{,} \PY{l+m+mf}{3.69}\PY{p}{,} \PY{l+m+mf}{3.37}\PY{p}{,} \PY{l+m+mf}{3.03}\PY{p}{,} \PY{l+m+mf}{2.737}\PY{p}{,} \PY{l+m+mf}{2.435}\PY{p}{,} \PY{l+m+mf}{2.143}\PY{p}{,} \PY{l+m+mf}{1.861}\PY{p}{,} \PY{l+m+mf}{1.619}\PY{p}{,} \PY{l+m+mf}{1.386}\PY{p}{,} \PY{l+m+mf}{1.176}\PY{p}{,} \PY{l+m+mf}{0.985}\PY{p}{,} \PY{l+m+mf}{0.811}\PY{p}{,} \PY{l+m+mf}{0.640}\PY{p}{,} \PY{l+m+mf}{0.479}\PY{p}{,} \PY{l+m+mf}{0.3287}\PY{p}{,} \PY{l+m+mf}{0.1824}\PY{p}{,} \PY{l+m+mf}{0.0838}\PY{p}{,} \PY{l+m+mf}{0.0130}\PY{p}{,} \PY{o}{\PYZhy{}}\PY{l+m+mf}{0.0130}\PY{p}{]}
+\PY{n+nb}{print}\PY{p}{(}\PY{n}{generate\PYZus{}latex\PYZus{}table}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{UV\PYZhy{}Linie (\PYZdl{}}\PY{l+s+se}{\PYZbs{}\PYZbs{}}\PY{l+s+s2}{lambda = 365}\PY{l+s+se}{\PYZbs{}\PYZbs{}}\PY{l+s+s2}{,}\PY{l+s+se}{\PYZbs{}\PYZbs{}}\PY{l+s+s2}{text}\PY{l+s+si}{\PYZob{}nm\PYZcb{}}\PY{l+s+s2}{\PYZdl{})}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{u\PYZus{}uv}\PY{p}{,} \PY{n}{ui\PYZus{}uv}\PY{p}{,} \PY{o}{\PYZhy{}}\PY{l+m+mf}{0.032}\PY{p}{)}\PY{p}{)}
+
+\PY{c+c1}{\PYZsh{} 2. Violette Linie (405 nm)}
+\PY{n}{u\PYZus{}vi} \PY{o}{=} \PY{p}{[}\PY{l+m+mf}{0.3}\PY{p}{,} \PY{l+m+mf}{0.2}\PY{p}{,} \PY{l+m+mf}{0.1}\PY{p}{,} \PY{l+m+mf}{0.0}\PY{p}{,} \PY{o}{\PYZhy{}}\PY{l+m+mf}{0.1}\PY{p}{,} \PY{o}{\PYZhy{}}\PY{l+m+mf}{0.2}\PY{p}{,} \PY{o}{\PYZhy{}}\PY{l+m+mf}{0.3}\PY{p}{,} \PY{o}{\PYZhy{}}\PY{l+m+mf}{0.4}\PY{p}{,} \PY{o}{\PYZhy{}}\PY{l+m+mf}{0.5}\PY{p}{,} \PY{o}{\PYZhy{}}\PY{l+m+mf}{0.6}\PY{p}{,} \PY{o}{\PYZhy{}}\PY{l+m+mf}{0.7}\PY{p}{,} \PY{o}{\PYZhy{}}\PY{l+m+mf}{0.8}\PY{p}{,} \PY{o}{\PYZhy{}}\PY{l+m+mf}{0.9}\PY{p}{,} \PY{o}{\PYZhy{}}\PY{l+m+mf}{1.0}\PY{p}{,} \PY{o}{\PYZhy{}}\PY{l+m+mf}{1.1}\PY{p}{,} \PY{o}{\PYZhy{}}\PY{l+m+mf}{1.2}\PY{p}{,} \PY{o}{\PYZhy{}}\PY{l+m+mf}{1.3}\PY{p}{,} \PY{o}{\PYZhy{}}\PY{l+m+mf}{1.4}\PY{p}{,} \PY{o}{\PYZhy{}}\PY{l+m+mf}{1.5}\PY{p}{,} \PY{o}{\PYZhy{}}\PY{l+m+mf}{1.6}\PY{p}{]}
+\PY{n}{ui\PYZus{}vi} \PY{o}{=} \PY{p}{[}\PY{l+m+mf}{4.690}\PY{p}{,} \PY{l+m+mf}{4.33}\PY{p}{,} \PY{l+m+mf}{3.94}\PY{p}{,} \PY{l+m+mf}{3.58}\PY{p}{,} \PY{l+m+mf}{3.190}\PY{p}{,} \PY{l+m+mf}{2.853}\PY{p}{,} \PY{l+m+mf}{2.482}\PY{p}{,} \PY{l+m+mf}{2.182}\PY{p}{,} \PY{l+m+mf}{1.862}\PY{p}{,} \PY{l+m+mf}{1.584}\PY{p}{,} \PY{l+m+mf}{1.3250}\PY{p}{,} \PY{l+m+mf}{1.0890}\PY{p}{,} \PY{l+m+mf}{0.8720}\PY{p}{,} \PY{l+m+mf}{0.6860}\PY{p}{,} \PY{l+m+mf}{0.5010}\PY{p}{,} \PY{l+m+mf}{0.3223}\PY{p}{,} \PY{l+m+mf}{0.1648}\PY{p}{,} \PY{l+m+mf}{0.0662}\PY{p}{,} \PY{l+m+mf}{0.0056}\PY{p}{,} \PY{o}{\PYZhy{}}\PY{l+m+mf}{0.0136}\PY{p}{]}
+\PY{n+nb}{print}\PY{p}{(}\PY{n}{generate\PYZus{}latex\PYZus{}table}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Violette Linie (\PYZdl{}}\PY{l+s+se}{\PYZbs{}\PYZbs{}}\PY{l+s+s2}{lambda = 405}\PY{l+s+se}{\PYZbs{}\PYZbs{}}\PY{l+s+s2}{,}\PY{l+s+se}{\PYZbs{}\PYZbs{}}\PY{l+s+s2}{text}\PY{l+s+si}{\PYZob{}nm\PYZcb{}}\PY{l+s+s2}{\PYZdl{})}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{u\PYZus{}vi}\PY{p}{,} \PY{n}{ui\PYZus{}vi}\PY{p}{,} \PY{o}{\PYZhy{}}\PY{l+m+mf}{0.0267}\PY{p}{)}\PY{p}{)}
+
+\PY{c+c1}{\PYZsh{} 3. Blaue Linie (436 nm)}
+\PY{n}{u\PYZus{}bl} \PY{o}{=} \PY{p}{[}\PY{l+m+mf}{0.3}\PY{p}{,} \PY{l+m+mf}{0.2}\PY{p}{,} \PY{l+m+mf}{0.1}\PY{p}{,} \PY{l+m+mf}{0.0}\PY{p}{,} \PY{o}{\PYZhy{}}\PY{l+m+mf}{0.1}\PY{p}{,} \PY{o}{\PYZhy{}}\PY{l+m+mf}{0.2}\PY{p}{,} \PY{o}{\PYZhy{}}\PY{l+m+mf}{0.3}\PY{p}{,} \PY{o}{\PYZhy{}}\PY{l+m+mf}{0.4}\PY{p}{,} \PY{o}{\PYZhy{}}\PY{l+m+mf}{0.5}\PY{p}{,} \PY{o}{\PYZhy{}}\PY{l+m+mf}{0.6}\PY{p}{,} \PY{o}{\PYZhy{}}\PY{l+m+mf}{0.7}\PY{p}{,} \PY{o}{\PYZhy{}}\PY{l+m+mf}{0.8}\PY{p}{,} \PY{o}{\PYZhy{}}\PY{l+m+mf}{0.9}\PY{p}{,} \PY{o}{\PYZhy{}}\PY{l+m+mf}{1.0}\PY{p}{,} \PY{o}{\PYZhy{}}\PY{l+m+mf}{1.1}\PY{p}{,} \PY{o}{\PYZhy{}}\PY{l+m+mf}{1.2}\PY{p}{,} \PY{o}{\PYZhy{}}\PY{l+m+mf}{1.3}\PY{p}{,} \PY{o}{\PYZhy{}}\PY{l+m+mf}{1.4}\PY{p}{]}
+\PY{n}{ui\PYZus{}bl} \PY{o}{=} \PY{p}{[}\PY{l+m+mf}{6.08}\PY{p}{,} \PY{l+m+mf}{5.58}\PY{p}{,} \PY{l+m+mf}{5.04}\PY{p}{,} \PY{l+m+mf}{4.56}\PY{p}{,} \PY{l+m+mf}{3.99}\PY{p}{,} \PY{l+m+mf}{3.544}\PY{p}{,} \PY{l+m+mf}{3.097}\PY{p}{,} \PY{l+m+mf}{2.654}\PY{p}{,} \PY{l+m+mf}{2.252}\PY{p}{,} \PY{l+m+mf}{1.840}\PY{p}{,} \PY{l+m+mf}{1.479}\PY{p}{,} \PY{l+m+mf}{1.175}\PY{p}{,} \PY{l+m+mf}{0.870}\PY{p}{,} \PY{l+m+mf}{0.577}\PY{p}{,} \PY{l+m+mf}{0.3103}\PY{p}{,} \PY{l+m+mf}{0.1188}\PY{p}{,} \PY{l+m+mf}{0.0127}\PY{p}{,} \PY{o}{\PYZhy{}}\PY{l+m+mf}{0.0208}\PY{p}{]}
+\PY{n+nb}{print}\PY{p}{(}\PY{n}{generate\PYZus{}latex\PYZus{}table}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Blaue Linie (\PYZdl{}}\PY{l+s+se}{\PYZbs{}\PYZbs{}}\PY{l+s+s2}{lambda = 436}\PY{l+s+se}{\PYZbs{}\PYZbs{}}\PY{l+s+s2}{,}\PY{l+s+se}{\PYZbs{}\PYZbs{}}\PY{l+s+s2}{text}\PY{l+s+si}{\PYZob{}nm\PYZcb{}}\PY{l+s+s2}{\PYZdl{})}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{u\PYZus{}bl}\PY{p}{,} \PY{n}{ui\PYZus{}bl}\PY{p}{,} \PY{o}{\PYZhy{}}\PY{l+m+mf}{0.0393}\PY{p}{)}\PY{p}{)}
+
+\PY{c+c1}{\PYZsh{} 4. Grüne Linie (546 nm)}
+\PY{n}{u\PYZus{}gr} \PY{o}{=} \PY{p}{[}\PY{l+m+mf}{0.3}\PY{p}{,} \PY{l+m+mf}{0.2}\PY{p}{,} \PY{l+m+mf}{0.1}\PY{p}{,} \PY{l+m+mf}{0.0}\PY{p}{,} \PY{o}{\PYZhy{}}\PY{l+m+mf}{0.1}\PY{p}{,} \PY{o}{\PYZhy{}}\PY{l+m+mf}{0.2}\PY{p}{,} \PY{o}{\PYZhy{}}\PY{l+m+mf}{0.3}\PY{p}{,} \PY{o}{\PYZhy{}}\PY{l+m+mf}{0.4}\PY{p}{,} \PY{o}{\PYZhy{}}\PY{l+m+mf}{0.5}\PY{p}{,} \PY{o}{\PYZhy{}}\PY{l+m+mf}{0.6}\PY{p}{]}
+\PY{n}{ui\PYZus{}gr} \PY{o}{=} \PY{p}{[}\PY{l+m+mf}{3.049}\PY{p}{,} \PY{l+m+mf}{2.530}\PY{p}{,} \PY{l+m+mf}{2.033}\PY{p}{,} \PY{l+m+mf}{1.547}\PY{p}{,} \PY{l+m+mf}{1.132}\PY{p}{,} \PY{l+m+mf}{0.776}\PY{p}{,} \PY{l+m+mf}{0.477}\PY{p}{,} \PY{l+m+mf}{0.266}\PY{p}{,} \PY{l+m+mf}{0.1196}\PY{p}{,} \PY{l+m+mf}{0.0474}\PY{p}{]}
+\PY{n+nb}{print}\PY{p}{(}\PY{n}{generate\PYZus{}latex\PYZus{}table}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Grüne Linie (\PYZdl{}}\PY{l+s+se}{\PYZbs{}\PYZbs{}}\PY{l+s+s2}{lambda = 546}\PY{l+s+se}{\PYZbs{}\PYZbs{}}\PY{l+s+s2}{,}\PY{l+s+se}{\PYZbs{}\PYZbs{}}\PY{l+s+s2}{text}\PY{l+s+si}{\PYZob{}nm\PYZcb{}}\PY{l+s+s2}{\PYZdl{})}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{u\PYZus{}gr}\PY{p}{,} \PY{n}{ui\PYZus{}gr}\PY{p}{,} \PY{o}{\PYZhy{}}\PY{l+m+mf}{0.0162}\PY{p}{)}\PY{p}{)}
+
+\PY{c+c1}{\PYZsh{} 5. Gelbe Linie (578 nm)}
+\PY{n}{u\PYZus{}ye} \PY{o}{=} \PY{p}{[}\PY{l+m+mf}{0.3}\PY{p}{,} \PY{l+m+mf}{0.2}\PY{p}{,} \PY{l+m+mf}{0.1}\PY{p}{,} \PY{l+m+mf}{0.0}\PY{p}{,} \PY{o}{\PYZhy{}}\PY{l+m+mf}{0.1}\PY{p}{,} \PY{o}{\PYZhy{}}\PY{l+m+mf}{0.2}\PY{p}{,} \PY{o}{\PYZhy{}}\PY{l+m+mf}{0.3}\PY{p}{,} \PY{o}{\PYZhy{}}\PY{l+m+mf}{0.4}\PY{p}{,} \PY{o}{\PYZhy{}}\PY{l+m+mf}{0.5}\PY{p}{,} \PY{o}{\PYZhy{}}\PY{l+m+mf}{0.6}\PY{p}{]}
+\PY{n}{ui\PYZus{}ye} \PY{o}{=} \PY{p}{[}\PY{l+m+mf}{0.584}\PY{p}{,} \PY{l+m+mf}{0.405}\PY{p}{,} \PY{l+m+mf}{0.2622}\PY{p}{,} \PY{l+m+mf}{0.1640}\PY{p}{,} \PY{l+m+mf}{0.0985}\PY{p}{,} \PY{l+m+mf}{0.0660}\PY{p}{,} \PY{l+m+mf}{0.0475}\PY{p}{,} \PY{l+m+mf}{0.0350}\PY{p}{,} \PY{l+m+mf}{0.0280}\PY{p}{,} \PY{l+m+mf}{0.0217}\PY{p}{]}
+\PY{n+nb}{print}\PY{p}{(}\PY{n}{generate\PYZus{}latex\PYZus{}table}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Gelbe Linie (\PYZdl{}}\PY{l+s+se}{\PYZbs{}\PYZbs{}}\PY{l+s+s2}{lambda = 578}\PY{l+s+se}{\PYZbs{}\PYZbs{}}\PY{l+s+s2}{,}\PY{l+s+se}{\PYZbs{}\PYZbs{}}\PY{l+s+s2}{text}\PY{l+s+si}{\PYZob{}nm\PYZcb{}}\PY{l+s+s2}{\PYZdl{})}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{u\PYZus{}ye}\PY{p}{,} \PY{n}{ui\PYZus{}ye}\PY{p}{,} \PY{o}{\PYZhy{}}\PY{l+m+mf}{0.007}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+\% === Tabelle: UV-Linie (\$\textbackslash{}lambda = 365\textbackslash{},\textbackslash{}text\{nm\}\$) ===
+\textbackslash{}begin\{table\}[H]
+\textbackslash{}centering
+\textbackslash{}caption\{Messwerte UV-Linie (\$\textbackslash{}lambda = 365\textbackslash{},\textbackslash{}text\{nm\}\$) (Teil 1)\}
+\textbackslash{}resizebox\{\textbackslash{}textwidth\}\{!\}\{
+\textbackslash{}begin\{tabular\}\{|c|c|c|c|c|c|c|\}
+\textbackslash{}hline
+ \$U\textbackslash{},[\textbackslash{}text\{V\}]\$ \& \$0,0\$ \& \$-0,1\$ \& \$-0,2\$ \& \$-0,3\$ \& \$-0,4\$ \& \$-0,5\$ \textbackslash{}\textbackslash{}\textbackslash{}hline
+ \$U\_I\textbackslash{},[\textbackslash{}text\{V\}]\$ \& \$4.070 \textbackslash{}pm 0.020\$ \& \$3.690 \textbackslash{}pm 0.016\$ \& \$3.370 \textbackslash{}pm 0.015\$ \&
+\$3.030 \textbackslash{}pm 0.013\$ \& \$2.737 \textbackslash{}pm 0.012\$ \& \$2.435 \textbackslash{}pm 0.011\$ \textbackslash{}\textbackslash{}\textbackslash{}hline
+ \$U\_I - U\_\{I0\}\textbackslash{},[\textbackslash{}text\{V\}]\$ \& \$4.102 \textbackslash{}pm 0.020\$ \& \$3.722 \textbackslash{}pm 0.016\$ \& \$3.402 \textbackslash{}pm
+0.015\$ \& \$3.062 \textbackslash{}pm 0.013\$ \& \$2.769 \textbackslash{}pm 0.012\$ \& \$2.467 \textbackslash{}pm 0.011\$ \textbackslash{}\textbackslash{}\textbackslash{}hline
+ \$\textbackslash{}sqrt\{U\_I - U\_\{I0\}\}\$ \& \$2.025 \textbackslash{}pm 0.005\$ \& \$1.929 \textbackslash{}pm 0.004\$ \& \$1.844 \textbackslash{}pm
+0.004\$ \& \$1.750 \textbackslash{}pm 0.004\$ \& \$1.664 \textbackslash{}pm 0.004\$ \& \$1.571 \textbackslash{}pm 0.004\$ \textbackslash{}\textbackslash{}\textbackslash{}hline
+\textbackslash{}end\{tabular\}
+\}
+\textbackslash{}end\{table\}
+
+\textbackslash{}begin\{table\}[H]
+\textbackslash{}centering
+\textbackslash{}caption\{Messwerte UV-Linie (\$\textbackslash{}lambda = 365\textbackslash{},\textbackslash{}text\{nm\}\$) (Teil 2)\}
+\textbackslash{}resizebox\{\textbackslash{}textwidth\}\{!\}\{
+\textbackslash{}begin\{tabular\}\{|c|c|c|c|c|c|c|\}
+\textbackslash{}hline
+ \$U\textbackslash{},[\textbackslash{}text\{V\}]\$ \& \$-0,6\$ \& \$-0,7\$ \& \$-0,8\$ \& \$-0,9\$ \& \$-1,0\$ \& \$-1,1\$ \textbackslash{}\textbackslash{}\textbackslash{}hline
+ \$U\_I\textbackslash{},[\textbackslash{}text\{V\}]\$ \& \$2.143 \textbackslash{}pm 0.010\$ \& \$1.861 \textbackslash{}pm 0.009\$ \& \$1.619 \textbackslash{}pm 0.008\$ \&
+\$1.386 \textbackslash{}pm 0.007\$ \& \$1.176 \textbackslash{}pm 0.006\$ \& \$0.985 \textbackslash{}pm 0.005\$ \textbackslash{}\textbackslash{}\textbackslash{}hline
+ \$U\_I - U\_\{I0\}\textbackslash{},[\textbackslash{}text\{V\}]\$ \& \$2.175 \textbackslash{}pm 0.010\$ \& \$1.893 \textbackslash{}pm 0.009\$ \& \$1.651 \textbackslash{}pm
+0.008\$ \& \$1.418 \textbackslash{}pm 0.007\$ \& \$1.208 \textbackslash{}pm 0.006\$ \& \$1.017 \textbackslash{}pm 0.005\$ \textbackslash{}\textbackslash{}\textbackslash{}hline
+ \$\textbackslash{}sqrt\{U\_I - U\_\{I0\}\}\$ \& \$1.475 \textbackslash{}pm 0.003\$ \& \$1.376 \textbackslash{}pm 0.003\$ \& \$1.285 \textbackslash{}pm
+0.003\$ \& \$1.191 \textbackslash{}pm 0.003\$ \& \$1.099 \textbackslash{}pm 0.003\$ \& \$1.008 \textbackslash{}pm 0.003\$ \textbackslash{}\textbackslash{}\textbackslash{}hline
+\textbackslash{}end\{tabular\}
+\}
+\textbackslash{}end\{table\}
+
+\textbackslash{}begin\{table\}[H]
+\textbackslash{}centering
+\textbackslash{}caption\{Messwerte UV-Linie (\$\textbackslash{}lambda = 365\textbackslash{},\textbackslash{}text\{nm\}\$) (Teil 3)\}
+\textbackslash{}resizebox\{\textbackslash{}textwidth\}\{!\}\{
+\textbackslash{}begin\{tabular\}\{|c|c|c|c|c|c|c|\}
+\textbackslash{}hline
+ \$U\textbackslash{},[\textbackslash{}text\{V\}]\$ \& \$-1,2\$ \& \$-1,3\$ \& \$-1,4\$ \& \$-1,5\$ \& \$-1,6\$ \& \$-1,7\$ \textbackslash{}\textbackslash{}\textbackslash{}hline
+ \$U\_I\textbackslash{},[\textbackslash{}text\{V\}]\$ \& \$0.811 \textbackslash{}pm 0.005\$ \& \$0.640 \textbackslash{}pm 0.004\$ \& \$0.479 \textbackslash{}pm 0.003\$ \&
+\$0.329 \textbackslash{}pm 0.002\$ \& \$0.182 \textbackslash{}pm 0.001\$ \& \$0.084 \textbackslash{}pm 0.001\$ \textbackslash{}\textbackslash{}\textbackslash{}hline
+ \$U\_I - U\_\{I0\}\textbackslash{},[\textbackslash{}text\{V\}]\$ \& \$0.843 \textbackslash{}pm 0.005\$ \& \$0.672 \textbackslash{}pm 0.004\$ \& \$0.511 \textbackslash{}pm
+0.003\$ \& \$0.361 \textbackslash{}pm 0.002\$ \& \$0.214 \textbackslash{}pm 0.002\$ \& \$0.116 \textbackslash{}pm 0.001\$ \textbackslash{}\textbackslash{}\textbackslash{}hline
+ \$\textbackslash{}sqrt\{U\_I - U\_\{I0\}\}\$ \& \$0.918 \textbackslash{}pm 0.003\$ \& \$0.820 \textbackslash{}pm 0.002\$ \& \$0.715 \textbackslash{}pm
+0.002\$ \& \$0.601 \textbackslash{}pm 0.002\$ \& \$0.463 \textbackslash{}pm 0.002\$ \& \$0.340 \textbackslash{}pm 0.002\$ \textbackslash{}\textbackslash{}\textbackslash{}hline
+\textbackslash{}end\{tabular\}
+\}
+\textbackslash{}end\{table\}
+
+\textbackslash{}begin\{table\}[H]
+\textbackslash{}centering
+\textbackslash{}caption\{Messwerte UV-Linie (\$\textbackslash{}lambda = 365\textbackslash{},\textbackslash{}text\{nm\}\$) (Teil 4)\}
+\textbackslash{}resizebox\{\textbackslash{}textwidth\}\{!\}\{
+\textbackslash{}begin\{tabular\}\{|c|c|c|\}
+\textbackslash{}hline
+ \$U\textbackslash{},[\textbackslash{}text\{V\}]\$ \& \$-1,8\$ \& \$-1,9\$ \textbackslash{}\textbackslash{}\textbackslash{}hline
+ \$U\_I\textbackslash{},[\textbackslash{}text\{V\}]\$ \& \$0.013 \textbackslash{}pm 0.001\$ \& \$-0.013 \textbackslash{}pm 0.001\$ \textbackslash{}\textbackslash{}\textbackslash{}hline
+ \$U\_I - U\_\{I0\}\textbackslash{},[\textbackslash{}text\{V\}]\$ \& \$0.045 \textbackslash{}pm 0.001\$ \& \$0.019 \textbackslash{}pm 0.001\$ \textbackslash{}\textbackslash{}\textbackslash{}hline
+ \$\textbackslash{}sqrt\{U\_I - U\_\{I0\}\}\$ \& \$0.212 \textbackslash{}pm 0.003\$ \& \$0.138 \textbackslash{}pm 0.004\$ \textbackslash{}\textbackslash{}\textbackslash{}hline
+\textbackslash{}end\{tabular\}
+\}
+\textbackslash{}end\{table\}
+
+
+\% === Tabelle: Violette Linie (\$\textbackslash{}lambda = 405\textbackslash{},\textbackslash{}text\{nm\}\$) ===
+\textbackslash{}begin\{table\}[H]
+\textbackslash{}centering
+\textbackslash{}caption\{Messwerte Violette Linie (\$\textbackslash{}lambda = 405\textbackslash{},\textbackslash{}text\{nm\}\$) (Teil 1)\}
+\textbackslash{}resizebox\{\textbackslash{}textwidth\}\{!\}\{
+\textbackslash{}begin\{tabular\}\{|c|c|c|c|c|c|c|\}
+\textbackslash{}hline
+ \$U\textbackslash{},[\textbackslash{}text\{V\}]\$ \& \$0,3\$ \& \$0,2\$ \& \$0,1\$ \& \$0,0\$ \& \$-0,1\$ \& \$-0,2\$ \textbackslash{}\textbackslash{}\textbackslash{}hline
+ \$U\_I\textbackslash{},[\textbackslash{}text\{V\}]\$ \& \$4.690 \textbackslash{}pm 0.022\$ \& \$4.330 \textbackslash{}pm 0.021\$ \& \$3.940 \textbackslash{}pm 0.017\$ \&
+\$3.580 \textbackslash{}pm 0.016\$ \& \$3.190 \textbackslash{}pm 0.014\$ \& \$2.853 \textbackslash{}pm 0.013\$ \textbackslash{}\textbackslash{}\textbackslash{}hline
+ \$U\_I - U\_\{I0\}\textbackslash{},[\textbackslash{}text\{V\}]\$ \& \$4.717 \textbackslash{}pm 0.022\$ \& \$4.357 \textbackslash{}pm 0.021\$ \& \$3.967 \textbackslash{}pm
+0.017\$ \& \$3.607 \textbackslash{}pm 0.016\$ \& \$3.217 \textbackslash{}pm 0.014\$ \& \$2.880 \textbackslash{}pm 0.013\$ \textbackslash{}\textbackslash{}\textbackslash{}hline
+ \$\textbackslash{}sqrt\{U\_I - U\_\{I0\}\}\$ \& \$2.172 \textbackslash{}pm 0.005\$ \& \$2.087 \textbackslash{}pm 0.005\$ \& \$1.992 \textbackslash{}pm
+0.004\$ \& \$1.899 \textbackslash{}pm 0.004\$ \& \$1.794 \textbackslash{}pm 0.004\$ \& \$1.697 \textbackslash{}pm 0.004\$ \textbackslash{}\textbackslash{}\textbackslash{}hline
+\textbackslash{}end\{tabular\}
+\}
+\textbackslash{}end\{table\}
+
+\textbackslash{}begin\{table\}[H]
+\textbackslash{}centering
+\textbackslash{}caption\{Messwerte Violette Linie (\$\textbackslash{}lambda = 405\textbackslash{},\textbackslash{}text\{nm\}\$) (Teil 2)\}
+\textbackslash{}resizebox\{\textbackslash{}textwidth\}\{!\}\{
+\textbackslash{}begin\{tabular\}\{|c|c|c|c|c|c|c|\}
+\textbackslash{}hline
+ \$U\textbackslash{},[\textbackslash{}text\{V\}]\$ \& \$-0,3\$ \& \$-0,4\$ \& \$-0,5\$ \& \$-0,6\$ \& \$-0,7\$ \& \$-0,8\$ \textbackslash{}\textbackslash{}\textbackslash{}hline
+ \$U\_I\textbackslash{},[\textbackslash{}text\{V\}]\$ \& \$2.482 \textbackslash{}pm 0.011\$ \& \$2.182 \textbackslash{}pm 0.010\$ \& \$1.862 \textbackslash{}pm 0.009\$ \&
+\$1.584 \textbackslash{}pm 0.008\$ \& \$1.325 \textbackslash{}pm 0.007\$ \& \$1.089 \textbackslash{}pm 0.006\$ \textbackslash{}\textbackslash{}\textbackslash{}hline
+ \$U\_I - U\_\{I0\}\textbackslash{},[\textbackslash{}text\{V\}]\$ \& \$2.509 \textbackslash{}pm 0.011\$ \& \$2.209 \textbackslash{}pm 0.010\$ \& \$1.889 \textbackslash{}pm
+0.009\$ \& \$1.611 \textbackslash{}pm 0.008\$ \& \$1.352 \textbackslash{}pm 0.007\$ \& \$1.116 \textbackslash{}pm 0.006\$ \textbackslash{}\textbackslash{}\textbackslash{}hline
+ \$\textbackslash{}sqrt\{U\_I - U\_\{I0\}\}\$ \& \$1.584 \textbackslash{}pm 0.004\$ \& \$1.486 \textbackslash{}pm 0.003\$ \& \$1.374 \textbackslash{}pm
+0.003\$ \& \$1.269 \textbackslash{}pm 0.003\$ \& \$1.163 \textbackslash{}pm 0.003\$ \& \$1.056 \textbackslash{}pm 0.003\$ \textbackslash{}\textbackslash{}\textbackslash{}hline
+\textbackslash{}end\{tabular\}
+\}
+\textbackslash{}end\{table\}
+
+\textbackslash{}begin\{table\}[H]
+\textbackslash{}centering
+\textbackslash{}caption\{Messwerte Violette Linie (\$\textbackslash{}lambda = 405\textbackslash{},\textbackslash{}text\{nm\}\$) (Teil 3)\}
+\textbackslash{}resizebox\{\textbackslash{}textwidth\}\{!\}\{
+\textbackslash{}begin\{tabular\}\{|c|c|c|c|c|c|c|\}
+\textbackslash{}hline
+ \$U\textbackslash{},[\textbackslash{}text\{V\}]\$ \& \$-0,9\$ \& \$-1,0\$ \& \$-1,1\$ \& \$-1,2\$ \& \$-1,3\$ \& \$-1,4\$ \textbackslash{}\textbackslash{}\textbackslash{}hline
+ \$U\_I\textbackslash{},[\textbackslash{}text\{V\}]\$ \& \$0.872 \textbackslash{}pm 0.005\$ \& \$0.686 \textbackslash{}pm 0.004\$ \& \$0.501 \textbackslash{}pm 0.003\$ \&
+\$0.322 \textbackslash{}pm 0.002\$ \& \$0.165 \textbackslash{}pm 0.001\$ \& \$0.066 \textbackslash{}pm 0.001\$ \textbackslash{}\textbackslash{}\textbackslash{}hline
+ \$U\_I - U\_\{I0\}\textbackslash{},[\textbackslash{}text\{V\}]\$ \& \$0.899 \textbackslash{}pm 0.005\$ \& \$0.713 \textbackslash{}pm 0.004\$ \& \$0.528 \textbackslash{}pm
+0.003\$ \& \$0.349 \textbackslash{}pm 0.002\$ \& \$0.192 \textbackslash{}pm 0.001\$ \& \$0.093 \textbackslash{}pm 0.001\$ \textbackslash{}\textbackslash{}\textbackslash{}hline
+ \$\textbackslash{}sqrt\{U\_I - U\_\{I0\}\}\$ \& \$0.948 \textbackslash{}pm 0.003\$ \& \$0.844 \textbackslash{}pm 0.002\$ \& \$0.726 \textbackslash{}pm
+0.002\$ \& \$0.591 \textbackslash{}pm 0.002\$ \& \$0.438 \textbackslash{}pm 0.002\$ \& \$0.305 \textbackslash{}pm 0.002\$ \textbackslash{}\textbackslash{}\textbackslash{}hline
+\textbackslash{}end\{tabular\}
+\}
+\textbackslash{}end\{table\}
+
+\textbackslash{}begin\{table\}[H]
+\textbackslash{}centering
+\textbackslash{}caption\{Messwerte Violette Linie (\$\textbackslash{}lambda = 405\textbackslash{},\textbackslash{}text\{nm\}\$) (Teil 4)\}
+\textbackslash{}resizebox\{\textbackslash{}textwidth\}\{!\}\{
+\textbackslash{}begin\{tabular\}\{|c|c|c|\}
+\textbackslash{}hline
+ \$U\textbackslash{},[\textbackslash{}text\{V\}]\$ \& \$-1,5\$ \& \$-1,6\$ \textbackslash{}\textbackslash{}\textbackslash{}hline
+ \$U\_I\textbackslash{},[\textbackslash{}text\{V\}]\$ \& \$0.006 \textbackslash{}pm 0.001\$ \& \$-0.014 \textbackslash{}pm 0.001\$ \textbackslash{}\textbackslash{}\textbackslash{}hline
+ \$U\_I - U\_\{I0\}\textbackslash{},[\textbackslash{}text\{V\}]\$ \& \$0.032 \textbackslash{}pm 0.001\$ \& \$0.013 \textbackslash{}pm 0.001\$ \textbackslash{}\textbackslash{}\textbackslash{}hline
+ \$\textbackslash{}sqrt\{U\_I - U\_\{I0\}\}\$ \& \$0.180 \textbackslash{}pm 0.003\$ \& \$0.114 \textbackslash{}pm 0.005\$ \textbackslash{}\textbackslash{}\textbackslash{}hline
+\textbackslash{}end\{tabular\}
+\}
+\textbackslash{}end\{table\}
+
+
+\% === Tabelle: Blaue Linie (\$\textbackslash{}lambda = 436\textbackslash{},\textbackslash{}text\{nm\}\$) ===
+\textbackslash{}begin\{table\}[H]
+\textbackslash{}centering
+\textbackslash{}caption\{Messwerte Blaue Linie (\$\textbackslash{}lambda = 436\textbackslash{},\textbackslash{}text\{nm\}\$) (Teil 1)\}
+\textbackslash{}resizebox\{\textbackslash{}textwidth\}\{!\}\{
+\textbackslash{}begin\{tabular\}\{|c|c|c|c|c|c|c|\}
+\textbackslash{}hline
+ \$U\textbackslash{},[\textbackslash{}text\{V\}]\$ \& \$0,3\$ \& \$0,2\$ \& \$0,1\$ \& \$0,0\$ \& \$-0,1\$ \& \$-0,2\$ \textbackslash{}\textbackslash{}\textbackslash{}hline
+ \$U\_I\textbackslash{},[\textbackslash{}text\{V\}]\$ \& \$6.080 \textbackslash{}pm 0.026\$ \& \$5.580 \textbackslash{}pm 0.024\$ \& \$5.040 \textbackslash{}pm 0.023\$ \&
+\$4.560 \textbackslash{}pm 0.022\$ \& \$3.990 \textbackslash{}pm 0.017\$ \& \$3.544 \textbackslash{}pm 0.015\$ \textbackslash{}\textbackslash{}\textbackslash{}hline
+ \$U\_I - U\_\{I0\}\textbackslash{},[\textbackslash{}text\{V\}]\$ \& \$6.119 \textbackslash{}pm 0.026\$ \& \$5.619 \textbackslash{}pm 0.024\$ \& \$5.079 \textbackslash{}pm
+0.023\$ \& \$4.599 \textbackslash{}pm 0.022\$ \& \$4.029 \textbackslash{}pm 0.017\$ \& \$3.583 \textbackslash{}pm 0.016\$ \textbackslash{}\textbackslash{}\textbackslash{}hline
+ \$\textbackslash{}sqrt\{U\_I - U\_\{I0\}\}\$ \& \$2.474 \textbackslash{}pm 0.005\$ \& \$2.371 \textbackslash{}pm 0.005\$ \& \$2.254 \textbackslash{}pm
+0.005\$ \& \$2.145 \textbackslash{}pm 0.005\$ \& \$2.007 \textbackslash{}pm 0.004\$ \& \$1.893 \textbackslash{}pm 0.004\$ \textbackslash{}\textbackslash{}\textbackslash{}hline
+\textbackslash{}end\{tabular\}
+\}
+\textbackslash{}end\{table\}
+
+\textbackslash{}begin\{table\}[H]
+\textbackslash{}centering
+\textbackslash{}caption\{Messwerte Blaue Linie (\$\textbackslash{}lambda = 436\textbackslash{},\textbackslash{}text\{nm\}\$) (Teil 2)\}
+\textbackslash{}resizebox\{\textbackslash{}textwidth\}\{!\}\{
+\textbackslash{}begin\{tabular\}\{|c|c|c|c|c|c|c|\}
+\textbackslash{}hline
+ \$U\textbackslash{},[\textbackslash{}text\{V\}]\$ \& \$-0,3\$ \& \$-0,4\$ \& \$-0,5\$ \& \$-0,6\$ \& \$-0,7\$ \& \$-0,8\$ \textbackslash{}\textbackslash{}\textbackslash{}hline
+ \$U\_I\textbackslash{},[\textbackslash{}text\{V\}]\$ \& \$3.097 \textbackslash{}pm 0.014\$ \& \$2.654 \textbackslash{}pm 0.012\$ \& \$2.252 \textbackslash{}pm 0.010\$ \&
+\$1.840 \textbackslash{}pm 0.009\$ \& \$1.479 \textbackslash{}pm 0.007\$ \& \$1.175 \textbackslash{}pm 0.006\$ \textbackslash{}\textbackslash{}\textbackslash{}hline
+ \$U\_I - U\_\{I0\}\textbackslash{},[\textbackslash{}text\{V\}]\$ \& \$3.136 \textbackslash{}pm 0.014\$ \& \$2.693 \textbackslash{}pm 0.012\$ \& \$2.291 \textbackslash{}pm
+0.010\$ \& \$1.879 \textbackslash{}pm 0.009\$ \& \$1.518 \textbackslash{}pm 0.007\$ \& \$1.214 \textbackslash{}pm 0.006\$ \textbackslash{}\textbackslash{}\textbackslash{}hline
+ \$\textbackslash{}sqrt\{U\_I - U\_\{I0\}\}\$ \& \$1.771 \textbackslash{}pm 0.004\$ \& \$1.641 \textbackslash{}pm 0.004\$ \& \$1.514 \textbackslash{}pm
+0.003\$ \& \$1.371 \textbackslash{}pm 0.003\$ \& \$1.232 \textbackslash{}pm 0.003\$ \& \$1.102 \textbackslash{}pm 0.003\$ \textbackslash{}\textbackslash{}\textbackslash{}hline
+\textbackslash{}end\{tabular\}
+\}
+\textbackslash{}end\{table\}
+
+\textbackslash{}begin\{table\}[H]
+\textbackslash{}centering
+\textbackslash{}caption\{Messwerte Blaue Linie (\$\textbackslash{}lambda = 436\textbackslash{},\textbackslash{}text\{nm\}\$) (Teil 3)\}
+\textbackslash{}resizebox\{\textbackslash{}textwidth\}\{!\}\{
+\textbackslash{}begin\{tabular\}\{|c|c|c|c|c|c|c|\}
+\textbackslash{}hline
+ \$U\textbackslash{},[\textbackslash{}text\{V\}]\$ \& \$-0,9\$ \& \$-1,0\$ \& \$-1,1\$ \& \$-1,2\$ \& \$-1,3\$ \& \$-1,4\$ \textbackslash{}\textbackslash{}\textbackslash{}hline
+ \$U\_I\textbackslash{},[\textbackslash{}text\{V\}]\$ \& \$0.870 \textbackslash{}pm 0.005\$ \& \$0.577 \textbackslash{}pm 0.004\$ \& \$0.310 \textbackslash{}pm 0.002\$ \&
+\$0.119 \textbackslash{}pm 0.001\$ \& \$0.013 \textbackslash{}pm 0.001\$ \& \$-0.021 \textbackslash{}pm 0.001\$ \textbackslash{}\textbackslash{}\textbackslash{}hline
+ \$U\_I - U\_\{I0\}\textbackslash{},[\textbackslash{}text\{V\}]\$ \& \$0.909 \textbackslash{}pm 0.005\$ \& \$0.616 \textbackslash{}pm 0.004\$ \& \$0.350 \textbackslash{}pm
+0.002\$ \& \$0.158 \textbackslash{}pm 0.001\$ \& \$0.052 \textbackslash{}pm 0.001\$ \& \$0.019 \textbackslash{}pm 0.001\$ \textbackslash{}\textbackslash{}\textbackslash{}hline
+ \$\textbackslash{}sqrt\{U\_I - U\_\{I0\}\}\$ \& \$0.954 \textbackslash{}pm 0.003\$ \& \$0.785 \textbackslash{}pm 0.002\$ \& \$0.591 \textbackslash{}pm
+0.002\$ \& \$0.398 \textbackslash{}pm 0.002\$ \& \$0.228 \textbackslash{}pm 0.003\$ \& \$0.136 \textbackslash{}pm 0.005\$ \textbackslash{}\textbackslash{}\textbackslash{}hline
+\textbackslash{}end\{tabular\}
+\}
+\textbackslash{}end\{table\}
+
+
+\% === Tabelle: Grüne Linie (\$\textbackslash{}lambda = 546\textbackslash{},\textbackslash{}text\{nm\}\$) ===
+\textbackslash{}begin\{table\}[H]
+\textbackslash{}centering
+\textbackslash{}caption\{Messwerte Grüne Linie (\$\textbackslash{}lambda = 546\textbackslash{},\textbackslash{}text\{nm\}\$) (Teil 1)\}
+\textbackslash{}resizebox\{\textbackslash{}textwidth\}\{!\}\{
+\textbackslash{}begin\{tabular\}\{|c|c|c|c|c|c|c|\}
+\textbackslash{}hline
+ \$U\textbackslash{},[\textbackslash{}text\{V\}]\$ \& \$0,3\$ \& \$0,2\$ \& \$0,1\$ \& \$0,0\$ \& \$-0,1\$ \& \$-0,2\$ \textbackslash{}\textbackslash{}\textbackslash{}hline
+ \$U\_I\textbackslash{},[\textbackslash{}text\{V\}]\$ \& \$3.049 \textbackslash{}pm 0.013\$ \& \$2.530 \textbackslash{}pm 0.011\$ \& \$2.033 \textbackslash{}pm 0.009\$ \&
+\$1.547 \textbackslash{}pm 0.007\$ \& \$1.132 \textbackslash{}pm 0.006\$ \& \$0.776 \textbackslash{}pm 0.004\$ \textbackslash{}\textbackslash{}\textbackslash{}hline
+ \$U\_I - U\_\{I0\}\textbackslash{},[\textbackslash{}text\{V\}]\$ \& \$3.065 \textbackslash{}pm 0.014\$ \& \$2.546 \textbackslash{}pm 0.011\$ \& \$2.049 \textbackslash{}pm
+0.009\$ \& \$1.563 \textbackslash{}pm 0.008\$ \& \$1.148 \textbackslash{}pm 0.006\$ \& \$0.792 \textbackslash{}pm 0.004\$ \textbackslash{}\textbackslash{}\textbackslash{}hline
+ \$\textbackslash{}sqrt\{U\_I - U\_\{I0\}\}\$ \& \$1.751 \textbackslash{}pm 0.004\$ \& \$1.596 \textbackslash{}pm 0.004\$ \& \$1.432 \textbackslash{}pm
+0.003\$ \& \$1.250 \textbackslash{}pm 0.003\$ \& \$1.072 \textbackslash{}pm 0.003\$ \& \$0.890 \textbackslash{}pm 0.003\$ \textbackslash{}\textbackslash{}\textbackslash{}hline
+\textbackslash{}end\{tabular\}
+\}
+\textbackslash{}end\{table\}
+
+\textbackslash{}begin\{table\}[H]
+\textbackslash{}centering
+\textbackslash{}caption\{Messwerte Grüne Linie (\$\textbackslash{}lambda = 546\textbackslash{},\textbackslash{}text\{nm\}\$) (Teil 2)\}
+\textbackslash{}resizebox\{\textbackslash{}textwidth\}\{!\}\{
+\textbackslash{}begin\{tabular\}\{|c|c|c|c|c|\}
+\textbackslash{}hline
+ \$U\textbackslash{},[\textbackslash{}text\{V\}]\$ \& \$-0,3\$ \& \$-0,4\$ \& \$-0,5\$ \& \$-0,6\$ \textbackslash{}\textbackslash{}\textbackslash{}hline
+ \$U\_I\textbackslash{},[\textbackslash{}text\{V\}]\$ \& \$0.477 \textbackslash{}pm 0.003\$ \& \$0.266 \textbackslash{}pm 0.001\$ \& \$0.120 \textbackslash{}pm 0.001\$ \&
+\$0.047 \textbackslash{}pm 0.001\$ \textbackslash{}\textbackslash{}\textbackslash{}hline
+ \$U\_I - U\_\{I0\}\textbackslash{},[\textbackslash{}text\{V\}]\$ \& \$0.493 \textbackslash{}pm 0.003\$ \& \$0.282 \textbackslash{}pm 0.002\$ \& \$0.136 \textbackslash{}pm
+0.001\$ \& \$0.064 \textbackslash{}pm 0.001\$ \textbackslash{}\textbackslash{}\textbackslash{}hline
+ \$\textbackslash{}sqrt\{U\_I - U\_\{I0\}\}\$ \& \$0.702 \textbackslash{}pm 0.002\$ \& \$0.531 \textbackslash{}pm 0.002\$ \& \$0.369 \textbackslash{}pm
+0.002\$ \& \$0.252 \textbackslash{}pm 0.002\$ \textbackslash{}\textbackslash{}\textbackslash{}hline
+\textbackslash{}end\{tabular\}
+\}
+\textbackslash{}end\{table\}
+
+
+\% === Tabelle: Gelbe Linie (\$\textbackslash{}lambda = 578\textbackslash{},\textbackslash{}text\{nm\}\$) ===
+\textbackslash{}begin\{table\}[H]
+\textbackslash{}centering
+\textbackslash{}caption\{Messwerte Gelbe Linie (\$\textbackslash{}lambda = 578\textbackslash{},\textbackslash{}text\{nm\}\$) (Teil 1)\}
+\textbackslash{}resizebox\{\textbackslash{}textwidth\}\{!\}\{
+\textbackslash{}begin\{tabular\}\{|c|c|c|c|c|c|c|\}
+\textbackslash{}hline
+ \$U\textbackslash{},[\textbackslash{}text\{V\}]\$ \& \$0,3\$ \& \$0,2\$ \& \$0,1\$ \& \$0,0\$ \& \$-0,1\$ \& \$-0,2\$ \textbackslash{}\textbackslash{}\textbackslash{}hline
+ \$U\_I\textbackslash{},[\textbackslash{}text\{V\}]\$ \& \$0.584 \textbackslash{}pm 0.004\$ \& \$0.405 \textbackslash{}pm 0.003\$ \& \$0.262 \textbackslash{}pm 0.001\$ \&
+\$0.164 \textbackslash{}pm 0.001\$ \& \$0.099 \textbackslash{}pm 0.001\$ \& \$0.066 \textbackslash{}pm 0.001\$ \textbackslash{}\textbackslash{}\textbackslash{}hline
+ \$U\_I - U\_\{I0\}\textbackslash{},[\textbackslash{}text\{V\}]\$ \& \$0.591 \textbackslash{}pm 0.004\$ \& \$0.412 \textbackslash{}pm 0.003\$ \& \$0.269 \textbackslash{}pm
+0.002\$ \& \$0.171 \textbackslash{}pm 0.001\$ \& \$0.106 \textbackslash{}pm 0.001\$ \& \$0.073 \textbackslash{}pm 0.001\$ \textbackslash{}\textbackslash{}\textbackslash{}hline
+ \$\textbackslash{}sqrt\{U\_I - U\_\{I0\}\}\$ \& \$0.769 \textbackslash{}pm 0.002\$ \& \$0.642 \textbackslash{}pm 0.002\$ \& \$0.519 \textbackslash{}pm
+0.002\$ \& \$0.414 \textbackslash{}pm 0.002\$ \& \$0.325 \textbackslash{}pm 0.002\$ \& \$0.270 \textbackslash{}pm 0.002\$ \textbackslash{}\textbackslash{}\textbackslash{}hline
+\textbackslash{}end\{tabular\}
+\}
+\textbackslash{}end\{table\}
+
+\textbackslash{}begin\{table\}[H]
+\textbackslash{}centering
+\textbackslash{}caption\{Messwerte Gelbe Linie (\$\textbackslash{}lambda = 578\textbackslash{},\textbackslash{}text\{nm\}\$) (Teil 2)\}
+\textbackslash{}resizebox\{\textbackslash{}textwidth\}\{!\}\{
+\textbackslash{}begin\{tabular\}\{|c|c|c|c|c|\}
+\textbackslash{}hline
+ \$U\textbackslash{},[\textbackslash{}text\{V\}]\$ \& \$-0,3\$ \& \$-0,4\$ \& \$-0,5\$ \& \$-0,6\$ \textbackslash{}\textbackslash{}\textbackslash{}hline
+ \$U\_I\textbackslash{},[\textbackslash{}text\{V\}]\$ \& \$0.048 \textbackslash{}pm 0.001\$ \& \$0.035 \textbackslash{}pm 0.001\$ \& \$0.028 \textbackslash{}pm 0.001\$ \&
+\$0.022 \textbackslash{}pm 0.001\$ \textbackslash{}\textbackslash{}\textbackslash{}hline
+ \$U\_I - U\_\{I0\}\textbackslash{},[\textbackslash{}text\{V\}]\$ \& \$0.054 \textbackslash{}pm 0.001\$ \& \$0.042 \textbackslash{}pm 0.001\$ \& \$0.035 \textbackslash{}pm
+0.001\$ \& \$0.029 \textbackslash{}pm 0.001\$ \textbackslash{}\textbackslash{}\textbackslash{}hline
+ \$\textbackslash{}sqrt\{U\_I - U\_\{I0\}\}\$ \& \$0.233 \textbackslash{}pm 0.003\$ \& \$0.205 \textbackslash{}pm 0.003\$ \& \$0.187 \textbackslash{}pm
+0.003\$ \& \$0.169 \textbackslash{}pm 0.003\$ \textbackslash{}\textbackslash{}\textbackslash{}hline
+\textbackslash{}end\{tabular\}
+\}
+\textbackslash{}end\{table\}
+
+
+    \end{Verbatim}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{1}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{k+kn}{import}\PY{+w}{ }\PY{n+nn}{numpy}\PY{+w}{ }\PY{k}{as}\PY{+w}{ }\PY{n+nn}{np}
+
+\PY{n}{wavelengths} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{array}\PY{p}{(}\PY{p}{[}\PY{l+m+mi}{365}\PY{p}{,} \PY{l+m+mi}{405}\PY{p}{,} \PY{l+m+mi}{436}\PY{p}{,} \PY{l+m+mi}{546}\PY{p}{,} \PY{l+m+mi}{578}\PY{p}{]}\PY{p}{)} \PY{o}{*} \PY{l+m+mf}{1e\PYZhy{}9}  \PY{c+c1}{\PYZsh{} in meters}
+\PY{n}{frequencies} \PY{o}{=} \PY{l+m+mf}{3e8} \PY{o}{/} \PY{n}{wavelengths}  \PY{c+c1}{\PYZsh{} c = 3e8 m}
+
+\PY{n}{frequencies}
+\end{Verbatim}
+\end{tcolorbox}
+
+            \begin{tcolorbox}[breakable, size=fbox, boxrule=.5pt, pad at break*=1mm, opacityfill=0]
+\prompt{Out}{outcolor}{1}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+array([8.21917808e+14, 7.40740741e+14, 6.88073394e+14, 5.49450549e+14,
+       5.19031142e+14])
+\end{Verbatim}
+\end{tcolorbox}
+        
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{ }{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+
+\end{Verbatim}
+\end{tcolorbox}
