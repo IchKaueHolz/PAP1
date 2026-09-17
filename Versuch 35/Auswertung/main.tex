@@ -290,22 +290,43 @@ Zusätzlich zu diesem instrumentellen Fehler muss ein Ablesefehler $\Delta U_{\t
 
 \subsection{Diagramme}
 
-Nun werden wird $\sqrt{U_I - U_\text{I,0}}$ gegen $U$ aufgetragen. Die Schnittstelle der Ausgleichsgeraden mit der Spannung $U$ ist dann die Sperrspannung $U_s$.
+Nun wird $\sqrt{U_I - U_\text{I,0}}$ gegen $U$ aufgetragen. Die Schnittstelle der Ausgleichsgeraden mit der Spannung $U$ ist dann die Sperrspannung $U_s$.
 
 
 \begin{figure}[H]
     \centering
-    %\includegraphics[width=0.8\textwidth]{img/kennlinie_365nm.png}
-    \caption{Strom-Spannungs-Kennlinie für die Spektrallinie bei $365,0\,\text{nm}$}
-    \label{fig:kennlinie_365nm}
+    \includegraphics[page=1, width=0.95\textwidth]{img/Diagramme V35.pdf}
+    \caption{Ermittlung Sperrspannung für die Spektrallinie bei $\lambda = 365\,\text{nm}$}
 \end{figure}
 
+\begin{figure}[H]
+    \centering
+    \includegraphics[page=2, width=0.95\textwidth]{img/Diagramme V35.pdf}
+    \caption{Ermittlung Sperrspannung für die Spektrallinie bei $\lambda = 405\,\text{nm}$}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[page=3, width=0.95\textwidth]{img/Diagramme V35.pdf}
+    \caption{Ermittlung Sperrspannung für die Spektrallinie bei $\lambda = 436\,\text{nm}$}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[page=4, width=0.95\textwidth]{img/Diagramme V35.pdf}
+    \caption{Ermittlung Sperrspannung für die Spektrallinie bei $\lambda = 546\,\text{nm}$}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[page=5, width=0.95\textwidth]{img/Diagramme V35.pdf}
+    \caption{Ermittlung Sperrspannung für die Spektrallinie bei $\lambda = 578\,\text{nm}$}
+\end{figure}
 
 
 Die abgelesenen Sperrspannungen betragen: 
 
-\begin{table}
-[H]
+\begin{table}[H]
     \centering
     \caption{Sperrspannungen für die Spektrallinien der Hg-Spektrallampe}
     \label{tab:sperrspannungen}
@@ -313,18 +334,70 @@ Die abgelesenen Sperrspannungen betragen:
         \toprule
         \textbf{Wellenlänge $\lambda$ [nm]} & \textbf{Sperrspannung $U_s$ [V]} \\
         \midrule
-        365,0 & \num{-1,96(3)} \\
-        405,0 & \num{-1,60(5)} \\
+        365 & \num{-1,96(3)} \\
+        405 & \num{-1,60(5)} \\
+        436 & \num{-1,41(5)} \\
+        546 & \num{-0.67(4)} \\
+        578 & \num{-0.36(6)} \\
         \bottomrule
     \end{tabular}
 \end{table}
 
+Nun wird die Sperrspannung $U_s$ gegen die Frequenz $\nu$ aufgetragen. Die Frequenz berechnet sich aus der Wellenlänge $\lambda$ und der Lichtgeschwindigkeit $c$ durch:
+
+\begin{equation}
+    \nu = \frac{c}{\lambda}
+\end{equation}
+
+Die Frequenzen der Spektrallinien der Hg-Spektrallampe betragen:
+\begin{table}[H]
+    \centering
+    \caption{Frequenzen der Emissionslinien}\label{Frequenzen}
+    \begin{tabular}{ccc}
+        \toprule
+        \textbf{Wellenlänge $\lambda$ [nm]} & \textbf{Frequenz $\nu$ [Hz]} & \textbf{Sperrspannnung $\lvert U_s \rvert$ [V]} \\
+        \midrule
+        365 & \num{8,22e14} & \num{1,96(3)}\\
+        405 & \num{7,41e14} & \num{1,60(5)}\\
+        436 & \num{6,88e14} & \num{1,41(5)}\\
+        546 & \num{5,49e14} & \num{0.67(4)}\\
+        578 & \num{5,19e14} & \num{0.36(6)}\\
+        \bottomrule
+    \end{tabular}
+\end{table}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.95\textwidth]{img/Diagramm Usperr.pdf}
+    \caption{Bestimmung des Planckschen Wirkungsquantums $h$}\label{Usperr}
+\end{figure}
+
+Die Abgelesene Steigung der Ausgleichsgeraden beträgt $m = \num{-5.5(9)e-15}\,\text{V}\cdot\text{s}$. Das Plancksche Wirkungsquantum berechnet sich aus der Steigung multipliziert mit der Elementarladung $e$:
+\begin{equation}
+    h = m \cdot e = \num{-5.5(9)e-15}\,\text{V}\cdot\text{s} \cdot \num{1.602176634e-19}\,\text{C} = \num{8.8(15)e-34}\,\si{\joule\second}
+\end{equation}
+
+\subsection{Vergleich mit dem Literaturwert}
+Der Literaturwert des Planckschen Wirkungsquantums beträgt $h_\text{lit} = \num{6.62607015e-34}\,\text{J}\cdot\text{s}$. Der relative Fehler der Messung beträgt:
+\begin{equation}
+    \Delta h_\text{rel} = \frac{\lvert h - h_\text{lit} \rvert}{h_\text{lit}} = \frac{\lvert \num{8.8e-34} - \num{6.63e-34} \rvert}{\num{6.63e-34}} = 0.33 \Rightarrow 33\%
+\end{equation}
+
+Die Sigma Abweichung beträgt:
+\begin{equation}
+    \sigma = \frac{\lvert h - h_\text{lit} \rvert}{\Delta h} = \frac{\lvert \num{8.8e-34} - \num{6.63e-34} \rvert}{\num{1.5e-34}} = 1.45 \Rightarrow 1.45\sigma
+\end{equation}
+
+\begin{resultbox}[Ergebnis]
+    Das Plancksche Wirkungsquantum wurde experimentell zu $h = \num{8.8(15)e-34}\,\si{\joule\second}$ bestimmt. Der Literaturwert beträgt $h_\text{lit} = \num{6.62607015e-34}\,\text{J}\cdot\text{s}$. Der relative Fehler der Messung beträgt $\Delta h_\text{rel} = 33\%$ und die Abweichung vom Literaturwert beträgt $1.45\sigma$
+\end{resultbox}
 
 
+\section{Diskussion}
+Der Messwert des Planckschen Wirkungsquantums liegt mit $h = \num{8.8(15)e-34}\,\si{\joule\second}$ deutlich über dem Literaturwert. Die Abweichung vom Literaturwert beträgt $1.45\sigma$, was auf eine systematische Abweichung hindeutet, grundsätzlich aber noch im Rahmen der Messunsicherheit liegt. Mögliche kleinere Ursachen für diese Abweichung könnten in der Kalibrierung des Spektrometers, der Genauigkeit der Spannungsmessungen oder in der Stabilität der Lichtquelle liegen. Dabei handeltes sich  mehr um statistische Fehler. Diese große Abweichung deutet eher auf einen systematischen Fehler hin. Insbesondere die Bestimmung der Sperrspannung $U_s$ ist kritisch, da kleine Fehler in dieser Messung direkt die Berechnung des Planckschen Wirkungsquantums einfließen. Da aufgrund der Geometrie der Photozelle die Elektronen bei geringeren Saugspannungen auch mal nicht detektiert werden, verläuft der $\sqrt{U_I-U_{I0}}(U_\text{Vorspannung})$-Graph zu Beginn und Schluss nicht linear. Das erschwert das Zeichnen der Ausgleichgerade der Plots erheblich.  Es ist nicht genau sicher, ob die Ausgleichsgerade korrekt gezeichnet wurde. Somit weichen die Sperrspannungen von den tatsächlichen Werten ab. Selbst die großzügig festgelegte Fehlergerade ist möglicherweise nicht optimal. Eine Verbesserung der Messung könnte durch eine genauere Bestimmung der Sperrspannung erreicht werden, z.B. durch eine höhere Anzahl an Messpunkten im Bereich der größten Steigung der Strom-Spannungs-Kennlinie.
 
-
-
-
+\section{Fazit}
+Zum Ende lässt sich festhalten, dass der Fotoeffekt erfolgreich nachgewiesen und das Plancksche Wirkungsquantum experimentell bestimmt werden konnte. Die Ergebnisse zeigen die charakteristischen Merkmale des Fotoeffekts, insbesondere die Abhängigkeit der kinetischen Energie der emittierten Elektronen von der Frequenz des einfallenden Lichts. Trotz der Abweichung vom Literaturwert konnte das Experiment die grundlegenden Prinzipien des Fotoeffekts und die Quantisierung des Lichts veranschaulichen. Zukünftige Experimente könnten durch verbesserte Messmethoden zu genaueren Ergebnissen führen. Mir persönlich hat der Versuch sehr viel Spaß gemacht, da er die theoretischen Grundlagen des Fotoeffekts auf anschauliche Weise in einem praktischen Experiment demonstriert. Die Arbeit mit dem Spektrometer und der Fotozelle bot eine interessante Gelegenheit, die Prinzipien der Quantenmechanik in einem realen Kontext zu erleben. (Wie es eben auch Einstein und Hertz getan erlebt haben, als sie den Fotoeffekt erstmals untersuchten.)
 \clearpage
 
 \listoffigures
@@ -348,11 +421,11 @@ Die abgelesenen Sperrspannungen betragen:
     \label{tab:parameter_messung_28}
     \begin{tabular}{ll}
         \toprule
-        \textbf{Größe} & \textbf{Wert} \\
-        \midrule
-        Fallstrecke & $s_1 = 10\,\text{Skt} = 5.00 \cdot 10^{-4}\,\text{m}$ \\
-        Fallzeit & $t_1 = 11.85\,\text{s}$ \\
-        Steigstrecke & $s_2 = 10\,\text{Skt} = 5.00 \cdot 10^{-4}\,\text{m}$ \\
+        \textbf{Größe & \textbf{Wert} \\
+        \midrul
+        Fallstreck & $s_1 = 10\,\text{Skt} = 5.00 \cdot 10^{-4}\,\text{m}$ \\
+        Fallzei &$t_1 = 11.85\,\text{s}$ \\
+        Steigsrecke & $s_2 = 10\,\text{Skt} = 5.00 \cdot 10^{-4}\,\text{m}$ \\
         Steigzeit & $t_2 = 18.19\,\text{s}$ \\
         Skalenteilung & $1\,\text{Skt} = 5.00 \cdot 10^{-5}\,\text{m}$ \\
         Kondensatorspannung & $U = 500\,\text{V}$ \\
