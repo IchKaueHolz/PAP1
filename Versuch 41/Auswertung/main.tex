@@ -260,11 +260,32 @@ Es ergibt sich folgende Gerade:
 \begin{figure}
     
     \centering
-    \includegraphics[width=0.8\textwidth]{img/Eichkurve1.png}
+    \includegraphics[width=\textwidth]{img/Eichkurve1.png}
     \caption{Druckwerte des Gasthermometers bei 0 °C und 100 °C.}
     \label{fig:plot1}
 \end{figure}
 
+Die Eichkurve beträgt die Geradengleichung: 
+\begin{equation}
+    p(T) = \num{3.44(2)}\,\si{\milli\bar\per\degreeCelsius} \cdot T + \num{906(2)}\,\si{\milli\bar}
+\end{equation}
+
+Die aus der Geradengleichung berechneten Temperaturen sind:
+
+\begin{table}
+    \centering
+    \caption{Berechnete Temperaturen aus der Eichgerade.}
+    \begin{tabular}{ccc}
+        \toprule
+        \textbf{Messung} & \textbf{Druck $p$ [mbar]} & \textbf{Temperatur $T$ [°C]} \\
+        \midrule
+        0 Grad Wasser & 906 & 0.0 \\
+        siedendes Wasser & 1250 & 100.0 \\
+        Stickstoff & 250 & -190.70 \\
+        Druck bei 0 bar & 0 & -263.37 \\
+        \bottomrule
+    \end{tabular}
+\end{table}
 
 
 
