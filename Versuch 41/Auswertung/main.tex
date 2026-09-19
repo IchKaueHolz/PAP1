@@ -219,10 +219,40 @@ Bei Zimmertemperatur $\approx 300$\,K liegt das Strahlungsmaximum im Infrarotber
 
 
 \subsection{Durchführung}
+\paragraph{Aufgabe 1:} Eichung der Thermometer bei 0°C
+Das Pt100-Thermometer wird als Vierleiterschaltung angeschlossen. Anschließend werden das Pt100-Thermometer, das Gasthermometer und das Pyrometer in einer Wasser-Eis-Mischung bei 0 °C kalibriert, indem die Spannung, der Druck und die angezeigte Temperatur notiert werden.
+
+\paragraph{Aufgabe 2:} Temperaturmessung bis $T = 100$\,°C
+Das Wasserbad wird auf einer Heizplatte bis zum Siedepunkt erhitzt. Im 10-Grad-Schritten werden jeweils die Spannung am Pt100, der Druck des Gasthermometers und die Pyrometeranzeige registriert.
+
+\paragraph{Aufgabe 3:} Temperatur von Trockeneis und flüssigem Stickstoff am Siedepunkt
+Der Glasballon und das Pt100 werden zunächst in einem Dewargefäß in einer Trockeneis-Alkohol-Mischung und in einer zweiten Messung in flüssigem Stickstoff abgekühlt. Nach der Stabilisierung werden jeweils die Pt100-Spannung und der Druck des Gasthermometers gemessen (das Pyrometer ist hier nicht einsetzbar).
+
+\paragraph{Aufgabe 4:} Messung von sehr hohen Temperaturen mit dem PtRh-Thermoelement
+Diese Messung wird vom Tutor vorgeführt. Mit einem PtRh-Thermoelement wird die Temperaturverteilung in einer Bunsenbrennerflamme bei starker und schwacher Luftzufuhr ausgemessen.
+
 
 \section{Auswertung}
+\subsection{Eintragen der Druckwerte gegen die Temperatur}
+Zuerst wird das Gasthermometer geeicht. Dazu werden die Druckwerte bei 0 °C und 100 °C aus dem Messprotokoll gegen die Temperatur aufgetragen. Mithilfe von zwei Eichpunkten wird eine Gerade bestimmt.
 
-\subsection{Aufgabe 1:Exemplarische Berechnung an einem ausgewählten Tröpfchen}
+Der Ablesefehler des Drucks $p_\text{abl} = 0.5\, mbar$ und der Gerätefehler von $\Delta p_\text{ger} = 2\, mbar$ addieren sich zu einem Gesamtfehler von:
+\begin{equation}
+    \Delta p = \sqrt{p_\text{abl}^2 + \Delta p_\text{ger}^2} = \sqrt{(0.5\,\text{mbar})^2 + (2\,\text{mbar})^2} \approx 2.1\,\text{mbar}
+    \label{eq:druckfehler}
+\end{equation}
+
+Aus dem Messprotokoll wird der Druck $p_0 = 906\, \si{\milli\bar}$ bei 0 °C abgelesen und  $p_{sieden} = \num{1241.0(2.1)}\,\si{\milli\bar}$ beim Sieden des Wassers abgelesen:
+
+Da die Siedetemperatur abhängig vom Umgebungsluftdruck $p_\text{LD} = \num{1006.0(2.0)}\,\si{\milli\bar}$ ist, muss der Druck auf den Normaldruck von $p_\text{norm} = 1013.25\,\si{\milli\bar}$ korrigiert werden:
+\begin{equation}
+    p_\text{NB} = p_\text{sieden} \frac{1013.25\,\si{\milli\bar}}{p_\text{LD}} \approx \num{1250(4)}\, \si{\milli\bar}
+\end{equation}
+
+mit der Fehlerfortpflanzung:
+\begin{equation}
+    \Delta p_\text{NB} = p_\text{sieden} \frac{1013.25\,\si{\milli\bar}}{p_\text{LD}} \sqrt{\left(\frac{\Delta p_\text{sieden}}{p_\text{sieden}}\right)^2 + \left(\frac{\Delta p_\text{LD}}{p_\text{LD}}\right)^2} = 3.26\,\si{\milli\bar} \approx \num{4}\,\si{\milli\bar}
+\end{equation}
 
 
 
