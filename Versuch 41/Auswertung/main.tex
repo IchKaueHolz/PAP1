@@ -290,9 +290,113 @@ Die aus der Geradengleichung berechneten Temperaturen sind:
 
 Der Literaturwert von flüssigem Stickstoff beträgt $T_\text{Stickstoff} = -195.79\,\si{\degreeCelsius}$, was eine Abweichung von $\Delta T = 5.09\,\si{\degreeCelsius}$ ergibt. 
 
+\subsection{Eichung mit dem Literaturwert von Flüssigem Stickstoff}
+
 Nun wird dieser Literaturwert mit unserem Druckwert von $p_\text{Stickstoff} = 250\,\si{\milli\bar}$ geeicht. 
 
+Die neue Gerade lautet:
+\begin{equation}
+    \num{3.376(23)} * T + \num{909.8(2.8)}
+\end{equation}
 
+Damit ergibt sich die Temperatur bei 0 K:
+\begin{equation}
+    T_0 = \frac{0 - \num{909.8(2.8)}}{\num{3.376(23)}} \approx \num{-269.5(2.0)} = \num{3.7(2.0)}\,\si{\degreeCelsius}
+\end{equation}
+
+Die Temperatur des absoluten Nullpunkts beträgt also $T_0 = \num{-269.5(2.0)}\,\si{\degreeCelsius}$, was eine Abweichung von $\Delta T = 3.7\,\si{\degreeCelsius}$ zum Literaturwert von $T_\text{0,lit} = -273.15\,\si{\degreeCelsius}$ ergibt. ($\Rightarrow 1.85\sigma$)
+
+Der gemessene Druck bei Trockeneis beträgt $p_\text{Trockeneis} = \num{651(2.1)}\,\si{\milli\bar}$, was bei der Eichkurve eine Temperatur von $T_\text{Trockeneis} = \num{76.7(1.2)}\,\si{\degreeCelsius} = \num{196.5(1.2)}\,\si{\kelvin}$ ergibt.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{img/Eichkurve A2.png}
+    \caption{Neue Eichkurve mit dem Literaturwert von flüssigem Stickstoff}
+    \label{fig:EichkurveA2}
+\end{figure}
+
+\subsection{Temperaturbestimmung mit dem Gasthermometer und der Eichkurve}
+Die abgelesenen Drücke aus dem Messprotokoll betragen:
+\begin{table}[H]
+    \centering
+    \caption{Messwerte der Temperaturmessung bis 100\,°C im Wasserbad.}
+    \begin{tabular}{cc}
+        \toprule
+        \textbf{Druck [mbar]} & Pyrometer\\
+        \midrule
+        \num{950.0(2.1)} & 9.3 \\
+        \num{980.4(2.1)} & 19.8 \\
+        \num{1017.0(2.1)} & 29.9 \\
+        \num{1048.0(2.1)} & 40.2 \\
+        \num{1081.0(2.1)} & 48.5 \\
+        \num{1114.0(2.1)} & 58.6 \\
+        \num{1146.0(2.1)} & 67.9 \\
+        \num{1182.8(2.1)} & 78.0 \\
+        \num{1211.0(2.1)} & 84.0 \\
+        \num{1241.0(2.1)} & 90.0 \\
+        \bottomrule\label{Messwerte}
+    \end{tabular}
+\end{table}
+
+Die Temperaturen werden mit der Eichkurve \ref{fig:EichkurveA2} berechnet:
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{img/Eichkurve A3.png}
+    \caption{Bestimmung der Temperatur}
+    \label{fig:EichkurveA3}
+\end{figure}
+
+Die berechneten Temperaturen betragen:
+\begin{table}[H]
+    \centering
+    \caption{Berechnete Temperaturen aus der Eichkurve.}
+    \begin{tabular}{cc}
+        \toprule
+        \textbf{Druck [mbar]} & \textbf{Temperatur [°C]} \\
+        \midrule
+        \num{950.0(2.1)} & \num{20.9(1.1)} \\
+        \num{980.4(2.1)} & \num{31.7(1.1)} \\
+        \num{1017.0(2.1)} & \num{40.9(1.1)} \\
+        \num{1048.0(2.1)} & \num{50.7(1.1)} \\
+        \num{1081.0(2.1)} & \num{60.5(1.2)} \\
+        \num{1114.0(2.1)} & \num{69.9(1.2)} \\
+        \num{1146.0(2.1)} & \num{80.8(1.2)} \\
+        \num{1182.8(2.1)} & \num{89.2(1.2)} \\
+        \num{1211.0(2.1)} & \num{98.1(1.3)} \\
+        \bottomrule
+    \end{tabular}
+\end{table}
+
+\subsection{Messung mit dem Widerstandthermometer PT100}
+Der Fehler des Pt100-Aufbaus beträgt $\Delta U = 0.08\% + 0.2\,\text{mV}$, was bei einer Spannung von $U = 100\,\text{mV}$ einen Fehler von $\Delta U = 0.28\,\text{mV}$ ergibt.
+
+Der Widerstand errechnet sich mit dem Ohmschen Gesetz:
+\begin{equation}
+    R = \frac{U}{I}
+\end{equation}
+Bei Uns beträgt der Strom $I = 1\,\text{mA}$, somit entspricht der Widerstand genau der Spannung in mV. Die Messwerte aus dem Messprotkoll betragen:
+
+\begin{table}[H]
+    \centering
+    \caption{Messwerte der Temperaturmessung bis 100\,°C im Wasserbad.}
+    \begin{tabular}{cc}
+        \toprule
+        \textbf{Spannung [mV]} & \textbf{Widerstand [\si{\ohm}]}\\
+        \midrule
+        \num{99.8(0.28)}\\
+        \num{104.50(0.29)}\\
+        \num{108.1(0.29)}\\
+        \num{111.7(0.29)}\\  
+        \num{115.5(0.3)}\\
+        \num{119.2(0.3)}\\
+        \num{123.0(0.3)}\\
+        \num{126.8(0.3)}\\
+        \num{130.8(0.3)}\\ 
+        \num{134.3(0.3)}\\ 
+        \num{137.9(0.4)}\\ 
+    \bottomrule
+    \end{tabular}\label{Messwerte pt100}
+\end{table}
 
 
 
