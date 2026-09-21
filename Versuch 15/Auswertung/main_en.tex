@@ -131,7 +131,7 @@ The experiment investigates the fundamental mechanics of rigid bodies moving dow
 \section{Basic Principles and Theorie}\label{sec:Grundlagen}
 The motion of a round body rolling down an inclined plane without slipping is governed by both linear and rotational dynamics. Two primary physical frameworks are utilized to analyze this motion: Newton's laws of motion and the principle of energy conservation.
 
-\subsection*{1. Dynamics and Acceleration}
+\subsection{Dynamics and Acceleration}
 When a body rolls down an inclined plane with an angle $\varphi$, it experiences a downhill force component from gravity ($F_H = mg \sin\varphi$) and an opposing static friction force ($F_R$). This friction force exerts a torque (moment of force) $M$ relative to the center of mass, causing the body to rotate. The relationship between torque, the moment of inertia $I$, and angular acceleration $\frac{d\omega}{dt}$ is given by:
 \begin{equation}
     M = F_R \cdot r = I \frac{d\omega}{dt}
@@ -144,9 +144,9 @@ Applying Newton's second law for linear motion along the plane ($m a_s = mg \sin
 \begin{equation}
     a_s = \frac{mg \sin\varphi}{m + \frac{I}{r^2}}
 \end{equation}
-This formula demonstrates that the acceleration depends on the body's moment of inertia, explaining why a hollow cylinder and a solid cylinder roll at different rates despite having the same radius.
+This formula demonstrates that the acceleration depends on the body's moment of inertia, explaining why a hollow cylinder and a solid cylinder roll at different rates despite having the same radius.\cite{PAPskript}
 
-\subsection*{2. Conservation of Energy}
+\subsection{Conservation of Energy}
 The motion can also be analyzed through the conservation of mechanical energy. Assuming no energy is lost to non-conservative forces (like air resistance or kinetic friction, since the static friction does no work), the initial potential energy is fully converted into kinetic energy. The total energy $W_{ges}$ is the sum of translational kinetic energy, rotational kinetic energy, and potential energy:
 \begin{equation}
     W_{ges} = \frac{1}{2}mv^2 + \frac{1}{2}I\omega^2 + mgh
@@ -154,16 +154,6 @@ The motion can also be analyzed through the conservation of mechanical energy. A
 As the body descends a vertical height $h$, the decrease in potential energy ($mgh$) equals the increase in total kinetic energy ($\frac{1}{2}mv^2 + \frac{1}{2}I\omega^2$).
 
 
-\subsection{Literaturwerte}
-
-
-
-
-
-\section{Messprotokoll}
-
-\subsection{Versuchsaufbau und Aufgaben}
-\begin{comment}
     
 \includepdf[
     pages=-,
@@ -171,19 +161,70 @@ As the body descends a vertical height $h$, the decrease in potential energy ($m
     height=0.95\textheight,
     keepaspectratio,
     pagecommand={\thispagestyle{scrheadings}},
-    pagecommand*={\thispagestyle{scrheadings}\section{Messprotokoll}\subsection{Versuchsaufbau und Aufgaben}}
-]{../Messprotokoll 34.pdf}
-
-\end{comment}
-
-\subsection{Durchführung}
-
-\section{Auswertung}
-
-\subsection{Aufgabe 1:Exemplarische Berechnung an einem ausgewählten Tröpfchen}
+    pagecommand*={\thispagestyle{scrheadings}\section{Measuring Protocol}\subsection{Setup and Tasks}}
+]{../Messprotokoll 15.pdf}
 
 
+\subsection{Execution of the Experiment}
+The Experimental procedure involves the following main steps:
 
+\begin{enumerate}
+    \item \textbf{Setup and Geometry Measurement:} Familiarizing with the light barrier control unit and stopwatch system. Measuring the diameters of the test bodies (solid and hollow cylinders) using a caliper. Using a spirit level to ensure the inclined plane has an even inclination across its entire width, adjusting the supports if necessary (No adjustment was needed in this case).
+    
+    \item \textbf{Qualitative Analysis of Motion:} Verifing uniformly accelerated motion by placing the light barriers at appropriate intervals ($t \propto \sqrt{s}$). Observing and explain qualitatively why bodies with different mass distributions require different amounts of time to reach the bottom.
+    
+    \item \textbf{Quantitative Acceleration Measurement:} Place the light barriers along the incline and measure their exact distances $s$ from the starting mechanism. Release the solid and hollow cylinders and record the time it takes for them to pass the barriers. Repeat this measurement 5 times for each rolling body.
+    
+    \item \textbf{Energy Conservation Study:} To evaluate the conservation of energy, two light barriers are posiioned on the horizontal section at the end of the ramp. The final translational velocity of the bodies are measured. The calculated total kinetic energy will then be compared to the initial potential energy, which is derived from the height difference of the plane.
+\end{enumerate}
+
+\section{Evaluation}
+
+\subsection{Exercise 1: Comparison of Acceleration (theoretical vs. Experimental)}
+
+The acceleration of the rolling bodies can be calculated using the derived formula:
+\begin{equation}
+    a_s = \frac{g \sin\varphi}{1 + \frac{I}{mr^2}}
+\end{equation}     
+
+The Moment of inertia $I$ for a solid cylinder is $I = \frac{1}{2}mr^2$, and for a hollow cylinder, it is $I = m(r_{out}^2 - r_{in}^2)$
+
+With the measured parameters of the cylinders, the theoretical accelerations can be calculated. The parameters are summarized in Table \ref{tab:cylinder_parameters}.
+
+\begin{table}[H]
+    \centering
+    \caption{Parameters of the cylinders used in the experiment.}
+    \label{tab:cylinder_parameters}
+    \begin{tabular}{l|c|c}
+        \toprule
+        \textbf{Parameter} & \textbf{Solid Cylinder} & \textbf{Hollow Cylinder} \\
+        \midrule
+        Mass [kg] & \num{443.0(1.0)} & \num{443.0(1.0)} \\
+        Inner Radius [m] & 0 & \num{46.5(0.05)e-3} \\
+        Outer Radius [m] & \num{50.00(0.05)e-3} & \num{50.00(0.05)e-3} \\
+        Moment of Inertia [\si{\kilo\gram\times\meter\squared}] & \num{1.384(4)}  & \num{2.582(7)e-4} \\
+        \bottomrule
+    \end{tabular}
+\end{table}
+
+To calculate the theoretical acceleration, the angle of inclination $\varphi$ of the ramp is needed. This can be determined from the height difference $h$ and the length of the ramp $L$ using the relation:
+
+\begin{equation}
+    \sin\varphi = \frac{h}{L}
+\end{equation}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.7\textwidth]{img/inclined_plane_schematic.png}
+    \caption{Schematic representation of the inclined plane with height $h$ and length $L$. \cite{PAPskript}}
+    \label{fig:inclined_plane}
+\end{figure}
+
+with the measured height $h = \num{12.2(4)e-2}\,\text{m}$ and the length of the track $l = \num{1.000(5)}\,\text{m}$, the angle of inclination can be calculated as:
+\begin{align}
+    \varphi &= \arcsin\left(\frac{h}{L}\right) = \arcsin\left(\frac{\num{12.2(4)e-2}}{\num{1.000(5)}}\right) \\
+    &\approx \num{7.01(24)}^\circ = \num{0.122(4)}\,\text{rad}
+\end{align}
 
 \clearpage
 
