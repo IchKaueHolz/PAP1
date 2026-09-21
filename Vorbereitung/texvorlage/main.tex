@@ -76,13 +76,13 @@
 }
 
 
-\newcommand{\versuch}{Versuch 41}
-\newcommand{\titel}{Temperaturmessung}
+\newcommand{\versuch}{Versuch 22}
+\newcommand{\titel}{Bestimmung der Elementarladung nach Millikan}
 \newcommand{\praktikum}{Physikalisches Anfängerpraktikum 1}
 \newcommand{\autor}{Jonathan Gießen}
 \newcommand{\gruppe}{Gruppe 8}
 \newcommand{\datum}{31. September 2026}
-\newcommand{\betreuer}{Furkan Cetin}
+\newcommand{\betreuer}{Fabian Mrosek}
 
 \begin{document}
 
@@ -123,89 +123,14 @@
 
 
 \section{Einleitung}\label{sec:Einleitung}
-Ziel dieses Versuchs ist es, verschiedene physikalische Prinzipien der Temperaturmessung in unterschiedlichen Messbereichen praktisch anzuwenden. Dazu werden vergleichende Messungen mit einem Gasthermometer und einem Platin-Widerstandsthermometer im Bereich zwischen den Siedepunkten von flüssigem Stickstoff und Wasser durchgeführt. Ergänzend erfolgen Messungen mit einem Infrarot-Thermometer im Temperaturbereich von 0 °C bis 100 °C. Zudem wird als typische Anwendung eines Thermoelements die Temperaturverteilung einer Bunsenbrennerflamme mithilfe eines PtRh-Elementes bestimmt.
+
 
 \section{Grundlagen und Theorie}\label{sec:Grundlagen}
-Thermometer sind Geräte, die zur Messung der Temperatur verwendet werden. Sie basieren auf verschiedenen physikalischen Prinzipien, die es ermöglichen, die Temperatur eines Systems zu bestimmen. 
-
-\subsection{Gasthermometer}\
-Das Gasthermometer ist ein Gerät, das die Temperatur durch die Messung des Drucks eines Gases bei konstantem Volumen bestimmt. Es basiert auf dem idealen Gasgesetz, das den Zusammenhang zwischen Druck, Volumen und Temperatur beschreibt. Bei konstantem Volumen ist der Druck direkt proportional zur Temperatur. Daher kann die Temperatur durch die Messung des Drucks des Gases ermittelt werden.
-
-\begin{align}
-    &pV = nRT\\
-    \Rightarrow\  &p \propto T \quad \text{bei konstantem Volumen}
-\end{align}
-
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=0.4\textwidth]{img/Gasthermometer.png}
-    \caption{Schematische Darstellung eines Gasthermometers.\cite{PAPskript}}
-    \label{fig:gasthermometer}
-
-\end{figure}
 
 
-\subsection{Das Thermoelement}
-Das Thermoelement beruht einen auf den Seebeck-Effekt, der besagt, dass in einem geschlossenen Stromkreis aus zwei unterschiedlichen Metallen eine Spannung entsteht, wenn die beiden Verbindungsstellen unterschiedliche Temperaturen haben. Diese Spannung ist proportional zur Temperaturdifferenz zwischen den beiden Verbindungsstellen. Durch die Messung der erzeugten Spannung kann die Temperaturdifferenz bestimmt werden.
+\subsection{Literaturwerte}
 
 
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=0.4\textwidth]{img/Thermoelement.png}
-    \caption{Schematische Darstellung eines Thermoelements.\cite{PAPskript}}
-    \label{fig:thermoelement}
-\end{figure}
-
-\begin{equation}
-    U_th = K  (T_1 - T_2)
-\end{equation}
-K ist dabei die Seebeck-Konstante, die von den verwendeten Metallen abhängt.
-Problematisch ist, dass bei diesem Thermometer nur relative Temperaturdifferenzen gemessen werden können. Um absolute Temperaturen zu bestimmen, muss eine bekannte Referenztemperatur verwendet werden, was nicht immer leicht umzusetzten ist.
-
-\subsection{Platin-Widerstandsthermometer}
-Das Platin-Widerstandsthermometer basiert auf der Tatsache, dass der elektrische Widerstand von Platin mit der Temperatur variiert. Der Widerstand steigt mit zunehmender Temperatur an. Durch die Messung des Widerstands kann die Temperatur bestimmt werden.
-Die Temperaturabhägigkeit des Widerstands von Platin kann durch die folgende Gleichung beschrieben werden:
-
-\begin{align}
-    R(T) = R_0  (1 + AT + BT^2)
-\end{align}
-
-$R_0$ ist der Nennwiderstand bei 0 °C, A und B sind Konstanten, die die Temperaturabhängigkeit des Widerstands beschreiben. Die Werte für A und B können aus Literaturwerten entnommen werden.
-
-Umgeformt nach T mit der Quadratischen Lösungsformel ergibt sich:
-\begin{equation}
-    T = \frac{-R_0  A + \sqrt{(R_0  A)^2 - 4  R_0  B  (R_0 - R)}}{2  R_0  B}
-\end{equation}
-
-Unser Platin-Widerstandsthermometer hat einen Nennwiderstand von $R_0 = 100\,\Omega$ bei 0 °C. Die Konstanten A und B sind in der Literatur angegeben und betragen $A = \num{3.9083e-3}\,\si{\degreeCelsius}^{-1}$ und $B = \num{-5.775e-7}\,\si{\degreeCelsius}^{-2}$. Die Genauigkeitsklasse des Thermometers beträgt Klasse B, was einer Genauigkeit von $\Delta T = 0.30\,\si{\degreeCelsius} + 0.005 \cdot \lvert T \rvert$ entspricht.
-
-Mithilfe einer Vierleiter-Schaltung kann der Widerstand des Platin Widerstandsthermometers sehr genau gemessen werden. Dabei wird der Strom durch das Thermometer mit zwei Leitern geführt, während die Spannung über das Thermometer mit zwei weiteren Leitern gemessen wird. Dies minimiert den Einfluss des Leitungswiderstands auf die Messung.
-
-
-\subsection{Pyrometer}
-Das Pyrometer ist ein berührungsloses Thermometer, das die Temperatur eines Objekts durch die Messung der von ihm abgestrahlten Infrarotstrahlung bestimmt. Es basiert auf dem Planckschen Strahlungsgesetz, das beschreibt, wie die Intensität der Strahlung eines schwarzen Körpers von seiner Temperatur abhängt. Durch die Messung der Strahlungsintensität kann die Temperatur des Objekts bestimmt werden.
-
-Mithilfe des Planckschen Strahlungsgesetzes wird die Intensitätsverteilung der Strahlung eines schwarzen Körpers in Abhängigkeit von der Wellenlänge und der Temperatur beschrieben. Die spektrale Strahldichte $M_\lambda(\lambda, T)$ eines schwarzen Körpers bei einer bestimmten Temperatur $T$ und Wellenlänge $\lambda$ wird durch die folgende Gleichung gegeben:
-
-\begin{equation}
-    M_\lambda(\lambda, T) \text{d}A\text{d}\lambda = \frac{2hc^2}{\lambda^5} \frac{1}{e^{\frac{hc}{\lambda k_B T}} - 1} \text{d}A\text{d}\lambda
-\end{equation}
-
-Durch Integration über die gesamte strahlende Fläche und über alle Wellenlängen kann die gesamte abgestrahlte Leistung $P$ eines schwarzen Körpers bei einer bestimmten Temperatur $T$ berechnet werden \cite{PAPskript}:
-\begin{equation}
-    P(T) = \epsilon(T)\sigma A T^4
-\end{equation}
-
-wobei $\epsilon(T)$ der Emissionsgrad des Materials ist, $\sigma$ die Stefan-Boltzmann-Konstante und $A$ die Fläche des strahlenden Körpers. Das Pyrometer misst die abgestrahlte Leistung und kann daraus die Temperatur des Objekts bestimmen.
-
-Bei Zimmertemperatur $\approx 300$\,K liegt das Strahlungsmaximum im Infrarotbereich bei einer Wellenlänge von etwa 10 µm. In diesem Bereich arbeiten kommerzielle IR-Pyrometer. Die im Praktikum eingesetzten Pyrometer integrieren die von einem Körper ausgehende Strahlung im Bereich von 8 µm bis 14 µm. \cite{PAPskript}
-
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=0.4\textwidth]{img/Spektral intensity.png}
-    \caption{Spektrale Intensitätsverteilung eines schwarzen Körpers bei unterschiedlichen Temperaturen.\cite{PAPskript}}
-    \label{fig:strahlvertielung}
-\end{figure}
 
 
 
@@ -259,18 +184,18 @@ Bei Zimmertemperatur $\approx 300$\,K liegt das Strahlungsmaximum im Infrarotber
         \toprule
         \textbf{Größe} & \textbf{Wert} \\
         \midrule
-        Fallstrecke & $s_1 = 10\,\text{Skt} = 5.00  10^{-4}\,\text{m}$ \\
+        Fallstrecke & $s_1 = 10\,\text{Skt} = 5.00 \cdot 10^{-4}\,\text{m}$ \\
         Fallzeit & $t_1 = 11.85\,\text{s}$ \\
-        Steigstrecke & $s_2 = 10\,\text{Skt} = 5.00  10^{-4}\,\text{m}$ \\
+        Steigstrecke & $s_2 = 10\,\text{Skt} = 5.00 \cdot 10^{-4}\,\text{m}$ \\
         Steigzeit & $t_2 = 18.19\,\text{s}$ \\
-        Skalenteilung & $1\,\text{Skt} = 5.00  10^{-5}\,\text{m}$ \\
+        Skalenteilung & $1\,\text{Skt} = 5.00 \cdot 10^{-5}\,\text{m}$ \\
         Kondensatorspannung & $U = 500\,\text{V}$ \\
-        Plattenabstand & $d = 6.00  10^{-3}\,\text{m}$ \\
+        Plattenabstand & $d = 6.00 \cdot 10^{-3}\,\text{m}$ \\
         Luftdruck & $p = 100285\,\text{Pa}$ \\
         Erdbeschleunigung & $g = 9.81\,\frac{\text{m}}{\text{s}^2}$ \\
         Dichtedifferenz & $\rho = \rho_{\text{Öl}} - \rho_{\text{Luft}} = 871.21\,\frac{\text{kg}}{\text{m}^3}$ \\
-        Unkorrigierte Luftviskosität & $\eta_0 = 1.81  10^{-5}\,\text{Pa}\text{s}$ \\
-        Cunningham-Konstante & $b = 7.78  10^{-3}\,\text{Pa}\text{m}$ \\
+        Unkorrigierte Luftviskosität & $\eta_0 = 1.81 \cdot 10^{-5}\,\text{Pa}\cdot\text{s}$ \\
+        Cunningham-Konstante & $b = 7.78 \cdot 10^{-3}\,\text{Pa}\cdot\text{m}$ \\
         \bottomrule
     \end{tabular}
 \end{table}
