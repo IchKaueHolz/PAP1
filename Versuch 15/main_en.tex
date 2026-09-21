@@ -76,13 +76,13 @@
 }
 
 
-\newcommand{\versuch}{Versuch 22}
-\newcommand{\titel}{Bestimmung der Elementarladung nach Millikan}
-\newcommand{\praktikum}{Physikalisches Anfängerpraktikum 1}
+\newcommand{\versuch}{Versuch 15}
+\newcommand{\titel}{Inclined Plane}
+\newcommand{\praktikum}{Begginners Physics Lab 1}
 \newcommand{\autor}{Jonathan Gießen}
-\newcommand{\gruppe}{Gruppe 8}
-\newcommand{\datum}{31. September 2026}
-\newcommand{\betreuer}{Fabian Mrosek}
+\newcommand{\gruppe}{Group 8}
+\newcommand{\datum}{15. September 2026}
+\newcommand{\betreuer}{Matha Reece}
 
 \begin{document}
 
@@ -124,10 +124,34 @@
 
 
 \section{Introduction}\label{sec:Einleitung}
+The experiment investigates the fundamental mechanics of rigid bodies moving down an inclined plane. By observing different rolling bodies specifically a solid cylinder and a hollow cylinder the experiment explores how mass distribution affects rotational and translational motion. The main objectives are to quantitatively determine the acceleration of these bodies as they roll down the ramp and to verify the law of conservation of mechanical energy by comparing the initial potential energy with the final translational and rotational kinetic energy.
 
 
 
 \section{Basic Principles and Theorie}\label{sec:Grundlagen}
+The motion of a round body rolling down an inclined plane without slipping is governed by both linear and rotational dynamics. Two primary physical frameworks are utilized to analyze this motion: Newton's laws of motion and the principle of energy conservation.
+
+\subsection*{1. Dynamics and Acceleration}
+When a body rolls down an inclined plane with an angle $\varphi$, it experiences a downhill force component from gravity ($F_H = mg \sin\varphi$) and an opposing static friction force ($F_R$). This friction force exerts a torque (moment of force) $M$ relative to the center of mass, causing the body to rotate. The relationship between torque, the moment of inertia $I$, and angular acceleration $\frac{d\omega}{dt}$ is given by:
+\begin{equation}
+    M = F_R \cdot r = I \frac{d\omega}{dt}
+\end{equation}
+Using the rolling without slipping condition, the velocity of the center of gravity is $v_s = r\omega$. Differentiating this yields the relationship between linear acceleration $a_s$ and angular acceleration, allowing us to express the friction force as:
+\begin{equation}
+    F_R = \frac{I}{r^2} \cdot a_s
+\end{equation}
+Applying Newton's second law for linear motion along the plane ($m a_s = mg \sin\varphi - F_R$) and substituting the friction force, the linear acceleration of the rolling body is derived as:
+\begin{equation}
+    a_s = \frac{mg \sin\varphi}{m + \frac{I}{r^2}}
+\end{equation}
+This formula demonstrates that the acceleration depends on the body's moment of inertia, explaining why a hollow cylinder and a solid cylinder roll at different rates despite having the same radius.
+
+\subsection*{2. Conservation of Energy}
+The motion can also be analyzed through the conservation of mechanical energy. Assuming no energy is lost to non-conservative forces (like air resistance or kinetic friction, since the static friction does no work), the initial potential energy is fully converted into kinetic energy. The total energy $W_{ges}$ is the sum of translational kinetic energy, rotational kinetic energy, and potential energy:
+\begin{equation}
+    W_{ges} = \frac{1}{2}mv^2 + \frac{1}{2}I\omega^2 + mgh
+\end{equation}
+As the body descends a vertical height $h$, the decrease in potential energy ($mgh$) equals the increase in total kinetic energy ($\frac{1}{2}mv^2 + \frac{1}{2}I\omega^2$).
 
 
 \subsection{Literaturwerte}
