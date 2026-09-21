@@ -167,7 +167,7 @@ Das Platin-Widerstandsthermometer basiert auf der Tatsache, dass der elektrische
 Die Temperaturabhägigkeit des Widerstands von Platin kann durch die folgende Gleichung beschrieben werden:
 
 \begin{align}
-    R(T) = R_0  (1 + AT + BT^2)
+    R(T) = R_0  (1 + AT + BT^2)\label{eq:Widerstandpt100}
 \end{align}
 
 $R_0$ ist der Nennwiderstand bei 0 °C, A und B sind Konstanten, die die Temperaturabhängigkeit des Widerstands beschreiben. Die Werte für A und B können aus Literaturwerten entnommen werden.
@@ -216,6 +216,12 @@ Bei Zimmertemperatur $\approx 300$\,K liegt das Strahlungsmaximum im Infrarotber
     pagecommand={\thispagestyle{scrheadings}},
     pagecommand*={\thispagestyle{scrheadings}\section{Messprotokoll}\subsection{Versuchsaufbau und Aufgaben}}
 ]{../Messprotokoll 41.pdf}
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.8\textwidth]{img/V41_No4.jpg}
+    \caption{Aufgabe 4: Messung der Temperaturverteilung in einer Bunsenbrennerflamme mit einem PtRh-Thermoelement.}
+\end{figure}      
 
 
 \subsection{Durchführung}
@@ -354,18 +360,25 @@ Die berechneten Temperaturen betragen:
         \toprule
         \textbf{Druck [mbar]} & \textbf{Temperatur [°C]} \\
         \midrule
-        \num{950.0(2.1)} & \num{20.9(1.1)} \\
-        \num{980.4(2.1)} & \num{31.7(1.1)} \\
-        \num{1017.0(2.1)} & \num{40.9(1.1)} \\
-        \num{1048.0(2.1)} & \num{50.7(1.1)} \\
-        \num{1081.0(2.1)} & \num{60.5(1.2)} \\
-        \num{1114.0(2.1)} & \num{69.9(1.2)} \\
-        \num{1146.0(2.1)} & \num{80.8(1.2)} \\
-        \num{1182.8(2.1)} & \num{89.2(1.2)} \\
-        \num{1211.0(2.1)} & \num{98.1(1.3)} \\
+        \num{906(2.1)} & \num{0} \\
+        \num{950.0(2.1)} & \num{11.9(1.1)} \\
+        \num{980.4(2.1)} & \num{20.9(1.1)} \\
+        \num{1017.0(2.1)} & \num{31.7(1.1)} \\
+        \num{1048.0(2.1)} & \num{40.9(1.1)} \\
+        \num{1081.0(2.1)} & \num{50.7(1.1)} \\
+        \num{1114.0(2.1)} & \num{60.5(1.2)} \\
+        \num{1146.0(2.1)} & \num{69.9(1.2)} \\
+        \num{1182.8(2.1)} & \num{80.8(1.2)} \\
+        \num{1211.0(2.1)} & \num{89.2(1.2)} \\
+        \num{1241.0(2.1)} & \num{98.1(1.3)} \\
         \bottomrule
     \end{tabular}
 \end{table}
+
+\begin{resultbox}
+    Die Eichung des Gasthermometers mit dem Literaturwert von flüssigem Stickstoff ergibt eine Abweichung von $\Delta T = 3.7\,\si{\degreeCelsius}$ zum Literaturwert des absoluten Nullpunkts.
+\end{resultbox}
+
 
 \subsection{Messung mit dem Widerstandthermometer PT100}
 Der Fehler des Pt100-Aufbaus beträgt $\Delta U = 0.08\% + 0.2\,\text{mV}$, was bei einer Spannung von $U = 100\,\text{mV}$ einen Fehler von $\Delta U = 0.28\,\text{mV}$ ergibt.
@@ -381,22 +394,123 @@ Bei Uns beträgt der Strom $I = 1\,\text{mA}$, somit entspricht der Widerstand g
     \caption{Messwerte der Temperaturmessung bis 100\,°C im Wasserbad.}
     \begin{tabular}{cc}
         \toprule
-        \textbf{Spannung [mV]} & \textbf{Widerstand [\si{\ohm}]}\\
+        \textbf{Spannung [mV]} & \textbf{Temperatur [°C] laut vorheriger Aufgabe}\\
         \midrule
-        \num{99.8(0.28)}\\
-        \num{104.50(0.29)}\\
-        \num{108.1(0.29)}\\
-        \num{111.7(0.29)}\\  
-        \num{115.5(0.3)}\\
-        \num{119.2(0.3)}\\
-        \num{123.0(0.3)}\\
-        \num{126.8(0.3)}\\
-        \num{130.8(0.3)}\\ 
-        \num{134.3(0.3)}\\ 
-        \num{137.9(0.4)}\\ 
+        \num{99.8(0.28)} & \num{0}\\
+        \num{104.50(0.29)} & \num{11.9(1.1)}\\
+        \num{108.1(0.29)} & \num{20.9(1.1)}\\
+        \num{111.7(0.29)} & \num{31.7(1.1)}\\  
+        \num{115.5(0.3)} & \num{40.9(1.1)}\\
+        \num{119.2(0.3)} & \num{50.7(1.1)}\\
+        \num{123.0(0.3)} & \num{60.5(1.2)}\\
+        \num{126.8(0.3)} & \num{69.9(1.2)}\\
+        \num{130.8(0.3)} & \num{80.8(1.2)}\\ 
+        \num{134.3(0.3)} & \num{89.2(1.2)}\\ 
+        \num{137.9(0.4)} & \num{98.1(1.3)}\\ 
     \bottomrule
     \end{tabular}\label{Messwerte pt100}
 \end{table}
+
+Damit ergibt sich folgende Eichkurve für das Pt100-Thermometer:
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{img/Eichkurve Pt100.png}
+    \caption{Eichkurve für das Pt100-Thermometer.}
+    \label{fig:EichkurvePt100}
+\end{figure}
+
+Die Geradengleichung lautet:
+\begin{equation}
+    R(T) = \num{0.3838(24)} * T + \num{99.92(14)} \label{eq:GeradengleichungPt100}
+\end{equation}
+
+Durch linearisierung der Gleichung für den Widerstand des Pt100-Thermometers \ref{eq:Widerstandpt100} ergibt sich die Gleichung:
+\begin{equation}
+    R(T) = R_0\cdot AT + R_0
+\end{equation}
+
+Mit Koeffizientenvergleich ergibt sich:
+\begin{align}
+    R_0 &= \num{99.92(14)}\\
+    R_0\cdot A &= \num{0.3838(24)} \Rightarrow A \approx \num{3.838(24)e-3}
+\end{align}
+
+Die Literaturwerte betragen $A_\text{lit} = \num{3.9083e-3}$, $R_0 = 100\,\Omega$. Die Abweichung beträgt:
+\begin{align}
+    \Delta A &= \num{3.9083e-3} - \num{3.838(24)e-3} = \num{7.03e-5} \approx 2.9\sigma\\
+    \Delta R_0 &= 100 - \num{99.92(14)} = \num{0.08} \approx 0.57\sigma
+\end{align}
+
+
+\begin{resultbox}[Ergebnis]
+    Die Eichung des Pt100-Thermometers ergibt eine Abweichung von $\Delta A \approx 2.9\sigma$ und $\Delta R_0 \approx 0.57\sigma$ im Vergleich zu den Literaturwerten.
+\end{resultbox}
+
+
+\subsection{Temperaturmessung mit dem Pyrometer}
+
+Nun werden die Messwerte des Pyrometers aus dem Messprotokoll mit den berechneten Temperaturen aus der Eichkurve des Gasthermometers verglichen. 
+Der Fehler des Pyrometers beträgt $\Delta T = 1\% + 2\,\si{\degreeCelsius}$.
+Die Messwerte des Pyrometers betragen:
+\begin{table}[H]
+    \centering
+    \caption{Messwerte des Pyrometers im Vergleich zu den berechneten Temperaturen aus der Eichkurve des Gasthermometers.}
+    \begin{tabular}{cc}
+        \toprule
+        \textbf{Temperatur [°C] aus Gasthermometer} & \textbf{Temperatur [°C] aus Pyrometer} \\
+        \midrule
+        \num{0} & \num{-1(2.0)}\\
+        \num{11.9(1.1)} & \num{9.3(2.2)}\\
+        \num{20.9(1.1)} & \num{19.8(2.3)}\\
+        \num{31.7(1.1)} & \num{29.9(2.5)}\\
+        \num{40.9(1.1)} & \num{40.2(2.6)}\\
+        \num{50.7(1.1)} & \num{48.5(2.8)}\\
+        \num{60.5(1.2)} & \num{58.6(2.9)}\\
+        \num{69.9(1.2)} & \num{67.9(3.0)}\\
+        \num{80.8(1.2)} & \num{78(4)}\\
+        \num{89.2(1.2)} & \num{84(4)}\\
+        \num{98.1(1.3)} & \num{90(4)}\\
+        \bottomrule
+    \end{tabular}
+\end{table}
+
+Die Werte werden in einem Diagramm dargestellt:
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{img/Pyrometervergleich.png}
+    \caption{Vergleich der Messwerte des Pyrometers mit den berechneten Temperaturen aus der Eichkurve des Gasthermometers.}
+    \label{fig:Pyrometervergleich}
+\end{figure}
+
+Die optimale Gerade durch die Messwerte des Pyrometers ergibt sich zu:
+\begin{equation}
+    T_\text{Pyrometer} = \num{0.953(25)} * T_\text{Gasthermometer} - \num{0.2(1.3)} \
+\end{equation}
+
+\begin{resultbox}[Ergebnis]
+    Die Eichung des Pyrometers ergibt eine Abweichung von $\Delta m = 0.025$ in der Steigung und $\Delta b = 1.3$ in der y-Achsenabschnitt. Die Abweichung der Steigung von 1 beträgt $\Delta m = 0.047$, was einer Abweichung von $1.88\sigma$ entspricht.
+\end{resultbox}
+
+
+
+\section{Diskussion}
+
+Im Rahmen dieses Versuchs konnten verschiedene Methoden der Temperaturmessung (Gasthermometer, Platin-Widerstandsthermometer, Pyrometer und Thermoelement) erfolgreich angewendet und auf ihre Genauigkeit sowie spezifische Fehlerquellen untersucht werden.
+
+\paragraph{Gasthermometer und absoluter Nullpunkt}
+Die Bestimmung des absoluten Nullpunkts durch Extrapolation der isochoren Druckänderung lieferte einen Wert von $T_0 = \num{-269.5(2.0)}\,\si{\degreeCelsius}$. Mit einer Abweichung von $\Delta T = \num{3.7}\,\si{\degreeCelsius}$ zum Literaturwert (\num{-273.15}\,\si{\degreeCelsius}) liegt das Ergebnis in einem sehr guten Bereich, was sich auch in der geringen Signifikanz der Abweichung ($1.85\sigma$) widerspiegelt. Die leichte Überschätzung der Temperatur lässt sich durch systematische Fehlerquellen des Aufbaus erklären: Das "`schädliche Volumen"' in der Kapillare und im Drucksensor befand sich stets auf Raumtemperatur und nahm nicht an der thermischen Kontraktion bzw. Expansion im Wasserbad teil. Zudem wurde die thermische Volumenänderung des Glaskolbens selbst vernachlässigt. 
+
+Auch die Messung der Sublimationstemperatur von Trockeneis lieferte mit \num{-76.7(1.2)}\,\si{\degreeCelsius} ein sehr gutes Ergebnis, das nah am Literaturwert von ca. \num{-78.5}\,\si{\degreeCelsius} liegt. Ein weiterer systematischer Fehler entstammt der Skript-Vorgabe, den Siedepunkt über einen einfachen Dreisatz des Luftdrucks auf Normalbedingungen zu korrigieren, anstatt die physikalisch korrekte Dampfdruckkurve (Clausius-Clapeyron-Gleichung) zu verwenden. 
+
+\paragraph{Platin-Widerstandsthermometer (Pt100)}
+Die Kalibrierung des Pt100-Thermometers lieferte für den Nennwiderstand bei \num{0}\,\si{\degreeCelsius} einen exzellenten Wert von $R_0 = \num{99.92(14)}\,\si{\Omega}$. Die Abweichung zum Idealwert von $100\,\si{\Omega}$ ist mit $0.57\sigma$ statistisch nicht signifikant. Die Vierleiterschaltung hat hier erwartungsgemäß die Zuleitungswiderstände erfolgreich eliminiert. 
+
+Der lineare Temperaturkoeffizient $A$ weicht mit $A = \num{3.838e-3}\,\si{\degreeCelsius}^{-1}$ jedoch um $2.9\sigma$ vom Literaturwert ab. Diese signifikante Abweichung ist primär auf die in der Auswertung vorgenommene Linearisierung zurückzuführen. In der Realität besitzt die $R(T)$-Kurve von Platin einen quadratischen Term ($B \cdot T^2$), der bei \num{100}\,\si{\degreeCelsius} zwar klein ist, das lineare Modell jedoch systematisch verfälscht. Zudem baut diese Messung auf den Temperaturwerten der vorherigen Gasthermometer-Eichung auf, wodurch sich dessen systematische Fehler (z.\,B. das schädliche Volumen) in diese Messreihe fortpflanzen.
+
+\paragraph{Pyrometer}
+Das Pyrometer zeigte bei Raumtemperatur und \num{0}\,\si{\degreeCelsius} noch eine gute Übereinstimmung mit dem Gasthermometer, unterschätzte die Temperatur jedoch bei höheren Werten zunehmend. Dies zeigt sich deutlich in der linearen Regression, deren Steigung $m = \num{0.953(25)}$ um $1.88\sigma$ vom idealen Wert $m=1$ abweicht. Bei kochendem Wasser zeigte das Pyrometer lediglich \num{90(4)}\,\si{\degreeCelsius} an. 
+
+Dieser systematische Fehler ist ein klassisches Problem der berührungslosen Infrarotmessung über erhitzten Flüssigkeiten: Der aufsteigende Wasserdampf absorbiert einen Teil der emittierten Infrarotstrahlung, bevor diese den Sensor erreicht. Die im Skript empfohlene schräge Messung konnte diesen Effekt offenbar nicht vollständig kompensieren. Zudem hängt die Genauigkeit des Pyrometers stark vom korrekten Emissionsgrad $\epsilon$ der Oberfläche ab, welcher durch Reflexionen der Umgebung (z.\,B. Beleuchtung im Praktikumsraum) verfälscht werden kann.
 
 
 
@@ -413,7 +527,30 @@ Bei Uns beträgt der Strom $I = 1\,\text{mA}$, somit entspricht der Widerstand g
 \end{thebibliography}
 
 
+\appendix
+\section{Anhang: Eichtabellen}
+\begin{figure}
+    \centering
+    \includegraphics[width=0.8\textwidth]{img/Eichtabelle1.jpeg}
+    \caption{Eichtabelle für das Pt100-Element.}
+    \label{fig:Eichtabelle1}
+\end{figure}
 
+\begin{figure}
+    \centering
+    \includegraphics[width=0.8\textwidth]{img/Eichtabelle2.jpeg}
+    \caption{Eichtabelle für das PtRh - Typ B.}
+    \label{fig:Eichtabelle2}
+\end{figure}
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.8\textwidth]{img/Eichtabelle3.jpeg}
+    \caption{Eichtabelle für das PtRh - Typ S.}
+    \label{fig:Eichtabelle3}
+\end{figure}
+
+\section{Anhang: Code}
 
 \begin{comment}
 
@@ -441,4 +578,6 @@ Bei Uns beträgt der Strom $I = 1\,\text{mA}$, somit entspricht der Widerstand g
     \end{tabular}
 \end{table}
 \end{comment}
+
+
 \end{document}
