@@ -76,7 +76,7 @@
 }
 
 
-\newcommand{\versuch}{Versuch 15}
+\newcommand{\versuch}{Experiment 15}
 \newcommand{\titel}{Inclined Plane}
 \newcommand{\praktikum}{Begginners Physics Lab 1}
 \newcommand{\autor}{Jonathan Gießen}
@@ -142,7 +142,7 @@ Using the rolling without slipping condition, the velocity of the center of grav
 \end{equation}
 Applying Newton's second law for linear motion along the plane ($m a_s = mg \sin\varphi - F_R$) and substituting the friction force, the linear acceleration of the rolling body is derived as:
 \begin{equation}
-    a_s = \frac{mg \sin\varphi}{m + \frac{I}{r^2}}
+    a_s = \frac{mg \sin\varphi}{m + \frac{I}{r^2}}\label{eq:acceleration_formula}
 \end{equation}
 This formula demonstrates that the acceleration depends on the body's moment of inertia, explaining why a hollow cylinder and a solid cylinder roll at different rates despite having the same radius.\cite{PAPskript}
 
@@ -180,14 +180,14 @@ The Experimental procedure involves the following main steps:
 
 \section{Evaluation}
 
-\subsection{Exercise 1: Comparison of Acceleration (theoretical vs. Experimental)}
+\subsection{Exercise 1: Comparison of Acceleration (theoretical vs. experimental)}
 
 The acceleration of the rolling bodies can be calculated using the derived formula:
 \begin{equation}
     a_s = \frac{g \sin\varphi}{1 + \frac{I}{mr^2}}
 \end{equation}     
 
-The Moment of inertia $I$ for a solid cylinder is $I = \frac{1}{2}mr^2$, and for a hollow cylinder, it is $I = m(r_{out}^2 - r_{in}^2)$
+The Moment of inertia $I$ for a solid cylinder is $I = \frac{1}{2}mr^2$, and for a hollow cylinder, it is $I = m(r_{out}^2 + r_{in}^2)$
 
 With the measured parameters of the cylinders, the theoretical accelerations can be calculated. The parameters are summarized in Table \ref{tab:cylinder_parameters}.
 
@@ -199,10 +199,10 @@ With the measured parameters of the cylinders, the theoretical accelerations can
         \toprule
         \textbf{Parameter} & \textbf{Solid Cylinder} & \textbf{Hollow Cylinder} \\
         \midrule
-        Mass [kg] & \num{443.0(1.0)} & \num{443.0(1.0)} \\
-        Inner Radius [m] & 0 & \num{46.5(0.05)e-3} \\
-        Outer Radius [m] & \num{50.00(0.05)e-3} & \num{50.00(0.05)e-3} \\
-        Moment of Inertia [\si{\kilo\gram\times\meter\squared}] & \num{1.384(4)}  & \num{2.582(7)e-4} \\
+        Mass [g] & \num{443.0(1.0)} & \num{443.0(1.0)} \\
+        Inner diameter [m] & 0 & \num{46.5(0.05)e-3} \\
+        Outer diameter [m] & \num{50.00(0.05)e-3} & \num{50.00(0.05)e-3} \\
+        Moment of Inertia [\si{\kilo\gram\times\meter\squared}] & \num{1.384(4)e-4}  & \num{2.582(7)e-4} \\
         \bottomrule
     \end{tabular}
 \end{table}
@@ -225,6 +225,36 @@ with the measured height $h = \num{12.2(4)e-2}\,\text{m}$ and the length of the 
     \varphi &= \arcsin\left(\frac{h}{L}\right) = \arcsin\left(\frac{\num{12.2(4)e-2}}{\num{1.000(5)}}\right) \\
     &\approx \num{7.01(24)}^\circ = \num{0.122(4)}\,\text{rad}
 \end{align}
+
+Therefore, the theoretical accelerations for the solid and hollow cylinders can be calculated as (Equation \ref{eq:acceleration_formula}):
+\begin{align}
+    a_{solid} &= \frac{g \sin\varphi}{1 + \frac{I_{solid}}{m r^2}} = \num{0.798(26)}\\
+    a_{hollow} &= \frac{g \sin\varphi}{1 + \frac{I_{hollow}}{m r^2}} = \num{0.619(21)}
+\end{align}
+
+
+Now, the experimentally determined times are plotted quadratically $t^2$ against the distance $s$. The slope of the linear fit corresponds to the acceleration, which can be compared to the theoretical values.
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.9\textwidth]{img/E1.png}
+    \caption{Comparison of theoretical and experimental accelerations for solid and hollow cylinders.}
+    \label{fig:acceleration_comparison}
+\end{figure}
+
+The function used for the linear fit is $t^2 = \frac{2}{a} s$, where $a$ is the acceleration. The slope of the fit line gives the value of $\frac{2}{a}$.
+The accelerations obtained from the fit are:
+\begin{align}
+    a_\text{hollow, exp} &= \num{0.6161(29)} \\
+    a_\text{solid, exp} &= \num{0.4892(15)}
+\end{align}
+The experimental results show that the solid cylinder accelerates faster than the hollow cylinder, which is consistent with the theoretical predictions.
+
+
+
+
+
+
 
 \clearpage
 
