@@ -204,7 +204,7 @@ The acceleration of the rolling bodies can be calculated using the derived formu
     a_s = \frac{g \sin\varphi}{1 + \frac{I}{mr^2}}
 \end{equation}     
 
-The Moment of inertia $I$ for a solid cylinder is $I = \frac{1}{2}mr^2$, and for a hollow cylinder, it is $I = m(r_{out}^2 + r_{in}^2)$
+The Moment of inertia $I$ for a solid cylinder is $I = \frac{1}{2}mr^2$, and for a hollow cylinder, it is $I = \frac{1}{2}m(r_{out}^2 + r_{in}^2)$
 
 With the measured parameters of the cylinders, the theoretical accelerations can be calculated. The parameters are summarized in Table \ref{tab:cylinder_parameters}.
 
@@ -313,15 +313,15 @@ The height difference equation can be derived from the geometry and the starting
 For the height difference $h$, we can use the following relation (intercept theorem):
 
 \begin{equation}
-    h = \frac{h}{l} \cdot \left(l-11\si{\milli\meter}\right) = \qty{0.121(4)e-2}{\meter}
-\end{equation}
+    h_{eff} = \frac{h}{l} \cdot \left(l-11\si{\milli\meter}\right) = \qty{0.121(4)}{\meter}
+    \end{equation}
 
 The potential energy for the cylinders equals:
 \begin{equation}
-    E_{pot} = (\num{443(1)})\,\si{\gram} \cdot 9.81\,\si{\meter\per\second\squared} \cdot \qty{0.121(4)e-2}{\meter} = \qty{0.524(18)}{\joule}
+    E_{pot} = (\num{0.443(1)})\,\si{\kilo\gram} \cdot 9.81\,\si{\meter\per\second\squared} \cdot \qty{0.121(4)}{\meter} = \qty{0.524(18)}{\joule}
 \end{equation}
 
-The measured times and speeds for the solid and hollow cylinders with $r = \qty{25(0.025)e-3}{\meter}$ to pass between the two light barriers with a distance of $d = \qty{25(0.07)e-2}{\meter}$ are:
+The measured times and speeds for the solid and hollow cylinders with $r = \qty{25(0.025)e-3}{\meter}$ to pass between the two light barriers with a distance of $d = \qty{25(0.07)e-2}{\meter}$ are: 
 
 \begin{table}[H]
     \centering
