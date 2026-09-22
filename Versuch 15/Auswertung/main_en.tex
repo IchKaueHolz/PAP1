@@ -235,9 +235,9 @@ Therefore, the theoretical accelerations for the solid and hollow cylinders can 
 
 Now, the experimentally determined times are plotted quadratically $t^2$ against the distance $s$. The slope of the linear fit corresponds to the acceleration, which can be compared to the theoretical values.
 
-\begin{figure}
+\begin{figure}[H]
     \centering
-    \includegraphics[width=0.9\textwidth]{img/E1.png}
+    \includegraphics[width=0.8\textwidth]{img/E1.png}
     \caption{Comparison of theoretical and experimental accelerations for solid and hollow cylinders.}
     \label{fig:acceleration_comparison}
 \end{figure}
@@ -245,15 +245,71 @@ Now, the experimentally determined times are plotted quadratically $t^2$ against
 The function used for the linear fit is $t^2 = \frac{2}{a} s$, where $a$ is the acceleration. The slope of the fit line gives the value of $\frac{2}{a}$.
 The accelerations obtained from the fit are:
 \begin{align}
-    a_\text{hollow, exp} &= \num{0.6161(29)} \\
-    a_\text{solid, exp} &= \num{0.4892(15)}
+    a_\text{solid, exp} &= \num{0.6161(29)} \\
+    a_\text{hollow, exp} &= \num{0.4892(15)}
 \end{align}
 The experimental results show that the solid cylinder accelerates faster than the hollow cylinder, which is consistent with the theoretical predictions.
 
+Interestingly, the experimental acceleration of both cylinders is much lower than the theoretical values.
 
+The sigma-deviation of the experimental values from the theoretical ones can be calculated as:
+\begin{align}
+    \sigma_\text{solid} &= \frac{|a_\text{solid, exp} - a_\text{solid, theo}|}{\sigma_\text{hollow, theo}} \approx 6.65  \Rightarrow 6.7\sigma \\
+    \sigma_\text{hollow} &= \frac{|a_\text{hollow, exp} - a_\text{hollow, theo}|}{\sigma_\text{solid, theo}} \approx 6.18 \Rightarrow 6.2\sigma
+\end{align}
 
+\begin{resultbox}[Conclusion]
+    The experimental results for the accelerations of the solid and hollow cylinders show a significant deviation from the theoretical predictions, with both results being lower than expected. The calculated values are:
+        \begin{center}
+        \centering
+        \begin{tabular}{lcc}
+            \toprule
+            \textbf{Value} & \textbf{Solid Cylinder} & \textbf{Hollow Cylinder} \\
+            \midrule
+            Theoretical Acceleration:& \num{0.798(26)} & \num{0.619(21)} \\
+            Experimental Acceleration:& \num{0.6161(29)} & \num{0.4892(15)} \\
+            \midrule
+            Deviation: & \num{6.7} $\sigma$ & \num{6.2}$\sigma$ \\
+            \bottomrule
+            \end{tabular}
+        \end{center}
+\end{resultbox}
 
+\subsection{Exercise 2: Calculating the kinetic Energy}
 
+For calculatiung the kinetic energy, the final velocities of the cylinders are measured using two light barriers at the end of the ramp. The time taken to pass between the two barriers is recorded, and the velocity is calculated as:
+\begin{equation}
+    v = \frac{d}{t}
+\end{equation}
+
+Through the conservation of energy, the initial potential energy $E_{pot} = mgh$ should equal the total kinetic energy $E_{kin} = \frac{1}{2}mv^2 + \frac{1}{2}I\omega^2$. The rotational kinetic energy can be expressed in terms of the linear velocity using the rolling condition $\omega = \frac{v}{r}$.
+
+The height difference equation can be derived from the geometry and the starting distance from the end of the ramp.
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.7\textwidth]{img/height_calc.png}
+    \caption{Schematic representation of the height difference $h$ and the length of the ramp $L$.}
+    \label{fig:height_difference}
+\end{figure}
+
+For the height difference $h$, we can use the following relation:
+
+\begin{equation}
+    h = sin\varphi \cdot \left(l-11\si{\milli\meter}\right) = \num{0.121(4)e-2}\,\si{\meter}
+\end{equation}
+
+The potential energy for the three cylinders are:
+\begin{table}
+    \centering
+    \caption{Potential energy of the cylinders at the top of the ramp.}
+    \label{tab:potential_energy}
+    \begin{tabular}{lcc}
+        \toprule
+        \textbf{Cylinder Type} & \textbf{Mass [g]} & \textbf{Potential Energy [J]} \\
+        \midrule
+    \end{tabular}
+\end{table}
 
 
 \clearpage
