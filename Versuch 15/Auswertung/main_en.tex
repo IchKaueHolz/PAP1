@@ -14,7 +14,10 @@
 \numberwithin{table}{section}
 \numberwithin{figure}{section}
 \usepackage{siunitx}
-\sisetup{locale=US, separate-uncertainty=true, per-mode=fraction}
+\sisetup{locale=US, 
+    separate-uncertainty=true, 
+    per-mode=fraction,
+    }
 \usepackage{booktabs}
 \usepackage{multirow}
 \usepackage{graphicx}
@@ -128,7 +131,8 @@ The experiment investigates the fundamental mechanics of rigid bodies moving dow
 
 
 
-\section{Basic Principles and Theorie}\label{sec:Grundlagen}
+
+\section{Basic Principles and theories}\label{sec:Grundlagen}
 The motion of a round body rolling down an inclined plane without slipping is governed by both linear and rotational dynamics. Two primary physical frameworks are utilized to analyze this motion: Newton's laws of motion and the principle of energy conservation.
 
 \subsection{Dynamics and Acceleration}
@@ -152,6 +156,19 @@ The motion can also be analyzed through the conservation of mechanical energy. A
     W_{ges} = \frac{1}{2}mv^2 + \frac{1}{2}I\omega^2 + mgh
 \end{equation}
 As the body descends a vertical height $h$, the decrease in potential energy ($mgh$) equals the increase in total kinetic energy ($\frac{1}{2}mv^2 + \frac{1}{2}I\omega^2$).
+
+\subsection{Gaussian error propagation}
+The errors of the measured quantities are propagated using the Gaussian error propagation formula:
+\begin{equation}
+    \sigma_f = \sqrt{\sum_{i=1}^{N} \left(\frac{\partial f}{\partial x_i}\right)^2 \sigma_{x_i}^2}
+\end{equation}
+
+as well as the addition of statistical and systematic errors in quadrature:
+
+\begin{equation}
+    \sigma_{total} = \sqrt{\sigma_{stat}^2 + \sigma_{sys}^2}
+\end{equation}
+
 
 
     
@@ -220,16 +237,16 @@ To calculate the theoretical acceleration, the angle of inclination $\varphi$ of
     \label{fig:inclined_plane}
 \end{figure}
 
-with the measured height $h = \num{12.2(4)e-2}\,\text{m}$ and the length of the track $l = \num{1.000(5)}\,\text{m}$, the angle of inclination can be calculated as:
+with the measured height $h = \qty{12.2(4)e-2}{\text{m}}$ and the length of the track $l = \qty{1.000(5)}{\text{m}}$, the angle of inclination can be calculated as:
 \begin{align}
     \varphi &= \arcsin\left(\frac{h}{L}\right) = \arcsin\left(\frac{\num{12.2(4)e-2}}{\num{1.000(5)}}\right) \\
-    &\approx \num{7.01(24)}^\circ = \num{0.122(4)}\,\text{rad}
+    &\approx \num{7.01(24)}^\circ = \qty{0.122(4)}{\text{rad}}
 \end{align}
 
 Therefore, the theoretical accelerations for the solid and hollow cylinders can be calculated as (Equation \ref{eq:acceleration_formula}):
 \begin{align}
-    a_{solid} &= \frac{g \sin\varphi}{1 + \frac{I_{solid}}{m r^2}} = \num{0.798(26)}\\
-    a_{hollow} &= \frac{g \sin\varphi}{1 + \frac{I_{hollow}}{m r^2}} = \num{0.619(21)}
+    a_{solid} &= \frac{g \sin\varphi}{1 + \frac{I_{solid}}{m r^2}} = \qty{0.798(26)}{\meter\per\second\squared} \\
+    a_{hollow} &= \frac{g \sin\varphi}{1 + \frac{I_{hollow}}{m r^2}} = \qty{0.619(21)}{\meter\per\second\squared}
 \end{align}
 
 
@@ -245,8 +262,8 @@ Now, the experimentally determined times are plotted quadratically $t^2$ against
 The function used for the linear fit is $t^2 = \frac{2}{a} s$, where $a$ is the acceleration. The slope of the fit line gives the value of $\frac{2}{a}$.
 The accelerations obtained from the fit are:
 \begin{align}
-    a_\text{solid, exp} &= \num{0.6161(29)} \\
-    a_\text{hollow, exp} &= \num{0.4892(15)}
+    a_\text{solid, exp} &= \qty{0.6161(29)}{\meter\per\second\squared} \\
+    a_\text{hollow, exp} &= \qty{0.4892(15)}{\meter\per\second\squared}
 \end{align}
 The experimental results show that the solid cylinder accelerates faster than the hollow cylinder, which is consistent with the theoretical predictions.
 
@@ -293,23 +310,54 @@ The height difference equation can be derived from the geometry and the starting
     \label{fig:height_difference}
 \end{figure}
 
-For the height difference $h$, we can use the following relation:
+For the height difference $h$, we can use the following relation (intercept theorem):
 
 \begin{equation}
-    h = sin\varphi \cdot \left(l-11\si{\milli\meter}\right) = \num{0.121(4)e-2}\,\si{\meter}
+    h = \frac{h}{l} \cdot \left(l-11\si{\milli\meter}\right) = \qty{0.121(4)e-2}{\meter}
 \end{equation}
 
-The potential energy for the three cylinders are:
-\begin{table}
+The potential energy for the cylinders equals:
+\begin{equation}
+    E_{pot} = (\num{443(1)})\,\si{\gram} \cdot 9.81\,\si{\meter\per\second\squared} \cdot \qty{0.121(4)e-2}{\meter} = \qty{0.524(18)}{\joule}
+\end{equation}
+
+The measured times and speeds for the solid and hollow cylinders with $r = \qty{25(0.025)e-3}{\meter}$ to pass between the two light barriers with a distance of $d = \qty{25(0.07)e-2}{\meter}$ are:
+
+\begin{table}[H]
     \centering
-    \caption{Potential energy of the cylinders at the top of the ramp.}
-    \label{tab:potential_energy}
-    \begin{tabular}{lcc}
+    \caption{Measured times and calc    ulated speeds for the solid and hollow cylinders.}
+    \label{tab:kinetic_energy_measurements}
+    \begin{tabular}{lccc}
         \toprule
-        \textbf{Cylinder Type} & \textbf{Mass [g]} & \textbf{Potential Energy [J]} \\
+        \textbf{Cylinder Type} & \textbf{Time [s]} & \textbf{Speed [m/s]} & \textbf{$\omega$ [rad/s]} \\
         \midrule
+        Solid Cylinder & \num{0.2430(10)} & \num{1.0271(51)} & \num{41.08(21)} \\
+        Hollow Cylinder & \num{0.2700(10)} & \num{0.9259(43)} & \num{37.04(18)} \\
+        \bottomrule
     \end{tabular}
 \end{table}
+
+The kinetic energies for the solid and hollow cylinders can be calculated as follows:
+
+The energies are:
+
+\begin{table}[H]
+    \centering
+    \caption{Calculated kinetic energies for the solid and hollow cylinders.}
+    \label{tab:kinetic_energy_calculations}
+    \begin{tabular}{cccc}
+        \toprule
+        \textbf{Cylinder Type} & \textbf{Translational KE [J]} & \textbf{Rotational KE [J]} & \textbf{Total KE [J]} \\
+        \midrule
+        Solid Cylinder & \num{0.2337(24)} & \num{0.0950(10)} & \num{0.3286(29)} \\
+        Hollow Cylinder & \num{0.1900(19)} & \num{0.1771(18)} & \num{0.367(4)} \\
+        \bottomrule
+    \end{tabular}
+\end{table}
+
+
+
+
 
 
 \clearpage

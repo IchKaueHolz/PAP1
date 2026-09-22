@@ -177,7 +177,7 @@ Umgeformt nach T mit der Quadratischen Lösungsformel ergibt sich:
     T = \frac{-R_0  A + \sqrt{(R_0  A)^2 - 4  R_0  B  (R_0 - R)}}{2  R_0  B}
 \end{equation}
 
-Unser Platin-Widerstandsthermometer hat einen Nennwiderstand von $R_0 = 100\,\Omega$ bei 0 °C. Die Konstanten A und B sind in der Literatur angegeben und betragen $A = \num{3.9083e-3}\,\si{\degreeCelsius}^{-1}$ und $B = \num{-5.775e-7}\,\si{\degreeCelsius}^{-2}$. Die Genauigkeitsklasse des Thermometers beträgt Klasse B, was einer Genauigkeit von $\Delta T = 0.30\,\si{\degreeCelsius} + 0.005 \cdot \lvert T \rvert$ entspricht.
+Unser Platin-Widerstandsthermometer hat einen Nennwiderstand von $R_0 = 100\,\Omega$ bei 0 °C. Die Konstanten A und B sind in der Literatur angegeben und betragen $A = \qty{3.9083e-3}{\degreeCelsius}^{-1}$ und $B = \qty{-5.775e-7}{\degreeCelsius}^{-2}$. Die Genauigkeitsklasse des Thermometers beträgt Klasse B, was einer Genauigkeit von $\Delta T = 0.30\,\si{\degreeCelsius} + 0.005 \cdot \lvert T \rvert$ entspricht.
 
 Mithilfe einer Vierleiter-Schaltung kann der Widerstand des Platin Widerstandsthermometers sehr genau gemessen werden. Dabei wird der Strom durch das Thermometer mit zwei Leitern geführt, während die Spannung über das Thermometer mit zwei weiteren Leitern gemessen wird. Dies minimiert den Einfluss des Leitungswiderstands auf die Messung.
 
@@ -248,17 +248,17 @@ Der Ablesefehler des Drucks $p_\text{abl} = 0.5\, mbar$ und der Gerätefehler vo
     \label{eq:druckfehler}
 \end{equation}
 
-Aus dem Messprotokoll wird der Druck $p_0 = 906\, \si{\milli\bar}$ bei 0 °C abgelesen und  $p_{sieden} = \num{1241.0(2.1)}\,\si{\milli\bar}$ beim Sieden des Wassers abgelesen:
+Aus dem Messprotokoll wird der Druck $p_0 = 906\, \si{\milli\bar}$ bei 0 °C abgelesen und  $p_{sieden} = \qty{1241.0(2.1)}{\milli\bar}$ beim Sieden des Wassers abgelesen:
 
-Da die Siedetemperatur abhängig vom Umgebungsluftdruck $p_\text{LD} = \num{1006.0(2.0)}\,\si{\milli\bar}$ ist, muss der Druck auf den Normaldruck von $p_\text{norm} = 1013.25\,\si{\milli\bar}$ korrigiert werden:
+Da die Siedetemperatur abhängig vom Umgebungsluftdruck $p_\text{LD} = \qty{1006.0(2.0)}{\milli\bar}$ ist, muss der Druck auf den Normaldruck von $p_\text{norm} = 1013.25\,\si{\milli\bar}$ korrigiert werden:
 \begin{equation}
-    p_\text{NB} = p_\text{sieden} \frac{1013.25\,\si{\milli\bar}}{p_\text{LD}} \approx \num{1250(4)}\, \si{\milli\bar}\footnotemark
+    p_\text{NB} = p_\text{sieden} \frac{1013.25\,\si{\milli\bar}}{p_\text{LD}} \approx \qty{1250(4)}{\milli\bar}\footnotemark
 \end{equation}
 \footnotetext{Das ist eigentlich eine sehr fehlerbehaftete Näherung oder?}
 
 mit der Fehlerfortpflanzung:
 \begin{equation}
-    \Delta p_\text{NB} = p_\text{sieden} \frac{1013.25\,\si{\milli\bar}}{p_\text{LD}} \sqrt{\left(\frac{\Delta p_\text{sieden}}{p_\text{sieden}}\right)^2 + \left(\frac{\Delta p_\text{LD}}{p_\text{LD}}\right)^2} = 3.26\,\si{\milli\bar} \approx \num{4}\,\si{\milli\bar}
+    \Delta p_\text{NB} = p_\text{sieden} \frac{1013.25\,\si{\milli\bar}}{p_\text{LD}} \sqrt{\left(\frac{\Delta p_\text{sieden}}{p_\text{sieden}}\right)^2 + \left(\frac{\Delta p_\text{LD}}{p_\text{LD}}\right)^2} = 3.26\,\si{\milli\bar} \approx \qty{4}{\milli\bar}
 \end{equation}
 
 Es ergibt sich folgende Gerade:
@@ -273,7 +273,7 @@ Es ergibt sich folgende Gerade:
 
 Die Eichkurve beträgt die Geradengleichung: 
 \begin{equation}
-    p(T) = \num{3.44}\,\si{\milli\bar\per\degreeCelsius} \cdot T + \num{906}\,\si{\milli\bar}
+    p(T) = \qty{3.44}{\milli\bar\per\degreeCelsius} \cdot T + \qty{906}{\milli\bar}
 \end{equation}
 
 Die Punkte aus der Geradengleichung besitzen keine relevanten Fehler, da die Eichung nur mit zwei Punkten durchgeführt wurde.\footnote{Ja ich weiss eingentilch noch die beiden anderen Eichgeraden zeichnen aber das war mir zu blöd}
@@ -307,12 +307,12 @@ Die neue Gerade lautet:
 
 Damit ergibt sich die Temperatur bei 0 K:
 \begin{equation}
-    T_0 = \frac{0 - \num{909.8(2.8)}}{\num{3.376(23)}} \approx \num{-269.5(2.0)} = \num{3.7(2.0)}\,\si{\degreeCelsius}
+    T_0 = \frac{0 - \num{909.8(2.8)}}{\num{3.376(23)}} \approx \num{-269.5(2.0)} = \qty{3.7(2.0)}{\degreeCelsius}
 \end{equation}
 
-Die Temperatur des absoluten Nullpunkts beträgt also $T_0 = \num{-269.5(2.0)}\,\si{\degreeCelsius}$, was eine Abweichung von $\Delta T = 3.7\,\si{\degreeCelsius}$ zum Literaturwert von $T_\text{0,lit} = -273.15\,\si{\degreeCelsius}$ ergibt. ($\Rightarrow 1.85\sigma$)
+Die Temperatur des absoluten Nullpunkts beträgt also $T_0 = \qty{-269.5(2.0)}{\degreeCelsius}$, was eine Abweichung von $\Delta T = 3.7\,\si{\degreeCelsius}$ zum Literaturwert von $T_\text{0,lit} = -273.15\,\si{\degreeCelsius}$ ergibt. ($\Rightarrow 1.85\sigma$)
 
-Der gemessene Druck bei Trockeneis beträgt $p_\text{Trockeneis} = \num{651(2.1)}\,\si{\milli\bar}$, was bei der Eichkurve eine Temperatur von $T_\text{Trockeneis} = \num{76.7(1.2)}\,\si{\degreeCelsius} = \num{196.5(1.2)}\,\si{\kelvin}$ ergibt.
+Der gemessene Druck bei Trockeneis beträgt $p_\text{Trockeneis} = \qty{651(2.1)}{\milli\bar}$, was bei der Eichkurve eine Temperatur von $T_\text{Trockeneis} = \qty{76.7(1.2)}{\degreeCelsius} = \qty{196.5(1.2)}{\kelvin}$ ergibt.
 
 \begin{figure}[H]
     \centering
@@ -498,17 +498,17 @@ Die optimale Gerade durch die Messwerte des Pyrometers ergibt sich zu:
 Im Rahmen dieses Versuchs konnten verschiedene Methoden der Temperaturmessung (Gasthermometer, Platin-Widerstandsthermometer, Pyrometer und Thermoelement) erfolgreich angewendet und auf ihre Genauigkeit sowie spezifische Fehlerquellen untersucht werden.
 
 \paragraph{Gasthermometer und absoluter Nullpunkt}
-Die Bestimmung des absoluten Nullpunkts durch Extrapolation der isochoren Druckänderung lieferte einen Wert von $T_0 = \num{-269.5(2.0)}\,\si{\degreeCelsius}$. Mit einer Abweichung von $\Delta T = \num{3.7}\,\si{\degreeCelsius}$ zum Literaturwert (\num{-273.15}\,\si{\degreeCelsius}) liegt das Ergebnis in einem sehr guten Bereich, was sich auch in der geringen Signifikanz der Abweichung ($1.85\sigma$) widerspiegelt. Die leichte Überschätzung der Temperatur lässt sich durch systematische Fehlerquellen des Aufbaus erklären: Das "`schädliche Volumen"' in der Kapillare und im Drucksensor befand sich stets auf Raumtemperatur und nahm nicht an der thermischen Kontraktion bzw. Expansion im Wasserbad teil. Zudem wurde die thermische Volumenänderung des Glaskolbens selbst vernachlässigt. 
+Die Bestimmung des absoluten Nullpunkts durch Extrapolation der isochoren Druckänderung lieferte einen Wert von $T_0 = \qty{-269.5(2.0)}{\degreeCelsius}$. Mit einer Abweichung von $\Delta T = \qty{3.7}{\degreeCelsius}$ zum Literaturwert (\qty{-273.15}{\degreeCelsius}) liegt das Ergebnis in einem sehr guten Bereich, was sich auch in der geringen Signifikanz der Abweichung ($1.85\sigma$) widerspiegelt. Die leichte Überschätzung der Temperatur lässt sich durch systematische Fehlerquellen des Aufbaus erklären: Das "`schädliche Volumen"' in der Kapillare und im Drucksensor befand sich stets auf Raumtemperatur und nahm nicht an der thermischen Kontraktion bzw. Expansion im Wasserbad teil. Zudem wurde die thermische Volumenänderung des Glaskolbens selbst vernachlässigt. 
 
-Auch die Messung der Sublimationstemperatur von Trockeneis lieferte mit \num{-76.7(1.2)}\,\si{\degreeCelsius} ein sehr gutes Ergebnis, das nah am Literaturwert von ca. \num{-78.5}\,\si{\degreeCelsius} liegt. Ein weiterer systematischer Fehler entstammt der Skript-Vorgabe, den Siedepunkt über einen einfachen Dreisatz des Luftdrucks auf Normalbedingungen zu korrigieren, anstatt die physikalisch korrekte Dampfdruckkurve (Clausius-Clapeyron-Gleichung) zu verwenden. 
+Auch die Messung der Sublimationstemperatur von Trockeneis lieferte mit \qty{-76.7(1.2)}{\degreeCelsius} ein sehr gutes Ergebnis, das nah am Literaturwert von ca. \qty{-78.5}{\degreeCelsius} liegt. Ein weiterer systematischer Fehler entstammt der Skript-Vorgabe, den Siedepunkt über einen einfachen Dreisatz des Luftdrucks auf Normalbedingungen zu korrigieren, anstatt die physikalisch korrekte Dampfdruckkurve (Clausius-Clapeyron-Gleichung) zu verwenden. 
 
 \paragraph{Platin-Widerstandsthermometer (Pt100)}
-Die Kalibrierung des Pt100-Thermometers lieferte für den Nennwiderstand bei \num{0}\,\si{\degreeCelsius} einen exzellenten Wert von $R_0 = \num{99.92(14)}\,\si{\Omega}$. Die Abweichung zum Idealwert von $100\,\si{\Omega}$ ist mit $0.57\sigma$ statistisch nicht signifikant. Die Vierleiterschaltung hat hier erwartungsgemäß die Zuleitungswiderstände erfolgreich eliminiert. 
+Die Kalibrierung des Pt100-Thermometers lieferte für den Nennwiderstand bei \qty{0}{\degreeCelsius} einen exzellenten Wert von $R_0 = \qty{99.92(14)}{\Omega}$. Die Abweichung zum Idealwert von $100\,\si{\Omega}$ ist mit $0.57\sigma$ statistisch nicht signifikant. Die Vierleiterschaltung hat hier erwartungsgemäß die Zuleitungswiderstände erfolgreich eliminiert. 
 
-Der lineare Temperaturkoeffizient $A$ weicht mit $A = \num{3.838e-3}\,\si{\degreeCelsius}^{-1}$ jedoch um $2.9\sigma$ vom Literaturwert ab. Diese signifikante Abweichung ist primär auf die in der Auswertung vorgenommene Linearisierung zurückzuführen. In der Realität besitzt die $R(T)$-Kurve von Platin einen quadratischen Term ($B \cdot T^2$), der bei \num{100}\,\si{\degreeCelsius} zwar klein ist, das lineare Modell jedoch systematisch verfälscht. Zudem baut diese Messung auf den Temperaturwerten der vorherigen Gasthermometer-Eichung auf, wodurch sich dessen systematische Fehler (z.\,B. das schädliche Volumen) in diese Messreihe fortpflanzen.
+Der lineare Temperaturkoeffizient $A$ weicht mit $A = \qty{3.838e-3}{\degreeCelsius}^{-1}$ jedoch um $2.9\sigma$ vom Literaturwert ab. Diese signifikante Abweichung ist primär auf die in der Auswertung vorgenommene Linearisierung zurückzuführen. In der Realität besitzt die $R(T)$-Kurve von Platin einen quadratischen Term ($B \cdot T^2$), der bei \qty{100}{\degreeCelsius} zwar klein ist, das lineare Modell jedoch systematisch verfälscht. Zudem baut diese Messung auf den Temperaturwerten der vorherigen Gasthermometer-Eichung auf, wodurch sich dessen systematische Fehler (z.\,B. das schädliche Volumen) in diese Messreihe fortpflanzen.
 
 \paragraph{Pyrometer}
-Das Pyrometer zeigte bei Raumtemperatur und \num{0}\,\si{\degreeCelsius} noch eine gute Übereinstimmung mit dem Gasthermometer, unterschätzte die Temperatur jedoch bei höheren Werten zunehmend. Dies zeigt sich deutlich in der linearen Regression, deren Steigung $m = \num{0.953(25)}$ um $1.88\sigma$ vom idealen Wert $m=1$ abweicht. Bei kochendem Wasser zeigte das Pyrometer lediglich \num{90(4)}\,\si{\degreeCelsius} an. 
+Das Pyrometer zeigte bei Raumtemperatur und \qty{0}{\degreeCelsius} noch eine gute Übereinstimmung mit dem Gasthermometer, unterschätzte die Temperatur jedoch bei höheren Werten zunehmend. Dies zeigt sich deutlich in der linearen Regression, deren Steigung $m = \num{0.953(25)}$ um $1.88\sigma$ vom idealen Wert $m=1$ abweicht. Bei kochendem Wasser zeigte das Pyrometer lediglich \qty{90(4)}{\degreeCelsius} an. 
 
 Dieser systematische Fehler ist ein klassisches Problem der berührungslosen Infrarotmessung über erhitzten Flüssigkeiten: Der aufsteigende Wasserdampf absorbiert einen Teil der emittierten Infrarotstrahlung, bevor diese den Sensor erreicht. Die im Skript empfohlene schräge Messung konnte diesen Effekt offenbar nicht vollständig kompensieren. Zudem hängt die Genauigkeit des Pyrometers stark vom korrekten Emissionsgrad $\epsilon$ der Oberfläche ab, welcher durch Reflexionen der Umgebung (z.\,B. Beleuchtung im Praktikumsraum) verfälscht werden kann.
 
