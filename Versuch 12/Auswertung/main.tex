@@ -172,6 +172,7 @@ Hierbei ist $J_s$ das Trägheitsmoment bezüglich der Schwerpunktsachse, $m$ die
     pagecommand*={\thispagestyle{scrheadings}\section{Messprotokoll}\subsection{Versuchsaufbau und Aufgaben}}
 ]{../Messprotokoll 12.pdf}
 
+\pdftabelle{Messwerte für die statische Bestimmung des Richtmoments}{tab:richtmoment_messwerte}
 
 
 \subsection{Durchführung}
@@ -190,7 +191,23 @@ Zur Überprüfung des Steinerschen Satzes wurde auf dem Klebeetikett eine Gerade
 \section{Auswertung}
 
 \subsection{Aufgabe 1: Ermitteln des Richtmoments}
+Die Messwerte für die statische Bestimmung des Richtmoments sind in Tabelle \ref{tab:richtmoment_messwerte} aufgeführt. 
 
+Mithilfe der Funktion:
+\begin{equation}
+    y = m \cdot x + b
+\end{equation}
+
+wird ein linearer Zusammenhang zwischen dem Drehmoment $M$ und dem Drehwinkel $\phi$ angenommen. Die Steigung $m$ der Ausgleichgerade entspricht dem Richtmoment $D$.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{img/A1.png}
+    \caption{Ausgleichsgerade zur Bestimmung des Richtmoments}
+    \label{fig:ausgleichsgerade_richtmoment}
+\end{figure}
+
+Die Steigung der Gerade beträgt $m = \qty{2.160(23)e-2}{\newton\meter\per\radian}$, was dem Richtmoment $D$ entspricht.
 
 
 
