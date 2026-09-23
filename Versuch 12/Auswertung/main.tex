@@ -116,13 +116,13 @@
 
 \bigskip
 \begin{tcolorbox}[colback=gray!5,colframe=gray!60,boxrule=0.8pt,arc=0.01mm,title=KI-Hinweis]
-    Für die sprachliche Formulierung dieses Protokolls wurde in der Einleitung \ref{sec:Einleitung} und den Abschnitten \ref{sec:Physikalische Grundlagen} und KI-gestützte Textgenerierung verwendet. 
+    Für die sprachliche Formulierung dieses Protokolls wurde in der Einleitung \ref{sec:Einleitung} und \ref{sec:Physikalische Grundlagen} KI-gestützte Textgenerierung verwendet. 
 \end{tcolorbox}
 
 \clearpage
 
 
-\section{Einleitung}
+\section{Einleitung}\label{sec:Einleitung}
 In diesem Versuch wird das Rotationsverhalten starrer Körper untersucht, welches grundlegend durch das Trägheitsmoment bestimmt wird. Das Trägheitsmoment ist das Äquivalent zur Masse in der linearen Kinematik und gibt an, wie stark sich ein Körper einer Änderung seiner Rotationsbewegung widersetzt. Ziel des Versuches ist es zunächst, das Richtmoment eines Drehpendels auf zwei verschiedene Arten zu bestimmen: statisch über eine Kraftauslenkung am Radius einer Scheibe und dynamisch über die Schwingungsdauer eines Körpers mit bekannter Massenverteilung. Anschließend wird das Trägheitsmoment einer unregelmäßig geformten Messingplatte bezüglich ihrer Schwerpunktsachse ermittelt. Zuletzt soll durch die gezielte Verschiebung der Drehachse aus dem Schwerpunkt heraus der reibungsbehaftete Rotationsaufbau genutzt werden, um den Steinerschen Satz experimentell zu überprüfen. 
 
 \section{Physikalische Grundlagen}\label{sec:Physikalische Grundlagen}
@@ -148,6 +148,8 @@ Für einen Körper mit bekannter Geometrie und homogener Massenverteilung lässt
     J_s = \frac{1}{2} m_s r_s^2
 \end{equation}
 
+
+
 \subsection{Der Steinersche Satz}
 Rotiert ein Körper nicht um eine Achse, die durch seinen Massenmittelpunkt (Schwerpunkt) verläuft, sondern um eine dazu parallele Achse im Abstand $a$, so vergrößert sich sein Trägheitsmoment. Dieser Zusammenhang wird durch den Steinerschen Satz quantifiziert:
 \begin{equation}
@@ -158,9 +160,23 @@ Hierbei ist $J_s$ das Trägheitsmoment bezüglich der Schwerpunktsachse, $m$ die
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.5\textwidth]{img/steiner.png}
-    \caption{Veranschaulichung des Steinerschen Satzes}
+    \caption*{Abbildung 6.7: Veranschaulichung des Steinerschen Satzes}
     \label{fig:steinerscher_satz}
 \end{figure}
+
+\subsection{Fehlerfortpflanzung nach Gauß}
+Für die Fehlerrechnung wird die Gaußsche Fehlerfortpflanzung verwendet. Für eine Funktion $f(x_1, x_2, \dots, x_n)$ mit den unabhängigen Variablen $x_i$ und den zugehörigen Standardabweichungen $\sigma_{x_i}$ gilt:
+\begin{equation}
+    \sigma_f = \sqrt{\sum_{i=1}^{n} \left(\frac{\partial f}{\partial x_i} \sigma_{x_i}\right)^2}
+\end{equation}
+
+Fehler gleicher Einheit werden quadratisch addiert:
+
+\begin{equation}
+    \sigma_f = \sqrt{\sigma_{x_1}^2 + \sigma_{x_2}^2}
+\end{equation}
+
+ Fehler unterschiedlicher Einheitwerden über die partielle Ableitung der Funktion gewichtet.\footnote{Die bechnungen werden mit der Python-Bibliothek \texttt{uncertainties} durchgeführt, welche die Gaußsche Fehlerfortpflanzung automatisch implementiert. Code ist im Anhang.}
 
     
 \includepdf[
@@ -173,7 +189,7 @@ Hierbei ist $J_s$ das Trägheitsmoment bezüglich der Schwerpunktsachse, $m$ die
 ]{../Messprotokoll 12.pdf}
 
 \pdftabelle{Messwerte für die statische Bestimmung des Richtmoments}{tab:richtmoment_messwerte}
-
+\pdftabelle{Schwingungsdauer des Pendels}{tab:richtmoment_schwingungsdauer}
 
 \subsection{Durchführung}
 Die praktische Durchführung gliedert sich in drei wesentliche Teile: die Bestimmung des Richtmoments, die Untersuchung des Schwerpunkts und Trägheitsmoments einer unregelmäßigen Platte sowie die Überprüfung des Steinerschen Satzes.
@@ -207,7 +223,79 @@ wird ein linearer Zusammenhang zwischen dem Drehmoment $M$ und dem Drehwinkel $\
     \label{fig:ausgleichsgerade_richtmoment}
 \end{figure}
 
-Die Steigung der Gerade beträgt $m = \qty{2.160(23)e-2}{\newton\meter\per\radian}$, was dem Richtmoment $D$ entspricht.
+Die Steigung der Gerade beträgt $M = \qty{21.60(23)}{\radian\per\kilo\gram}$, was dem Richtmoment $D$ entspricht.
+
+Es gilt das Verhältnis:
+\begin{equation}
+    m \cdot g \cdot r = D \cdot \phi
+\end{equation}
+
+Auflösen nach $D$ liefert:
+\begin{align}
+    D &= \frac{m \cdot g \cdot r}{\phi}\\
+    &= \frac{g \cdot r}{\frac{\phi}{m}}\\
+    &= \frac{g \cdot r}{M}
+\end{align}
+
+Mit dem Scheibenradius $r = \qty{5(0.005)e-2}{\meter}$ ergibt sich das Richtmoment zu:
+\begin{equation}
+    D = \qty{2.271(24)e-2}{\newton\meter\per\radian}
+\end{equation}
+
+
+\begin{resultbox}[Ergebnis Aufgabe 1]
+    Das Richtmoment der Apparatur beträgt:
+    \begin{equation}
+        D = \qty{2.271(24)e-2}{\newton\meter\per\radian}
+    \end{equation}
+\end{resultbox}
+
+\subsection{Aufgabe 2: Bestimmung des Richtmoments über die Schwingungsdauer}
+Zum ermitteln des Richtmoments über die Schwingungsdauer wurde die Schwingungsdauer des leeren Drehtisches $T_1 = \qty{1.21(3)}{\second}$ und des Drehtisches mit aufgesetzter Messingscheibe $T_2 = \qty{1.535(25)}{\second}$ gemessen. Die Messwerte sind in Tabelle \ref{tab:richtmoment_schwingungsdauer} zusammengefasst.
+
+
+Das Trägheitsmoment $J_\text{s}$ der runden Scheibe bestimmen Sie in einfacher Weise aus deren Masse $m_\text{s}$ und ihrem Radius $r_\text{s}$ zu \cite{PAPskript}
+\begin{equation}
+J_\text{s} = \frac{1}{2} m_\text{s} r_\text{s}^2. \label{eq:Scheibe}
+\end{equation}
+
+Ist das Trägheitsmoment des Tisches $J_\text{T}$, dann ist
+\begin{equation}
+T_2 = 2\pi \sqrt{\frac{J_\text{T} + J_\text{s}}{D}}. \label{eq:Tisch+Platte}
+\end{equation}
+
+Nach Quadrieren kann aus \ref{eq:Scheibe} und \ref{eq:Tisch+Platte} das Trägheitsmoment $J_\text{T}$ durch Subtraktion eliminiert werden. Man erhält: \cite{PAPskript}
+\begin{equation}
+D = \frac{4\pi^2 J_\text{s}}{T_2^2 - T_1^2} = \frac{2\pi^2 m_\text{s} r_\text{s}^2}{T_2^2 - T_1^2}.
+\end{equation}
+
+Die Masse der Messingscheibe beträgt $m_\text{s} = \qty{0.488(1)}{\kilo\gram}$ und ihr Radius \\
+$r_\text{s} = \qty{5(0.005)e-2}{\meter}$. Damit ergibt sich das Richtmoment zu:
+\begin{equation}
+    D = \qty{2.7(4)e-2}{\newton\meter\per\radian}
+\end{equation}
+
+mit der Fehlerfortpflanzung:
+\begin{align}
+    \Delta D &= \sqrt{\left(\frac{\partial D}{\partial m_\text{s}} \sigma_{m_\text{s}}\right)^2 + \left(\frac{\partial D}{\partial r_\text{s}} \sigma_{r_\text{s}}\right)^2 + \left(\frac{\partial D}{\partial T_1} \sigma_{T_1}\right)^2 + \left(\frac{\partial D}{\partial T_2} \sigma_{T_2}\right)^2}\\
+    \footnotemark &= \sqrt{\left(\frac{2\pi^2 r_\text{s}^2}{T_2^2 - T_1^2} \sigma_{m_\text{s}}\right)^2 + \left(\frac{4\pi^2 m_\text{s} r_\text{s}}{T_2^2 - T_1^2} \sigma_{r_\text{s}}\right)^2 + \left(\frac{8\pi^2 m_\text{s} r_\text{s}^2 T_1}{(T_2^2 - T_1^2)^2} \sigma_{T_1}\right)^2 + \left(\frac{8\pi^2 m_\text{s} r_\text{s}^2 T_2}{(T_2^2 - T_1^2)^2} \sigma_{T_2}\right)^2} 
+\end{align}
+
+\footnotetext{\LaTeX -Formel wurde mit KI generiert (weil wtf).}
+
+\paragraph{Vergleich der beiden berechneten Richtmomente}
+Das Richtmoment $D$ wurde auf zwei verschiedene Arten bestimmt: einmal statisch über die Kraftauslenkung am Radius der Scheibe und einmal dynamisch über die Schwingungsdauer des Pendels. Die Ergebnisse sind:
+\begin{align}
+    D_\text{statisch} &= \qty{2.271(24)e-2}{\newton\meter\per\radian}\\
+    D_\text{dynamisch} &= \qty{2.7(4)e-2}{\newton\meter\per\radian}
+\end{align}
+
+Die Sigma Abweichung zwischen den beiden Werten beträgt:
+\begin{equation}
+    \sigma = \frac{|D_\text{statisch} - D_\text{dynamisch}|}{\sqrt{\sigma_{D_\text{statisch}}^2 + \sigma_{D_\text{dynamisch}}^2}} \Rightarrow 0.9\sigma
+\end{equation}
+
+
 
 
 
