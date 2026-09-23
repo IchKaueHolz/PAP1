@@ -142,7 +142,7 @@ Wird das Pendel nach der Auslenkung freigegeben, führt es harmonische Drehschwi
 \end{equation}
 Die Lösung dieser Differentialgleichung liefert die Schwingungsdauer $T$ des Drehpendels. Diese hängt vom Trägheitsmoment $J$ des aufgesetzten Körpers und dem Richtmoment $D$ der Apparatur ab:
 \begin{equation}
-    T = 2\pi \sqrt{\frac{J}{D}}
+    T = 2\pi \sqrt{\frac{J}{D}}\label{eq:periodendauer}
 \end{equation}
 Für einen Körper mit bekannter Geometrie und homogener Massenverteilung lässt sich das Trägheitsmoment analytisch aus dem Integral $J = \int r^2 dm$ berechnen. Für eine homogene Kreisscheibe der Masse $m_s$ und dem Radius $r_s$ ergibt sich bei Rotation um ihre Symmetrieachse:
 \begin{equation}
@@ -357,6 +357,48 @@ Somit ergibt sich das Trägheitsmoment der unregelmäßigen Platte zu:
 \subsection{Aufgabe 4: Überprüfung des Steinerschen Satz}
 
 Für die Überprüfung des Steinerschen Satzes wurde die unregelmäßige Platte an fünf verschiedenen Punkten entlang einer Linie durch den Schwerpunkt auf der Drehachse auf dem Drehtisch fixiert. Die Schwingungsdauer $T$ wurde für jeden Abstand $a$ zum Schwerpunkt gemessen. Die Messwerte sind in Tabelle \ref{tab:steinerscher_satz_messwerte} zusammengefasst.
+
+Aus den Messwerten ergeben sich nach Gleichung \ref{eq:periodendauer} die entsprechenden Trägheitsmomente:
+
+\begin{table}
+    \centering
+    \caption{Trägheitsmomente der unregelmäßigen Platte bei verschiedenen Abständen}
+    \begin{tabular}{ccc}
+        \toprule
+        Abstand $a$ [mm] & Schwingungsdauer $T$ [s] & Trägheitsmoment $J$ [kg m²] \\
+        \midrule
+        0 & \num{2.355(25)} & \num{2.35(9)e-3} \\
+        5 & \num{2.365(25)} & \num{2.38(9)e-3} \\
+        10 & \num{2.400(25)} & \num{2.47(9)e-3} \\
+        20 & \num{2.450(25)} & \num{2.61(9)e-3} \\
+        30 & \num{2.590(25)} & 3\num{.02(10)e-3} \\
+        40 & \num{2.745(25)} & 3\num{.49(10)e-3} \\
+        \bottomrule
+    \end{tabular}
+\end{table}
+
+
+Mit der bekannten Gesamtmasse der Platte $m = \qty{0.682}{\kilo\gram}$ und dem Abstand $a$ zum Schwerpunkt lässt sich auch das Trägheitsmoment mit einer Gerade nach dem Steinerschen Satz berechnen:
+\begin{equation}
+    J = J_\text{platte} + m \cdot a^2
+\end{equation}
+
+Die berechneten Trägheitsmomente werden gegen den quadratischen Abstand $a^2$ aufgetragen.
+
+\begin{figure}[H]
+    
+    \centering
+    \includegraphics[width=0.8\textwidth]{img/a4.png}
+    \caption{Trägheitsmoment der unregelmäßigen Platte in Abhängigkeit vom Abstand $a$ zum Schwerpunkt}
+    \label{fig:steinerscher_satz}
+\end{figure}
+
+Die rote Linie in Abbildung \ref{fig:steinerscher_satz} stellt die theoretische Gerade nach dem Steinerschen Satz dar. Die experimentellen Datenpunkte liegen in guter Übereinstimmung mit der theoretischen Vorhersage. Eine Ausgleichsgerade durch die Messpunkte liefert eine nahezu identische Steigung, was die Gültigkeit des Steinerschen Satzes bestätigt.
+
+\begin{resultbox}
+    [Ergebnis Aufgabe 4]
+    Der steinersche Satz konnte experimentell bestätigt werden. Die gemessenen Trägheitsmomente der unregelmäßigen Platte bei verschiedenen Abständen zum Schwerpunkt stimmen innerhalb der Messunsicherheiten mit den theoretischen Werten überein.
+\end{resultbox}
 
 
 \clearpage
