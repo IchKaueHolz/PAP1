@@ -146,7 +146,7 @@ Die Lösung dieser Differentialgleichung liefert die Schwingungsdauer $T$ des Dr
 \end{equation}
 Für einen Körper mit bekannter Geometrie und homogener Massenverteilung lässt sich das Trägheitsmoment analytisch aus dem Integral $J = \int r^2 dm$ berechnen. Für eine homogene Kreisscheibe der Masse $m_s$ und dem Radius $r_s$ ergibt sich bei Rotation um ihre Symmetrieachse:
 \begin{equation}
-    J_\text{platte} = \frac{1}{2} m_s r_s^2
+    J = \frac{1}{2} m_s r_s^2
 \end{equation}
 
 
@@ -331,7 +331,7 @@ Es wird die Statische Methode verwendet, da diese eine höhere Genauigkeit aufwe
     J_{ges} = \qty{3.19(8)e-3}{\kilo\gram\meter\squared}
 \end{equation}
 
-Dasmit das Trägheitsmoment des Tisches $J_T$ abgezogen werden, um das Trägheitsmoment der Platte $J_\text{platte}$ zu erhalten. Das Trägheitsmoment des Tisches lässt sich aus der Schwingungsdauer des leeren Tisches $T_1 = \qty{1.21(3)}{\second}$ und dem Richtmoment $D$ berechnen:
+UM das Trägheitsmoment der Platte $J_\text{platte}$ zu erhalten, muss das Trägheitsmoment des Tisches $J_T$ abgezogen werden. Das Trägheitsmoment des Tisches lasst sich aus der Schwingungsdauer des leeren Tisches $T_1 = \qty{1.21(3)}{\second}$ und dem Richtmoment $D$ berechnen:
 \begin{equation}
     J_T = \frac{D \cdot T_1^2}{4\pi^2} = \qty{8.4(5)e-4}{\kilo\gram\meter\squared}
 \end{equation}
@@ -367,12 +367,12 @@ Aus den Messwerten ergeben sich nach Gleichung \ref{eq:periodendauer} die entspr
         \toprule
         Abstand $a$ [mm] & Schwingungsdauer $T$ [s] & Trägheitsmoment $J$ [kg m²] \\
         \midrule
-        0 & \num{2.355(25)} & \num{2.35(9)e-3} \\
-        5 & \num{2.365(25)} & \num{2.38(9)e-3} \\
-        10 & \num{2.400(25)} & \num{2.47(9)e-3} \\
-        20 & \num{2.450(25)} & \num{2.61(9)e-3} \\
-        30 & \num{2.590(25)} & 3\num{.02(10)e-3} \\
-        40 & \num{2.745(25)} & 3\num{.49(10)e-3} \\
+        \num{0(1)}& \num{2.355(25)} & \num{2.35(9)e-3} \\
+        \num{5(1)}& \num{2.365(25)} & \num{2.38(9)e-3} \\
+        \num{10(1)} & \num{2.400(25)} & \num{2.47(9)e-3} \\
+        \num{20(1)} & \num{2.450(25)} & \num{2.61(9)e-3} \\
+        \num{30(1)} & \num{2.590(25)} & \num{3.02(10)e-3} \\
+        \num{40(1)} & \num{2.745(25)} & \num{3.49(10)e-3} \\
         \bottomrule
     \end{tabular}
 \end{table}
@@ -390,16 +390,25 @@ Die berechneten Trägheitsmomente werden gegen den quadratischen Abstand $a^2$ a
     \centering
     \includegraphics[width=0.8\textwidth]{img/a4.png}
     \caption{Trägheitsmoment der unregelmäßigen Platte in Abhängigkeit vom Abstand $a$ zum Schwerpunkt}
-    \label{fig:steinerscher_satz}
+    \label{fig:steinerscher_satz_conformation}
 \end{figure}
 
-Die rote Linie in Abbildung \ref{fig:steinerscher_satz} stellt die theoretische Gerade nach dem Steinerschen Satz dar. Die experimentellen Datenpunkte liegen in guter Übereinstimmung mit der theoretischen Vorhersage. Eine Ausgleichsgerade durch die Messpunkte liefert eine nahezu identische Steigung, was die Gültigkeit des Steinerschen Satzes bestätigt.
+Die rote Linie in Abbildung \ref{fig:steinerscher_satz_conformation} stellt die theoretische Gerade nach dem Steinerschen Satz dar. Die experimentellen Datenpunkte liegen in guter Übereinstimmung mit der theoretischen Vorhersage. Eine Ausgleichsgerade durch die Messpunkte liefert eine nahezu identische Steigung, was die Gültigkeit des Steinerschen Satzes bestätigt.
 
 \begin{resultbox}
     [Ergebnis Aufgabe 4]
     Der steinersche Satz konnte experimentell bestätigt werden. Die gemessenen Trägheitsmomente der unregelmäßigen Platte bei verschiedenen Abständen zum Schwerpunkt stimmen innerhalb der Messunsicherheiten mit den theoretischen Werten überein.
 \end{resultbox}
 
+\section{Diskussion}
+In diesem Versuch wurden verschiedene Methoden zur Bestimmung des Richtmoments eines Drehpendels verglichen und der Steinersche Satz experimentell überprüft.
+
+Der Vergleich der beiden Methoden zur Bestimmung des Richtmoments zeigt eine zufriedenstellende Übereinstimmung. Das statisch ermittelte Richtmoment liegt bei $D_\text{statisch} = (2.271 \pm 0.024) \times 10^{-2} \, \frac{\text{Nm}}{\text{rad}}$, während die dynamische Messung einen Wert von $D_\text{dynamisch} = (2.7 \pm 0.4) \times 10^{-2} \, \frac{\text{Nm}}{\text{rad}}$ liefert. Die Abweichung von $1.07\sigma$ liegt im Bereich der einfachen Standardabweichung und deutet darauf hin, dass keine gravierenden systematischen Fehler vorliegen. Auffällig ist jedoch der deutlich größere relative Fehler der dynamischen Methode. Dies ist primär auf die quadratische Abhängigkeit der Schwingungsdauer in der Formel zurückzuführen, wodurch sich Reaktionsungenauigkeiten beim manuellen Stoppen der Zeit stark vergrößern. Ausserdem sind statische Messungen generell einfacher menschlich durchzuführen. Zusätzlich können bei der dynamischen Messung auftretende Reibungseffekte zu einer leichten Dämpfung und damit einer systematischen Vergrößerung der gemessenen Schwingungsdauer führen. Die statische Methode ist daher in diesem Aufbau als präziser und robuster einzustufen.
+
+Das Trägheitsmoment der unregelmäßigen Platte wurde in der Schwerpunktachse zu $J_\text{platte} = (2.35 \pm 0.09) \times 10^{-3} \, \text{kg m}^2$ bestimmt. Die Überprüfung des Steinerschen Satzes bestätigt dieses Ergebnis hervorragend. Die experimentellen Datenpunkte folgen bei der Auftragung gegen $a^2$ sehr exakt der theoretisch vorhergesagten Gerade. Der Steinersche Satz konnte somit im Rahmen der Messgenauigkeit zweifelsfrei validiert werden. Die etwas größere y-Achsenabschnitt lässt sich durch durch den nicht exakt zentrierten Schwerpunkt der Platte erklären, was zu einer leichten systematischen Verschiebung führt. Dennoch ist die Übereinstimmung zwischen Theorie und Experiment voll cool.
+
+\section{Fazit}
+Insgesamt konnte in diesem Versuch das Richtmoment eines Drehpendels sowohl statisch als auch dynamisch bestimmt werden. Die statische Methode erwies sich als präziser, während die dynamische Methode eine gute Übereinstimmung zeigte. Das Trägheitsmoment der unregelmäßigen Platte wurde erfolgreich ermittelt und der Steinersche Satz experimentell bestätigt. Die Ergebnisse zeigen, dass die theoretischen Grundlagen der Rotationsbewegung starrer Körper in der Praxis gut nachvollzogen werden können. Mir persönlich hat der versuch sehr viel Spaß gemacht, vor allem der letzte Plot. Ich hätte nicht erwartet dass der Steinersche Satz, so gut zum experimentellen Ergebnis passt.
 
 \clearpage
 
