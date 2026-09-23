@@ -237,16 +237,16 @@ To calculate the theoretical acceleration, the angle of inclination $\varphi$ of
     \label{fig:inclined_plane}
 \end{figure}
 
-with the measured height $h = \qty{12.2(4)e-2}{\text{m}}$ and the length of the track $l = \qty{1.000(5)}{\text{m}}$, the angle of inclination can be calculated as:
+with the measured height $h = \qty{10.1(4)e-2}{\text{m}}$\footnote{The height was measured two days later, because the initial measurement was not accurate.} and the length of the track $l = \qty{1.000(5)}{\text{m}}$, the angle of inclination can be calculated as:
 \begin{align}
-    \varphi &= \arcsin\left(\frac{h}{L}\right) = \arcsin\left(\frac{\num{12.2(4)e-2}}{\num{1.000(5)}}\right) \\
-    &\approx \num{7.01(24)}^\circ = \qty{0.122(4)}{\text{rad}}
+    \varphi &= \arcsin\left(\frac{h}{L}\right) = \arcsin\left(\frac{\num{10.1(4)e-2}}{\num{1.000(5)}}\right) \\
+    &\approx \num{5.797(24)}^\circ = \qty{0.1012(4)}{\text{rad}}
 \end{align}
 
 Therefore, the theoretical accelerations for the solid and hollow cylinders can be calculated as (Equation \ref{eq:acceleration_formula}):
 \begin{align}
-    a_{solid} &= \frac{g \sin\varphi}{1 + \frac{I_{solid}}{m r^2}} = \qty{0.798(26)}{\meter\per\second\squared} \\
-    a_{hollow} &= \frac{g \sin\varphi}{1 + \frac{I_{hollow}}{m r^2}} = \qty{0.619(21)}{\meter\per\second\squared}
+    a_{solid} &= \frac{g \sin\varphi}{1 + \frac{I_{solid}}{m r^2}} = \qty{0.661(26)}{\meter\per\second\squared} \\
+    a_{hollow} &= \frac{g \sin\varphi}{1 + \frac{I_{hollow}}{m r^2}} = \qty{0.513(21)}{\meter\per\second\squared}
 \end{align}
 
 
@@ -262,8 +262,8 @@ Now, the experimentally determined times are plotted quadratically $t^2$ against
 The function used for the linear fit is $t^2 = \frac{2}{a} s$, where $a$ is the acceleration. The slope of the fit line gives the value of $\frac{2}{a}$.
 The accelerations obtained from the fit are:
 \begin{align}
-    a_\text{solid, exp} &= \qty{0.6161(29)}{\meter\per\second\squared} \\
-    a_\text{hollow, exp} &= \qty{0.4892(15)}{\meter\per\second\squared}
+    a_\text{solid, exp} &= \qty{0.617(4)}{\meter\per\second\squared} \\
+    a_\text{hollow, exp} &= \qty{0.4907(27)}{\meter\per\second\squared}
 \end{align}
 The experimental results show that the solid cylinder accelerates faster than the hollow cylinder, which is consistent with the theoretical predictions.
 
@@ -271,8 +271,8 @@ Interestingly, the experimental acceleration of both cylinders is much lower tha
 
 The sigma-deviation of the experimental values from the theoretical ones can be calculated as:
 \begin{align}
-    \sigma_\text{solid} &= \frac{|a_\text{solid, exp} - a_\text{solid, theo}|}{\sigma_\text{hollow, theo}} \approx 6.65  \Rightarrow 6.7\sigma \\
-    \sigma_\text{hollow} &= \frac{|a_\text{hollow, exp} - a_\text{hollow, theo}|}{\sigma_\text{solid, theo}} \approx 6.18 \Rightarrow 6.2\sigma
+    \sigma_\text{solid} &= \frac{|a_\text{solid, exp} - a_\text{solid, theo}|}{\sigma_\text{hollow, theo}} \Rightarrow 1.73 \sigma \\
+    \sigma_\text{hollow} &= \frac{|a_\text{hollow, exp} - a_\text{hollow, theo}|}{\sigma_\text{solid, theo}} \Rightarrow 1.19\sigma
 \end{align}
 
 \begin{resultbox}[Conclusion]
@@ -283,13 +283,13 @@ The sigma-deviation of the experimental values from the theoretical ones can be 
             \toprule
             \textbf{Value} & \textbf{Solid Cylinder} & \textbf{Hollow Cylinder} \\
             \midrule
-            Theoretical Acceleration:& \num{0.798(26)} & \num{0.619(21)} \\
-            Experimental Acceleration:& \num{0.6161(29)} & \num{0.4892(15)} \\
+            Theoretical Acceleration:& \num{0.661(26)} & \num{0.513(21)} \\
+            Experimental Acceleration:& \num{0.617(4)} & \num{0.4907(27)} \\
             \midrule
-            Deviation: & \num{6.7} $\sigma$ & \num{6.2}$\sigma$ \\
+            Deviation: & \num{1.69} $\sigma$ & \num{1.06}$\sigma$ \\
             \bottomrule
             \end{tabular}
-        \end{center}
+        \end{center}    
 \end{resultbox}
 
 \subsection{Exercise 2: Calculating the kinetic Energy}
@@ -313,19 +313,19 @@ The height difference equation can be derived from the geometry and the starting
 For the height difference $h$, we can use the following relation (intercept theorem):
 
 \begin{equation}
-    h_{eff} = \frac{h}{l} \cdot \left(l-11\si{\milli\meter}\right) = \qty{0.121(4)}{\meter}
-    \end{equation}
+    h_{eff} = \frac{h}{l} \cdot \left(l-11\si{\milli\meter}\right) = \qty{0.100(4)}{\meter}
+\end{equation}
 
 The potential energy for the cylinders equals:
 \begin{equation}
-    E_{pot} = (\num{0.443(1)})\,\si{\kilo\gram} \cdot 9.81\,\si{\meter\per\second\squared} \cdot \qty{0.121(4)}{\meter} = \qty{0.524(18)}{\joule}
+    E_{pot} = (\num{0.443(1)})\,\si{\kilo\gram} \cdot 9.81\,\si{\meter\per\second\squared} \cdot \qty{0.100(4)}{\meter} = \qty{0.434(18)}{\joule}
 \end{equation}
 
 The measured times and speeds for the solid and hollow cylinders with $r = \qty{25(0.025)e-3}{\meter}$ to pass between the two light barriers with a distance of $d = \qty{25(0.07)e-2}{\meter}$ are: 
 
 \begin{table}[H]
     \centering
-    \caption{Measured times and calc    ulated speeds for the solid and hollow cylinders.}
+    \caption{Measured times and calculated speeds for the solid and hollow cylinders.}
     \label{tab:kinetic_energy_measurements}
     \begin{tabular}{lccc}
         \toprule
@@ -338,8 +338,12 @@ The measured times and speeds for the solid and hollow cylinders with $r = \qty{
 \end{table}
 
 The kinetic energies for the solid and hollow cylinders can be calculated as follows:
+\begin{equation}
+    E_{kin} = \frac{1}{2}mv^2 + \frac{1}{2}I\omega^2
+\end{equation}
 
-The energies are:
+
+This results in the following kinetic energies for the solid and hollow cylinders:
 
 \begin{table}[H]
     \centering
@@ -349,13 +353,59 @@ The energies are:
         \toprule
         \textbf{Cylinder Type} & \textbf{Translational KE [J]} & \textbf{Rotational KE [J]} & \textbf{Total KE [J]} \\
         \midrule
-        Solid Cylinder & \num{0.2337(24)} & \num{0.0950(10)} & \num{0.3286(29)} \\
+        Solid Cylinder & \num{0.2337(24)} & \num{0.1168(12)} & \num{0.351(4)} \\
         Hollow Cylinder & \num{0.1900(19)} & \num{0.1771(18)} & \num{0.367(4)} \\
         \bottomrule
     \end{tabular}
 \end{table}
 
+Comparing the total kinetic energies with the initial potential energy, we get:
+\begin{align}
+    E_{kin, solid} &= \qty{0.351(4)}{\joule} \\
+    E_{kin, hollow} &= \qty{0.367(4)}{\joule} \\
+    E_{pot} &= \qty{0.434(18)}{\joule}
+\end{align}
 
+This results in a deviation of:
+\begin{align}
+    \Delta E_{solid} &= E_{pot} - E_{kin, solid} = \qty{0.083(18)}{\joule}\\
+    & \Rightarrow 4.61\sigma \\
+    \Delta E_{hollow} &= E_{pot} - E_{kin, hollow} = \qty{0.067(18)}{\joule}\\
+    & \Rightarrow 3.72\sigma
+\end{align}
+
+\begin{resultbox}[Conclusion]
+    The total kinetic energies for both cylinders are lower than the initial potential energy, indicating that some energy was lost during the rolling motion:
+        \begin{center}
+        \centering
+        \begin{tabular}{lcc}
+            \toprule
+            \textbf{Value} & \textbf{Solid Cylinder} & \textbf{Hollow Cylinder} \\
+            \midrule
+            Initial Potential Energy:& \num{0.434(18)} & \num{0.434(18)} \\
+            Total Kinetic Energy:& \num{0.351(4)} & \num{0.367(4)} \\
+            Deviation: & \num{4.61} $\sigma$ & \num{3.72}$\sigma$ \\
+            \bottomrule
+            \end{tabular}
+        \end{center}
+\end{resultbox} 
+
+
+
+\section{Discussion of Results}
+In figure \ref{fig:acceleration_comparison} you can see that the acceleration of the solid cylinder is higher than that of the hollow cylinder, which is consistent with the theoretical predictions. This is due to the fact that the solid cylinder has a lower moment of inertia, allowing it to accelerate more quickly down the incline.
+
+Even though the experimental results show the expected trend, there are significant deviations from the theoretical values. The experimental accelerations for both cylinders are lower than the theoretical predictions. The kinetic energies show deviations from the theoretical predictions as well.
+The lower experimental accelerations suggest that additional resistive forces, such as rolling friction may have influenced the motion of the cylinders. 
+The total kinetic energies for both cylinders are lower than the initial potential energy, indicating that some energy was lost during the rolling motion, likely due to friction.
+
+Since friction is proportional to the normal force, which is in turn proportional to the mass of the rolling body, it is expected that the solid cylinder would experience a greater frictional force than the hollow cylinder. This could explain why the solid cylinder has a lower kinetic energy than the hollow cylinder, despite having a higher acceleration, as well as bigger deviations from the theoretical predictions, which neglect resistive forces. The solid cylinder's greater mass results in a larger normal force, leading to increased frictional losses during its motion down the incline.
+
+It is very unlikely that the timing and measurement errors are the main contributors to the observed deviations, as the experimental setup was carefully calibrated and repeated measurements were taken to minimize random errors. I suggest that the measurement of the height difference should be repeated, as it was measured two days later and could have been affected by systematic errors, because the height difference that, was measured in the beginnung was a lot higher than the one measured two days later. Identifying and measuring the height of the slope was not very precise, because holding the caliper perpendicularly to the surface was difficult. Determining the geometry of the ramp more accurately could help to reduce the discrepancies between the theoretical and experimental results.
+
+\section{Conclusion}
+All in all, the experiment successfully demonstrated the principles of rolling motion and energy conservation, while also highlighting the importance of considering real-world factors such as friction and measurement accuracy in experimental physics.
+It was a lot of fun to do this experiment, and I learned a lot about the physics of rolling motion and the importance of careful measurement and analysis in experimental physics. I also learned how to use the precise light barrier system and the stopwatch system, which was very interesting.
 
 
 
@@ -374,31 +424,4 @@ The energies are:
 
 
 
-
-\begin{comment}
-
-\begin{table}[H]
-    \centering
-    \caption{Mess- und Geräteparameter für die exemplarische Berechnung (Messung 28).}
-    \label{tab:parameter_messung_28}
-    \begin{tabular}{ll}
-        \toprule
-        \textbf{Größe} & \textbf{Wert} \\
-        \midrule
-        Fallstrecke & $s_1 = 10\,\text{Skt} = 5.00 \cdot 10^{-4}\,\text{m}$ \\
-        Fallzeit & $t_1 = 11.85\,\text{s}$ \\
-        Steigstrecke & $s_2 = 10\,\text{Skt} = 5.00 \cdot 10^{-4}\,\text{m}$ \\
-        Steigzeit & $t_2 = 18.19\,\text{s}$ \\
-        Skalenteilung & $1\,\text{Skt} = 5.00 \cdot 10^{-5}\,\text{m}$ \\
-        Kondensatorspannung & $U = 500\,\text{V}$ \\
-        Plattenabstand & $d = 6.00 \cdot 10^{-3}\,\text{m}$ \\
-        Luftdruck & $p = 100285\,\text{Pa}$ \\
-        Erdbeschleunigung & $g = 9.81\,\frac{\text{m}}{\text{s}^2}$ \\
-        Dichtedifferenz & $\rho = \rho_{\text{Öl}} - \rho_{\text{Luft}} = 871.21\,\frac{\text{kg}}{\text{m}^3}$ \\
-        Unkorrigierte Luftviskosität & $\eta_0 = 1.81 \cdot 10^{-5}\,\text{Pa}\cdot\text{s}$ \\
-        Cunningham-Konstante & $b = 7.78 \cdot 10^{-3}\,\text{Pa}\cdot\text{m}$ \\
-        \bottomrule
-    \end{tabular}
-\end{table}
-\end{comment}
 \end{document}
