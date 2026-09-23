@@ -32,7 +32,7 @@
 \usepackage{longtable}
 \usepackage{graphicx}
 
-%\input{../../jupyterpackages.tex}
+\input{../../jupyterpackages.tex}
 
 % jupyter nbconvert --to latex 'Path'
 % enferne usepackages und begin{document} und end{document}
@@ -173,7 +173,7 @@ as well as the addition of statistical and systematic errors in quadrature:
 
     
 \includepdf[
-    pages=-,
+    pages=1-4,
     width=\textwidth,
     height=0.95\textheight,
     keepaspectratio,
@@ -422,6 +422,8 @@ It was a lot of fun to do this experiment, and I learned a lot about the physics
     \bibitem{ilberg1988physikalisches} W. Ilberg, M. Krötzsch, \emph{Physikalisches Praktikum für Anfänger}, BSB B. G. Teubner Verlagsgesellschaft, Leipzig (1985).
 \end{thebibliography}
 
-
+\appendix
+\section{Code}
+\include{code/V15.tex}
 
 \end{document}

@@ -1,0 +1,449 @@
+
+    
+    height of track
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{81}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{k+kn}{import}\PY{+w}{ }\PY{n+nn}{numpy}\PY{+w}{ }\PY{k}{as}\PY{+w}{ }\PY{n+nn}{np}
+\PY{k+kn}{import}\PY{+w}{ }\PY{n+nn}{matplotlib}\PY{n+nn}{.}\PY{n+nn}{pyplot}\PY{+w}{ }\PY{k}{as}\PY{+w}{ }\PY{n+nn}{plt}
+\PY{k+kn}{from}\PY{+w}{ }\PY{n+nn}{scipy}\PY{n+nn}{.}\PY{n+nn}{optimize}\PY{+w}{ }\PY{k+kn}{import} \PY{n}{curve\PYZus{}fit}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{82}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{n}{h} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{array}\PY{p}{(}\PY{p}{[}\PY{l+m+mf}{11.1}\PY{p}{,} \PY{l+m+mf}{12.8}\PY{p}{,} \PY{l+m+mf}{11.5}\PY{p}{,} \PY{l+m+mf}{12.8}\PY{p}{,} \PY{l+m+mf}{12.7}\PY{p}{]}\PY{p}{)}
+\PY{n}{err\PYZus{}h} \PY{o}{=} \PY{l+m+mf}{0.05}
+
+\PY{n+nb}{print}\PY{p}{(}\PY{n}{np}\PY{o}{.}\PY{n}{mean}\PY{p}{(}\PY{n}{h}\PY{p}{)}\PY{p}{)}
+\PY{n}{error\PYZus{}mean} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{std}\PY{p}{(}\PY{n}{h}\PY{p}{,} \PY{n}{ddof}\PY{o}{=}\PY{l+m+mi}{1}\PY{p}{)}\PY{o}{/}\PY{n}{np}\PY{o}{.}\PY{n}{sqrt}\PY{p}{(}\PY{n+nb}{len}\PY{p}{(}\PY{n}{h}\PY{p}{)}\PY{p}{)}
+\PY{n+nb}{print}\PY{p}{(}\PY{n}{error\PYZus{}mean}\PY{p}{)}
+\PY{n+nb}{print}\PY{p}{(}\PY{n}{np}\PY{o}{.}\PY{n}{sqrt}\PY{p}{(}\PY{n}{error\PYZus{}mean}\PY{o}{*}\PY{o}{*}\PY{l+m+mi}{2} \PY{o}{+} \PY{n}{err\PYZus{}h}\PY{o}{*}\PY{o}{*}\PY{l+m+mi}{2}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+12.180000000000001
+0.3652396473549936
+0.3686461718233353
+    \end{Verbatim}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{83}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{n}{t\PYZus{}hollow} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{array}\PY{p}{(}\PY{p}{[}\PY{l+m+mf}{1.011}\PY{p}{,} \PY{l+m+mf}{1.204}\PY{p}{,} \PY{l+m+mf}{1.403}\PY{p}{,} \PY{l+m+mf}{1.604}\PY{p}{]}\PY{p}{)}
+\PY{n}{t\PYZus{}full} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{array}\PY{p}{(}\PY{p}{[}\PY{l+m+mf}{0.921}\PY{p}{,} \PY{l+m+mf}{1.094}\PY{p}{,} \PY{l+m+mf}{1.272}\PY{p}{,} \PY{l+m+mf}{1.451}\PY{p}{]}\PY{p}{)}
+\PY{n}{t\PYZus{}compose} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{array}\PY{p}{(}\PY{p}{[}\PY{l+m+mf}{0.855}\PY{p}{,} \PY{l+m+mf}{1.018}\PY{p}{,} \PY{l+m+mf}{1.186}\PY{p}{,} \PY{l+m+mf}{1.356}\PY{p}{]}\PY{p}{)}
+
+\PY{n}{x} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{array}\PY{p}{(}\PY{p}{[}\PY{l+m+mi}{25}\PY{p}{,} \PY{l+m+mi}{36}\PY{p}{,} \PY{l+m+mi}{49}\PY{p}{,} \PY{l+m+mi}{64}\PY{p}{]}\PY{p}{)}
+
+\PY{n}{plt}\PY{o}{.}\PY{n}{scatter}\PY{p}{(}\PY{n}{x}\PY{p}{,} \PY{n}{t\PYZus{}hollow}\PY{p}{,} \PY{n}{label}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{hollow cylinder}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\PY{n}{plt}\PY{o}{.}\PY{n}{scatter}\PY{p}{(}\PY{n}{x}\PY{p}{,} \PY{n}{t\PYZus{}full}\PY{p}{,} \PY{n}{label}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{full cylinder}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\PY{n}{plt}\PY{o}{.}\PY{n}{scatter}\PY{p}{(}\PY{n}{x}\PY{p}{,} \PY{n}{t\PYZus{}compose}\PY{p}{,} \PY{n}{label}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{compsite cylinder}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\PY{n}{plt}\PY{o}{.}\PY{n}{xlabel}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{distance [cm]}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\PY{n}{plt}\PY{o}{.}\PY{n}{ylabel}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{time \PYZdl{}t\PYZdl{} [s]}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\PY{n}{plt}\PY{o}{.}\PY{n}{grid}\PY{p}{(}\PY{k+kc}{True}\PY{p}{)}
+\PY{n}{plt}\PY{o}{.}\PY{n}{legend}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+            \begin{tcolorbox}[breakable, size=fbox, boxrule=.5pt, pad at break*=1mm, opacityfill=0]
+\prompt{Out}{outcolor}{83}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+<matplotlib.legend.Legend at 0x1520a7d90>
+\end{Verbatim}
+\end{tcolorbox}
+        
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{code/V15_files/V15_3_1.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    Quantitative A3:
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{84}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{n}{x} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{array}\PY{p}{(}\PY{p}{[}\PY{l+m+mi}{25}\PY{p}{,} \PY{l+m+mi}{36}\PY{p}{,} \PY{l+m+mi}{49}\PY{p}{,} \PY{l+m+mi}{64}\PY{p}{]}\PY{p}{)}
+
+\PY{n}{t\PYZus{}hollow} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{array}\PY{p}{(}\PY{p}{[}
+    \PY{p}{[}\PY{l+m+mf}{1.019}\PY{p}{,} \PY{l+m+mf}{1.212}\PY{p}{,} \PY{l+m+mf}{1.410}\PY{p}{,} \PY{l+m+mf}{1.610}\PY{p}{]}\PY{p}{,}
+    \PY{p}{[}\PY{l+m+mf}{1.027}\PY{p}{,} \PY{l+m+mf}{1.223}\PY{p}{,} \PY{l+m+mf}{1.426}\PY{p}{,} \PY{l+m+mf}{1.629}\PY{p}{]}\PY{p}{,}
+    \PY{p}{[}\PY{l+m+mf}{1.014}\PY{p}{,} \PY{l+m+mf}{1.209}\PY{p}{,} \PY{l+m+mf}{1.410}\PY{p}{,} \PY{l+m+mf}{1.613}\PY{p}{]}\PY{p}{,}
+    \PY{p}{[}\PY{l+m+mf}{1.022}\PY{p}{,} \PY{l+m+mf}{1.215}\PY{p}{,} \PY{l+m+mf}{1.415}\PY{p}{,} \PY{l+m+mf}{1.614}\PY{p}{]}\PY{p}{,}
+    \PY{p}{[}\PY{l+m+mf}{1.009}\PY{p}{,} \PY{l+m+mf}{1.201}\PY{p}{,} \PY{l+m+mf}{1.400}\PY{p}{,} \PY{l+m+mf}{1.600}\PY{p}{]}
+\PY{p}{]}\PY{p}{)}
+\PY{n}{t\PYZus{}full} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{array}\PY{p}{(}\PY{p}{[}
+    \PY{p}{[}\PY{l+m+mf}{0.922}\PY{p}{,} \PY{l+m+mf}{1.096}\PY{p}{,} \PY{l+m+mf}{1.278}\PY{p}{,} \PY{l+m+mf}{1.459}\PY{p}{]}\PY{p}{,}
+    \PY{p}{[}\PY{l+m+mf}{0.893}\PY{p}{,} \PY{l+m+mf}{1.068}\PY{p}{,} \PY{l+m+mf}{1.245}\PY{p}{,} \PY{l+m+mf}{1.425}\PY{p}{]}\PY{p}{,}
+    \PY{p}{[}\PY{l+m+mf}{0.900}\PY{p}{,} \PY{l+m+mf}{1.075}\PY{p}{,} \PY{l+m+mf}{1.255}\PY{p}{,} \PY{l+m+mf}{1.435}\PY{p}{]}\PY{p}{,}
+    \PY{p}{[}\PY{l+m+mf}{0.901}\PY{p}{,} \PY{l+m+mf}{1.074}\PY{p}{,} \PY{l+m+mf}{1.254}\PY{p}{,} \PY{l+m+mf}{1.435}\PY{p}{]}\PY{p}{,}
+    \PY{p}{[}\PY{l+m+mf}{0.913}\PY{p}{,} \PY{l+m+mf}{1.087}\PY{p}{,} \PY{l+m+mf}{1.266}\PY{p}{,} \PY{l+m+mf}{1.446}\PY{p}{]}
+\PY{p}{]}\PY{p}{)}
+
+\PY{n}{mean\PYZus{}hollow} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{mean}\PY{p}{(}\PY{n}{t\PYZus{}hollow}\PY{p}{,} \PY{n}{axis}\PY{o}{=}\PY{l+m+mi}{0}\PY{p}{)}
+\PY{n}{std\PYZus{}hollow} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{std}\PY{p}{(}\PY{n}{t\PYZus{}hollow}\PY{p}{,} \PY{n}{axis}\PY{o}{=}\PY{l+m+mi}{0}\PY{p}{,} \PY{n}{ddof}\PY{o}{=}\PY{l+m+mi}{1}\PY{p}{)}\PY{o}{/}\PY{n}{np}\PY{o}{.}\PY{n}{sqrt}\PY{p}{(}\PY{n}{t\PYZus{}hollow}\PY{o}{.}\PY{n}{shape}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{)}  \PY{c+c1}{\PYZsh{} Standard error of the mean}
+\PY{n}{mean\PYZus{}full} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{mean}\PY{p}{(}\PY{n}{t\PYZus{}full}\PY{p}{,} \PY{n}{axis}\PY{o}{=}\PY{l+m+mi}{0}\PY{p}{)}
+\PY{n}{std\PYZus{}full} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{std}\PY{p}{(}\PY{n}{t\PYZus{}full}\PY{p}{,} \PY{n}{axis}\PY{o}{=}\PY{l+m+mi}{0}\PY{p}{,} \PY{n}{ddof}\PY{o}{=}\PY{l+m+mi}{1}\PY{p}{)}\PY{o}{/}\PY{n}{np}\PY{o}{.}\PY{n}{sqrt}\PY{p}{(}\PY{n}{t\PYZus{}full}\PY{o}{.}\PY{n}{shape}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{)}  \PY{c+c1}{\PYZsh{} Standard error of the mean}
+
+\PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Hollow cylinder:}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\PY{k}{for} \PY{n}{distance}\PY{p}{,} \PY{n}{mean}\PY{p}{,} \PY{n}{std} \PY{o+ow}{in} \PY{n+nb}{zip}\PY{p}{(}\PY{n}{x}\PY{p}{,} \PY{n}{mean\PYZus{}hollow}\PY{p}{,} \PY{n}{std\PYZus{}hollow}\PY{p}{)}\PY{p}{:}
+    \PY{n+nb}{print}\PY{p}{(}\PY{l+s+sa}{f}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+si}{\PYZob{}}\PY{n}{distance}\PY{l+s+si}{\PYZcb{}}\PY{l+s+s2}{ cm: mean = }\PY{l+s+si}{\PYZob{}}\PY{n}{mean}\PY{l+s+si}{:}\PY{l+s+s2}{.4f}\PY{l+s+si}{\PYZcb{}}\PY{l+s+s2}{ s, std = }\PY{l+s+si}{\PYZob{}}\PY{n}{std}\PY{l+s+si}{:}\PY{l+s+s2}{.4f}\PY{l+s+si}{\PYZcb{}}\PY{l+s+s2}{ s}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+
+\PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+se}{\PYZbs{}n}\PY{l+s+s2}{Full cylinder:}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\PY{k}{for} \PY{n}{distance}\PY{p}{,} \PY{n}{mean}\PY{p}{,} \PY{n}{std} \PY{o+ow}{in} \PY{n+nb}{zip}\PY{p}{(}\PY{n}{x}\PY{p}{,} \PY{n}{mean\PYZus{}full}\PY{p}{,} \PY{n}{std\PYZus{}full}\PY{p}{)}\PY{p}{:}
+    \PY{n+nb}{print}\PY{p}{(}\PY{l+s+sa}{f}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+si}{\PYZob{}}\PY{n}{distance}\PY{l+s+si}{\PYZcb{}}\PY{l+s+s2}{ cm: mean = }\PY{l+s+si}{\PYZob{}}\PY{n}{mean}\PY{l+s+si}{:}\PY{l+s+s2}{.4f}\PY{l+s+si}{\PYZcb{}}\PY{l+s+s2}{ s, std = }\PY{l+s+si}{\PYZob{}}\PY{n}{std}\PY{l+s+si}{:}\PY{l+s+s2}{.4f}\PY{l+s+si}{\PYZcb{}}\PY{l+s+s2}{ s}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+Hollow cylinder:
+25 cm: mean = 1.0182 s, std = 0.0031 s
+36 cm: mean = 1.2120 s, std = 0.0036 s
+49 cm: mean = 1.4122 s, std = 0.0042 s
+64 cm: mean = 1.6132 s, std = 0.0047 s
+
+Full cylinder:
+25 cm: mean = 0.9058 s, std = 0.0052 s
+36 cm: mean = 1.0800 s, std = 0.0050 s
+49 cm: mean = 1.2596 s, std = 0.0057 s
+64 cm: mean = 1.4400 s, std = 0.0058 s
+    \end{Verbatim}
+
+    a4
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{85}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{c+c1}{\PYZsh{} messung, t1, t2}
+
+\PY{c+c1}{\PYZsh{} hollow}
+\PY{n}{m1h} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{array}\PY{p}{(}\PY{p}{[}\PY{l+m+mf}{1.922}\PY{p}{,} \PY{l+m+mf}{2.192}\PY{p}{]}\PY{p}{)}
+\PY{n}{m2h} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{array}\PY{p}{(}\PY{p}{[}\PY{l+m+mf}{1.951}\PY{p}{,} \PY{l+m+mf}{2.222}\PY{p}{]}\PY{p}{)}  
+\PY{n}{m3h} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{array}\PY{p}{(}\PY{p}{[}\PY{l+m+mf}{1.936}\PY{p}{,} \PY{l+m+mf}{2.206}\PY{p}{]}\PY{p}{)}
+\PY{n}{m4h} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{array}\PY{p}{(}\PY{p}{[}\PY{l+m+mf}{1.922}\PY{p}{,} \PY{l+m+mf}{2.192}\PY{p}{]}\PY{p}{)}
+\PY{n}{m5h} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{array}\PY{p}{(}\PY{p}{[}\PY{l+m+mf}{1.938}\PY{p}{,} \PY{l+m+mf}{2.207}\PY{p}{]}\PY{p}{)}
+
+\PY{c+c1}{\PYZsh{} full}
+\PY{n}{m1f} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{array}\PY{p}{(}\PY{p}{[}\PY{l+m+mf}{1.724}\PY{p}{,} \PY{l+m+mf}{1.967}\PY{p}{]}\PY{p}{)}
+\PY{n}{m2f} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{array}\PY{p}{(}\PY{p}{[}\PY{l+m+mf}{1.736}\PY{p}{,} \PY{l+m+mf}{1.980}\PY{p}{]}\PY{p}{)}
+\PY{n}{m3f} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{array}\PY{p}{(}\PY{p}{[}\PY{l+m+mf}{1.718}\PY{p}{,} \PY{l+m+mf}{1.961}\PY{p}{]}\PY{p}{)}
+\PY{n}{m4f} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{array}\PY{p}{(}\PY{p}{[}\PY{l+m+mf}{1.737}\PY{p}{,} \PY{l+m+mf}{1.981}\PY{p}{]}\PY{p}{)}
+\PY{n}{m5f} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{array}\PY{p}{(}\PY{p}{[}\PY{l+m+mf}{1.749}\PY{p}{,} \PY{l+m+mf}{1.992}\PY{p}{]}\PY{p}{)}
+
+\PY{n}{m\PYZus{}diff\PYZus{}h} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{array}\PY{p}{(}\PY{p}{[}\PY{p}{]}\PY{p}{)}
+\PY{k}{for} \PY{n}{i} \PY{o+ow}{in} \PY{p}{[}\PY{n}{m1h}\PY{p}{,} \PY{n}{m2h}\PY{p}{,} \PY{n}{m3h}\PY{p}{,} \PY{n}{m4h}\PY{p}{,} \PY{n}{m5h}\PY{p}{]}\PY{p}{:}
+    \PY{n}{m\PYZus{}diff\PYZus{}h} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{m\PYZus{}diff\PYZus{}h}\PY{p}{,} \PY{n}{i}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]} \PY{o}{\PYZhy{}} \PY{n}{i}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{)}
+    
+\PY{n}{m\PYZus{}diff\PYZus{}f} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{array}\PY{p}{(}\PY{p}{[}\PY{p}{]}\PY{p}{)}
+\PY{k}{for} \PY{n}{i} \PY{o+ow}{in} \PY{p}{[}\PY{n}{m1f}\PY{p}{,} \PY{n}{m2f}\PY{p}{,} \PY{n}{m3f}\PY{p}{,} \PY{n}{m4f}\PY{p}{,} \PY{n}{m5f}\PY{p}{]}\PY{p}{:}
+    \PY{n}{m\PYZus{}diff\PYZus{}f} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{m\PYZus{}diff\PYZus{}f}\PY{p}{,} \PY{n}{i}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]} \PY{o}{\PYZhy{}} \PY{n}{i}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{)}
+
+\PY{n}{err\PYZus{}t} \PY{o}{=} \PY{l+m+mf}{0.001}
+\PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Hollow cylinder time differences:}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\PY{n+nb}{print}\PY{p}{(}\PY{n}{m\PYZus{}diff\PYZus{}h}\PY{p}{)}
+\PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Mean time difference for hollow cylinder:}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{np}\PY{o}{.}\PY{n}{mean}\PY{p}{(}\PY{n}{m\PYZus{}diff\PYZus{}h}\PY{p}{)}\PY{p}{)}
+\PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Standard error for hollow cylinder:}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{np}\PY{o}{.}\PY{n}{std}\PY{p}{(}\PY{n}{m\PYZus{}diff\PYZus{}h}\PY{p}{,} \PY{n}{ddof}\PY{o}{=}\PY{l+m+mi}{1}\PY{p}{)}\PY{o}{/}\PY{n+nb}{len}\PY{p}{(}\PY{n}{m\PYZus{}diff\PYZus{}h}\PY{p}{)}\PY{p}{)}
+\PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Full error for hollow cylinder:}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{np}\PY{o}{.}\PY{n}{sqrt}\PY{p}{(}\PY{p}{(}\PY{n}{np}\PY{o}{.}\PY{n}{std}\PY{p}{(}\PY{n}{m\PYZus{}diff\PYZus{}h}\PY{p}{,} \PY{n}{ddof}\PY{o}{=}\PY{l+m+mi}{1}\PY{p}{)}\PY{o}{/}\PY{n+nb}{len}\PY{p}{(}\PY{n}{m\PYZus{}diff\PYZus{}h}\PY{p}{)}\PY{p}{)}\PY{o}{*}\PY{o}{*}\PY{l+m+mi}{2} \PY{o}{+} \PY{n}{err\PYZus{}t}\PY{o}{*}\PY{o}{*}\PY{l+m+mi}{2}\PY{p}{)}\PY{p}{)}
+
+\PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+se}{\PYZbs{}n}\PY{l+s+s2}{Full cylinder time differences:}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+
+\PY{n+nb}{print}\PY{p}{(}\PY{n}{m\PYZus{}diff\PYZus{}f}\PY{p}{)}
+\PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Mean time difference for full cylinder:}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{np}\PY{o}{.}\PY{n}{mean}\PY{p}{(}\PY{n}{m\PYZus{}diff\PYZus{}f}\PY{p}{)}\PY{p}{)}
+\PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Standard error for full cylinder:}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{np}\PY{o}{.}\PY{n}{std}\PY{p}{(}\PY{n}{m\PYZus{}diff\PYZus{}f}\PY{p}{,} \PY{n}{ddof}\PY{o}{=}\PY{l+m+mi}{1}\PY{p}{)}\PY{o}{/}\PY{n+nb}{len}\PY{p}{(}\PY{n}{m\PYZus{}diff\PYZus{}f}\PY{p}{)}\PY{p}{)}
+\PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Full error for full cylinder:}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{np}\PY{o}{.}\PY{n}{sqrt}\PY{p}{(}\PY{p}{(}\PY{n}{np}\PY{o}{.}\PY{n}{std}\PY{p}{(}\PY{n}{m\PYZus{}diff\PYZus{}f}\PY{p}{,} \PY{n}{ddof}\PY{o}{=}\PY{l+m+mi}{1}\PY{p}{)}\PY{o}{/}\PY{n+nb}{len}\PY{p}{(}\PY{n}{m\PYZus{}diff\PYZus{}f}\PY{p}{)}\PY{p}{)}\PY{o}{*}\PY{o}{*}\PY{l+m+mi}{2} \PY{o}{+} \PY{n}{err\PYZus{}t}\PY{o}{*}\PY{o}{*}\PY{l+m+mi}{2}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+Hollow cylinder time differences:
+[0.27  0.271 0.27  0.27  0.269]
+Mean time difference for hollow cylinder: 0.2700000000000001
+Standard error for hollow cylinder: 0.00014142135623730964
+Full error for hollow cylinder: 0.0010099504938362077
+
+Full cylinder time differences:
+[0.243 0.244 0.243 0.244 0.243]
+Mean time difference for full cylinder: 0.2434
+Standard error for full cylinder: 0.00010954451150102927
+Full error for full cylinder: 0.001005982107196743
+    \end{Verbatim}
+
+    Examination
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{86}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{k+kn}{import}\PY{+w}{ }\PY{n+nn}{uncertainties}\PY{+w}{ }\PY{k}{as}\PY{+w}{ }\PY{n+nn}{unc}
+\PY{k+kn}{import}\PY{+w}{ }\PY{n+nn}{uncertainties}\PY{n+nn}{.}\PY{n+nn}{unumpy}\PY{+w}{ }\PY{k}{as}\PY{+w}{ }\PY{n+nn}{unp}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{87}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{n}{m} \PY{o}{=} \PY{n}{unc}\PY{o}{.}\PY{n}{ufloat}\PY{p}{(}\PY{l+m+mi}{443}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{)} \PY{o}{*} \PY{l+m+mf}{1e\PYZhy{}3}      \PY{c+c1}{\PYZsh{} mass in kg}
+\PY{n}{d\PYZus{}outer} \PY{o}{=} \PY{n}{unc}\PY{o}{.}\PY{n}{ufloat}\PY{p}{(}\PY{l+m+mi}{50}\PY{p}{,} \PY{l+m+mf}{0.05}\PY{p}{)} \PY{o}{*} \PY{l+m+mf}{1e\PYZhy{}3}  \PY{c+c1}{\PYZsh{} outer diameter in m}
+\PY{n}{d\PYZus{}inner} \PY{o}{=} \PY{n}{unc}\PY{o}{.}\PY{n}{ufloat}\PY{p}{(}\PY{l+m+mf}{46.5}\PY{p}{,} \PY{l+m+mf}{0.05}\PY{p}{)} \PY{o}{*} \PY{l+m+mf}{1e\PYZhy{}3} \PY{c+c1}{\PYZsh{} inner diameter in m}
+
+\PY{n}{I\PYZus{}hollow} \PY{o}{=} \PY{p}{(}\PY{l+m+mi}{1}\PY{o}{/}\PY{l+m+mi}{2}\PY{p}{)} \PY{o}{*} \PY{n}{m} \PY{o}{*} \PY{p}{(}\PY{p}{(}\PY{n}{d\PYZus{}outer}\PY{o}{/}\PY{l+m+mi}{2}\PY{p}{)}\PY{o}{*}\PY{o}{*}\PY{l+m+mi}{2} \PY{o}{+} \PY{p}{(}\PY{n}{d\PYZus{}inner}\PY{o}{/}\PY{l+m+mi}{2}\PY{p}{)}\PY{o}{*}\PY{o}{*}\PY{l+m+mi}{2}\PY{p}{)}
+\PY{n}{I\PYZus{}full} \PY{o}{=} \PY{p}{(}\PY{l+m+mi}{1}\PY{o}{/}\PY{l+m+mi}{2}\PY{p}{)} \PY{o}{*} \PY{n}{m} \PY{o}{*} \PY{p}{(}\PY{n}{d\PYZus{}outer}\PY{o}{/}\PY{l+m+mi}{2}\PY{p}{)}\PY{o}{*}\PY{o}{*}\PY{l+m+mi}{2}
+
+\PY{n+nb}{print}\PY{p}{(}\PY{l+s+sa}{f}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Hollow cylinder moment of inertia: }\PY{l+s+si}{\PYZob{}}\PY{n}{I\PYZus{}hollow}\PY{l+s+si}{:}\PY{l+s+s2}{.7e}\PY{l+s+si}{\PYZcb{}}\PY{l+s+s2}{ kgm²}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\PY{n+nb}{print}\PY{p}{(}\PY{l+s+sa}{f}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Solid cylinder moment of inertia: }\PY{l+s+si}{\PYZob{}}\PY{n}{I\PYZus{}full}\PY{l+s+si}{:}\PY{l+s+s2}{.7e}\PY{l+s+si}{\PYZcb{}}\PY{l+s+s2}{ kgm²}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+
+\PY{n}{h} \PY{o}{=} \PY{n}{unc}\PY{o}{.}\PY{n}{ufloat}\PY{p}{(}\PY{l+m+mf}{10.1}\PY{p}{,} \PY{l+m+mf}{0.4}\PY{p}{)}\PY{o}{*}\PY{l+m+mf}{1e\PYZhy{}2}  \PY{c+c1}{\PYZsh{} height in m}
+\PY{n}{l} \PY{o}{=} \PY{n}{unc}\PY{o}{.}\PY{n}{ufloat}\PY{p}{(}\PY{l+m+mf}{1.000}\PY{p}{,} \PY{l+m+mf}{0.005}\PY{p}{)}  \PY{c+c1}{\PYZsh{} length in m\PYZbs{}}
+    
+\PY{n}{varphi} \PY{o}{=} \PY{n}{unp}\PY{o}{.}\PY{n}{arcsin}\PY{p}{(}\PY{n}{h} \PY{o}{/} \PY{n}{l}\PY{p}{)}
+\PY{n}{varphi\PYZus{}deg} \PY{o}{=} \PY{n}{varphi} \PY{o}{*} \PY{l+m+mi}{180} \PY{o}{/} \PY{n}{np}\PY{o}{.}\PY{n}{pi}
+\PY{n+nb}{print}\PY{p}{(}\PY{l+s+sa}{f}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Angle of inclination: }\PY{l+s+si}{\PYZob{}}\PY{n}{varphi\PYZus{}deg}\PY{l+s+si}{:}\PY{l+s+s2}{.3f}\PY{l+s+si}{\PYZcb{}}\PY{l+s+s2}{ degrees, }\PY{l+s+si}{\PYZob{}}\PY{n}{varphi}\PY{l+s+si}{:}\PY{l+s+s2}{.4f}\PY{l+s+si}{\PYZcb{}}\PY{l+s+s2}{ radians}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+Hollow cylinder moment of inertia: (2.5817209+/-0.0069469)e-04 kgm²
+Solid cylinder moment of inertia: (1.3843750+/-0.0041751)e-04 kgm²
+Angle of inclination: 5.797+/-0.232 degrees, 0.1012+/-0.0041 radians
+    \end{Verbatim}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{88}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{n}{a\PYZus{}solid} \PY{o}{=} \PY{p}{(}\PY{l+m+mf}{9.81} \PY{o}{*} \PY{n}{unp}\PY{o}{.}\PY{n}{sin}\PY{p}{(}\PY{n}{varphi}\PY{p}{)}\PY{p}{)} \PY{o}{/} \PY{p}{(}\PY{l+m+mi}{1} \PY{o}{+} \PY{n}{I\PYZus{}full} \PY{o}{/} \PY{p}{(}\PY{n}{m} \PY{o}{*} \PY{p}{(}\PY{n}{d\PYZus{}outer}\PY{o}{/}\PY{l+m+mi}{2}\PY{p}{)}\PY{o}{*}\PY{o}{*}\PY{l+m+mi}{2}\PY{p}{)}\PY{p}{)}
+\PY{n}{a\PYZus{}hollow} \PY{o}{=} \PY{p}{(}\PY{l+m+mf}{9.81} \PY{o}{*} \PY{n}{unp}\PY{o}{.}\PY{n}{sin}\PY{p}{(}\PY{n}{varphi}\PY{p}{)}\PY{p}{)} \PY{o}{/} \PY{p}{(}\PY{l+m+mi}{1} \PY{o}{+} \PY{n}{I\PYZus{}hollow} \PY{o}{/} \PY{p}{(}\PY{n}{m} \PY{o}{*} \PY{p}{(}\PY{n}{d\PYZus{}outer}\PY{o}{/}\PY{l+m+mi}{2}\PY{p}{)}\PY{o}{*}\PY{o}{*}\PY{l+m+mi}{2}\PY{p}{)}\PY{p}{)}
+
+\PY{n+nb}{print}\PY{p}{(}\PY{n}{a\PYZus{}solid}\PY{p}{)}
+\PY{n+nb}{print}\PY{p}{(}\PY{n}{a\PYZus{}hollow}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+0.661+/-0.026
+0.513+/-0.020
+    \end{Verbatim}
+
+    Plot the values in Diagram
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{89}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{n}{mean\PYZus{}hollow\PYZus{}squared} \PY{o}{=} \PY{n}{mean\PYZus{}hollow}\PY{o}{*}\PY{o}{*}\PY{l+m+mi}{2}
+\PY{n}{std\PYZus{}hollow\PYZus{}squared} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{sqrt}\PY{p}{(}\PY{n}{std\PYZus{}hollow}\PY{o}{*}\PY{o}{*}\PY{l+m+mi}{2} \PY{o}{+} \PY{l+m+mf}{0.001}\PY{o}{*}\PY{o}{*}\PY{l+m+mi}{2}\PY{p}{)} \PY{o}{*} \PY{n}{mean\PYZus{}hollow} \PY{o}{*} \PY{l+m+mi}{2}
+\PY{n}{mean\PYZus{}full\PYZus{}squared} \PY{o}{=} \PY{n}{mean\PYZus{}full}\PY{o}{*}\PY{o}{*}\PY{l+m+mi}{2}
+\PY{n}{std\PYZus{}full\PYZus{}squared} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{sqrt}\PY{p}{(}\PY{n}{std\PYZus{}full}\PY{o}{*}\PY{o}{*}\PY{l+m+mi}{2} \PY{o}{+} \PY{l+m+mf}{0.001}\PY{o}{*}\PY{o}{*}\PY{l+m+mi}{2}\PY{p}{)} \PY{o}{*} \PY{n}{mean\PYZus{}full} \PY{o}{*} \PY{l+m+mi}{2}
+
+\PY{n}{s} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{array}\PY{p}{(}\PY{p}{[}\PY{l+m+mi}{25}\PY{p}{,} \PY{l+m+mi}{36}\PY{p}{,} \PY{l+m+mi}{49}\PY{p}{,} \PY{l+m+mi}{64}\PY{p}{]}\PY{p}{)}\PY{o}{*}\PY{l+m+mf}{1e\PYZhy{}2}     
+
+
+
+\PY{n}{plt}\PY{o}{.}\PY{n}{errorbar}\PY{p}{(}\PY{n}{s}\PY{p}{,} \PY{n}{mean\PYZus{}full\PYZus{}squared}\PY{p}{,} \PY{n}{yerr}\PY{o}{=}\PY{n}{std\PYZus{}full\PYZus{}squared}\PY{p}{,} \PY{n}{fmt}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{.}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{label}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Full Cylinder}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{capsize}\PY{o}{=}\PY{l+m+mi}{3}\PY{p}{,} \PY{n}{color}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{orange}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+
+\PY{n}{plt}\PY{o}{.}\PY{n}{errorbar}\PY{p}{(}\PY{n}{s}\PY{p}{,} \PY{n}{mean\PYZus{}hollow\PYZus{}squared}\PY{p}{,} \PY{n}{yerr}\PY{o}{=}\PY{n}{std\PYZus{}hollow\PYZus{}squared}\PY{p}{,} \PY{n}{fmt}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{.}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{label}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Hollow Cylinder}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{capsize}\PY{o}{=}\PY{l+m+mi}{3}\PY{p}{,} \PY{n}{color}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{blue}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+
+
+
+\PY{n}{func} \PY{o}{=} \PY{k}{lambda} \PY{n}{x}\PY{p}{,} \PY{n}{a}\PY{p}{:} \PY{p}{(}\PY{l+m+mf}{2.0} \PY{o}{/} \PY{n}{a}\PY{p}{)} \PY{o}{*} \PY{n}{x}
+
+\PY{n}{popt\PYZus{}hollow}\PY{p}{,} \PY{n}{pcov\PYZus{}hollow} \PY{o}{=} \PY{n}{curve\PYZus{}fit}\PY{p}{(}\PY{n}{func}\PY{p}{,} \PY{n}{s}\PY{p}{,} \PY{n}{mean\PYZus{}hollow\PYZus{}squared}\PY{p}{,} \PY{n}{sigma}\PY{o}{=}\PY{n}{std\PYZus{}hollow\PYZus{}squared}\PY{p}{,} \PY{n}{absolute\PYZus{}sigma}\PY{o}{=}\PY{k+kc}{True}\PY{p}{)}
+\PY{n}{popt\PYZus{}full}\PY{p}{,} \PY{n}{pcov\PYZus{}full} \PY{o}{=} \PY{n}{curve\PYZus{}fit}\PY{p}{(}\PY{n}{func}\PY{p}{,} \PY{n}{s}\PY{p}{,} \PY{n}{mean\PYZus{}full\PYZus{}squared}\PY{p}{,} \PY{n}{sigma}\PY{o}{=}\PY{n}{std\PYZus{}full\PYZus{}squared}\PY{p}{,} \PY{n}{absolute\PYZus{}sigma}\PY{o}{=}\PY{k+kc}{True}\PY{p}{)}
+
+\PY{n}{x\PYZus{}fit} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{linspace}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{100}\PY{p}{)}
+\PY{n}{plt}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{x\PYZus{}fit}\PY{p}{,} \PY{n}{func}\PY{p}{(}\PY{n}{x\PYZus{}fit}\PY{p}{,} \PY{n}{popt\PYZus{}full}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{)}\PY{p}{,} \PY{n}{label}\PY{o}{=}\PY{l+s+sa}{f}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Fit Full Cylinder \PYZdl{}a = }\PY{l+s+si}{\PYZob{}}\PY{n}{popt\PYZus{}full}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{l+s+si}{:}\PY{l+s+s2}{.4f}\PY{l+s+si}{\PYZcb{}}\PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{, m/s\PYZca{}2\PYZdl{}}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{color}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{red}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+\PY{n}{plt}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{x\PYZus{}fit}\PY{p}{,} \PY{n}{func}\PY{p}{(}\PY{n}{x\PYZus{}fit}\PY{p}{,} \PY{n}{popt\PYZus{}hollow}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{)}\PY{p}{,} \PY{n}{label}\PY{o}{=}\PY{l+s+sa}{f}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Fit Hollow Cylinder \PYZdl{}a = }\PY{l+s+si}{\PYZob{}}\PY{n}{popt\PYZus{}hollow}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{l+s+si}{:}\PY{l+s+s2}{.4f}\PY{l+s+si}{\PYZcb{}}\PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{, m/s\PYZca{}2\PYZdl{}}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{color}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{lightblue}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+
+\PY{n}{plt}\PY{o}{.}\PY{n}{xlabel}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Distance [m]}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\PY{n}{plt}\PY{o}{.}\PY{n}{ylabel}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Time Squared [s²]}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\PY{n}{plt}\PY{o}{.}\PY{n}{grid}\PY{p}{(}\PY{n}{which}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{both}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{linestyle}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{:}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{linewidth}\PY{o}{=}\PY{l+m+mf}{0.5}\PY{p}{)}
+\PY{n}{plt}\PY{o}{.}\PY{n}{legend}\PY{p}{(}\PY{p}{)}
+\PY{n}{plt}\PY{o}{.}\PY{n}{title}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Distance vs Time Squared for Hollow and Full Cylinders}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\PY{n+nb}{print}\PY{p}{(}\PY{l+s+sa}{f}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Full cylinder fit parameters: slope = }\PY{l+s+si}{\PYZob{}}\PY{n}{popt\PYZus{}full}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{l+s+si}{:}\PY{l+s+s2}{.4f}\PY{l+s+si}{\PYZcb{}}\PY{l+s+s2}{ \PYZdl{}}\PY{l+s+se}{\PYZbs{}\PYZbs{}}\PY{l+s+s2}{pm\PYZdl{} }\PY{l+s+si}{\PYZob{}}\PY{n}{np}\PY{o}{.}\PY{n}{sqrt}\PY{p}{(}\PY{n}{pcov\PYZus{}full}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{)}\PY{l+s+si}{:}\PY{l+s+s2}{.4f}\PY{l+s+si}{\PYZcb{}}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\PY{n+nb}{print}\PY{p}{(}\PY{l+s+sa}{f}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Hollow cylinder fit parameters: slope = }\PY{l+s+si}{\PYZob{}}\PY{n}{popt\PYZus{}hollow}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{l+s+si}{:}\PY{l+s+s2}{.4f}\PY{l+s+si}{\PYZcb{}}\PY{l+s+s2}{ \PYZdl{}}\PY{l+s+se}{\PYZbs{}\PYZbs{}}\PY{l+s+s2}{pm\PYZdl{} }\PY{l+s+si}{\PYZob{}}\PY{n}{np}\PY{o}{.}\PY{n}{sqrt}\PY{p}{(}\PY{n}{pcov\PYZus{}hollow}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{)}\PY{l+s+si}{:}\PY{l+s+s2}{.4f}\PY{l+s+si}{\PYZcb{}}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+Full cylinder fit parameters: slope = 0.6161 \$\textbackslash{}pm\$ 0.0029
+Hollow cylinder fit parameters: slope = 0.4892 \$\textbackslash{}pm\$ 0.0015
+    \end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+<>:22: SyntaxWarning: invalid escape sequence '\textbackslash{},'
+<>:23: SyntaxWarning: invalid escape sequence '\textbackslash{},'
+<>:22: SyntaxWarning: invalid escape sequence '\textbackslash{},'
+<>:23: SyntaxWarning: invalid escape sequence '\textbackslash{},'
+/var/folders/9r/ppvq7f7j3kv69gnk\_v549lcm0000gn/T/ipykernel\_18719/668146309.py:22
+: SyntaxWarning: invalid escape sequence '\textbackslash{},'
+  plt.plot(x\_fit, func(x\_fit, popt\_full[0]), label=f"Fit Full Cylinder \$a =
+\{popt\_full[0]:.4f\}\textbackslash{}, m/s\^{}2\$", color='red')
+/var/folders/9r/ppvq7f7j3kv69gnk\_v549lcm0000gn/T/ipykernel\_18719/668146309.py:23
+: SyntaxWarning: invalid escape sequence '\textbackslash{},'
+  plt.plot(x\_fit, func(x\_fit, popt\_hollow[0]), label=f"Fit Hollow Cylinder \$a =
+\{popt\_hollow[0]:.4f\}\textbackslash{}, m/s\^{}2\$", color='lightblue')
+    \end{Verbatim}
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{code/V15_files/V15_13_2.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    Fitted the other way around
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{93}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{n}{mean\PYZus{}hollow\PYZus{}squared} \PY{o}{=} \PY{n}{mean\PYZus{}hollow}\PY{o}{*}\PY{o}{*}\PY{l+m+mi}{2}
+\PY{n}{std\PYZus{}hollow\PYZus{}squared} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{sqrt}\PY{p}{(}\PY{n}{std\PYZus{}hollow}\PY{o}{*}\PY{o}{*}\PY{l+m+mi}{2} \PY{o}{+} \PY{l+m+mf}{0.001}\PY{o}{*}\PY{o}{*}\PY{l+m+mi}{2}\PY{p}{)} \PY{o}{*} \PY{n}{mean\PYZus{}hollow} \PY{o}{*} \PY{l+m+mi}{2}
+\PY{n}{mean\PYZus{}full\PYZus{}squared} \PY{o}{=} \PY{n}{mean\PYZus{}full}\PY{o}{*}\PY{o}{*}\PY{l+m+mi}{2}
+\PY{n}{std\PYZus{}full\PYZus{}squared} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{sqrt}\PY{p}{(}\PY{n}{std\PYZus{}full}\PY{o}{*}\PY{o}{*}\PY{l+m+mi}{2} \PY{o}{+} \PY{l+m+mf}{0.001}\PY{o}{*}\PY{o}{*}\PY{l+m+mi}{2}\PY{p}{)} \PY{o}{*} \PY{n}{mean\PYZus{}full} \PY{o}{*} \PY{l+m+mi}{2}
+
+\PY{n}{s} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{array}\PY{p}{(}\PY{p}{[}\PY{l+m+mi}{25}\PY{p}{,} \PY{l+m+mi}{36}\PY{p}{,} \PY{l+m+mi}{49}\PY{p}{,} \PY{l+m+mi}{64}\PY{p}{]}\PY{p}{)} \PY{o}{*} \PY{l+m+mf}{1e\PYZhy{}2}
+
+\PY{n}{plt}\PY{o}{.}\PY{n}{errorbar}\PY{p}{(}\PY{n}{mean\PYZus{}full\PYZus{}squared}\PY{p}{,} \PY{n}{s}\PY{p}{,} \PY{n}{xerr}\PY{o}{=}\PY{n}{std\PYZus{}full\PYZus{}squared}\PY{p}{,} \PY{n}{fmt}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{.}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{label}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Full Cylinder}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{capsize}\PY{o}{=}\PY{l+m+mi}{3}\PY{p}{,} \PY{n}{color}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{orange}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+\PY{n}{plt}\PY{o}{.}\PY{n}{errorbar}\PY{p}{(}\PY{n}{mean\PYZus{}hollow\PYZus{}squared}\PY{p}{,} \PY{n}{s}\PY{p}{,} \PY{n}{xerr}\PY{o}{=}\PY{n}{std\PYZus{}hollow\PYZus{}squared}\PY{p}{,} \PY{n}{fmt}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{.}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{label}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Hollow Cylinder}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{capsize}\PY{o}{=}\PY{l+m+mi}{3}\PY{p}{,} \PY{n}{color}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{blue}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+
+\PY{c+c1}{\PYZsh{} keep the same model form y = a*x + c, but fix c = 0}
+\PY{n}{func} \PY{o}{=} \PY{k}{lambda} \PY{n}{x}\PY{p}{,} \PY{n}{a}\PY{p}{,} \PY{n}{c}\PY{o}{=}\PY{l+m+mi}{0}\PY{p}{:} \PY{p}{(}\PY{n}{a} \PY{o}{/} \PY{l+m+mf}{2.0}\PY{p}{)} \PY{o}{*} \PY{n}{x} \PY{o}{+} \PY{n}{c}
+
+\PY{n}{popt\PYZus{}hollow}\PY{p}{,} \PY{n}{pcov\PYZus{}hollow} \PY{o}{=} \PY{n}{curve\PYZus{}fit}\PY{p}{(}\PY{n}{func}\PY{p}{,} \PY{n}{mean\PYZus{}hollow\PYZus{}squared}\PY{p}{,} \PY{n}{s}\PY{p}{,} \PY{n}{sigma}\PY{o}{=}\PY{n}{np}\PY{o}{.}\PY{n}{full\PYZus{}like}\PY{p}{(}\PY{n}{s}\PY{p}{,} \PY{l+m+mf}{0.005}\PY{p}{)}\PY{p}{,} \PY{n}{absolute\PYZus{}sigma}\PY{o}{=}\PY{k+kc}{True}\PY{p}{,} \PY{n}{p0}\PY{o}{=}\PY{p}{[}\PY{l+m+mf}{1.0}\PY{p}{]}\PY{p}{,} \PY{n}{bounds}\PY{o}{=}\PY{p}{(}\PY{p}{[}\PY{o}{\PYZhy{}}\PY{n}{np}\PY{o}{.}\PY{n}{inf}\PY{p}{]}\PY{p}{,} \PY{p}{[}\PY{n}{np}\PY{o}{.}\PY{n}{inf}\PY{p}{]}\PY{p}{)}\PY{p}{)}
+\PY{n}{popt\PYZus{}full}\PY{p}{,} \PY{n}{pcov\PYZus{}full} \PY{o}{=} \PY{n}{curve\PYZus{}fit}\PY{p}{(}\PY{n}{func}\PY{p}{,} \PY{n}{mean\PYZus{}full\PYZus{}squared}\PY{p}{,} \PY{n}{s}\PY{p}{,} \PY{n}{sigma}\PY{o}{=}\PY{n}{np}\PY{o}{.}\PY{n}{full\PYZus{}like}\PY{p}{(}\PY{n}{s}\PY{p}{,} \PY{l+m+mf}{0.005}\PY{p}{)}\PY{p}{,} \PY{n}{absolute\PYZus{}sigma}\PY{o}{=}\PY{k+kc}{True}\PY{p}{,} \PY{n}{p0}\PY{o}{=}\PY{p}{[}\PY{l+m+mf}{1.0}\PY{p}{]}\PY{p}{,} \PY{n}{bounds}\PY{o}{=}\PY{p}{(}\PY{p}{[}\PY{o}{\PYZhy{}}\PY{n}{np}\PY{o}{.}\PY{n}{inf}\PY{p}{]}\PY{p}{,} \PY{p}{[}\PY{n}{np}\PY{o}{.}\PY{n}{inf}\PY{p}{]}\PY{p}{)}\PY{p}{)}
+
+\PY{n}{x\PYZus{}fit} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{linspace}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{,} \PY{n}{np}\PY{o}{.}\PY{n}{max}\PY{p}{(}\PY{n}{mean\PYZus{}full\PYZus{}squared}\PY{p}{)} \PY{o}{*} \PY{l+m+mf}{1.5}\PY{p}{,} \PY{l+m+mi}{100}\PY{p}{)}
+\PY{n}{plt}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{x\PYZus{}fit}\PY{p}{,} \PY{n}{func}\PY{p}{(}\PY{n}{x\PYZus{}fit}\PY{p}{,} \PY{o}{*}\PY{n}{popt\PYZus{}full}\PY{p}{)}\PY{p}{,} \PY{n}{label}\PY{o}{=}\PY{l+s+sa}{f}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Fit Full Cylinder \PYZdl{}a = }\PY{l+s+si}{\PYZob{}}\PY{n}{popt\PYZus{}full}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{l+s+si}{:}\PY{l+s+s1}{.4f}\PY{l+s+si}{\PYZcb{}}\PY{l+s+s1}{\PYZbs{}}\PY{l+s+s1}{, m/s\PYZca{}2\PYZdl{}}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{color}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{red}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+\PY{n}{plt}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{x\PYZus{}fit}\PY{p}{,} \PY{n}{func}\PY{p}{(}\PY{n}{x\PYZus{}fit}\PY{p}{,} \PY{o}{*}\PY{n}{popt\PYZus{}hollow}\PY{p}{)}\PY{p}{,} \PY{n}{label}\PY{o}{=}\PY{l+s+sa}{f}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Fit Hollow Cylinder \PYZdl{}a = }\PY{l+s+si}{\PYZob{}}\PY{n}{popt\PYZus{}hollow}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{l+s+si}{:}\PY{l+s+s1}{.4f}\PY{l+s+si}{\PYZcb{}}\PY{l+s+s1}{\PYZbs{}}\PY{l+s+s1}{, m/s\PYZca{}2\PYZdl{}}\PY{l+s+s1}{\PYZsq{}} \PY{p}{,} \PY{n}{color}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{lightblue}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+
+\PY{n}{plt}\PY{o}{.}\PY{n}{xlabel}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Time Squared [s²]}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+\PY{n}{plt}\PY{o}{.}\PY{n}{ylabel}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Distance [m]}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+\PY{n}{plt}\PY{o}{.}\PY{n}{grid}\PY{p}{(}\PY{n}{which}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{both}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{linestyle}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{:}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{linewidth}\PY{o}{=}\PY{l+m+mf}{0.5}\PY{p}{)}
+\PY{n}{plt}\PY{o}{.}\PY{n}{legend}\PY{p}{(}\PY{p}{)}
+\PY{n}{plt}\PY{o}{.}\PY{n}{title}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Time Squared vs Distance for Hollow and Full Cylinders}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+\PY{n+nb}{print}\PY{p}{(}\PY{l+s+sa}{f}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Full cylinder fit parameters: a = }\PY{l+s+si}{\PYZob{}}\PY{n}{popt\PYZus{}full}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{l+s+si}{:}\PY{l+s+s1}{.4f}\PY{l+s+si}{\PYZcb{}}\PY{l+s+s1}{ \PYZdl{}}\PY{l+s+se}{\PYZbs{}\PYZbs{}}\PY{l+s+s1}{pm\PYZdl{} }\PY{l+s+si}{\PYZob{}}\PY{n}{np}\PY{o}{.}\PY{n}{sqrt}\PY{p}{(}\PY{n}{pcov\PYZus{}full}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{)}\PY{l+s+si}{:}\PY{l+s+s1}{.4f}\PY{l+s+si}{\PYZcb{}}\PY{l+s+s1}{, c = 0}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+\PY{n+nb}{print}\PY{p}{(}\PY{l+s+sa}{f}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Hollow cylinder fit parameters: a = }\PY{l+s+si}{\PYZob{}}\PY{n}{popt\PYZus{}hollow}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{l+s+si}{:}\PY{l+s+s1}{.4f}\PY{l+s+si}{\PYZcb{}}\PY{l+s+s1}{ \PYZdl{}}\PY{l+s+se}{\PYZbs{}\PYZbs{}}\PY{l+s+s1}{pm\PYZdl{} }\PY{l+s+si}{\PYZob{}}\PY{n}{np}\PY{o}{.}\PY{n}{sqrt}\PY{p}{(}\PY{n}{pcov\PYZus{}hollow}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{)}\PY{l+s+si}{:}\PY{l+s+s1}{.4f}\PY{l+s+si}{\PYZcb{}}\PY{l+s+s1}{, c = 0}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+<>:18: SyntaxWarning: invalid escape sequence '\textbackslash{},'
+<>:19: SyntaxWarning: invalid escape sequence '\textbackslash{},'
+<>:18: SyntaxWarning: invalid escape sequence '\textbackslash{},'
+<>:19: SyntaxWarning: invalid escape sequence '\textbackslash{},'
+/var/folders/9r/ppvq7f7j3kv69gnk\_v549lcm0000gn/T/ipykernel\_18719/3647935948.py:1
+8: SyntaxWarning: invalid escape sequence '\textbackslash{},'
+  plt.plot(x\_fit, func(x\_fit, *popt\_full), label=f'Fit Full Cylinder \$a =
+\{popt\_full[0]:.4f\}\textbackslash{}, m/s\^{}2\$', color='red')
+/var/folders/9r/ppvq7f7j3kv69gnk\_v549lcm0000gn/T/ipykernel\_18719/3647935948.py:1
+9: SyntaxWarning: invalid escape sequence '\textbackslash{},'
+  plt.plot(x\_fit, func(x\_fit, *popt\_hollow), label=f'Fit Hollow Cylinder \$a =
+\{popt\_hollow[0]:.4f\}\textbackslash{}, m/s\^{}2\$' , color='lightblue')
+    \end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+Full cylinder fit parameters: a = 0.6168 \$\textbackslash{}pm\$ 0.0034, c = 0
+Hollow cylinder fit parameters: a = 0.4907 \$\textbackslash{}pm\$ 0.0027, c = 0
+    \end{Verbatim}
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{code/V15_files/V15_15_2.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    Calculate Height
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{ }{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{n}{d} \PY{o}{=} \PY{n}{unc}\PY{o}{.}\PY{n}{ufloat}\PY{p}{(}\PY{l+m+mi}{11}\PY{p}{,} \PY{l+m+mf}{0.5}\PY{p}{)}\PY{o}{*}\PY{l+m+mf}{1e\PYZhy{}3}  \PY{c+c1}{\PYZsh{} dist start in m}
+
+\PY{n}{h} \PY{o}{=} \PY{n}{h}\PY{o}{/}\PY{n}{l} \PY{o}{*} \PY{p}{(}\PY{n}{l}\PY{o}{\PYZhy{}}\PY{n}{d}\PY{p}{)}
+\PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{delta h in m:}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{h}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+delta h in m: 0.100+/-0.004
+    \end{Verbatim}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{ }{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{n}{E} \PY{o}{=} \PY{n}{m} \PY{o}{*} \PY{l+m+mf}{9.81} \PY{o}{*} \PY{n}{h}
+\PY{n}{E}
+\end{Verbatim}
+\end{tcolorbox}
+
+            \begin{tcolorbox}[breakable, size=fbox, boxrule=.5pt, pad at break*=1mm, opacityfill=0]
+\prompt{Out}{outcolor}{ }{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+0.43410061287+/-0.01722142256704715
+\end{Verbatim}
+\end{tcolorbox}
+        
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{ }{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{n}{m\PYZus{}diff\PYZus{}f}
+\PY{n}{err\PYZus{}f} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{sqrt}\PY{p}{(}\PY{p}{(}\PY{n}{np}\PY{o}{.}\PY{n}{std}\PY{p}{(}\PY{n}{m\PYZus{}diff\PYZus{}f}\PY{p}{,} \PY{n}{ddof}\PY{o}{=}\PY{l+m+mi}{1}\PY{p}{)}\PY{o}{/}\PY{n+nb}{len}\PY{p}{(}\PY{n}{m\PYZus{}diff\PYZus{}f}\PY{p}{)}\PY{p}{)}\PY{o}{*}\PY{o}{*}\PY{l+m+mi}{2} \PY{o}{+} \PY{n}{err\PYZus{}t}\PY{o}{*}\PY{o}{*}\PY{l+m+mi}{2}\PY{p}{)}
+
+\PY{n}{m\PYZus{}diff\PYZus{}h}
+\PY{n}{err\PYZus{}h} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{sqrt}\PY{p}{(}\PY{p}{(}\PY{n}{np}\PY{o}{.}\PY{n}{std}\PY{p}{(}\PY{n}{m\PYZus{}diff\PYZus{}h}\PY{p}{,} \PY{n}{ddof}\PY{o}{=}\PY{l+m+mi}{1}\PY{p}{)}\PY{o}{/}\PY{n+nb}{len}\PY{p}{(}\PY{n}{m\PYZus{}diff\PYZus{}h}\PY{p}{)}\PY{p}{)}\PY{o}{*}\PY{o}{*}\PY{l+m+mi}{2} \PY{o}{+} \PY{n}{err\PYZus{}t}\PY{o}{*}\PY{o}{*}\PY{l+m+mi}{2}\PY{p}{)}
+
+\PY{n}{d} \PY{o}{=} \PY{n}{unc}\PY{o}{.}\PY{n}{ufloat}\PY{p}{(}\PY{l+m+mi}{25}\PY{p}{,} \PY{l+m+mf}{0.07}\PY{p}{)}\PY{o}{*}\PY{l+m+mf}{1e\PYZhy{}2}  \PY{c+c1}{\PYZsh{} dist between light barriers in m}
+
+\PY{n}{t\PYZus{}f} \PY{o}{=} \PY{n}{unc}\PY{o}{.}\PY{n}{ufloat}\PY{p}{(}\PY{n}{np}\PY{o}{.}\PY{n}{mean}\PY{p}{(}\PY{n}{m\PYZus{}diff\PYZus{}f}\PY{p}{)}\PY{p}{,} \PY{n}{err\PYZus{}f}\PY{p}{)}
+\PY{n}{t\PYZus{}h} \PY{o}{=} \PY{n}{unc}\PY{o}{.}\PY{n}{ufloat}\PY{p}{(}\PY{n}{np}\PY{o}{.}\PY{n}{mean}\PY{p}{(}\PY{n}{m\PYZus{}diff\PYZus{}h}\PY{p}{)}\PY{p}{,} \PY{n}{err\PYZus{}h}\PY{p}{)}
+
+
+\PY{n}{v\PYZus{}f} \PY{o}{=} \PY{n}{d} \PY{o}{/} \PY{n}{t\PYZus{}f}
+\PY{n}{v\PYZus{}h} \PY{o}{=} \PY{n}{d} \PY{o}{/} \PY{n}{t\PYZus{}h}
+
+\PY{n}{r} \PY{o}{=} \PY{n}{d\PYZus{}outer} \PY{o}{/} \PY{l+m+mi}{2}
+
+
+\PY{n+nb}{print}\PY{p}{(}\PY{l+s+sa}{f}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Full cylinder speed: }\PY{l+s+si}{\PYZob{}}\PY{n}{v\PYZus{}f}\PY{l+s+si}{:}\PY{l+s+s2}{.4f}\PY{l+s+si}{\PYZcb{}}\PY{l+s+s2}{ m/s}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\PY{n+nb}{print}\PY{p}{(}\PY{l+s+sa}{f}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Hollow cylinder speed: }\PY{l+s+si}{\PYZob{}}\PY{n}{v\PYZus{}h}\PY{l+s+si}{:}\PY{l+s+s2}{.4f}\PY{l+s+si}{\PYZcb{}}\PY{l+s+s2}{ m/s}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+
+\PY{n}{w\PYZus{}f} \PY{o}{=} \PY{n}{v\PYZus{}f} \PY{o}{/} \PY{n}{r}
+\PY{n+nb}{print}\PY{p}{(}\PY{l+s+sa}{f}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Full cylinder angular velocity: }\PY{l+s+si}{\PYZob{}}\PY{n}{w\PYZus{}f}\PY{l+s+si}{:}\PY{l+s+s2}{.4f}\PY{l+s+si}{\PYZcb{}}\PY{l+s+s2}{ rad/s}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\PY{n}{w\PYZus{}h} \PY{o}{=} \PY{n}{v\PYZus{}h} \PY{o}{/} \PY{n}{r}
+\PY{n+nb}{print}\PY{p}{(}\PY{l+s+sa}{f}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Hollow cylinder angular velocity: }\PY{l+s+si}{\PYZob{}}\PY{n}{w\PYZus{}h}\PY{l+s+si}{:}\PY{l+s+s2}{.4f}\PY{l+s+si}{\PYZcb{}}\PY{l+s+s2}{ rad/s}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+
+
+\PY{n}{E\PYZus{}trans\PYZus{}f} \PY{o}{=} \PY{l+m+mi}{1}\PY{o}{/}\PY{l+m+mi}{2} \PY{o}{*} \PY{n}{m} \PY{o}{*} \PY{n}{v\PYZus{}f}\PY{o}{*}\PY{o}{*}\PY{l+m+mi}{2}
+\PY{n}{E\PYZus{}rot\PYZus{}f} \PY{o}{=} \PY{l+m+mi}{1}\PY{o}{/}\PY{l+m+mi}{2} \PY{o}{*} \PY{n}{I\PYZus{}full} \PY{o}{*} \PY{n}{w\PYZus{}f}\PY{o}{*}\PY{o}{*}\PY{l+m+mi}{2}
+
+\PY{n}{E\PYZus{}trans\PYZus{}h} \PY{o}{=} \PY{l+m+mi}{1}\PY{o}{/}\PY{l+m+mi}{2} \PY{o}{*} \PY{n}{m} \PY{o}{*} \PY{n}{v\PYZus{}h}\PY{o}{*}\PY{o}{*}\PY{l+m+mi}{2}
+\PY{n}{E\PYZus{}rot\PYZus{}h} \PY{o}{=} \PY{l+m+mi}{1}\PY{o}{/}\PY{l+m+mi}{2} \PY{o}{*} \PY{n}{I\PYZus{}hollow} \PY{o}{*} \PY{n}{w\PYZus{}h}\PY{o}{*}\PY{o}{*}\PY{l+m+mi}{2}
+
+\PY{n+nb}{print}\PY{p}{(}\PY{l+s+sa}{f}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+se}{\PYZbs{}n}\PY{l+s+s2}{Full cylinder translational kinetic energy: }\PY{l+s+si}{\PYZob{}}\PY{n}{E\PYZus{}trans\PYZus{}f}\PY{l+s+si}{:}\PY{l+s+s2}{.5f}\PY{l+s+si}{\PYZcb{}}\PY{l+s+s2}{ J}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\PY{n+nb}{print}\PY{p}{(}\PY{l+s+sa}{f}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Full cylinder rotational kinetic energy: }\PY{l+s+si}{\PYZob{}}\PY{n}{E\PYZus{}rot\PYZus{}f}\PY{l+s+si}{:}\PY{l+s+s2}{.5f}\PY{l+s+si}{\PYZcb{}}\PY{l+s+s2}{ J}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\PY{n+nb}{print}\PY{p}{(}\PY{l+s+sa}{f}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{total kinetic energy: }\PY{l+s+si}{\PYZob{}}\PY{n}{E\PYZus{}trans\PYZus{}f}\PY{+w}{ }\PY{o}{+}\PY{+w}{ }\PY{n}{E\PYZus{}rot\PYZus{}f}\PY{l+s+si}{:}\PY{l+s+s2}{.5f}\PY{l+s+si}{\PYZcb{}}\PY{l+s+s2}{ J}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\PY{n+nb}{print}\PY{p}{(}\PY{l+s+sa}{f}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+se}{\PYZbs{}n}\PY{l+s+s2}{Hollow cylinder translational kinetic energy: }\PY{l+s+si}{\PYZob{}}\PY{n}{E\PYZus{}trans\PYZus{}h}\PY{l+s+si}{:}\PY{l+s+s2}{.5f}\PY{l+s+si}{\PYZcb{}}\PY{l+s+s2}{ J}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\PY{n+nb}{print}\PY{p}{(}\PY{l+s+sa}{f}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Hollow cylinder rotational kinetic energy: }\PY{l+s+si}{\PYZob{}}\PY{n}{E\PYZus{}rot\PYZus{}h}\PY{l+s+si}{:}\PY{l+s+s2}{.5f}\PY{l+s+si}{\PYZcb{}}\PY{l+s+s2}{ J}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\PY{n+nb}{print}\PY{p}{(}\PY{l+s+sa}{f}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{total kinetic energy: }\PY{l+s+si}{\PYZob{}}\PY{n}{E\PYZus{}trans\PYZus{}h}\PY{+w}{ }\PY{o}{+}\PY{+w}{ }\PY{n}{E\PYZus{}rot\PYZus{}h}\PY{l+s+si}{:}\PY{l+s+s2}{.5f}\PY{l+s+si}{\PYZcb{}}\PY{l+s+s2}{ J}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+Full cylinder speed: 1.0271+/-0.0051 m/s
+Hollow cylinder speed: 0.9259+/-0.0043 m/s
+Full cylinder angular velocity: 41.0846+/-0.2092 rad/s
+Hollow cylinder angular velocity: 37.0370+/-0.1770 rad/s
+
+Full cylinder translational kinetic energy: 0.23368+/-0.00239 J
+Full cylinder rotational kinetic energy: 0.11684+/-0.00120 J
+total kinetic energy: 0.35051+/-0.00359 J
+
+Hollow cylinder translational kinetic energy: 0.18990+/-0.00183 J
+Hollow cylinder rotational kinetic energy: 0.17707+/-0.00172 J
+total kinetic energy: 0.36697+/-0.00354 J
+    \end{Verbatim}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{ }{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+
+\end{Verbatim}
+\end{tcolorbox}
+
