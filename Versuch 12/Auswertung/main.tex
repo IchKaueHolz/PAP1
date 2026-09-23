@@ -29,7 +29,7 @@
 \usepackage{longtable}
 \usepackage{graphicx}
 
-%\input{../../jupyterpackages.tex}
+\input{../../jupyterpackages.tex}
 
 % jupyter nbconvert --to latex 'Path'
 % enferne usepackages und begin{document} und end{document}
@@ -423,32 +423,8 @@ Insgesamt konnte in diesem Versuch das Richtmoment eines Drehpendels sowohl stat
 \end{thebibliography}
 
 
+\appendix
+\section{Anhang: Code}
 
-
-\begin{comment}
-
-\begin{table}[H]
-    \centering
-    \caption{Mess- und Geräteparameter für die exemplarische Berechnung (Messung 28).}
-    \label{tab:parameter_messung_28}
-    \begin{tabular}{ll}
-        \toprule
-        \textbf{Größe} & \textbf{Wert} \\
-        \midrule
-        Fallstrecke & $s_1 = 10\,\text{Skt} = 5.00 \cdot 10^{-4}\,\text{m}$ \\
-        Fallzeit & $t_1 = 11.85\,\text{s}$ \\
-        Steigstrecke & $s_2 = 10\,\text{Skt} = 5.00 \cdot 10^{-4}\,\text{m}$ \\
-        Steigzeit & $t_2 = 18.19\,\text{s}$ \\
-        Skalenteilung & $1\,\text{Skt} = 5.00 \cdot 10^{-5}\,\text{m}$ \\
-        Kondensatorspannung & $U = 500\,\text{V}$ \\
-        Plattenabstand & $d = 6.00 \cdot 10^{-3}\,\text{m}$ \\
-        Luftdruck & $p = 100285\,\text{Pa}$ \\
-        Erdbeschleunigung & $g = 9.81\,\frac{\text{m}}{\text{s}^2}$ \\
-        Dichtedifferenz & $\rho = \rho_{\text{Öl}} - \rho_{\text{Luft}} = 871.21\,\frac{\text{kg}}{\text{m}^3}$ \\
-        Unkorrigierte Luftviskosität & $\eta_0 = 1.81 \cdot 10^{-5}\,\text{Pa}\cdot\text{s}$ \\
-        Cunningham-Konstante & $b = 7.78 \cdot 10^{-3}\,\text{Pa}\cdot\text{m}$ \\
-        \bottomrule
-    \end{tabular}
-\end{table}
-\end{comment}
+\include{code/V12.tex}
 \end{document}
