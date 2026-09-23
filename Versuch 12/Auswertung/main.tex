@@ -128,6 +128,7 @@ In diesem Versuch wird das Rotationsverhalten starrer Körper untersucht, welche
 \section{Physikalische Grundlagen}\label{sec:Physikalische Grundlagen}
 Die Beschreibung der Rotationsbewegung starrer Körper erfolgt in vollständiger Analogie zur Translationsbewegung. An die Stelle der Strecke $x$ tritt der Drehwinkel $\phi$, die Masse $m$ wird durch das Trägheitsmoment $J$ und die Kraft $F$ durch das Drehmoment $M$ ersetzt. 
 
+\bigskip
 \subsection{Richtmoment und harmonische Schwingung}
 Wird ein starrer Körper an einem Drehpendel um einen Winkel $\phi$ aus seiner Ruhelage ausgelenkt, so bewirkt die Apparatur ein rückstellendes Drehmoment $M$, welches proportional zur Auslenkung ist. Analog zum linearen Hookeschen Gesetz der Federkraft gilt:
 \begin{equation}
@@ -145,17 +146,18 @@ Die Lösung dieser Differentialgleichung liefert die Schwingungsdauer $T$ des Dr
 \end{equation}
 Für einen Körper mit bekannter Geometrie und homogener Massenverteilung lässt sich das Trägheitsmoment analytisch aus dem Integral $J = \int r^2 dm$ berechnen. Für eine homogene Kreisscheibe der Masse $m_s$ und dem Radius $r_s$ ergibt sich bei Rotation um ihre Symmetrieachse:
 \begin{equation}
-    J_s = \frac{1}{2} m_s r_s^2
+    J_\text{platte} = \frac{1}{2} m_s r_s^2
 \end{equation}
 
 
 
+\bigskip
 \subsection{Der Steinersche Satz}
 Rotiert ein Körper nicht um eine Achse, die durch seinen Massenmittelpunkt (Schwerpunkt) verläuft, sondern um eine dazu parallele Achse im Abstand $a$, so vergrößert sich sein Trägheitsmoment. Dieser Zusammenhang wird durch den Steinerschen Satz quantifiziert:
 \begin{equation}
-    J = J_s + m \cdot a^2
+    J = J_\text{platte} + m \cdot a^2
 \end{equation}
-Hierbei ist $J_s$ das Trägheitsmoment bezüglich der Schwerpunktsachse, $m$ die Gesamtmasse des rotierenden Körpers und $a$ der senkrechte Abstand zwischen der neuen Rotationsachse und der Schwerpunktsachse. Aus dieser Beziehung folgt unmittelbar, dass das Trägheitsmoment eines Körpers bei konstanter Achsenorientierung minimal ist, wenn die Drehachse exakt durch den Schwerpunkt verläuft.
+Hierbei ist $J_\text{platte}$ das Trägheitsmoment bezüglich der Schwerpunktsachse, $m$ die Gesamtmasse des rotierenden Körpers und $a$ der senkrechte Abstand zwischen der neuen Rotationsachse und der Schwerpunktsachse. Aus dieser Beziehung folgt unmittelbar, dass das Trägheitsmoment eines Körpers bei konstanter Achsenorientierung minimal ist, wenn die Drehachse exakt durch den Schwerpunkt verläuft.
 
 \begin{figure}[H]
     \centering
@@ -164,6 +166,7 @@ Hierbei ist $J_s$ das Trägheitsmoment bezüglich der Schwerpunktsachse, $m$ die
     \label{fig:steinerscher_satz}
 \end{figure}
 
+\bigskip
 \subsection{Fehlerfortpflanzung nach Gauß}
 Für die Fehlerrechnung wird die Gaußsche Fehlerfortpflanzung verwendet. Für eine Funktion $f(x_1, x_2, \dots, x_n)$ mit den unabhängigen Variablen $x_i$ und den zugehörigen Standardabweichungen $\sigma_{x_i}$ gilt:
 \begin{equation}
@@ -185,12 +188,16 @@ Fehler gleicher Einheit werden quadratisch addiert:
     height=0.95\textheight,
     keepaspectratio,
     pagecommand={\thispagestyle{scrheadings}},
-    pagecommand*={\thispagestyle{scrheadings}\section{Messprotokoll}\subsection{Versuchsaufbau und Aufgaben}}
+    pagecommand*={\thispagestyle{scrheadings}\section{Messprotokoll}\bigskip
+\subsection{Versuchsaufbau und Aufgaben}}
 ]{../Messprotokoll 12.pdf}
 
 \pdftabelle{Messwerte für die statische Bestimmung des Richtmoments}{tab:richtmoment_messwerte}
 \pdftabelle{Schwingungsdauer des Pendels}{tab:richtmoment_schwingungsdauer}
+\pdftabelle{Periodendauer im Schwerpunkt}{tab:schwerpunkt_messwerte}
+\pdftabelle{Messungen Steiner Satz}{tab:steinerscher_satz_messwerte}
 
+\bigskip
 \subsection{Durchführung}
 Die praktische Durchführung gliedert sich in drei wesentliche Teile: die Bestimmung des Richtmoments, die Untersuchung des Schwerpunkts und Trägheitsmoments einer unregelmäßigen Platte sowie die Überprüfung des Steinerschen Satzes.
 
@@ -199,13 +206,14 @@ Zur statischen Bestimmung des Richtmoments wurde eine Aluminiumscheibe mit Winke
 Für die dynamische Bestimmung wurde das Pendel mit einem Drehtisch versehen. Zunächst wurde die Schwingungsdauer $T_1$ des leeren Tisches durch dreimaliges Stoppen von je 20 Schwingungen ermittelt. Anschließend wurde eine runde Messingscheibe, deren Masse und Durchmesser vorab gemessen wurden, zentriert aufgesetzt und analog die Schwingungsdauer $T_2$ des Gesamtsystems bestimmt.
 
 \paragraph{Schwerpunkt und Trägheitsmoment der unregelmäßigen Platte}
-Um den Schwerpunkt der unregelmäßig geformten Messingplatte zu finden, wurde diese auf eine Balancierschneide gelegt. Durch das Ausbalancieren in zwei zueinander senkrechten Lagen konnten zwei Schwerelinien auf einem Klebeetikett markiert werden; ihr Schnittpunkt markierte den Schwerpunkt. Die Platte wurde mit diesem Schwerpunkt exakt über der Achse auf dem Drehtisch fixiert und ihre Schwingungsdauer gemessen, um das Trägheitsmoment $J_s$ zu ermitteln.
+Um den Schwerpunkt der unregelmäßig geformten Messingplatte zu finden, wurde diese auf eine Balancierschneide gelegt. Durch das Ausbalancieren in zwei zueinander senkrechten Lagen konnten zwei Schwerelinien auf einem Klebeetikett markiert werden; ihr Schnittpunkt markierte den Schwerpunkt. Die Platte wurde mit diesem Schwerpunkt exakt über der Achse auf dem Drehtisch fixiert und ihre Schwingungsdauer gemessen, um das Trägheitsmoment $J_\text{platte}$ zu ermitteln.
 
 \paragraph{Messung zum Steinerschen Satz}
 Zur Überprüfung des Steinerschen Satzes wurde auf dem Klebeetikett eine Gerade durch den zuvor bestimmten Schwerpunkt gezogen. Auf dieser Linie wurden fünf Punkte in unterschiedlichen Abständen $a_1$ bis $a_5$ zum Schwerpunkt markiert. Die Platte wurde nacheinander an diesen Punkten auf die Drehachse gesetzt. Für jeden Abstand wurde die Schwingungsdauer gestoppt, um die Zunahme des Trägheitsmoments durch die exzentrische Aufhängung zu dokumentieren. Abschließend wurde die Gesamtmasse der unregelmäßigen Platte mit einer Waage ermittelt.
 
 \section{Auswertung}
 
+\bigskip
 \subsection{Aufgabe 1: Ermitteln des Richtmoments}
 Die Messwerte für die statische Bestimmung des Richtmoments sind in Tabelle \ref{tab:richtmoment_messwerte} aufgeführt. 
 
@@ -214,7 +222,7 @@ Mithilfe der Funktion:
     y = m \cdot x + b
 \end{equation}
 
-wird ein linearer Zusammenhang zwischen dem Drehmoment $M$ und dem Drehwinkel $\phi$ angenommen. Die Steigung $m$ der Ausgleichgerade entspricht dem Richtmoment $D$.
+wird ein linearer Zusammenhang zwischen der Masse $m$ und dem Drehwinkel $\phi$ angenommen.
 
 \begin{figure}[H]
     \centering
@@ -250,6 +258,7 @@ Mit dem Scheibenradius $r = \qty{5(0.005)e-2}{\meter}$ ergibt sich das Richtmome
     \end{equation}
 \end{resultbox}
 
+\bigskip
 \subsection{Aufgabe 2: Bestimmung des Richtmoments über die Schwingungsdauer}
 Zum ermitteln des Richtmoments über die Schwingungsdauer wurde die Schwingungsdauer des leeren Drehtisches $T_1 = \qty{1.21(3)}{\second}$ und des Drehtisches mit aufgesetzter Messingscheibe $T_2 = \qty{1.535(25)}{\second}$ gemessen. Die Messwerte sind in Tabelle \ref{tab:richtmoment_schwingungsdauer} zusammengefasst.
 
@@ -278,7 +287,7 @@ $r_\text{s} = \qty{5(0.005)e-2}{\meter}$. Damit ergibt sich das Richtmoment zu:
 mit der Fehlerfortpflanzung:
 \begin{align}
     \Delta D &= \sqrt{\left(\frac{\partial D}{\partial m_\text{s}} \sigma_{m_\text{s}}\right)^2 + \left(\frac{\partial D}{\partial r_\text{s}} \sigma_{r_\text{s}}\right)^2 + \left(\frac{\partial D}{\partial T_1} \sigma_{T_1}\right)^2 + \left(\frac{\partial D}{\partial T_2} \sigma_{T_2}\right)^2}\\
-    \footnotemark &= \sqrt{\left(\frac{2\pi^2 r_\text{s}^2}{T_2^2 - T_1^2} \sigma_{m_\text{s}}\right)^2 + \left(\frac{4\pi^2 m_\text{s} r_\text{s}}{T_2^2 - T_1^2} \sigma_{r_\text{s}}\right)^2 + \left(\frac{8\pi^2 m_\text{s} r_\text{s}^2 T_1}{(T_2^2 - T_1^2)^2} \sigma_{T_1}\right)^2 + \left(\frac{8\pi^2 m_\text{s} r_\text{s}^2 T_2}{(T_2^2 - T_1^2)^2} \sigma_{T_2}\right)^2} 
+    \footnotemark &= \sqrt{\left(\frac{2\pi^2 r_\text{s}^2}{T_2^2 - T_1^2} \sigma_{m_\text{s}}\right)^2 + \left(\frac{4\pi^2 m_\text{s} r_\text{s}}{T_2^2 - T_1^2} \sigma_{r_\text{s}}\right)^2 + \left(\frac{4\pi^2 m_\text{s} r_\text{s}^2 T_1}{(T_2^2 - T_1^2)^2} \sigma_{T_1}\right)^2 + \left(- \frac{4\pi^2 m_\text{s} r_\text{s}^2 T_2}{(T_2^2 - T_1^2)^2} \sigma_{T_2}\right)^2} 
 \end{align}
 
 \footnotetext{\LaTeX -Formel wurde mit KI generiert (weil wtf).}
@@ -292,11 +301,62 @@ Das Richtmoment $D$ wurde auf zwei verschiedene Arten bestimmt: einmal statisch 
 
 Die Sigma Abweichung zwischen den beiden Werten beträgt:
 \begin{equation}
-    \sigma = \frac{|D_\text{statisch} - D_\text{dynamisch}|}{\sqrt{\sigma_{D_\text{statisch}}^2 + \sigma_{D_\text{dynamisch}}^2}} \Rightarrow 0.9\sigma
+    \sigma = \frac{|D_\text{statisch} - D_\text{dynamisch}|}{\sqrt{\sigma_{D_\text{statisch}}^2 + \sigma_{D_\text{dynamisch}}^2}} \Rightarrow 1.07\sigma
+\end{equation}
+
+\begin{resultbox}[Ergebnis Aufgabe 2]
+    Das Richtmoment der Apparatur beträgt:
+    \begin{align}
+        D_\text{statisch} &= \qty{2.271(24)e-2}{\newton\meter\per\radian}\\
+        D_\text{dynamisch} &= \qty{2.7(4)e-2}{\newton\meter\per\radian}
+    \end{align}
+    Die Sigma Abweichung zwischen den beiden Werten beträgt:
+    \begin{equation}
+        \sigma = 1.07\sigma
+    \end{equation}
+\end{resultbox}
+
+\bigskip
+\subsection{Aufgabe 3: Berechnung des Trägheitsmoment der Unregelmäßigen Platte}
+
+Um das Trägheitsmoment der unregelmäßigen Platte zu bestimmen, wurde zunächst ihr Schwerpunkt durch Balancieren auf einer Schneide ermittelt. Anschließend wurde die Platte mit dem Schwerpunkt exakt über der Drehachse fixiert und ihre Schwingungsdauer gemessen. Mit dem zuvor bestimmten Richtmoment $D$ lässt sich das Trägheitsmoment $J_{ges}$ der Platte mit Aufbau berechnen:
+\begin{equation}
+    T = 2\pi \sqrt{\frac{J_{ges}}{D}}  \Rightarrow 
+    J_{ges} = \frac{D \cdot T^2}{4\pi^2}
+\end{equation}
+
+Es wird die Statische Methode verwendet, da diese eine höhere Genauigkeit aufweist. Die Schwingungsdauer der unregelmäßigen Platte beträgt $T = \qty{2.355(25)}{\second}$ und das Richtmoment $D = \qty{2.271(24)e-2}{\newton\meter\per\radian}$. Mit diesen Werten ergibt sich das Trägheitsmoment zu:
+
+\begin{equation}
+    J_{ges} = \qty{3.19(8)e-3}{\kilo\gram\meter\squared}
+\end{equation}
+
+Dasmit das Trägheitsmoment des Tisches $J_T$ abgezogen werden, um das Trägheitsmoment der Platte $J_\text{platte}$ zu erhalten. Das Trägheitsmoment des Tisches lässt sich aus der Schwingungsdauer des leeren Tisches $T_1 = \qty{1.21(3)}{\second}$ und dem Richtmoment $D$ berechnen:
+\begin{equation}
+    J_T = \frac{D \cdot T_1^2}{4\pi^2} = \qty{8.4(5)e-4}{\kilo\gram\meter\squared}
+\end{equation}
+
+
+Somit ergibt sich das Trägheitsmoment der unregelmäßigen Platte zu:
+\begin{equation}
+    J_\text{platte} = J_{ges} - J_T = \qty{2.35(9)e-3}{\kilo\gram\meter\squared}
 \end{equation}
 
 
 
+\begin{resultbox}[Ergebnis Aufgabe 3]
+    Das Trägheitsmoment der unregelmäßigen Platte beträgt \footnotemark:
+    \begin{equation}
+        J_\text{platte} = \qty{2.35(9)e-3}{\kilo\gram\meter\squared}
+    \end{equation}
+\end{resultbox}
+
+\footnotetext{Anmerkung: Unter verwendung von $D_\text{dynamisch}$ ergibt sich ein ähnlicher Wert von $J_\text{platte} = \qty{2.8(4)e-3}{\kilo\gram\meter\squared}$, was die Konsistenz der Ergebnisse bestätigt.}
+
+\bigskip
+\subsection{Aufgabe 4: Überprüfung des Steinerschen Satz}
+
+Für die Überprüfung des Steinerschen Satzes wurde die unregelmäßige Platte an fünf verschiedenen Punkten entlang einer Linie durch den Schwerpunkt auf der Drehachse auf dem Drehtisch fixiert. Die Schwingungsdauer $T$ wurde für jeden Abstand $a$ zum Schwerpunkt gemessen. Die Messwerte sind in Tabelle \ref{tab:steinerscher_satz_messwerte} zusammengefasst.
 
 
 \clearpage
