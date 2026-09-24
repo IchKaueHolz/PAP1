@@ -1,10 +1,9 @@
 
-
     
     V21 Aufgabe 1
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{88}{\boxspacing}
+\prompt{In}{incolor}{93}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{k+kn}{import}\PY{+w}{ }\PY{n+nn}{numpy}\PY{+w}{ }\PY{k}{as}\PY{+w}{ }\PY{n+nn}{np}
 \PY{k+kn}{import}\PY{+w}{ }\PY{n+nn}{uncertainties}\PY{+w}{ }\PY{k}{as}\PY{+w}{ }\PY{n+nn}{unc}
@@ -12,7 +11,7 @@
 \end{tcolorbox}
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{89}{\boxspacing}
+\prompt{In}{incolor}{94}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{n}{I} \PY{o}{=} \PY{n}{unc}\PY{o}{.}\PY{n}{ufloat}\PY{p}{(}\PY{l+m+mf}{0.75}\PY{p}{,} \PY{l+m+mf}{0.01}\PY{p}{)}  \PY{c+c1}{\PYZsh{} Stromstärke in A}
 \PY{n}{t} \PY{o}{=} \PY{n}{unc}\PY{o}{.}\PY{n}{ufloat}\PY{p}{(}\PY{l+m+mi}{1800}\PY{p}{,} \PY{l+m+mi}{30}\PY{p}{)}  \PY{c+c1}{\PYZsh{} Zeit in s}
@@ -49,7 +48,7 @@ Mittelwert der Faraday-Konstante: (8.948±0.233)×10^4
     Abweichung
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{90}{\boxspacing}
+\prompt{In}{incolor}{95}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{n}{F\PYZus{}lit} \PY{o}{=} \PY{l+m+mf}{96485.33212}
 
@@ -68,7 +67,7 @@ simga\_kath=1.97
     \end{Verbatim}
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{92}{\boxspacing}
+\prompt{In}{incolor}{96}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{k+kn}{from}\PY{+w}{ }\PY{n+nn}{scipy}\PY{n+nn}{.}\PY{n+nn}{optimize}\PY{+w}{ }\PY{k+kn}{import} \PY{n}{curve\PYZus{}fit}
 \PY{k+kn}{import}\PY{+w}{ }\PY{n+nn}{matplotlib}\PY{n+nn}{.}\PY{n+nn}{pyplot}\PY{+w}{ }\PY{k}{as}\PY{+w}{ }\PY{n+nn}{plt}
@@ -118,7 +117,7 @@ b = -1.2981
     { \hspace*{\fill} \\}
     
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{ }{\boxspacing}
+\prompt{In}{incolor}{97}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{n}{T} \PY{o}{=} \PY{n}{unc}\PY{o}{.}\PY{n}{ufloat}\PY{p}{(}\PY{l+m+mf}{22.5}\PY{p}{,} \PY{l+m+mf}{1.5}\PY{p}{)}
 \PY{n+nb}{print}\PY{p}{(}\PY{n}{linear}\PY{p}{(}\PY{n}{T}\PY{p}{,} \PY{o}{*}\PY{n}{popt}\PY{p}{)}\PY{p}{)}
@@ -130,7 +129,7 @@ b = -1.2981
     \end{Verbatim}
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{ }{\boxspacing}
+\prompt{In}{incolor}{98}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{n}{p\PYZus{}Dampf} \PY{o}{=} \PY{n}{linear}\PY{p}{(}\PY{n}{T}\PY{p}{,} \PY{o}{*}\PY{n}{popt}\PY{p}{)} \PY{o}{*} \PY{l+m+mf}{1.33322}  \PY{c+c1}{\PYZsh{} Torr in mbar}
 \PY{n+nb}{print}\PY{p}{(}\PY{l+s+sa}{f}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+si}{\PYZob{}}\PY{n}{p\PYZus{}Dampf}\PY{l+s+si}{=:}\PY{l+s+s1}{.4uP}\PY{l+s+si}{\PYZcb{}}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
@@ -147,14 +146,14 @@ p\_Dampf=27.155±1.926
     \end{Verbatim}
 
             \begin{tcolorbox}[breakable, size=fbox, boxrule=.5pt, pad at break*=1mm, opacityfill=0]
-\prompt{Out}{outcolor}{ }{\boxspacing}
+\prompt{Out}{outcolor}{98}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
-1034.1392313191598+/-1.7446220362128806
+1034.1392313122794+/-1.7446220339090985
 \end{Verbatim}
 \end{tcolorbox}
         
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{ }{\boxspacing}
+\prompt{In}{incolor}{99}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{n}{p\PYZus{}0} \PY{o}{=} \PY{l+m+mf}{1013.25}
 \PY{n}{T\PYZus{}0} \PY{o}{=} \PY{l+m+mf}{273.15}
@@ -167,14 +166,14 @@ p\_Dampf=27.155±1.926
 \end{tcolorbox}
 
             \begin{tcolorbox}[breakable, size=fbox, boxrule=.5pt, pad at break*=1mm, opacityfill=0]
-\prompt{Out}{outcolor}{ }{\boxspacing}
+\prompt{Out}{outcolor}{99}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
-23.77024426354587+/-0.08089395076577847
+23.770244263704015+/-0.08089395081927274
 \end{Verbatim}
 \end{tcolorbox}
         
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{ }{\boxspacing}
+\prompt{In}{incolor}{100}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{n}{V\PYZus{}H2} \PY{o}{=} \PY{n}{unc}\PY{o}{.}\PY{n}{ufloat}\PY{p}{(}\PY{l+m+mf}{45.6}\PY{p}{,} \PY{l+m+mf}{0.2}\PY{p}{)}\PY{o}{*}\PY{l+m+mf}{1e\PYZhy{}3}  
 
@@ -188,7 +187,7 @@ n=(1.9184+/-0.0106)e-03
     \end{Verbatim}
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{ }{\boxspacing}
+\prompt{In}{incolor}{101}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{n}{I\PYZus{}v} \PY{o}{=} \PY{n}{unc}\PY{o}{.}\PY{n}{ufloat}\PY{p}{(}\PY{l+m+mf}{0.85}\PY{p}{,} \PY{l+m+mf}{0.01}\PY{p}{)}  
 \PY{n}{t\PYZus{}v} \PY{o}{=} \PY{n}{unc}\PY{o}{.}\PY{n}{ufloat}\PY{p}{(}\PY{l+m+mi}{403}\PY{p}{,} \PY{l+m+mi}{3}\PY{p}{)}
@@ -200,22 +199,22 @@ n=(1.9184+/-0.0106)e-03
 \end{tcolorbox}
 
     \begin{Verbatim}[commandchars=\\\{\}]
-F=(9.0472+/-0.1358)e+04
+F=(8.9282+/-0.1338)e+04
     \end{Verbatim}
 
     Abweichung
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{ }{\boxspacing}
+\prompt{In}{incolor}{102}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{p}{(}\PY{n}{F}\PY{o}{.}\PY{n}{n} \PY{o}{\PYZhy{}} \PY{n}{F\PYZus{}lit}\PY{p}{)}\PY{o}{/}\PY{n}{F}\PY{o}{.}\PY{n}{s}
 \end{Verbatim}
 \end{tcolorbox}
 
             \begin{tcolorbox}[breakable, size=fbox, boxrule=.5pt, pad at break*=1mm, opacityfill=0]
-\prompt{Out}{outcolor}{ }{\boxspacing}
+\prompt{Out}{outcolor}{102}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
--4.429371352587826
+-5.383182200820044
 \end{Verbatim}
 \end{tcolorbox}
         
@@ -226,3 +225,9 @@ F=(9.0472+/-0.1358)e+04
 \end{Verbatim}
 \end{tcolorbox}
 
+
+    % Add a bibliography block to the postdoc
+    
+    
+    
+\end{document}
