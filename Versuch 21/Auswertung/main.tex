@@ -85,9 +85,11 @@
 \newcommand{\datum}{24. September 2026}
 \newcommand{\betreuer}{Fabian Mrosek}
 
+
 \begin{document}
 
 \pagestyle{scrheadings}
+
 
 \begin{titlepage}
 
@@ -102,7 +104,8 @@
     {\LARGE \bfseries \versuch\ -- \titel\par}
     \vspace{1.5cm}
 
-    \begin{tabular}{ll}
+    
+\begin{tabular}{ll}
         \textbf{Autor:} & \autor\\
         \textbf{Gruppe:} & \gruppe\\
         \textbf{Betreuer:} & \betreuer\\
@@ -131,6 +134,7 @@ Befindet sich ein Elektrolyt im Feld zweier Elektroden, so tritt bei Stromfluss 
 Die Faraday-Konstanet $F$ ist eine fundamentale physikalische Konstante, die den Zusammenhang zwischen der elektrischen Ladung und der Menge an Stoff beschreibt, die bei der Elektrolyse umgesetzt wird. 
 Sie wird definiert:
 
+
 \begin{equation}
     F = e \cdot N_A = \qty{9.648455(27)e4}{\coulomb\per\mol}
 \end{equation}
@@ -138,6 +142,7 @@ Sie wird definiert:
 Genau gesgt entpricht sie der Ladungsmenge, die durch einen Elektrolyten fließt, wenn sich 1/z Mol eines z-wertigenStoffes an der Elektrode absetzt. \cite{PAPskript}
 
 Beim ersten Teil des Veruschs wird die Faraday-Konstante experimentell bestimmt, indem die Masse des abgeschiedenen Stoffes an der Elektrode gemessen wird, während eine bekannte elektrische Ladung durch den Elektrolyten fließt. Die Faraday-Konstante kann dann aus dem Verhältnis der abgeschiedenen Masse zur durchgeflossenen Ladung berechnet werden.
+
 
 \begin{align}
     m &= n \cdot M_{Mol} = \frac{Q}{z \cdot F} \cdot M_{Mol} \\
@@ -147,7 +152,8 @@ Beim ersten Teil des Veruschs wird die Faraday-Konstante experimentell bestimmt,
 
 Mit $m$ ist die Masse des abgeschiedenen Stoffes, $n$ die Stoffmenge, $M_{Mol}$ die molare Masse, $Q$ die durchgeflossene Ladung, $z$ die wertigkeit der Ionen und $F$ die Faraday-Konstante.
 
-Um die Masse zu bestimmen, wird Kupfersulfat als Elektrolyt verwendet und der gemessene Masseverlust an der Anode und die Massezunahme an der Kathode verglichen. Die durchgeflossene Ladung wird durch die Messung des Stroms und der Zeit 9$Q = I \cdot t$ berechnet.
+Um die Masse zu bestimmen, wird Kupfersulfat als Elektrolyt verwendet und der gemessene Masseverlust an der Anode und die Massezunahme an der Kathode verglichen. Die durchgeflossene Ladung wird durch die Messung des Stroms und der Zeit $Q = I \cdot t$ berechnet.
+
 
 \begin{equation}
     \ce{CuSO4 <=> Cu^{2+} + SO4^{2-}}
@@ -155,11 +161,13 @@ Um die Masse zu bestimmen, wird Kupfersulfat als Elektrolyt verwendet und der ge
 
 In zweiten Teil wird die Faraday-Konstante durch Elektrolyse von Wasser durch die Messung der abgeschiedenen Gasvolumina bestimmt. Dabei wird die Menge an Wasserstoff und Sauerstoff, die bei der Elektrolyse von Wasser entsteht, gemessen. Die Faraday-Konstante kann dann aus dem Verhältnis der abgeschiedenen Gasvolumina zur durchgeflossenen Ladung berechnet werden:
 
+
 \begin{equation}
     n = \frac{Q}{z \cdot F} \implies F = \frac{Q}{z \cdot n} \label{eq:calc_Faraday}
 \end{equation}
 
 Die Stoffmenge $n$ beträgt
+
 
 \begin{equation}
     n = \frac{V}{V_{Mol}}
@@ -169,6 +177,7 @@ Das Molare Volumen $V_{Mol, 0}$ beträgt bei Normalbedingungen $\qty{22.414}{\li
 
 Um es auf die Bedingungen des Versuchs anzupassen, wird das Volumen auf die Normalbedingungen umgerechnet:
 
+
 \begin{equation}
     V_{Mol} = \frac{p_0}{p} \cdot \frac{T}{T_0} \cdot V_{Mol,0} \label{eq:calc_Volumes}
 \end{equation}
@@ -177,6 +186,7 @@ Mit $p_0 = \qty{1013.25}{\milli\bar}$, $T_0 = \qty{273.15}{\kelvin}$, $p$ dem ge
 
 Der gesaamte Luftdruck $p$ setzt sich aus dem Umgebungsdruck $p_{L}$ und dem Sättigungsdampfdruck $P_{D}^{H_2SO_4}$ zusammen:
 Näherungsweise entspricht der Dampfdruck der Schwefelsäure $p_D^{\ce{H2SO4}}$ 90\% des Dampfdrucks des Wassers $p_D^{\ce{H2O}}$
+
 
 \begin{equation}
     p = p_L + p_D^{H_2SO4} = p_L + 0.9 \cdot p_D^{H_2O}
@@ -210,9 +220,10 @@ In diesem Teil wird die Faraday-Konstante durch Elektrolyse von Wasser bestimmt.
 
 \section{Auswertung}
 
-\subsection{Aufgabe 1: bestimmung der Faraday-Konstante durch Elektrolyse von Kupfersulfat}
+\subsection{Aufgabe 1: Bestimmung der Faraday-Konstante durch Elektrolyse von Kupfersulfat}
 
 An der Anode wird Kupfer oxidiert und geht in Lösung, während an der Kathode Kupfer reduziert wird und sich auf der Elektrode abscheidet. Die Masse der Anode nimmt ab, während die Masse der Kathode zunimmt.
+
 
 \begin{align}
         &\text{Elektrolyt:} \quad \ce{&CuSO4 <=> Cu^{2+} + SO4^{2-}}\\
@@ -222,12 +233,14 @@ An der Anode wird Kupfer oxidiert und geht in Lösung, während an der Kathode K
 
 Die Messwerte aus dem Messprotkoll betragen:
 
+
 \begin{table}[H]
 
     \centering
     \caption{Messwerte für die Elektrolyse von Kupfersulfat.}
     \label{tab:messwerte_kupfersulfat}
-    \begin{tabular}{lc}
+    
+\begin{tabular}{lc}
         \toprule
         \textbf{Messwerte}\\
         \midrule
@@ -246,48 +259,57 @@ Für gemessene Masse nach der Elektrolyse wird eine grössere Massenunsicherheit
 Mit Gleichung \ref{eq:calc_masses} ($m = m_{vor}-m_{nach}$) kann die Faraday-Konstante berechnet werden.
 Die Fehlerformel beträgt:
 
+
 \begin{equation}
     \Delta F = \sqrt{\left(\frac{t\cdot M_{Mol}}{z * m} \Delta I \right)^2 + \left(\frac{I\cdot M_{Mol}}{z * m} \Delta t\right)^2 + \left(\frac{I\cdot t\cdot M_{Mol}}{z * m^2} \Delta m\right)^2}
 \end{equation}
 
 Es ergeben sich folgende Werte:
 
-\begin{tabular}{lc}
-    \toprule
-    \textbf{Berechnete Werte}\\
-    \midrule
-    Masseverlust der Anode & $m_{Anode} = \qty{0.488(10)}{\gram}$ \\
-    Massezunahme der Kathode & $m_{Kathode} = \qty{0.471(10)}{\gram}$ \\
-    Durchgeflossene Ladung & $Q = I \cdot t = \qty{1350(29)}{\coulomb}$ \\
-    Faraday-Konstante (Anode) & $F_{Anode} = \qty{8.79(27)e4}{\coulomb\per\mol}$ \\
-    Faraday-Konstante (Kathode) & $F_{Kathode} = \qty{9.11(28)e4}{\coulomb\per\mol}$ \\
-    Literaturwert & $F_{Literatur} = \qty{9.648455(27)e4}{\coulomb\per\mol}$ \\
-    \bottomrule
-\end{tabular}
-
+\begin{table}[H]
+    \centering
+    \caption{Berechnete Werte für Massenbestimmung}
+    \begin{tabular}{lc}
+        \toprule
+        \textbf{Berechnete Werte}\\
+        \midrule
+        Masseverlust der Anode & $m_{Anode} = \qty{0.488(10)}{\gram}$ \\
+        Massezunahme der Kathode & $m_{Kathode} = \qty{0.471(10)}{\gram}$ \\
+        Durchgeflossene Ladung & $Q = I \cdot t = \qty{1350(29)}{\coulomb}$ \\
+        Faraday-Konstante (Anode) & $F_{Anode} = \qty{8.79(27)e4}{\coulomb\per\mol}$ \\
+        Faraday-Konstante (Kathode) & $F_{Kathode} = \qty{9.11(28)e4}{\coulomb\per\mol}$ \\
+        Literaturwert & $F_{Literatur} = \qty{9.648455(27)e4}{\coulomb\per\mol}$ \\
+        \bottomrule
+    \end{tabular}
+\end{table}
 Die Sigma Abweichungen betragen:
+
 \begin{align}
     \sigma_{Anode} &= \frac{|F_{Anode} - F_{Literatur}|}{\Delta F_{Anode}} \Rightarrow 3.29\sigma\\
     \sigma_{Kathode} &= \frac{|F_{Kathode} - F_{Literatur}|}{\Delta F_{Kathode}} \Rightarrow 1.97\sigma
 \end{align}
 
+
 \begin{resultbox}[Ergebnis]
     Die mithilfe der Massen bestimmte Faraday-Konstante betragen:
-    \begin{align}
+    
+\begin{align}
         F_{Anode} &= \qty{8.79(27)e4}{\coulomb\per\mol} \\
         F_{Kathode} &= \qty{9.11(28)e4}{\coulomb\per\mol}
     \end{align}
     Die Abweichungen vom Literaturwert betragen:
-    \begin{align}
+    
+\begin{align}
         \sigma_{Anode} &= 3.29\sigma \\
         \sigma_{Kathode} &= 1.97\sigma
     \end{align}
 \end{resultbox}
 
 \bigskip
-\subsection{Aufgabe 2: bestimmung der Faraday-Konstante durch Elektrolyse von Wasser}
+\subsection{Aufgabe 2: Bestimmung der Faraday-Konstante durch Elektrolyse von Wasser}
 
 Die Reaktion an der Anode und Kathode lautet:
+
 
 \begin{align}
     &\text{Anode:} \quad \ce{&2H2O -> O2 + 4H^+ + 4e^-}\\
@@ -295,15 +317,17 @@ Die Reaktion an der Anode und Kathode lautet:
 \end{align}
 
 
-Mithilfe der gegebenen Sättigungsdampfdrucktabelle für Wasser kann der Dampfdruck bei der gegebenen Temperatur interpoliert werden. Der Sättigungsdampfdruck des Wassers bei $T = \qty{22.5}{\celsius}$ beträgt $p_D^{H2O} \approx \qty{20.4(1.4)}{\text{Torr}} = \qty{27.7(1.8)}{\milli\bar}$. 
+Mithilfe der gegebenen Sättigungsdampfdrucktabelle für Wasser kann der Dampfdruck bei der gegebenen Temperatur interpoliert werden. Der Sättigungsdampfdruck des Wassers bei $T = \qty{22.5}{\celsius}$ beträgt $p_D^{H2O} \approx \qty{20.4(1.4)}{\text{Torr}} = \qty{27.1(2.0)}{\milli\bar}$. 
 
 Die Messwerte betragen somit:
+
 
 \begin{table}[H]
     \centering
     \caption{Messwerte für die Elektrolyse von Wasser.}
     \label{tab:messwerte_wasser}
-    \begin{tabular}{lc}
+    
+\begin{tabular}{lc}
         \toprule
         \textbf{Messwerte}\\
         \midrule
@@ -315,7 +339,7 @@ Die Messwerte betragen somit:
         Luftdruck & $p = \qty{1009.7(2)}{\milli\bar}$ \\
         Berechneter Dampfdruck des Wassers & $p_D^{H2O} = \qty{27.1(2.0)}{\milli\bar}$ \\
         Molare Masse von Wasserstoff & $M_{Mol} = \qty{2.016}{\gram\per\mol}$ \\
-        Wertigkeit von Wasserstoff & $z = 1$ \\
+        Wertigkeit von Wasserstoff & $z = 2$ \\
         Molvolumen bei Normalbedingungen & $V_{Mol,0} = \qty{22.414}{\liter\per\mol}$\\
         
         \bottomrule
@@ -323,6 +347,7 @@ Die Messwerte betragen somit:
 \end{table}
 
 Mithilfe von Gleichung \ref{eq:calc_Volumes} und \ref{eq:calc_Faraday} kann die Faraday-Konstante berechnet werden. 
+
 
 \begin{align}
     p &= p_L + 0.9 * p_D^{H2O} &&= \qty{1034.1(1.8)}{\milli\bar} \\
@@ -333,6 +358,7 @@ Mithilfe von Gleichung \ref{eq:calc_Volumes} und \ref{eq:calc_Faraday} kann die 
 
 Die Fehlerformeln der Berechnungen betragen:
 
+
 \begin{align}
     \Delta p &= \sqrt{(\Delta p_L)^2 + (0.9 \cdot \Delta p_D^{H2O})^2} \\
     \Delta V_{Mol} &= V_{Mol} \cdot \sqrt{\left(\frac{\Delta p}{p}\right)^2 + \left(\frac{\Delta T}{T}\right)^2} \\
@@ -341,20 +367,49 @@ Die Fehlerformeln der Berechnungen betragen:
 \end{align}
 
 Die Abweichung vom Literaturwert beträgt:
+
 \begin{equation}
     \sigma = \frac{|F - F_{Literatur}|}{\Delta F} \Rightarrow 5.38\sigma
 \end{equation}
 
+
 \begin{resultbox}
     Die mithilfe der Gasvolumina bestimmte Faraday-Konstante beträgt:
-    \begin{align}
+    
+\begin{align}
         F &= \qty{8.93(14)e4}{\coulomb\per\mol}
     \end{align}
     Die Abweichung vom Literaturwert beträgt:
-    \begin{align}
+    
+\begin{align}
         \sigma &= 5.38\sigma    
     \end{align}
 \end{resultbox}
+
+
+\section{Diskussion}
+
+Die Faraday-Konstante wurde in diesem Versuch auf zwei verschiedene Arten bestimmt: durch die Messung der Masse von Kupfer, das bei der Elektrolyse von Kupfersulfat abgeschieden wurde, und durch die Messung des Volumens von Wasserstoff, das bei der Elektrolyse von Wasser abgeschieden wurde.
+
+\paragraph{Bestimmung durch Massenmessung}
+Die Bestimmung der Faraday-Konstante durch die Messung der Masse von Kupfer ergab einen Wert von $F_{Anode} = \qty{8.79(27)e4}{\coulomb\per\mol}$ und $F_{Kathode} = \qty{9.11(28)e4}{\coulomb\per\mol}$, wobei die Abweichungen in Sigma-Einheiten für die Massenbestimmung bei 3.29$\sigma$ (Anode) und 1.97$\sigma$ (Kathode) liegen. Beide dieser Werte lagen innerhalb der Unsicherheitsgrenzen des Literaturwertes von $F = \qty{9.648455(27)e4}{\coulomb\per\mol}$, was auf eine gute Übereinstimmung hinweist. Die Hauptquellen der Unsicherheiten in der Methode können hauptsächlich auf das Abspülen der Elektroden und den dadaruch entstanddenen Masseverlust zurückgeführt werden. Außerdem hat das Einstellen der Stroms und die Messung der Zeit zu Beginn des Veruschs zu einer größeren Unsicherheit geführt, als angenommen, da die Stromstärke nicht sofort konstant war. (Somit war die übertragene Ladung geringer als angenommen, was zu einer Unterschätzung der Faraday-Konstante führte.) Es ist des weiteren möglich, dass nebenreaktionen an der Anode und Kathode aufgetreten sind, die die Masse der Elektroden beeinflusst haben. Diese Nebenreaktionen könnten zu einer Abweichung von den theoretischen Erwartungen geführt haben. 
+
+
+
+\paragraph{Bestimmung durch Volumen}
+ Die Bestimmung durch die Messung des Volumens von Wasserstoff ergab einen Wert von $F = \qty{8.93(14)e4}{\coulomb\per\mol}$., die Abweichung liegt bei 5.38$\sigma$. Dies deutet auf einen systematischen Fehler hin, der die Messung beeinflusst hat. Mögliche Ursachen für diese Abweichung könnten die ungenaue Bestimmung der Volumina durch die Gasblase, wodruch der hydrostatische Druck nicht komplett ausgeglichen wurde, oder die ungenaue Bestimmung des Dampfdrucks des Wassers bei der gegebenen Temperatur sein. Eine weitere Fehlerquelle ist, dass die Wasserlösung mit Schwefelsäure versetzt war, um die Leitfähigkeit zu erhöhen. Auch hier könnten Nebenreaktionen an der Anode und Kathode aufgetreten sein, wie die Reaktion von Schwefelsäure zu Perlschwefelsäure, die die Menge an abgeschiedenem Wasserstoff beeinflusst haben. Diese Nebenreaktionen könnten zu einer Abweichung von den theoretischen Erwartungen geführt haben.
+
+
+ Im Ganzen kann man aber feshalten, dass die Bestimmung der Faraday-Konstante durch die Messung der Masse von Kupfer eine bessere Übereinstimmung mit dem Literaturwert aufweist als die Bestimmung durch die Messung des Volumens von Wasserstoff. Die Massenbestimmung ist daher als zuverlässiger anzusehen, während die Volumenbestimmung durch systematische Fehler beeinflusst wurde.
+
+ \section{Fazit}
+ Zum Schluss kann man sagen, dass die Bestimmung der Faraday-Konstante durch die Elektrolyse erfolgreich durchgeführt wurde. Die Bestimmung durch die Messung der Masse von Kupfer ergab eine gute Übereinstimmung mit dem Literaturwert, während die Bestimmung durch die Messung des Volumens von Wasserstoff durch systematische Fehler beeinflusst wurde. Insgesamt zeigt der Versuch die Bedeutung der Faraday-Konstante in der Elektrochemie und bietet einen praktischen Einblick in die Prinzipien der Elektrolyse. Der Versuch hat mich sehr interessiert und es war schon cool zu sehen, als das Wasser in Wasserstoff und Sauerstoff zerlegt wurde. Nun weiß ich ganz sicher, wie die Faraday-Konstante definiert ist:
+
+ \begin{equation}
+     F = e \cdot N_A\text{!!}
+ \end{equation}
+
+ 
 
 \clearpage
 
@@ -362,6 +417,7 @@ Die Abweichung vom Literaturwert beträgt:
 
 
 \listoftables
+
 
 \begin{thebibliography}{5}
     \bibitem{PAPskript} Dr. J.Wagner, \emph{Physikalisches Anfängerpraktikum}, Stand 11/2024
@@ -371,13 +427,16 @@ Die Abweichung vom Literaturwert beträgt:
 
 
 
+
 \begin{comment}
+
 
 \begin{table}[H]
     \centering
     \caption{Mess- und Geräteparameter für die exemplarische Berechnung (Messung 28).}
     \label{tab:parameter_messung_28}
-    \begin{tabular}{ll}
+    
+\begin{tabular}{ll}
         \toprule
         \textbf{Größe} & \textbf{Wert} \\
         \midrule
