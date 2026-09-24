@@ -231,23 +231,58 @@ Die Messwerte aus dem Messprotkoll betragen:
         \toprule
         \textbf{Messwerte}\\
         \midrule
-        Zeit des Stromflusses & $t = \qty{3600(30)}{\second}$ \\
+        Zeit des Stromflusses & $t = \qty{1800(30)}{\second}$ \\
         Stromstärke & $I = \qty{0.750(10)}{\ampere}$ \\
         Masse der Anode vor der Elektrolyse & $m_{Anode, vor} = \qty{115.2190(10)}{\milli\gram}$ \\
-        Masse der Anode nach der Elektrolyse & $m_{Anode, nach} = \qty{114.7310(10)}{\milli\gram}$ \\
+        Masse der Anode nach der Elektrolyse & $m_{Anode, nach} = \qty{114.731(10)}{\milli\gram}$ \\
         Masse der Kathode vor der Elektrolyse & $m_{Kathode, vor} = \qty{104.4710(10)}{\milli\gram}$ \\
-        Masse der Kathode nach der Elektrolyse & $m_{Kathode, nach} = \qty{104.9420(10)}{\milli\gram}$ \\
+        Masse der Kathode nach der Elektrolyse & $m_{Kathode, nach} = \qty{104.942(10)}{\milli\gram}$ \\
+        Molare Masse von Kupfer & $M_{Mol} = \qty{63.546}{\gram\per\mol}$ \\
+        Wertigkeit von Kupfer & $z = 2$ \\
         \bottomrule
         \end{tabular}
 \end{table}
-
-Mit Gleichung \ref{eq:calc_masses} kann die Faraday-Konstante berechnet werden.
+Für gemessene Masse nach der Elektrolyse wird eine grössere Massenunsicherheit von $\Delta m = \qty{0.1}{\milli\gram}$ angenommen, da die Masse durch das Abspülen der Elektroden beeinflusst werden kann.
+Mit Gleichung \ref{eq:calc_masses} ($m = m_{vor}-m_{nach}$) kann die Faraday-Konstante berechnet werden.
 Die Fehlerformel beträgt:
 
 \begin{equation}
     \Delta F = \sqrt{\left(\frac{t\cdot M_{Mol}}{z * m} \Delta I \right)^2 + \left(\frac{I\cdot M_{Mol}}{z * m} \Delta t\right)^2 + \left(\frac{I\cdot t\cdot M_{Mol}}{z * m^2} \Delta m\right)^2}
 \end{equation}
 
+Es ergeben sich folgende Werte:
+\begin{tabular}{lc}
+    \toprule
+    \textbf{Berechnete Werte}\\
+    \midrule
+    Masseverlust der Anode & $m_{Anode} = \qty{0.488(10)}{\gram}$ \\
+    Massezunahme der Kathode & $m_{Kathode} = \qty{0.471(10)}{\gram}$ \\
+    Durchgeflossene Ladung & $Q = I \cdot t = \qty{1350(29)}{\coulomb}$ \\
+    Faraday-Konstante (Anode) & $F_{Anode} = \qty{8.79(27)e4}{\coulomb\per\mol}$ \\
+    Faraday-Konstante (Kathode) & $F_{Kathode} = \qty{9.11(28)e4}{\coulomb\per\mol}$ \\
+    Literaturwert & $F_{Literatur} = \qty{9.648455(27)e4}{\coulomb\per\mol}$ \\
+    \bottomrule
+\end{tabular}
+
+Die Sigma Abweichungen betragen:
+\begin{align}
+    \sigma_{Anode} &= \frac{|F_{Anode} - F_{Literatur}|}{\Delta F_{Anode}} \Rightarrow 3.29\sigma\\
+    \sigma_{Kathode} &= \frac{|F_{Kathode} - F_{Literatur}|}{\Delta F_{Kathode}} \Rightarrow 1.97\sigma
+\end{align}
+
+\begin{resultbox}[Ergebnis]
+    Die mithilfe der Massen bestimmte Faraday-Konstante betragen:
+    \begin{align}
+        F_{Anode} &= \qty{8.79(27)e4}{\coulomb\per\mol} \\
+        F_{Kathode} &= \qty{9.11(28)e4}{\coulomb\per\mol}
+    \end{align}
+    Die Abweichungen vom Literaturwert betragen:
+    \begin{align}
+        \sigma_{Anode} &= 3.29\sigma \\
+        \sigma_{Kathode} &= 1.97\sigma
+    \end{align}
+
+\end{resultbox}
 
 
 
