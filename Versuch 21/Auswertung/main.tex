@@ -156,7 +156,7 @@ Um die Masse zu bestimmen, wird Kupfersulfat als Elektrolyt verwendet und der ge
 In zweiten Teil wird die Faraday-Konstante durch Elektrolyse von Wasser durch die Messung der abgeschiedenen Gasvolumina bestimmt. Dabei wird die Menge an Wasserstoff und Sauerstoff, die bei der Elektrolyse von Wasser entsteht, gemessen. Die Faraday-Konstante kann dann aus dem Verhältnis der abgeschiedenen Gasvolumina zur durchgeflossenen Ladung berechnet werden:
 
 \begin{equation}
-    n = \frac{Q}{z \cdot F} \implies F = \frac{Q}{z \cdot n}
+    n = \frac{Q}{z \cdot F} \implies F = \frac{Q}{z \cdot n} \label{eq:calc_Faraday}
 \end{equation}
 
 Die Stoffmenge $n$ beträgt
@@ -170,7 +170,7 @@ Das Molare Volumen $V_{Mol, 0}$ beträgt bei Normalbedingungen $\qty{22.414}{\li
 Um es auf die Bedingungen des Versuchs anzupassen, wird das Volumen auf die Normalbedingungen umgerechnet:
 
 \begin{equation}
-    V_{Mol} = \frac{p_0}{p} \cdot \frac{T}{T_0} \cdot V_{Mol,0}
+    V_{Mol} = \frac{p_0}{p} \cdot \frac{T}{T_0} \cdot V_{Mol,0} \label{eq:calc_Volumes}
 \end{equation}
 
 Mit $p_0 = \qty{1013.25}{\milli\bar}$, $T_0 = \qty{273.15}{\kelvin}$, $p$ dem gesamten Luftdruck und $T$ der Temperatur.
@@ -294,8 +294,12 @@ Die Reaktion an der Anode und Kathode lautet:
     &\text{Kathode:} \quad \ce{&4H^+ + 4e^- -> 2H2}
 \end{align}
 
-Die Messwerte aus dem Messprotkoll betragen:
-\begin{table}
+
+Mithilfe der gegebenen Sättigungsdampfdrucktabelle für Wasser kann der Dampfdruck bei der gegebenen Temperatur interpoliert werden. Der Sättigungsdampfdruck des Wassers bei $T = \qty{22.5}{\celsius}$ beträgt $p_D^{H2O} \approx \qty{20.4(1.4)}{\text{Torr}} = \qty{27.7(1.8)}{\milli\bar}$. 
+
+Die Messwerte betragen somit:
+
+\begin{table}[H]
     \centering
     \caption{Messwerte für die Elektrolyse von Wasser.}
     \label{tab:messwerte_wasser}
@@ -303,18 +307,54 @@ Die Messwerte aus dem Messprotkoll betragen:
         \toprule
         \textbf{Messwerte}\\
         \midrule
-        Zeit des Stromflusses & $t = \qty{300(5)}{\second}$ \\
-        Stromstärke & $I = \qty{0.500(10)}{\ampere}$ \\
-        Volumen des abgeschiedenen Wasserstoffs & $V_{H2} = \qty{0.250(5)}{\liter}$ \\
+        Zeit des Stromflusses & $t = \qty{403(3)}{\second}$ \\
+        Stromstärke & $I = \qty{0.850(10)}{\ampere}$ \\
+        Volumen des abgeschiedenen Wasserstoffs & $V_{H2} = \qty{45.6(2)}{\milli\liter}$ \\
+        Volumen des abgeschiedenen Sauerstoffs & $V_{O2} = \qty{22.6(2)}{\milli\liter}$ \\
         Temperatur & $T = \qty{295.7(1.5)}{\kelvin}$ \\
         Luftdruck & $p = \qty{1009.7(2)}{\milli\bar}$ \\
+        Berechneter Dampfdruck des Wassers & $p_D^{H2O} = \qty{27.1(2.0)}{\milli\bar}$ \\
         Molare Masse von Wasserstoff & $M_{Mol} = \qty{2.016}{\gram\per\mol}$ \\
         Wertigkeit von Wasserstoff & $z = 1$ \\
-        Umgebungsdruck & $p_L = p - 0.9 * p_D^{H2O} = 1013 - 0.9 * 23.8$\\
         Molvolumen bei Normalbedingungen & $V_{Mol,0} = \qty{22.414}{\liter\per\mol}$\\
+        
         \bottomrule
     \end{tabular}
 \end{table}
+
+Mithilfe von Gleichung \ref{eq:calc_Volumes} und \ref{eq:calc_Faraday} kann die Faraday-Konstante berechnet werden. 
+
+\begin{align}
+    p &= p_L + 0.9 * p_D^{H2O} &&= \qty{1034.1(1.8)}{\milli\bar} \\
+    V_{Mol} &= \frac{p_0}{p} \cdot \frac{T}{T_0} \cdot V_{Mol,0} &&= \qty{23.77(8)}{\liter\per\mol} \\
+    n &= \frac{V_{H2}}{V_{Mol}} &&= \qty{1.918(11)e-3}{\mol} \\
+    F &= \frac{Q}{z \cdot n} &&= \qty{8.93(14)e4}{\coulomb\per\mol}
+\end{align}
+
+Die Fehlerformeln der Berechnungen betragen:
+
+\begin{align}
+    \Delta p &= \sqrt{(\Delta p_L)^2 + (0.9 \cdot \Delta p_D^{H2O})^2} \\
+    \Delta V_{Mol} &= V_{Mol} \cdot \sqrt{\left(\frac{\Delta p}{p}\right)^2 + \left(\frac{\Delta T}{T}\right)^2} \\
+    \Delta n &= n \cdot \sqrt{\left(\frac{\Delta V_{H2}}{V_{H2}}\right)^2 + \left(\frac{\Delta V_{Mol}}{V_{Mol}}\right)^2} \\
+    \Delta F &= F \cdot \sqrt{\left(\frac{\Delta Q}{Q}\right)^2 + \left(\frac{\Delta n}{n}\right)^2}
+\end{align}
+
+Die Abweichung vom Literaturwert beträgt:
+\begin{equation}
+    \sigma = \frac{|F - F_{Literatur}|}{\Delta F} \Rightarrow 5.38\sigma
+\end{equation}
+
+\begin{resultbox}
+    Die mithilfe der Gasvolumina bestimmte Faraday-Konstante beträgt:
+    \begin{align}
+        F &= \qty{8.93(14)e4}{\coulomb\per\mol}
+    \end{align}
+    Die Abweichung vom Literaturwert beträgt:
+    \begin{align}
+        \sigma &= 5.38\sigma    
+    \end{align}
+\end{resultbox}
 
 \clearpage
 
