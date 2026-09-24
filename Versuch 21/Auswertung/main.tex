@@ -30,9 +30,9 @@
 \usepackage{graphicx}
 \usepackage{mhchem}
 
-%\input{../../jupyterpackages.tex}
+\input{../../jupyterpackages.tex}
 
-% jupyter nbconvert --to latex 'Path'
+%jupyter nbconvert --to latex 'Path'
 % enferne usepackages und begin{document} und end{document}
 % \input in main.tex mit \input{Path}
 
@@ -83,7 +83,7 @@
 \newcommand{\autor}{Jonathan Gießen}
 \newcommand{\gruppe}{Gruppe 8}
 \newcommand{\datum}{24. September 2026}
-\newcommand{\betreuer}{Fabian Mrosek}
+\newcommand{\betreuer}{Felicitas Schneider}
 
 
 \begin{document}
@@ -120,6 +120,9 @@
 
 \bigskip
 
+\begin{tcolorbox}[title=Hinweis, colback=black!4!white, colframe=black!65!black, boxrule=0.8pt, arc=0.0mm, fonttitle=\bfseries]
+    Die Auswertung wurde mit der Python-Library \texttt{uncertainties} durchgeführt. Der Code befindet sich im Anhang.
+\end{tcolorbox}
 
 \clearpage
 
@@ -195,15 +198,16 @@ Näherungsweise entspricht der Dampfdruck der Schwefelsäure $p_D^{\ce{H2SO4}}$ 
 
 
 
-
+\section{Messprotokoll}
+\subsection{Versuchsaufbau und Aufgaben}
     
 \includepdf[
     pages=-,
     width=\textwidth,
-    height=0.95\textheight,
+    height=1\textheight,
     keepaspectratio,
     pagecommand={\thispagestyle{scrheadings}},
-    pagecommand*={\thispagestyle{scrheadings}\section{Messprotokoll}\subsection{Versuchsaufbau und Aufgaben}}
+    pagecommand*={\thispagestyle{scrheadings}}
 ]{../Messprotokoll 21.pdf}
 
 
@@ -319,6 +323,12 @@ Die Reaktion an der Anode und Kathode lautet:
 
 Mithilfe der gegebenen Sättigungsdampfdrucktabelle für Wasser kann der Dampfdruck bei der gegebenen Temperatur interpoliert werden. Der Sättigungsdampfdruck des Wassers bei $T = \qty{22.5}{\celsius}$ beträgt $p_D^{H2O} \approx \qty{20.4(1.4)}{\text{Torr}} = \qty{27.1(2.0)}{\milli\bar}$. 
 
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.7\textwidth]{code/V21_files/V21_5_1.png}
+    \caption{Interpolierter Sättigungsdampfdruck des Wassers bei der gegebenen Temperatur.}
+    \label{fig:saettigungsdampfdruck_wasser}
+\end{figure}
 Die Messwerte betragen somit:
 
 
@@ -409,7 +419,7 @@ Die Bestimmung der Faraday-Konstante durch die Messung der Masse von Kupfer erga
      F = e \cdot N_A\text{!!}
  \end{equation}
 
- 
+
 
 \clearpage
 
@@ -425,35 +435,9 @@ Die Bestimmung der Faraday-Konstante durch die Messung der Masse von Kupfer erga
 \end{thebibliography}
 
 
+\appendix
 
+\section{Anhang: code}
 
-
-\begin{comment}
-
-
-\begin{table}[H]
-    \centering
-    \caption{Mess- und Geräteparameter für die exemplarische Berechnung (Messung 28).}
-    \label{tab:parameter_messung_28}
-    
-\begin{tabular}{ll}
-        \toprule
-        \textbf{Größe} & \textbf{Wert} \\
-        \midrule
-        Fallstrecke & $s_1 = 10\,\text{Skt} = 5.00 \cdot 10^{-4}\,\text{m}$ \\
-        Fallzeit & $t_1 = 11.85\,\text{s}$ \\
-        Steigstrecke & $s_2 = 10\,\text{Skt} = 5.00 \cdot 10^{-4}\,\text{m}$ \\
-        Steigzeit & $t_2 = 18.19\,\text{s}$ \\
-        Skalenteilung & $1\,\text{Skt} = 5.00 \cdot 10^{-5}\,\text{m}$ \\
-        Kondensatorspannung & $U = 500\,\text{V}$ \\
-        Plattenabstand & $d = 6.00 \cdot 10^{-3}\,\text{m}$ \\
-        Luftdruck & $p = 100285\,\text{Pa}$ \\
-        Erdbeschleunigung & $g = 9.81\,\frac{\text{m}}{\text{s}^2}$ \\
-        Dichtedifferenz & $\rho = \rho_{\text{Öl}} - \rho_{\text{Luft}} = 871.21\,\frac{\text{kg}}{\text{m}^3}$ \\
-        Unkorrigierte Luftviskosität & $\eta_0 = 1.81 \cdot 10^{-5}\,\text{Pa}\cdot\text{s}$ \\
-        Cunningham-Konstante & $b = 7.78 \cdot 10^{-3}\,\text{Pa}\cdot\text{m}$ \\
-        \bottomrule
-    \end{tabular}
-\end{table}
-\end{comment}
+\include{code/V21.tex}
 \end{document}
