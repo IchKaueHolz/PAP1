@@ -141,8 +141,9 @@ Beim ersten Teil des Veruschs wird die Faraday-Konstante experimentell bestimmt,
 
 \begin{align}
     m &= n \cdot M_{Mol} = \frac{Q}{z \cdot F} \cdot M_{Mol} \\
-    &\implies F = \frac{Q \cdot M_{Mol}}{z \cdot m}
+    &\implies F = \frac{Q \cdot M_{Mol}}{z \cdot m} \label{eq:calc_masses}
 \end{align}
+
 
 Mit $m$ ist die Masse des abgeschiedenen Stoffes, $n$ die Stoffmenge, $M_{Mol}$ die molare Masse, $Q$ die durchgeflossene Ladung, $z$ die wertigkeit der Ionen und $F$ die Faraday-Konstante.
 
@@ -198,9 +199,55 @@ Näherungsweise entspricht der Dampfdruck der Schwefelsäure $p_D^{\ce{H2SO4}}$ 
 
 \subsection{Durchführung}
 
+In diesem Versuch wird auf zwei Methoden die Faraday-Konstante bestimmt.
+
+\paragraph{Teil 1}
+Für 30 min wird ein konstanter Strom durch eine Kupfersulfatlösung geleitet. Dabei wird die Masse der Anode und Kathode vor und nach der Elektrolyse gemessen.
+
+\paragraph{Teil 2}
+In diesem Teil wird die Faraday-Konstante durch Elektrolyse von Wasser bestimmt. Es wird die Stromstärke und die Zeit gemessen, bis der Wasserstoff ein gewisses Volumen erreicht hat. Dabei wird die Temperatur und der Luftdruck gemessen, um das Volumen auf Normalbedingungen umzurechnen.
+
+
 \section{Auswertung}
 
-\subsection{Aufgabe 1:Exemplarische Berechnung an einem ausgewählten Tröpfchen}
+\subsection{Aufgabe 1: bestimmung der Faraday-Konstante durch Elektrolyse von Kupfersulfat}
+
+An der Anode wird Kupfer oxidiert und geht in Lösung, während an der Kathode Kupfer reduziert wird und sich auf der Elektrode abscheidet. Die Masse der Anode nimmt ab, während die Masse der Kathode zunimmt.
+
+\begin{align}
+        &\text{Elektrolyt:} \quad \ce{&CuSO4 <=> Cu^{2+} + SO4^{2-}}\\
+        &\text{Anode:} \quad \ce{&Cu(s) -> Cu^{2+} + 2e^-}\\
+        &\text{Kathode:} \quad \ce{&Cu^{2+} + 2e^- -> Cu(s)}
+\end{align}
+
+Die Messwerte aus dem Messprotkoll betragen:
+
+\begin{table}[H]
+
+    \centering
+    \caption{Messwerte für die Elektrolyse von Kupfersulfat.}
+    \label{tab:messwerte_kupfersulfat}
+    \begin{tabular}{lc}
+        \toprule
+        \textbf{Messwerte}\\
+        \midrule
+        Zeit des Stromflusses & $t = \qty{3600(30)}{\second}$ \\
+        Stromstärke & $I = \qty{0.750(10)}{\ampere}$ \\
+        Masse der Anode vor der Elektrolyse & $m_{Anode, vor} = \qty{115.2190(10)}{\milli\gram}$ \\
+        Masse der Anode nach der Elektrolyse & $m_{Anode, nach} = \qty{114.7310(10)}{\milli\gram}$ \\
+        Masse der Kathode vor der Elektrolyse & $m_{Kathode, vor} = \qty{104.4710(10)}{\milli\gram}$ \\
+        Masse der Kathode nach der Elektrolyse & $m_{Kathode, nach} = \qty{104.9420(10)}{\milli\gram}$ \\
+        \bottomrule
+        \end{tabular}
+\end{table}
+
+Mit Gleichung \ref{eq:calc_masses} kann die Faraday-Konstante berechnet werden.
+Die Fehlerformel beträgt:
+
+\begin{equation}
+    \Delta F = \sqrt{\left(\frac{t\cdot M_{Mol}}{z * m} \Delta I \right)^2 + \left(\frac{I\cdot M_{Mol}}{z * m} \Delta t\right)^2 + \left(\frac{I\cdot t\cdot M_{Mol}}{z * m^2} \Delta m\right)^2}
+\end{equation}
+
 
 
 
