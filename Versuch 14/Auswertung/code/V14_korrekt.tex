@@ -1,10 +1,8 @@
 
-
-    
     Längenmessung
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{1}{\boxspacing}
+\prompt{In}{incolor}{72}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{k+kn}{import}\PY{+w}{ }\PY{n+nn}{numpy}\PY{+w}{ }\PY{k}{as}\PY{+w}{ }\PY{n+nn}{np}
 \PY{k+kn}{import}\PY{+w}{ }\PY{n+nn}{uncertainties}\PY{+w}{ }\PY{k}{as}\PY{+w}{ }\PY{n+nn}{unc}
@@ -20,7 +18,7 @@
 \end{tcolorbox}
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{2}{\boxspacing}
+\prompt{In}{incolor}{73}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{n}{err\PYZus{}scale} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{full}\PY{p}{(}\PY{l+m+mi}{3}\PY{p}{,} \PY{l+m+mf}{0.1}\PY{p}{)}
 
@@ -31,7 +29,7 @@
 \end{tcolorbox}
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{3}{\boxspacing}
+\prompt{In}{incolor}{74}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{n}{L} \PY{o}{=} \PY{n}{x\PYZus{}a} \PY{o}{\PYZhy{}} \PY{l+m+mf}{0.5}\PY{o}{*}\PY{p}{(}\PY{n}{x\PYZus{}o}\PY{o}{\PYZhy{}}\PY{n}{x\PYZus{}u}\PY{p}{)}
 \PY{n+nb}{print}\PY{p}{(}\PY{n}{L}\PY{p}{)}
@@ -55,7 +53,7 @@
     \end{Verbatim}
 
             \begin{tcolorbox}[breakable, size=fbox, boxrule=.5pt, pad at break*=1mm, opacityfill=0]
-\prompt{Out}{outcolor}{3}{\boxspacing}
+\prompt{Out}{outcolor}{74}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 array([0.00082361, 0.00082488, 0.00082467])
 \end{Verbatim}
@@ -64,7 +62,7 @@ array([0.00082361, 0.00082488, 0.00082467])
     plot
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{4}{\boxspacing}
+\prompt{In}{incolor}{75}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{k+kn}{import}\PY{+w}{ }\PY{n+nn}{matplotlib}\PY{n+nn}{.}\PY{n+nn}{pyplot}\PY{+w}{ }\PY{k}{as}\PY{+w}{ }\PY{n+nn}{plt}
 \PY{k+kn}{from}\PY{+w}{ }\PY{n+nn}{scipy}\PY{n+nn}{.}\PY{n+nn}{optimize}\PY{+w}{ }\PY{k+kn}{import} \PY{n}{curve\PYZus{}fit}
@@ -115,7 +113,7 @@ Fitparameter: A0 = 18.23169±0.05405, k = 0.00020635±0.00000574
     Aufgabe 1
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{5}{\boxspacing}
+\prompt{In}{incolor}{76}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{n}{T} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{array}\PY{p}{(}\PY{p}{[}\PY{l+m+mf}{972.58}\PY{p}{,} \PY{l+m+mf}{972.53}\PY{p}{]}\PY{p}{)}
 \PY{n}{err\PYZus{}T} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{sqrt}\PY{p}{(}\PY{l+m+mf}{0.21}\PY{o}{*}\PY{o}{*}\PY{l+m+mi}{2} \PY{o}{+} \PY{p}{(}\PY{n}{np}\PY{o}{.}\PY{n}{std}\PY{p}{(}\PY{n}{T}\PY{p}{,} \PY{n}{ddof}\PY{o}{=}\PY{l+m+mi}{1}\PY{p}{)}\PY{o}{/}\PY{n}{np}\PY{o}{.}\PY{n}{sqrt}\PY{p}{(}\PY{n+nb}{len}\PY{p}{(}\PY{n}{T}\PY{p}{)}\PY{p}{)}\PY{p}{)}\PY{o}{*}\PY{o}{*}\PY{l+m+mi}{2}\PY{p}{)}
@@ -124,7 +122,7 @@ Fitparameter: A0 = 18.23169±0.05405, k = 0.00020635±0.00000574
 \PY{n}{T\PYZus{}0} \PY{o}{=} \PY{n}{unc}\PY{o}{.}\PY{n}{ufloat}\PY{p}{(}\PY{n}{T}\PY{o}{.}\PY{n}{n}\PY{o}{/}\PY{l+m+mi}{514}\PY{p}{,} \PY{n}{T}\PY{o}{.}\PY{n}{s}\PY{o}{/}\PY{l+m+mi}{514}\PY{p}{)}
 \PY{c+c1}{\PYZsh{} hier unsicher mit T.s/514 oder nicht}
 
-\PY{n}{L} \PY{o}{=} \PY{n}{unc}\PY{o}{.}\PY{n}{ufloat}\PY{p}{(}\PY{l+m+mf}{97.31}\PY{p}{,} \PY{l+m+mf}{0.14}\PY{p}{)} \PY{o}{*} \PY{l+m+mf}{1e\PYZhy{}2}
+\PY{n}{L} \PY{o}{=} \PY{n}{unc}\PY{o}{.}\PY{n}{ufloat}\PY{p}{(}\PY{l+m+mf}{89.72}\PY{p}{,} \PY{l+m+mf}{0.14}\PY{p}{)} \PY{o}{*} \PY{l+m+mf}{1e\PYZhy{}2}
 
 \PY{n+nb}{print}\PY{p}{(}\PY{l+s+sa}{f}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+si}{\PYZob{}}\PY{n}{T\PYZus{}0}\PY{l+s+si}{=:}\PY{l+s+s1}{.5f}\PY{l+s+si}{\PYZcb{}}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
 \end{Verbatim}
@@ -135,7 +133,7 @@ T\_0=1.89213+/-0.00041
     \end{Verbatim}
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{6}{\boxspacing}
+\prompt{In}{incolor}{77}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{n}{g\PYZus{}mat} \PY{o}{=} \PY{l+m+mi}{4} \PY{o}{*} \PY{n}{np}\PY{o}{.}\PY{n}{pi}\PY{o}{*}\PY{o}{*}\PY{l+m+mi}{2} \PY{o}{*} \PY{n}{L} \PY{o}{/} \PY{n}{T\PYZus{}0}\PY{o}{*}\PY{o}{*}\PY{l+m+mi}{2}
 \PY{n}{g\PYZus{}HD} \PY{o}{=} \PY{n}{unc}\PY{o}{.}\PY{n}{ufloat}\PY{p}{(}\PY{l+m+mf}{9.80984}\PY{p}{,} \PY{l+m+mf}{0.0002}\PY{p}{)}
@@ -147,37 +145,37 @@ T\_0=1.89213+/-0.00041
 \end{tcolorbox}
 
     \begin{Verbatim}[commandchars=\\\{\}]
-g\_mat=10.730380±0.016128
+g\_mat=9.893430±0.016026
     \end{Verbatim}
 
             \begin{tcolorbox}[breakable, size=fbox, boxrule=.5pt, pad at break*=1mm, opacityfill=0]
-\prompt{Out}{outcolor}{6}{\boxspacing}
+\prompt{Out}{outcolor}{77}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
-np.float64(57.07370650962263)
+np.float64(5.215447411337282)
 \end{Verbatim}
 \end{tcolorbox}
         
     Längenverhätnis Faden und Kugelradius
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{7}{\boxspacing}
+\prompt{In}{incolor}{78}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{n}{r} \PY{o}{=} \PY{n}{unc}\PY{o}{.}\PY{n}{ufloat}\PY{p}{(}\PY{l+m+mf}{23.95}\PY{p}{,} \PY{l+m+mf}{0.05}\PY{p}{)} \PY{o}{*} \PY{l+m+mf}{1e\PYZhy{}3} 
 
-\PY{n}{k\PYZus{}1} \PY{o}{=} \PY{l+m+mi}{2}\PY{o}{/}\PY{l+m+mi}{5} \PY{o}{*} \PY{p}{(}\PY{n}{r}\PY{o}{*}\PY{o}{*}\PY{l+m+mi}{2} \PY{o}{/} \PY{n}{L}\PY{o}{*}\PY{o}{*}\PY{l+m+mi}{2}\PY{p}{)} 
+\PY{n}{k\PYZus{}1} \PY{o}{=} \PY{l+m+mi}{2}\PY{o}{/}\PY{l+m+mi}{5} \PY{o}{*} \PY{p}{(}\PY{p}{(}\PY{n}{r}\PY{o}{/}\PY{l+m+mi}{2}\PY{p}{)}\PY{o}{*}\PY{o}{*}\PY{l+m+mi}{2} \PY{o}{/} \PY{n}{L}\PY{o}{*}\PY{o}{*}\PY{l+m+mi}{2}\PY{p}{)} 
 
 \PY{n+nb}{print}\PY{p}{(}\PY{l+s+sa}{f}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+si}{\PYZob{}}\PY{n}{k\PYZus{}1}\PY{l+s+si}{:}\PY{l+s+s1}{.4e}\PY{l+s+si}{\PYZcb{}}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
 \end{Verbatim}
 \end{tcolorbox}
 
     \begin{Verbatim}[commandchars=\\\{\}]
-(2.4230+/-0.0123)e-04
+(7.1258+/-0.0371)e-05
     \end{Verbatim}
 
     Berechnen Luftdichte
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{8}{\boxspacing}
+\prompt{In}{incolor}{79}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{n}{p\PYZus{}l} \PY{o}{=} \PY{n}{unc}\PY{o}{.}\PY{n}{ufloat}\PY{p}{(}\PY{l+m+mi}{100990}\PY{p}{,} \PY{l+m+mi}{20}\PY{p}{)}
 \PY{n}{Temp} \PY{o}{=} \PY{n}{unc}\PY{o}{.}\PY{n}{ufloat}\PY{p}{(}\PY{l+m+mf}{294.15}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{)}
@@ -188,7 +186,7 @@ np.float64(57.07370650962263)
 \end{tcolorbox}
 
             \begin{tcolorbox}[breakable, size=fbox, boxrule=.5pt, pad at break*=1mm, opacityfill=0]
-\prompt{Out}{outcolor}{8}{\boxspacing}
+\prompt{Out}{outcolor}{79}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 1.1960572509816119+/-0.004073040660013633
 \end{Verbatim}
@@ -197,7 +195,7 @@ np.float64(57.07370650962263)
     Korrekturterm 2
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{9}{\boxspacing}
+\prompt{In}{incolor}{80}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{n}{rho\PYZus{}Fe} \PY{o}{=} \PY{l+m+mf}{7.86e3}
 
@@ -213,13 +211,13 @@ np.float64(57.07370650962263)
     Korrekturterm 3
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{10}{\boxspacing}
+\prompt{In}{incolor}{81}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{n}{d\PYZus{}f} \PY{o}{=} \PY{l+m+mf}{0.2e\PYZhy{}3}
 
 \PY{n}{m\PYZus{}f} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{pi} \PY{o}{*} \PY{p}{(}\PY{n}{d\PYZus{}f}\PY{o}{/}\PY{l+m+mi}{2}\PY{p}{)}\PY{o}{*}\PY{o}{*}\PY{l+m+mi}{2} \PY{o}{*} \PY{n}{L} \PY{o}{*} \PY{n}{rho\PYZus{}Fe}
 
-\PY{n}{m\PYZus{}K} \PY{o}{=} \PY{l+m+mi}{4}\PY{o}{/}\PY{l+m+mi}{3} \PY{o}{*} \PY{n}{np}\PY{o}{.}\PY{n}{pi} \PY{o}{*} \PY{n}{r}\PY{o}{*}\PY{o}{*}\PY{l+m+mi}{3} \PY{o}{*} \PY{n}{rho\PYZus{}Fe}
+\PY{n}{m\PYZus{}K} \PY{o}{=} \PY{l+m+mi}{4}\PY{o}{/}\PY{l+m+mi}{3} \PY{o}{*} \PY{n}{np}\PY{o}{.}\PY{n}{pi} \PY{o}{*} \PY{p}{(}\PY{n}{r}\PY{o}{/}\PY{l+m+mi}{2}\PY{p}{)}\PY{o}{*}\PY{o}{*}\PY{l+m+mi}{3} \PY{o}{*} \PY{n}{rho\PYZus{}Fe}
 
 \PY{n+nb}{print}\PY{p}{(}\PY{l+s+sa}{f}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+si}{\PYZob{}}\PY{n}{m\PYZus{}f}\PY{l+s+si}{=:}\PY{l+s+s1}{.4e}\PY{l+s+si}{\PYZcb{}}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
 \PY{n+nb}{print}\PY{p}{(}\PY{l+s+sa}{f}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+si}{\PYZob{}}\PY{n}{m\PYZus{}K}\PY{l+s+si}{=:}\PY{l+s+s1}{.4e}\PY{l+s+si}{\PYZcb{}}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
@@ -230,15 +228,15 @@ np.float64(57.07370650962263)
 \end{tcolorbox}
 
     \begin{Verbatim}[commandchars=\\\{\}]
-m\_f=(2.4029+/-0.0035)e-04
-m\_K=(4.5230+/-0.0283)e-01
-(-1.8114+/-0.0116)e-05
+m\_f=(2.2154+/-0.0035)e-04
+m\_K=(5.6538+/-0.0354)e-02
+(-2.0876+/-0.0135)e-06
     \end{Verbatim}
 
     Dämpfung
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{11}{\boxspacing}
+\prompt{In}{incolor}{82}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{n}{w} \PY{o}{=} \PY{l+m+mi}{2} \PY{o}{*} \PY{n}{np}\PY{o}{.}\PY{n}{pi} \PY{o}{/} \PY{n}{T\PYZus{}0}
 \PY{n+nb}{print}\PY{p}{(}\PY{l+s+sa}{f}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+si}{\PYZob{}}\PY{n}{w}\PY{l+s+si}{=:}\PY{l+s+s1}{.4e}\PY{l+s+si}{\PYZcb{}}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
@@ -256,7 +254,7 @@ k\_4=(3.8616+/-0.2149)e-09
     Winkelausschlag
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{12}{\boxspacing}
+\prompt{In}{incolor}{83}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{n}{phi\PYZus{}0} \PY{o}{=} \PY{n}{unp}\PY{o}{.}\PY{n}{arcsin}\PY{p}{(}\PY{n}{A\PYZus{}0}\PY{o}{*}\PY{l+m+mf}{1e\PYZhy{}2}\PY{o}{/}\PY{n}{L}\PY{p}{)}
 
@@ -268,12 +266,12 @@ k\_4=(3.8616+/-0.2149)e-09
 \end{tcolorbox}
 
     \begin{Verbatim}[commandchars=\\\{\}]
-phi\_0=(1.8847+/-0.0063)e-01
-k\_5=(4.4401+/-0.0296)e-03
+phi\_0=(2.0463+/-0.0070)e-01
+k\_5=(5.2343+/-0.0356)e-03
     \end{Verbatim}
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{13}{\boxspacing}
+\prompt{In}{incolor}{84}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{n}{g\PYZus{}mat}
 \PY{n}{korr} \PY{o}{=} \PY{p}{(}\PY{l+m+mi}{1} \PY{o}{+} \PY{n}{k\PYZus{}1} \PY{o}{+} \PY{n}{k\PYZus{}2} \PY{o}{+} \PY{n}{k\PYZus{}3} \PY{o}{+} \PY{n}{k\PYZus{}4} \PY{o}{+} \PY{n}{k\PYZus{}5}\PY{p}{)}
@@ -293,15 +291,15 @@ k\_5=(4.4401+/-0.0296)e-03
 \end{tcolorbox}
 
     \begin{Verbatim}[commandchars=\\\{\}]
-g=10.782063±0.016068, g\_mat=10.730380±0.016128, korr=1.0048165±0.0000300
-sigma weichung: (g.n - g\_HD.n)/np.sqrt(g.s**2 + g\_HD.s**2)=60.50
-relative weichung: 9.91
-Abweichung Physikalisch zu Mathematisch: 0.05168+/-0.00030 m/s²
-Abweichung Physikalisch zu Mathematisch in Sigma: 2.27 sigma
+g=9.947405±0.015957, g\_mat=9.893430±0.016026, korr=1.0054556±0.0000357
+sigma weichung: (g.n - g\_HD.n)/np.sqrt(g.s**2 + g\_HD.s**2)=8.62
+relative weichung: 1.40
+Abweichung Physikalisch zu Mathematisch: 0.05397+/-0.00032 m/s²
+Abweichung Physikalisch zu Mathematisch in Sigma: 2.39 sigma
     \end{Verbatim}
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{14}{\boxspacing}
+\prompt{In}{incolor}{85}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{n}{L} \PY{o}{=} \PY{n}{x\PYZus{}a} \PY{o}{\PYZhy{}} \PY{l+m+mf}{0.5}\PY{o}{*}\PY{p}{(}\PY{n}{x\PYZus{}o}\PY{o}{+}\PY{n}{x\PYZus{}u}\PY{p}{)}
 \PY{n+nb}{print}\PY{p}{(}\PY{n}{np}\PY{o}{.}\PY{n}{mean}\PY{p}{(}\PY{n}{L}\PY{p}{)}\PY{p}{)}
@@ -322,7 +320,3 @@ Abweichung Physikalisch zu Mathematisch in Sigma: 2.27 sigma
 \end{Verbatim}
 \end{tcolorbox}
 
-
-    % Add a bibliography block to the postdoc
-    
-    
