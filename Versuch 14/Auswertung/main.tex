@@ -214,13 +214,13 @@ Aus dieser Bedingung lässt sich die ideale Anzahl $n$ der zu messenden Schwingu
 \subsection{Fehlerfortpflanzung nach Gauß}
 Für die Fehlerrechnung wird die Gaußsche Fehlerfortpflanzung verwendet. Für eine Funktion $f(x_1, x_2, \dots, x_n)$ mit den unabhängigen Variablen $x_i$ und den zugehörigen Standardabweichungen $\sigma_{x_i}$ gilt:
 \begin{equation}
-    \sigma_f = \sqrt{\sum_{i=1}^{n} \left(\frac{\partial f}{\partial x_i} \sigma_{x_i}\right)^2}
+    \Delta f = \sqrt{\sum_{i=1}^{n} \left(\frac{\partial f}{\partial x_i} \Delta{x_i}\right)^2}
 \end{equation}
 
 Fehler gleicher Einheit werden quadratisch addiert:
 
 \begin{equation}
-    \sigma_f = \sqrt{\sigma_{x_1}^2 + \sigma_{x_2}^2}
+    \Delta f = \sqrt{\Delta{x_1}^2 + \Delta{x_2}^2}
 \end{equation}
 
 Fehler unterschiedlicher Einheitwerden über die partielle Ableitung der Funktion gewichtet.\footnote{Die bechnungen werden mit der Python-Bibliothek \texttt{uncertainties} durchgeführt, welche die Gaußsche Fehlerfortpflanzung automatisch implementiert. Code ist im Anhang.}
@@ -266,24 +266,24 @@ Die gemessenen Werte betragen:
         Fadenlänge & $L = \qty{97.31(14)e-2}{\meter}$ \\
         Anzahl der Schwingungen & $n = 514$ \\
         Schwingungsdauer & $T = \qty{972.55(22)}{\second}$ \\
-        Periodendauer & $T_0 = \qty{1.89(22)}{\second}$ \\
+        Periodendauer & $T_0 = \qty{1.8921(5)}{\second}\footnotemark$ \\
         \bottomrule
     \end{tabular}
 \end{table}
 
 Aus den gemessenen Werten ergibt sich für die Schwerebeschleunigung:
 \begin{equation}
-    g_\text{mat} = \qty{10.7(2.4)}{\meter\per\second\squared}
+    g_\text{mat} = \qty{10.782(16)}{\meter\per\second\squared}
 \end{equation}
 
 Die Abweichung vom Literaturwert beträgt:
 \begin{equation}
-    \sigma g_\text{mat} = \frac{\lvert g_\text{mat} - g_\text{Heidelberg}\rvert}{\sqrt{\sigma g_\text{mat}^2 + \sigma g_\text{Heidelberg}^2}} \Rightarrow 0.38\sigma
+    \sigma g_\text{mat} = \frac{\lvert g_\text{mat} - g_\text{Heidelberg}\rvert}{\sqrt{\Delta g_\text{mat}^2 + \Delta g_\text{Heidelberg}^2}} \Rightarrow 57.1\sigma
 \end{equation}
 
 \begin{resultbox}[Ergebnis Aufgabe 1]
     \begin{equation}
-        g_\text{mat} = \qty{10.7(2.4)}{\meter\per\second\squared} \Rightarrow 0.38\sigma
+        g_\text{mat} = \qty{10.782(16)}{\meter\per\second\squared} \Rightarrow 57.1\sigma
     \end{equation}
 \end{resultbox}
 
@@ -304,7 +304,7 @@ Durch Auftragen der Messwerte der Amplitude in einen Halblogarithmischen Plot ge
 Die Ausgleichgerade schreibt sich nach der Funktion:
 \begin{align}
     A(t) &= A_0 e^{-\delta t}\\
-    A(t) &= \qty{18.23(6)}{\milli\meter} \cdot exp\left(-\qty{2.06(6)e-4}{\per\second}\,t\right)
+    A(t) &= \qty{18.23(6)}{\centi\meter} \cdot exp\left(-\qty{2.06(6)e-4}{\per\second}\,t\right)
 \end{align}
 
 Die Dämpfungskonstante beträgt somit:
@@ -342,13 +342,13 @@ bestimmen.
 
 Die Luftdichte lässt sich googlen oder wenn man Hobbylos ist berechnen\footnote{Die Werte kommen von den Freunden des Millikanversuchs}:
 \begin{equation}
-    \rho_L = \frac{p}{R_s*T} = \frac{\qty{100990(20)}{Pa}}{\qty{287.05}{\joule\per\kilo\gram\kelvin} * \qty{294.15(1.00)}{\kelvin} } = \qty{1.196(4)}{\kilo\gram\per\meter\cubed}
+    \rho_L = \frac{p}{R_s T} = \frac{\qty{100990(20)}{Pa}}{\qty{287.05}{\joule\per\kilo\gram\kelvin}  \qty{294.15(1.00)}{\kelvin} } = \qty{1.196(4)}{\kilo\gram\per\meter\cubed}
 \end{equation}
 
 mit 
 
 \begin{equation}
-    \delta \rho_L = \sqrt{\left(\frac{1}{R_s*T}\Delta p\right)^2 + \left(\frac{p}{R_s*T^2}\Delta T\right)^2}
+    \delta \rho_L = \sqrt{\left(\frac{1}{R_sT}\Delta p\right)^2 + \left(\frac{p}{R_sT^2}\Delta T\right)^2}
 \end{equation}
 
 Es ergibt sich somit für den Korrekturterm mit $\rho_L = \qty{1.196(4)}{\kilo\gram\per\meter\cubed}$ und $\rho_K = \qty{7.86e3}{\kilo\gram\per\meter\cubed}$:
@@ -408,13 +408,88 @@ berechnen:
 
 Der Winkelausschlag lässt sich über triginometrische Funktionen aus der geffiteten Amplitude $A_0$ und der Fadenlänge $l$ berechnen:
 \begin{equation}
-    \varphi_0 = \arcsin\left(\frac{A_0}{l}\right) = \arcsin\left(\frac{\qty{18.23(6)e-3}{\meter}}{\qty{97.31(14)e-2}{\meter}}\right) = \qty{1.874(7)e-2}{\radian}
+    \varphi_0 = \arcsin\left(\frac{A_0}{l}\right) = \arcsin\left(\frac{\qty{18.23(6)e-2}{\meter}}{\qty{97.31(14)e-2}{\meter}}\right) = \qty{1.885(7)e-1}{\radian}
 \end{equation}
 
 Der Korrekturterm für den Winkelausschlag beträgt somit:
 \begin{equation}
-    k_5 = \frac{\varphi_0^2}{8} = \frac{\qty{1.874(7)e-2}{\radian}^2}{8} = \num{4.388(28)e-5}
+    k_5 = \frac{\varphi_0^2}{8} = \frac{\qty{1.885(7)e-1}{\radian}^2}{8} = \num{4.440(29)e-3}
 \end{equation}
+
+
+\subsubsection{Finale Berechnung von g}
+
+Durch Umstellen von Gleichung \eqref{eq:T_gesamt} nach $g$ ergibt sich:
+\begin{align}
+    g &= \underbrace{\left(4\pi^2 \frac{l}{T_g^2}\right)}_{g_\text{mat}} \underbrace{(1 + k_1 + k_2 + k_3 + k_4 + k_5)}_{= 1 +\sum_{i=1}^{5}{k_i}}\\
+    \Delta g &= \sqrt{\left(\Delta g_\text{mat}\right)^2 + \sum^5_{i=1}{\left(\Delta k_i\right)^\text{2}}}
+\end{align}
+
+Der Korrekturfaktor ergibt sich zu:
+\begin{equation}
+    k_{ges} = 1 + \sum_{i=1}^{5}{k_i} = 1.0004203(14)
+\end{equation}
+
+Somit ergibt sich für die Schwerebeschleunigung:
+\begin{align}
+    g_\text{phys} &= g_\text{mat} \cdot k_{ges}\\
+     &= \qty{10.730(16)}{\meter\per\second\squared} \cdot \num{1.0004203(14)}\\
+     &= \qty{10.782(16)}{\meter\per\second\squared} 
+\end{align}
+
+Die Sigma-Abweichung vom Literaturwert beträgt nun:
+\begin{equation}
+    \sigma g_\text{phys} = \frac{\lvert g_\text{phys} - g_\text{Heidelberg}\rvert}{\sqrt{\Delta g_\text{phys}^2 + \Delta g_\text{Heidelberg}^2}} \Rightarrow 60\sigma
+\end{equation}
+
+Die Abweichung der beiden Messungen (Mathematisches Pendel und Physikalisches Pendel) beträgt:
+\begin{align}
+    g_{diff} &= \lvert g_\text{phys} - g_\text{mat}\rvert\\ = \qty{5.16(3)e-2}{\meter\per\second\squared}
+    g_rel & = \frac{g_{diff}}{g_\text{phys}} = \num{4.2(9)e-4}\\
+    \sigma g_\text{phys-mat} = \frac{\lvert g_\text{phys} - g_\text{mat}\rvert}{\sqrt{\Delta g_\text{phys}^2 + \Delta g_\text{mat}^2}} \Rightarrow 0.01\sigma
+\end{align}
+
+\begin{resultbox}[Ergebnis Aufgabe 2]
+    Die Schwerebeschleunigung beträgt nach Berücksichtigung sämtlicher Korrekturterme:
+    \begin{equation}
+        g_\text{phys} = \qty{10.782(16)}{\meter\per\second\squared} \Rightarrow 60\sigma
+    \end{equation}
+    Die Abweichung der beiden Messungen beträgt:
+    \begin{equation}
+    g_{diff} = \qty{5.16(3)e-2}{\meter\per\second\squared} \Rightarrow 2.27\sigma  
+    \end{equation}
+\end{resultbox}
+
+\bigskip
+\section{Diskussion der Messwerte}
+Die Messwerte des Mathematischen Pendels und des Physikalischen Pendels stimmen miteinander überein. Die penible Berücksichtigung sämtlicher Korrekturterme hat den Wert für die Schwerebeschleunigung $g$ nur geringfügig erhöht. Die Abweichung vom Literaturwert beträgt aufgrund des großen Fehlers in beiden Fällen weniger als $0.5\sigma$, was auf eine übereinstimmende Messung hindeutet, jedoch fällt auf, dass die realtive Abweichung vom Literaturwert ca. $9.23\%$ beträgt. Das deutet auf einen systematischn Fehler hin. Eine Begründung durch nicht-berücksichtigte Korrekturterme ist nicht möglich, da sämtliche relevanten Effekte berücksichtigt wurden. Möliche Ursachen für die Abweichung könnten in der Messung der Fadenlänge oder der Schwingungsdauer liegen.
+
+\paragraph{Ermittlung des Fehlers}
+Bei genauem Nachdenken ist mir aufgefallen, dass eine Länge von $l = \qty{97.31(14)e-2}{\meter}$ nicht stimmen kann, da der Faden in der Realität in einer höhe von $\approx \qty{98}{\centi\meter}$ aufgehängt war und wir dabei noch mindestens 5-10 cm für die Reflexionslichtschranke unterbauen mussten.
+
+Beim Analysieren der Berechnung von $l$, ist aufgefallen, dass bei der Berechnung der Fadenlänge fälschlicherweise die Formel
+\begin{equation}
+    l = x_A - \frac{1}{2}\left(x_o \textbf{ - } x_u\right)
+\end{equation}
+statt korrekt: 
+\begin{equation}
+    l = x_A - \frac{1}{2}\left(x_o \overset{!!!}{+} x_u\right)
+\end{equation}
+verwendet wurde. Dies hat zu einer systematischen vergrößerten Fadenlänge
+geführt, was die Abweichung vom Literaturwert erklärt. 
+
+Durch Neuberechnung der Fadenlänge mit der korrekten Länge von $l = \qty{89.72(14)}{\centi\meter}$ ergeben sich Werte von:
+\begin{align}
+    g_\text{mat} &= \qty{9.89(2.21)}{\meter\per\second\squared}\\
+    g_\text{phys} &= \qty{9.90(2.21)}{\meter\per\second\squared}
+\end{align}
+
+was einer relativen Abweichung von $0.9\%$ vom Literaturwert entspricht. Und den Sigma fehler von $g_\text{phys}$ auf $0.04\sigma$ reduziert. Somit ist die Messung des mathematischen Pendels und des physikalischen Pendels nun konsistent(er) mit dem Literaturwert.
+
+\paragraph{Korrekturterm}
+Des Weiteren fällt die Insignifikanz des Korrekturterms auf. Alle Korrekturterme sind kleiner, als der Fehler der Messung des mathematischen Pendels. Somit ist die Berücksichtigung sämtlicher Korrekturterme für die Bestimmung von $g$ nicht notwendig, da der Fehler der Messung den Korrekturterm überwiegt. Es kann aber auch daran liegen, dass wir mit der falschen Fadenlänge auch einen zu 
+kleine Anzahl der zu messenden Schwingungen $n$ gewählt haben, was den Fehler der Zeitmessung verändert.
+Sehr bemerkenswert ist, dass die Dämpfung eine so kleine Korrektur aufweisst
 
 
 \clearpage
