@@ -353,17 +353,68 @@ mit
 
 Es ergibt sich somit für den Korrekturterm mit $\rho_L = \qty{1.196(4)}{\kilo\gram\per\meter\cubed}$ und $\rho_K = \qty{7.86e3}{\kilo\gram\per\meter\cubed}$:
 \begin{equation}
-    k_2 = \frac{\rho_L}{\rho_K} = \frac{\qty{1.196(4)}{\kilo\gram\per\meter\cubed}}{\qty{7.87e3}{\kilo\gram\per\meter\cubed}} = \num{1.521(6)e-4}
+    k_2 = \frac{\rho_L}{\rho_K} = \frac{\qty{1.196(4)}{\kilo\gram\per\meter\cubed}}{\qty{7.86e3}{\kilo\gram\per\meter\cubed}} = \num{1.521(6)e-4}
 \end{equation}
 
 \subsection{Korrektur für die Fadenmasse}
 
 Der Korrekturterm für die Fadenmasse lässt sich durch die Formel:
 \begin{align}
-    k_3 &= \frac{1}{6}\frac{m_F}{m_K}\\
+    k_3 &= -\frac{1}{6}\frac{m_F}{m_K}\\
     \Delta k_3 &= \sqrt{\left(\frac{1}{6 m_K}\Delta m_F\right)^2 + \left(\frac{m_F}{6 m_K^2}\Delta m_K\right)^2}
 \end{align}
 bestimmen.
+
+Die Massen berechnen dich mit $r = \qty{23.95(5)e-3}{\meter}$, $l_F= \qty{97.31(14)e-2}{\meter}$ und $d_F = \qty{0.2}{\milli\meter}$ und der Dichte von Eisen mit $\rho_F = \qty{7.86e3}{\kilo\gram\per\meter\cubed}$ zu:
+\begin{align}
+    m_F &= \pi r_F^2 l_F \rho_F = \qty{2.403(4)e-4}{\kilo\gram}\\
+    m_K &= \frac{4}{3}\pi r^3 \rho_K = \qty{0.4523(28)}{\kilo\gram}
+\end{align}
+
+Der Korrekturterm für die Fadenmasse beträgt somit:
+\begin{equation}
+    k_3 = -\frac{1}{6}\frac{m_F}{m_K} = -\frac{1}{6}\frac{\qty{2.403(4)e-4}{\kilo\gram}}{\qty{0.4523(28)}{\kilo\gram}} = \num{-1.814(12)e-5}
+\end{equation}
+
+\subsection{Einfluss der Dämpfung}
+
+Der Korrekturterm für die Dämpfung lässt sich durch die Formel:
+\begin{align}
+    k_4 &= \frac{\delta^2}{\omega_0^2}\\
+    \Delta k_4 &= \sqrt{\left(\frac{2\delta}{\omega_0^2}\Delta \delta\right)^2 + \left(\frac{2\delta^2}{\omega_0^3}\Delta \omega_0\right)^2}
+\end{align}
+
+berechnen:
+
+Die Kreisfrequenz $\omega_0$ lässt sich aus der gemessenen Schwingungsdauer $T_0$ berechnen:
+\begin{equation}
+    \omega_0 = \frac{2\pi}{T_0} = \frac{2\pi}{\qty{1.89(22)}{\second}} = \qty{3.3(4)}{\per\second}
+\end{equation}
+ 
+Mit der Dämpfungskonstante $\delta = \qty{2.06(6)e-4}{\per\second}$ ergibt sich somit für den Korrekturterm:
+\begin{equation}
+    k_4 = \frac{\delta^2}{\omega_0^2} = \frac{\qty{2.06(6)e-4}{\per\second}^2}{\qty{3.3(4)}{\per\second}^2} = \num{3.9(9)e-9}
+\end{equation}
+
+\subsection{Korrektur für den Winkelausschlag}
+
+Der Korrekturterm für den Winkelausschlag lässt sich durch die Formel:
+\begin{align}
+    k_5 &= \frac{\varphi_0^2}{8}\\
+    \Delta k_5 &= \frac{1}{4}\varphi_0 \Delta \varphi_0
+\end{align}
+
+berechnen:
+
+Der Winkelausschlag lässt sich über triginometrische Funktionen aus der geffiteten Amplitude $A_0$ und der Fadenlänge $l$ berechnen:
+\begin{equation}
+    \varphi_0 = \arcsin\left(\frac{A_0}{l}\right) = \arcsin\left(\frac{\qty{18.23(6)e-3}{\meter}}{\qty{97.31(14)e-2}{\meter}}\right) = \qty{1.874(7)e-2}{\radian}
+\end{equation}
+
+Der Korrekturterm für den Winkelausschlag beträgt somit:
+\begin{equation}
+    k_5 = \frac{\varphi_0^2}{8} = \frac{\qty{1.874(7)e-2}{\radian}^2}{8} = \num{4.388(28)e-5}
+\end{equation}
 
 
 \clearpage
