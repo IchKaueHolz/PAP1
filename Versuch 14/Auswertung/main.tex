@@ -312,7 +312,58 @@ Die Dämpfungskonstante beträgt somit:
     \delta = \qty{2.06(6)e-4}{\per\second}
 \end{equation}
 
+Der Fehler der Dämpfungskonstante ergibt sich aus der Covarianzmatrix des Fits.
 
+\subsubsection{Längenverhältnis von Faden und Kugelradius}
+
+Dieser Korrekturterm lässt sich durch die Formel:
+
+\begin{align}
+    k_1 &= \frac{2}{5}\frac{r^2}{l^2}\\
+    \Delta k_1 &= \sqrt{\left(\frac{4}{5}\frac{r}{l^2}\Delta r\right)^2 + \left(\frac{4}{5}\frac{r^2}{l^3}\Delta l\right)^2}
+\end{align}
+
+bestimmen. 
+
+Mit der Fadenlänge $l = \qty{97.31(14)e-2}{\meter}$ und dem Kugelradius $r = \qty{23.95(5)e-3}{\meter}$ ergibt sich:
+\begin{equation}
+    k_1 = \num{2.423(13)e-4}
+\end{equation}
+
+\subsection{Korrektur für den Auftrieb}
+Aufgrund des Auftriebs der Luft, der die Gewichtskraft der Kugel verringert, muss eine Korrektur vorgenommen werden. Der Korrekturterm lässt sich durch die Formel:
+
+\begin{align}
+    k_2 &= \frac{\rho_L}{\rho_K}\\
+    \Delta k_2 &= \sqrt{\left(\frac{1}{\rho_K}\Delta \rho_L\right)^2 + \left(\frac{\rho_L}{\rho_K^2}\Delta \rho_K\right)^2}
+\end{align}
+
+bestimmen.
+
+Die Luftdichte lässt sich googlen oder wenn man Hobbylos ist berechnen\footnote{Die Werte kommen von den Freunden des Millikanversuchs}:
+\begin{equation}
+    \rho_L = \frac{p}{R_s*T} = \frac{\qty{100990(20)}{Pa}}{\qty{287.05}{\joule\per\kilo\gram\kelvin} * \qty{294.15(1.00)}{\kelvin} } = \qty{1.196(4)}{\kilo\gram\per\meter\cubed}
+\end{equation}
+
+mit 
+
+\begin{equation}
+    \delta \rho_L = \sqrt{\left(\frac{1}{R_s*T}\Delta p\right)^2 + \left(\frac{p}{R_s*T^2}\Delta T\right)^2}
+\end{equation}
+
+Es ergibt sich somit für den Korrekturterm mit $\rho_L = \qty{1.196(4)}{\kilo\gram\per\meter\cubed}$ und $\rho_K = \qty{7.86e3}{\kilo\gram\per\meter\cubed}$:
+\begin{equation}
+    k_2 = \frac{\rho_L}{\rho_K} = \frac{\qty{1.196(4)}{\kilo\gram\per\meter\cubed}}{\qty{7.87e3}{\kilo\gram\per\meter\cubed}} = \num{1.521(6)e-4}
+\end{equation}
+
+\subsection{Korrektur für die Fadenmasse}
+
+Der Korrekturterm für die Fadenmasse lässt sich durch die Formel:
+\begin{align}
+    k_3 &= \frac{1}{6}\frac{m_F}{m_K}\\
+    \Delta k_3 &= \sqrt{\left(\frac{1}{6 m_K}\Delta m_F\right)^2 + \left(\frac{m_F}{6 m_K^2}\Delta m_K\right)^2}
+\end{align}
+bestimmen.
 
 
 \clearpage
