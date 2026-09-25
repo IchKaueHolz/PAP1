@@ -123,14 +123,14 @@
 
 
 \section{Einleitung}\label{sec:Einleitung}
-Das physikalische Praktikum zum mathematischen Pendel zielt auf die präzise Bestimmung der Schwerebeschleunigung $g$ ab. Da das idealisierte Modell eines punktförmigen Pendels ohne Reibung in der Realität nicht existiert, reicht eine einfache Betrachtung für hochgenaue Messungen nicht aus. Ziel dieses Versuches ist es, durch präzise Längen- und Zeitmessungen sowie die systematische Berücksichtigung sämtlicher relevanter Störeffekte (wie Ausdehnung des Pendelkörpers, Auftrieb in der Luft, Masse des Fadens, endliche Auslenkung und Luftreibung) einen experimentellen Wert für $g$ zu ermitteln, der dem Heidelberger Standard-Wert von $g = (9,80984 \pm 2 \cdot 10^{-5}) \, \text{m/s}^2$ möglichst nahekommt. 
+Das physikalische Praktikum zum mathematischen Pendel zielt auf die präzise Bestimmung der Erdbeschleunigung $g$ ab. Da das idealisierte Modell eines punktförmigen Pendels ohne Reibung in der Realität nicht existiert, reicht eine einfache Betrachtung für hochgenaue Messungen nicht aus. Ziel dieses Versuches ist es, durch präzise Längen- und Zeitmessungen sowie die systematische Berücksichtigung sämtlicher relevanter Störeffekte (wie Ausdehnung des Pendelkörpers, Auftrieb in der Luft, Masse des Fadens, endliche Auslenkung und Luftreibung) einen experimentellen Wert für $g$ zu ermitteln, der dem Heidelberger Standard-Wert von $g = (9,80984 \pm 2 \cdot 10^{-5}) \, \text{m/s}^2$ möglichst nahekommt. 
 
 
 \section{Grundlagen und Theorie}\label{sec:Grundlagen}
 
 
 \subsection{Das ideale mathematische Pendel}
-In der einfachsten Näherung wird das Pendel als punktförmige Masse an einem masselosen Faden betrachtet, die reibungsfrei und mit unendlich kleiner Amplitude schwingt. Die Schwingungsdauer $T_0$ eines solchen idealen mathematischen Pendels hängt nur von der Pendellänge $l$ und der Schwerebeschleunigung $g$ ab:
+In der einfachsten Näherung wird das Pendel als punktförmige Masse an einem masselosen Faden betrachtet, die reibungsfrei und mit unendlich kleiner Amplitude schwingt. Die Schwingungsdauer $T_0$ eines solchen idealen mathematischen Pendels hängt nur von der Pendellänge $l$ und der Erdbeschleunigung $g$ ab:
 \begin{equation}
     T_0 = 2\pi \sqrt{\frac{l}{g}}
     \label{eq:T0}
@@ -198,7 +198,7 @@ Setzt man alle Korrekturterme zusammen, so ergibt sich für die gemessene, reale
 Diese Gleichung ermöglicht es, aus der real gemessenen Zeit und den geometrischen Abmessungen den hochpräzisen Wert für $g$ zu extrahieren.
 
 \subsection{Fehlerbetrachtung und optimale Messzeit}
-Die Genauigkeit der berechneten Schwerebeschleunigung wird maßgeblich durch die Fehler der Längenmessung ($\Delta l$) und der Zeitmessung ($\Delta t$) dominiert. Misst man $n$ Schwingungen, beträgt der relative Fehler der Einzelperiode $\frac{\Delta T_0}{T_0} = \frac{\Delta t}{n T_0}$.
+Die Genauigkeit der berechneten Erdbeschleunigung wird maßgeblich durch die Fehler der Längenmessung ($\Delta l$) und der Zeitmessung ($\Delta t$) dominiert. Misst man $n$ Schwingungen, beträgt der relative Fehler der Einzelperiode $\frac{\Delta T_0}{T_0} = \frac{\Delta t}{n T_0}$.
 Für den relativen Gesamtfehler von $g$ folgt nach dem Fehlerfortpflanzungsgesetz:
 \begin{equation}
     \frac{\Delta g}{g} = \sqrt{ \left(\frac{\Delta l}{l}\right)^2 + \left(\frac{2\Delta t}{n T_0}\right)^2 }
@@ -253,7 +253,7 @@ Im folgenden wurde die Messung der Schwingungsdauern $n$ 2 mal durchgeführt, da
 \section{Auswertung}
 
 \subsection{Aufgabe 1: Mathematisches Pendel}
-Mithilfe von Gleichung \ref{eq:g_ideal} kann die Schwerebeschleunigung $g$ aus den gemessenen Werten berechnet werden.
+Mithilfe von Gleichung \ref{eq:g_ideal} kann die Erdbeschleunigung $g$ aus den gemessenen Werten berechnet werden.
 
 Die gemessenen Werte betragen: 
 \begin{table}[H]
@@ -271,7 +271,7 @@ Die gemessenen Werte betragen:
     \end{tabular}
 \end{table}
 
-Aus den gemessenen Werten ergibt sich für die Schwerebeschleunigung:
+Aus den gemessenen Werten ergibt sich für die Erdbeschleunigung:
 \begin{equation}
     g_\text{mat} = \qty{10.782(16)}{\meter\per\second\squared}
 \end{equation}
@@ -388,12 +388,12 @@ berechnen:
 
 Die Kreisfrequenz $\omega_0$ lässt sich aus der gemessenen Schwingungsdauer $T_0$ berechnen:
 \begin{equation}
-    \omega_0 = \frac{2\pi}{T_0} = \frac{2\pi}{\qty{1.89(22)}{\second}} = \qty{3.3(4)}{\per\second}
+    \omega_0 = \frac{2\pi}{T_0} = \frac{2\pi}{\qty{1.8921(4)}{\second}} = \qty{3.3207(7)}{\per\second}
 \end{equation}
  
 Mit der Dämpfungskonstante $\delta = \qty{2.06(6)e-4}{\per\second}$ ergibt sich somit für den Korrekturterm:
 \begin{equation}
-    k_4 = \frac{\delta^2}{\omega_0^2} = \frac{\qty{2.06(6)e-4}{\per\second}^2}{\qty{3.3(4)}{\per\second}^2} = \num{3.9(9)e-9}
+    k_4 = \frac{\delta^2}{\omega_0^2} = \frac{\qty{2.06(6)e-4}{\per\second}^2}{\qty{3.3207(7)}{\per\second}^2} = \num{3.86(22)e-9}
 \end{equation}
 
 \subsection{Korrektur für den Winkelausschlag}
@@ -427,13 +427,13 @@ Durch Umstellen von Gleichung \eqref{eq:T_gesamt} nach $g$ ergibt sich:
 
 Der Korrekturfaktor ergibt sich zu:
 \begin{equation}
-    k_{ges} = 1 + \sum_{i=1}^{5}{k_i} = 1.0004203(14)
+    k_{ges} = 1 + \sum_{i=1}^{5}{k_i} = \num{1.004821(3)}
 \end{equation}
 
-Somit ergibt sich für die Schwerebeschleunigung:
+Somit ergibt sich für die Erdbeschleunigung:
 \begin{align}
     g_\text{phys} &= g_\text{mat} \cdot k_{ges}\\
-     &= \qty{10.730(16)}{\meter\per\second\squared} \cdot \num{1.0004203(14)}\\
+     &= \qty{10.730(16)}{\meter\per\second\squared} \cdot \num{1.004821(3)}\\
      &= \qty{10.782(16)}{\meter\per\second\squared} 
 \end{align}
 
@@ -450,7 +450,7 @@ Die Abweichung der beiden Messungen (Mathematisches Pendel und Physikalisches Pe
 \end{align}
 
 \begin{resultbox}[Ergebnis Aufgabe 2]
-    Die Schwerebeschleunigung beträgt nach Berücksichtigung sämtlicher Korrekturterme:
+    Die Erdbeschleunigung beträgt nach Berücksichtigung sämtlicher Korrekturterme:
     \begin{equation}
         g_\text{phys} = \qty{10.782(16)}{\meter\per\second\squared} \Rightarrow 60\sigma
     \end{equation}
@@ -462,7 +462,7 @@ Die Abweichung der beiden Messungen (Mathematisches Pendel und Physikalisches Pe
 
 \bigskip
 \section{Diskussion der Messwerte}
-Die Messwerte des Mathematischen Pendels und des Physikalischen Pendels stimmen miteinander überein. Die penible Berücksichtigung sämtlicher Korrekturterme hat den Wert für die Schwerebeschleunigung $g$ nur geringfügig erhöht. Die Abweichung vom Literaturwert beträgt aufgrund des großen Fehlers in beiden Fällen weniger als $0.5\sigma$, was auf eine übereinstimmende Messung hindeutet, jedoch fällt auf, dass die realtive Abweichung vom Literaturwert ca. $9.23\%$ beträgt. Das deutet auf einen systematischn Fehler hin. Eine Begründung durch nicht-berücksichtigte Korrekturterme ist nicht möglich, da sämtliche relevanten Effekte berücksichtigt wurden. Möliche Ursachen für die Abweichung könnten in der Messung der Fadenlänge oder der Schwingungsdauer liegen.
+Die berechneten Messwerte des mathematischen und physikalischen Pendels weisen durch die hohe Anzahl gemessener Schwingungen einen sehr kleinen statistischen Fehler auf ($g_\text{mat} = \qty{10.782(16)}{\meter\per\second\squared}$). Dennoch fällt auf, dass die relative Abweichung vom Literaturwert ca. $9.91\%$ beträgt. Aufgrund der kleinen Unsicherheit resultiert diese Abweichung in einer  Abweichung von rund $60\sigma$. Diese riesige Sigma-Abweichung zeigt, dass hier kein Statistischer Fehler vorliegt, sondern ein massiver systematischer Fehler in der Messung oder Auswertung die Ergebnisse verfälscht. Eine Begründung durch nicht-berücksichtigte physikalische Effekte ist nicht möglich, da sämtliche relevanten Korrekturterme in der Theorie abgedeckt wurden. Die Ursache für dieser starken systematischen Abweichung muss daher in den Messwerten liegen. 
 
 \paragraph{Ermittlung des Fehlers}
 Bei genauem Nachdenken ist mir aufgefallen, dass eine Länge von $l = \qty{97.31(14)e-2}{\meter}$ nicht stimmen kann, da der Faden in der Realität in einer höhe von $\approx \qty{98}{\centi\meter}$ aufgehängt war und wir dabei noch mindestens 5-10 cm für die Reflexionslichtschranke unterbauen mussten.
@@ -480,16 +480,24 @@ geführt, was die Abweichung vom Literaturwert erklärt.
 
 Durch Neuberechnung der Fadenlänge mit der korrekten Länge von $l = \qty{89.72(14)}{\centi\meter}$ ergeben sich Werte von:
 \begin{align}
-    g_\text{mat} &= \qty{9.89(2.21)}{\meter\per\second\squared}\\
-    g_\text{phys} &= \qty{9.90(2.21)}{\meter\per\second\squared}
+    g_\text{mat} &= \qty{9.893(16)}{\meter\per\second\squared} \Rightarrow 8.75\sigma \\
+    g_\text{phys} &= \qty{9.949(16)}{\meter\per\second\squared} \Rightarrow 5.22\sigma
 \end{align}
 
-was einer relativen Abweichung von $0.9\%$ vom Literaturwert entspricht. Und den Sigma fehler von $g_\text{phys}$ auf $0.04\sigma$ reduziert. Somit ist die Messung des mathematischen Pendels und des physikalischen Pendels nun konsistent(er) mit dem Literaturwert.
+was einer relativen Abweichung von $1.42\%$ vom Literaturwert entspricht und den sigma-Fehler reduziert. Somit ist die Messung des mathematischen Pendels und des physikalischen Pendels nun konsistent(er) mit dem Literaturwert.
+Jedodch ist immer noch eine starke Abweichung von $>3\sigma$ vorhanden, was auf weitere systematische Fehler hindeuten, wie zum Beispiel das falsche Zählen der Schwingungen, einen weiteren Denkfehler bei der Messung\footnote{inzwischen zweifele ich echt an Allem}. Durch die fehlerhafe Bestimmung der Fadenlänge, verändert sich auch die berechnete Anzahl nach Gleichung \ref{eq:n_opt} und somit auch die Anzahl der Schwingungen, die für die Messung der Schwingungsdauer durchgeführt werden sollte. Dies hat wiederum Einfluss auf den Fehler der Zeitmessung und somit auch auf den Fehler der Erdbeschleunigung $g$. 
+
+
 
 \paragraph{Korrekturterm}
-Des Weiteren fällt die Insignifikanz des Korrekturterms auf. Alle Korrekturterme sind kleiner, als der Fehler der Messung des mathematischen Pendels. Somit ist die Berücksichtigung sämtlicher Korrekturterme für die Bestimmung von $g$ nicht notwendig, da der Fehler der Messung den Korrekturterm überwiegt. Es kann aber auch daran liegen, dass wir mit der falschen Fadenlänge auch einen zu 
-kleine Anzahl der zu messenden Schwingungen $n$ gewählt haben, was den Fehler der Zeitmessung verändert.
-Sehr bemerkenswert ist, dass die Dämpfung eine so kleine Korrektur aufweisst
+Durch die Abweichung des physikalischen Pendels vom mathematischen Pendels zeigt sich die Wichtigkeit der physikalischen Korrekturterme. Die Gesamtkorrektur verschiebt das Endergebnis um $g_\text{diff} = \qty{0.0516}{\meter\per\second\squared}$. Da dieser Wert dreimal so groß ist wie der Messfehler selbst, resultiert dies in einer Signifikanz von $2.27\sigma$ zwischen dem vereinfachten mathematischen und dem physikalischen Pendel. Jedoch zeigt sich auch den Unterscheid und die größenordnung der Korrekturterme. Die Korrektur für den Winkelausschlag ist mit $k_5 = \num{4.440(29)e-3}$ der größte Korrekturterm, gefolgt von der Korrektur für den Auftrieb $k_2 = \num{1.521(6)e-4}$ und der Korrektur für die Fadenmasse $k_3 = \num{-1.814(12)e-5}$. Die Korrektur für die Dämpfung $k_4 = \num{3.86(22)e-9}$ und die Korrektur für das Längenverhältnis von Faden und Kugelradius $k_1 = \num{2.423(13)e-4}$ sind vernachlässigbar klein.
+
+
+\section{Fazit}
+Zum Ende kann festgehalten werden, dass der Versuch erfolgreich durchgeführt werden konnte, auch wenn es einen kleinen Messfehler gab\,\dots
+
+Es ist sehr bemerkenswert, wie wenig Einfluss die Dämpfung auf die Schwingungsdauer hat. Der Luftwiederstand und Reibung ist so klein, dass als ich nach 2 Stunden zurückgekommen aus der Mensa zurückgekommen bin, weil ich meinen Geldbeutel vergessen hatte, das Pendel immer noch geschwungen hat. Die Dämpfungskonstante $\delta = \qty{2.06(6)e-4}{\per\second}$ ist so klein, dass die Amplitude der Schwingung erst nach $\approx 56$ Minuten auf 50\% abgenommen hat.
+
 
 
 \clearpage
@@ -505,32 +513,11 @@ Sehr bemerkenswert ist, dass die Dämpfung eine so kleine Korrektur aufweisst
 \end{thebibliography}
 
 
+\appendix
+\section{Anhang: Code für Berechnung mit falscher Länge}
+\include{code/V14.tex}
 
+\section{Anhang: Code für Berechnung mit korrekter Länge}
+\include{code/V14_korrekt.tex}
 
-\begin{comment}
-
-\begin{table}[H]
-    \centering
-    \caption{Mess- und Geräteparameter für die exemplarische Berechnung (Messung 28).}
-    \label{tab:parameter_messung_28}
-    \begin{tabular}{ll}
-        \toprule
-        \textbf{Größe} & \textbf{Wert} \\
-        \midrule
-        Fallstrecke & $s_1 = 10\,\text{Skt} = 5.00 \cdot 10^{-4}\,\text{m}$ \\
-        Fallzeit & $t_1 = 11.85\,\text{s}$ \\
-        Steigstrecke & $s_2 = 10\,\text{Skt} = 5.00 \cdot 10^{-4}\,\text{m}$ \\
-        Steigzeit & $t_2 = 18.19\,\text{s}$ \\
-        Skalenteilung & $1\,\text{Skt} = 5.00 \cdot 10^{-5}\,\text{m}$ \\
-        Kondensatorspannung & $U = 500\,\text{V}$ \\
-        Plattenabstand & $d = 6.00 \cdot 10^{-3}\,\text{m}$ \\
-        Luftdruck & $p = 100285\,\text{Pa}$ \\
-        Erdbeschleunigung & $g = 9.81\,\frac{\text{m}}{\text{s}^2}$ \\
-        Dichtedifferenz & $\rho = \rho_{\text{Öl}} - \rho_{\text{Luft}} = 871.21\,\frac{\text{kg}}{\text{m}^3}$ \\
-        Unkorrigierte Luftviskosität & $\eta_0 = 1.81 \cdot 10^{-5}\,\text{Pa}\cdot\text{s}$ \\
-        Cunningham-Konstante & $b = 7.78 \cdot 10^{-3}\,\text{Pa}\cdot\text{m}$ \\
-        \bottomrule
-    \end{tabular}
-\end{table}
-\end{comment}
 \end{document}
