@@ -235,7 +235,54 @@ With the error calculation of:
     \Delta T_0 = \sqrt{\Delta T_\text{stat}^2 + \Delta T_\text{sys}^2} = \sqrt{(0.002)^2 + (0.013)^2} \approx 0.014\,\text{s}
 \end{equation}
 
+The Mean of the measured periods is:
+\begin{equation}
+    T_0 = \qty{1.984}{13}
+\end{equation}
 
+\begin{resultbox}[Result]
+    The oscillation period of the undamped torsion pendulum is determined to be:
+    \begin{equation}
+        T_0 = \qty{1.984(14)}{\second}
+    \end{equation}
+\end{resultbox}
+
+\bigskip
+\subsection{Excersise 2: Evaluate the damping constant $\delta$}
+
+The damping constant $\delta$ can be determined by Measuring the time $t_{1/2}$ after which the amplitude has decreased to only 5\% of its initial value. For each Damping current of the eddy current brake, the average of two measurements of the amplitude was determined after each full oscillation until it reached 5\% of the initial amplitude. The results are plotted logarithmically to determine the damping constant $\delta$ from the slope of the fit. 
+
+The error of the amplitude is estimated to be $\Delta a = 0.2\,\text{Skt}$, which corresponds to the uncertainty of the measurement due to the scale division of the torsion pendulum.
+
+     
+\begin{figure}[H]
+    \centering
+    \begin{subfigure}[b \ref{fig:amplitude_decay_280_appendix}]{0.48\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{img/A2_280mA.jpeg}
+        \caption{Damping current: 280\,mA.}
+        \label{fig:amplitude_decay_280}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b \ref{fig:amplitude_decay_360_appendix}]{0.48\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{img/A2_360mA.jpeg}
+        \caption{Damping current: 360\,mA.}
+        \label{fig:amplitude_decay_360}
+    \end{subfigure}
+    \caption{Determination of the damping coefficient for two damping currents.}
+    \label{fig:amplitude_decay}
+\end{figure}
+
+\footnotetext[1]{The plots are listed in full scale in the appendix}
+
+\begin{resultbox}[Result]
+    The damping constants for the two damping currents are determined to be:
+    \begin{align}
+        \delta_{280} = \qty{-0.21(5)}{\per\second}\\
+        \delta_{360} = \qty{-0.35(5)}{\per\second}
+    \end{align}
+\end{resultbox}
 
 \clearpage
 
@@ -251,31 +298,22 @@ With the error calculation of:
 
 
 
+\appendix
+\section{Plots}
 
-\begin{comment}
-
-\begin{table}[H]
+\begin{figure}[H]
     \centering
-    \caption{Mess- und Geräteparameter für die exemplarische Berechnung (Messung 28).}
-    \label{tab:parameter_messung_28}
-    \begin{tabular}{ll}
-        \toprule
-        \textbf{Größe} & \textbf{Wert} \\
-        \midrule
-        Fallstrecke & $s_1 = 10\,\text{Skt} = 5.00 \cdot 10^{-4}\,\text{m}$ \\
-        Fallzeit & $t_1 = 11.85\,\text{s}$ \\
-        Steigstrecke & $s_2 = 10\,\text{Skt} = 5.00 \cdot 10^{-4}\,\text{m}$ \\
-        Steigzeit & $t_2 = 18.19\,\text{s}$ \\
-        Skalenteilung & $1\,\text{Skt} = 5.00 \cdot 10^{-5}\,\text{m}$ \\
-        Kondensatorspannung & $U = 500\,\text{V}$ \\
-        Plattenabstand & $d = 6.00 \cdot 10^{-3}\,\text{m}$ \\
-        Luftdruck & $p = 100285\,\text{Pa}$ \\
-        Erdbeschleunigung & $g = 9.81\,\frac{\text{m}}{\text{s}^2}$ \\
-        Dichtedifferenz & $\rho = \rho_{\text{Öl}} - \rho_{\text{Luft}} = 871.21\,\frac{\text{kg}}{\text{m}^3}$ \\
-        Unkorrigierte Luftviskosität & $\eta_0 = 1.81 \cdot 10^{-5}\,\text{Pa}\cdot\text{s}$ \\
-        Cunningham-Konstante & $b = 7.78 \cdot 10^{-3}\,\text{Pa}\cdot\text{m}$ \\
-        \bottomrule
-    \end{tabular}
-\end{table}
-\end{comment}
+    \includegraphics[width=\textwidth]{img/A2_280mA.jpeg}
+    \caption{Amplitude decay for a damping current of 280\,mA.}
+    \label{fig:amplitude_decay_280_appendix}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{img/A2_360mA.jpeg}
+    \caption{Amplitude decay for a damping current of 360\,mA.}
+    \label{fig:amplitude_decay_360_appendix}
+\end{figure}
+
+
 \end{document}
