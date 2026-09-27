@@ -76,7 +76,7 @@
 
 \newcommand{\versuch}{Experiment 13}
 \newcommand{\titel}{Resonance}
-\newcommand{\praktikum}{Begginners Physics Lab 1}
+\newcommand{\praktikum}{Beginners Physics Lab 1}
 \newcommand{\autor}{Jonathan Gießen}
 \newcommand{\gruppe}{Group 8}
 \newcommand{\datum}{23. September 2026}
@@ -114,7 +114,7 @@
 
 \bigskip
 \begin{tcolorbox}[colback=gray!5,colframe=gray!60,boxrule=0.8pt,arc=0.01mm,title=AI-Disclaimer]
-    AI tools were used to assist in translating, as well as in the generation of text in section \ref{sec:Einleitung}
+    AI tools were used to assist in translating, as well as in the generation of text in section \ref{sec:Einleitung} as well as Fundamentals \ref{sec:fundamentals}
 \end{tcolorbox}
 
 \clearpage
@@ -125,7 +125,7 @@ In this experiment, the fundamental dynamic properties of oscillating systems ar
 
 For the experimental setup, the torsion pendulum is driven by a stepper motor with an eccentric, while an eddy current brake (based on Lenz's law) provides a controllable damping that is proportional to the velocity. The aim of the experiment is to determine the oscillation period and the damping constants of the system. Furthermore, the resonance behavior during forced oscillation is analyzed to experimentally determine characteristic quantities such as the resonance frequency, the full width at half maximum (FWHM) of the resonance curve, and the resonance amplitude enhancement, and to compare them with theoretical expectations.
 
-\section{Fundamentals}
+\section{Fundamentals}\label{fundamentals}
 
 \subsection{Free Damped Oscillation}
 If the torsion pendulum is displaced once and left to itself, it performs a free oscillation. Since frictional forces are present in every real system—which in this experiment (due to the eddy current brake) are proportional to the instantaneous velocity—the amplitude decreases as time progresses. The time dependence of this damped oscillation is described by the following equation:
@@ -179,9 +179,9 @@ The complete mathematical solution of the equation of motion for a harmonic exci
 The first term of this equation describes the transient process. The parameters $\beta$ (depending on the initial state) and $\epsilon$ (the phase difference between the exciter and the system) determine the exact phase. As soon as the damped component has practically decayed to zero ($e^{-\delta t} \approx 0$), only the stationary oscillation remains, which is relevant for measuring the resonance curve.
 
 
-\section{Messprotokoll}
+\section{Lab report}
 
-\subsection{Versuchsaufbau und Aufgaben}
+\subsection{Setup and Excercises}
 
     
 \includepdf[
@@ -206,7 +206,7 @@ The measuring process is divided into four main tasks to analyze both free and f
 \end{enumerate}
 
 
-\section{Auswertung}
+\section{Examination of the Results}
 
 \subsection{Excersise 1: Period of the Free Oscillator}
 
@@ -249,7 +249,7 @@ The Mean of the measured periods is:
 \bigskip
 \subsection{Excersise 2: Evaluate the damping constant $\delta$}
 
-The damping constant $\delta$ can be determined by measuring the time $t_{1/2}$ after which the amplitude has decreased to only 5\% of its initial value. For each damping current of the eddy current brake, the average of two measurements of the amplitude was determined after each full oscillation until it reached 5\% of the initial amplitude. The results are plotted logarithmically to determine the damping constant $\delta$ from the slope of the fit. 
+The damping constant $\delta$ can be determined by measuring the amplitude with respect to the number os oscilations. For each damping current of the eddy current brake, the average of two measurements of the amplitude was determined after each full oscillation until it reached > 5\% of the initial amplitude. The results are plotted logarithmically to determine the damping constant $\delta$ from the slope of the fit. 
 
 The error of the amplitude is estimated to be $\Delta a = 0.2\,\text{Skt}$, which corresponds to the uncertainty of the measurement due to the scale division of the torsion pendulum.
 
@@ -274,8 +274,8 @@ The error of the amplitude is estimated to be $\Delta a = 0.2\,\text{Skt}$, whic
 
 from the slope of the linear fit, the damping constants are:
 \begin{enumerate}
-    \item for 280\,mA: $\num{-0.21(5)}\,\frac{\text{skt}}{\text{Oscilations}}$
-    \item for 360\,mA: $\num{-0.35(5)}\,\frac{\text{skt}}{\text{Oscilations}}$
+    \item for 280\,mA: $(\num{-0.21(5)})\,\frac{1}{\text{Oscilations}}$
+    \item for 360\,mA: $(\num{-0.35(5)})\,\frac{1}{\text{Oscilations}}$
 \end{enumerate}
 
 Since the oscillation period $T_0$ is known, the damping constants can be converted to units of $\frac{1}{\text{s}}$:
@@ -338,7 +338,7 @@ The resonance step-up (quality factor) (Equation~\ref{eq:Quality-factor}) tells 
 The quality factor can also be calculated using the measured values of the resonance frequency and the damping constant. 
 
 \begin{align}
-    Q_{damping} = \frac{f_0}{2\delta}\\
+    Q_{damping} = \frac{\omega_0}{2\delta}\\
     Q_{measured} = \frac{b(\omega')}{b(\omega \rightarrow 0)}
 \end{align}
 
@@ -382,7 +382,7 @@ The difference between the theoretical and measured damping constants is:
 
 \section{Conclusion}
 In this experiment, we investigated the fundamental dynamic properties of a torsion pendulum, focusing on both free, damped oscillations and forced oscillations under periodic external torque. We determined the oscillation period of the undamped torsion pendulum, measured the damping constants for two different damping currents, and analyzed the resonance behavior during forced oscillations. The measured resonance frequencies and Full Width at Half Maximum (FWHM) were consistent with theoretical expectations, and the quality factors for the two damping currents were determined. With a sigma-deviation of 0.14 and 1.18. The bigger deviation can be explained by the approximation using the Lorentz profile, which is only exact in the limit of small damping. The damping with $I_2 = 360\,\text{mA}$ shows a larger deviation than the damping with $I_1 = 280\,\text{mA}$.
-Using python, i've fitted the data to the exact brit-wigner function, which is the exact solution of the forced oscillation.
+Using python, i've fitted the data to the exact Breit-Wigner function, which is the exact solution of the forced oscillation.
 \begin{equation}
     A(\omega) = \frac{A_0 \cdot \omega_0^2}{\sqrt{{\left(\omega_0^2 - \omega^2 \right)}^2 + {\left( 2\gamma\omega \right)}^2}}
 \end{equation}
@@ -396,7 +396,7 @@ using this fit, the damping constant is given by $\gamma$ and the resonance freq
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.95\textwidth]{img/A3_pyhton.png}
-    \caption{Resonance curve for a damping current of 280\,mA and 360\,mA fitted with the exact brit-wigner function.}\label{fig:resonance_curve_fit}
+    \caption{Resonance curve for a damping current of 280\,mA and 360\,mA fitted with the exact Breit-Wigner function.}\label{fig:resonance_curve_fit}
 \end{figure}
 
 This sows the exact deviation by assuming a lorentz profile.
