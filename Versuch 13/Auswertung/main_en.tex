@@ -29,7 +29,7 @@
 \usepackage{longtable}
 \usepackage{graphicx}
 
-%\input{../../jupyterpackages.tex}
+\input{../../jupyterpackages.tex}
 
 % jupyter nbconvert --to latex 'Path'
 % enferne usepackages und begin{document} und end{document}
@@ -38,14 +38,12 @@
 
 \newcommand{\pdfabbildung}[2]{%
     \refstepcounter{figure}%
-    \addcontentsline{lof}{figure}{\protect\numberline{\thefigure}#1}%
-    \label{#2}%
+    \addcontentsline{lof}{figure}{\protect\numberline{\thefigure}#1}%\label{#2}%
 }
 
 \newcommand{\pdftabelle}[2]{%
     \refstepcounter{table}%
-    \addcontentsline{lot}{table}{\protect\numberline{\thetable}#1}%
-    \label{#2}%
+    \addcontentsline{lot}{table}{\protect\numberline{\thetable}#1}%\label{#2}%
 }
 
 
@@ -164,12 +162,12 @@ Two other central quantities characterize the shape of the resonance curve:
 \begin{itemize}
     \item \textbf{Full Width at Half Maximum (FWHM) $H$:} It describes the frequency width of the resonance curve at the height $b(\omega')/\sqrt{2}$. For systems that are not too strongly damped, the following approximation applies:
     \begin{equation}
-        H = 2\delta
+        H = 2\delta \label{eq:FWHM}
     \end{equation}
     
     \item \textbf{Resonance Step-Up (Quality Factor):} It is defined as the ratio of the maximum amplitude at resonance to the static amplitude at a frequency of zero ($\omega \rightarrow 0$):
     \begin{equation}
-        \frac{b(\omega')}{b(\omega \rightarrow 0)} = \frac{\omega_0}{2\delta}
+        Q = \frac{b(\omega')}{b(\omega \rightarrow 0)} = \frac{\omega_0}{2\delta} \label{eq:Quality-factor}
     \end{equation}
 \end{itemize}
 
@@ -216,18 +214,18 @@ We measured the oscillation period of the undamped torsion pendulum by timing 20
 The measured Values are:
 \begin{table}[H]
     \centering
-    \caption{Measured oscillation periods for 20 full oscillations of the undamped torsion pendulum.}
-    \label{tab:period_measurements}
+    \caption{Measured oscillation periods for 20 full oscillations of the undamped torsion pendulum.}\label{tab:period_measurements}
     \begin{tabular}{lcc}
         \toprule
         \textbf{Measurement} & \textbf{Time for 20 Oscillations (s)} & \textbf{Calculated Period $T_0$ (s)} \\
         \midrule
-        1 & \num{39.61(0.25)} & 1.981(13) \\
-        2 & \num{39.72(0.25)} & 1.986(13) \\
-        3 & \num{39.73(0.25)} & 1.987(13) \\
+        1 & \num{39.61(0.25)} & \num{1.981(13)} \\
+        2 & \num{39.72(0.25)} & \num{1.986(13)} \\
+        3 & \num{39.73(0.25)} & \num{1.987(13)} \\
         \bottomrule
     \end{tabular}
 \end{table}
+
 
 With the error calculation of:
 
@@ -242,15 +240,16 @@ The Mean of the measured periods is:
 
 \begin{resultbox}[Result]
     The oscillation period of the undamped torsion pendulum is determined to be:
-    \begin{equation}
-        T_0 = \qty{1.984(14)}{\second}
-    \end{equation}
+    \begin{align}
+        T_0 = \qty{1.984(14)}{\second}\\
+        f_0 = \qty{0.504(4)}{\hertz}
+    \end{align}
 \end{resultbox}
 
 \bigskip
 \subsection{Excersise 2: Evaluate the damping constant $\delta$}
 
-The damping constant $\delta$ can be determined by Measuring the time $t_{1/2}$ after which the amplitude has decreased to only 5\% of its initial value. For each Damping current of the eddy current brake, the average of two measurements of the amplitude was determined after each full oscillation until it reached 5\% of the initial amplitude. The results are plotted logarithmically to determine the damping constant $\delta$ from the slope of the fit. 
+The damping constant $\delta$ can be determined by measuring the time $t_{1/2}$ after which the amplitude has decreased to only 5\% of its initial value. For each damping current of the eddy current brake, the average of two measurements of the amplitude was determined after each full oscillation until it reached 5\% of the initial amplitude. The results are plotted logarithmically to determine the damping constant $\delta$ from the slope of the fit. 
 
 The error of the amplitude is estimated to be $\Delta a = 0.2\,\text{Skt}$, which corresponds to the uncertainty of the measurement due to the scale division of the torsion pendulum.
 
@@ -260,29 +259,151 @@ The error of the amplitude is estimated to be $\Delta a = 0.2\,\text{Skt}$, whic
     \begin{subfigure}[b \ref{fig:amplitude_decay_280_appendix}]{0.48\textwidth}
         \centering
         \includegraphics[width=\textwidth]{img/A2_280mA.jpeg}
-        \caption{Damping current: 280\,mA.}
-        \label{fig:amplitude_decay_280}
+        \caption{Damping current: 280\,mA.}\label{fig:amplitude_decay_280}
     \end{subfigure}
     \hfill
     \begin{subfigure}[b \ref{fig:amplitude_decay_360_appendix}]{0.48\textwidth}
         \centering
         \includegraphics[width=\textwidth]{img/A2_360mA.jpeg}
-        \caption{Damping current: 360\,mA.}
-        \label{fig:amplitude_decay_360}
+        \caption{Damping current: 360\,mA.}\label{fig:amplitude_decay_360}
     \end{subfigure}
-    \caption{Determination of the damping coefficient for two damping currents.}
-    \label{fig:amplitude_decay}
+    \caption{Determination of the damping coefficient for two damping currents.}\label{fig:amplitude_decay}
 \end{figure}
 
 \footnotetext[1]{The plots are listed in full scale in the appendix}
 
+from the slope of the linear fit, the damping constants are:
+\begin{enumerate}
+    \item for 280\,mA: $\num{-0.21(5)}\,\frac{\text{skt}}{\text{Oscilations}}$
+    \item for 360\,mA: $\num{-0.35(5)}\,\frac{\text{skt}}{\text{Oscilations}}$
+\end{enumerate}
+
+Since the oscillation period $T_0$ is known, the damping constants can be converted to units of $\frac{1}{\text{s}}$:
+\begin{align}
+    \delta_{280} = \frac{-0.21(5)}{T_0} = \qty{-0.11(3)}{\per\second}\\
+    \delta_{360} = \frac{-0.35(5)}{T_0} = \qty{-0.18(3)}{\per\second}
+\end{align}
+
 \begin{resultbox}[Result]
     The damping constants for the two damping currents are determined to be:
     \begin{align}
-        \delta_{280} = \qty{-0.21(5)}{\per\second}\\
-        \delta_{360} = \qty{-0.35(5)}{\per\second}
+        \delta_{280} = \qty{-0.11(3)}{\per\second}\\
+        \delta_{360} = \qty{-0.18(3)}{\per\second}
     \end{align}
 \end{resultbox}
+
+\subsection{Excersise 3: Forced Oscillation and Resonance}
+The resonance curves are drawn for both damping currents. 
+
+\begin{figure}[H]
+    \centering
+    \begin{subfigure}[b]{0.48\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{img/A3_280mA.jpeg}
+        \caption{Damping current: 280\,mA.}\label{fig:resonance_curve_280}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.48\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{img/A3_360mA.jpeg}
+        \caption{Damping current: 360\,mA.}\label{fig:resonance_curve_360}
+    \end{subfigure}
+    \caption{Resonance curves for two damping currents. The resonance frequency and the Full Width at Half Maximum (FWHM) are determined from the plots.}\label{fig:resonance_curves}
+\end{figure}
+
+
+The corrollation between the damping constant $\delta$ and the FWHM $H$ is given by equation~\ref{eq:FWHM}, the measured width has to be multiplied by $\pi$ to get the damping constant.
+
+
+The measured values for the resonance frequency and the Full Width at Half Maximum (FWHM) are summarized in Table~\ref{tab:resonance_measurements}. 
+
+
+\begin{table}[H]
+    \centering
+    \caption{Measured resonance frequencies and Full Width at Half Maximum (FWHM) for two damping currents.}\label{tab:resonance_measurements}
+    \begin{tabular}{lcc}
+        \toprule
+        \textbf{Damping Current} & \textbf{Resonance Frequency $f$ (Hz)} & \textbf{$\delta$ (Hz)} \\
+        \midrule
+        280\,mA & \num{0.505(5)} & \num{0.110(16)} \\
+        360\,mA & \num{0.506(5)} & \num{0.141(16)} \\
+        \bottomrule
+    \end{tabular}
+\end{table}
+
+The natural frequency $f_0 = \qty{0.504(4)}{\hertz}$ is slightly lower than the measured resonance frequencies, which is consistent with the theoretical expectation that the resonance frequency is slightly lower than the natural frequency due to damping.
+
+The resonance step-up (quality factor) (Equation~\ref{eq:Quality-factor}) tells how much the amplitude is amplified at resonance compared to the static amplitude.
+
+The quality factor can also be calculated using the measured values of the resonance frequency and the damping constant. 
+
+\begin{align}
+    Q_{damping} = \frac{f_0}{2\delta}\\
+    Q_{measured} = \frac{b(\omega')}{b(\omega \rightarrow 0)}
+\end{align}
+
+\begin{table}[H]
+    \centering
+    \caption{Quality factor for two damping currents.}\label{tab:quality_factor}
+    \begin{tabular}{lcc}
+        \toprule
+        \textbf{Damping Current} & \textbf{$Q_{damping}$} & \textbf{$Q_{measured}$} \\
+        \midrule
+        280\,mA & \num{15(4)} & \num{15(8)}\\
+        360\,mA & \num{9.0(13)} & \num{9(5)}\\
+        \bottomrule
+    \end{tabular}
+\end{table}
+
+The difference between the theoretical and measured damping constants is:
+
+\begin{equation}
+    \sigma \delta = \frac{\delta_{measured} - \delta_{damping}}{\sqrt{\Delta \delta_{damping} ^2 + \Delta \delta_{measured}^2}} = \begin{cases}
+        \sigma \delta_{280} \approx 0.14\\
+        \sigma \delta_{360} \approx 1.18
+    \end{cases}
+\end{equation}
+
+\begin{resultbox}[Result]
+    The measured resonance frequencies and Full Width at Half Maximum (FWHM) for the two damping currents are:
+    \begin{align}
+        f_{280} = \qty{0.505(5)}{\hertz}\\
+        f_{360} = \qty{0.506(5)}{\hertz}\\
+        \delta_{280} = \qty{0.110(16)}{\hertz} \Rightarrow 0.14\sigma\\
+        \delta_{360} = \qty{0.141(16)}{\hertz} \Rightarrow 1.18\sigma
+    \end{align} 
+
+    The quality factors for the two damping currents are:
+    \begin{align}
+        Q_{280} = \num{15(4)}\\
+        Q_{360} = \num{9.0(13)}
+    \end{align}
+\end{resultbox}
+
+\section{Conclusion}
+In this experiment, we investigated the fundamental dynamic properties of a torsion pendulum, focusing on both free, damped oscillations and forced oscillations under periodic external torque. We determined the oscillation period of the undamped torsion pendulum, measured the damping constants for two different damping currents, and analyzed the resonance behavior during forced oscillations. The measured resonance frequencies and Full Width at Half Maximum (FWHM) were consistent with theoretical expectations, and the quality factors for the two damping currents were determined. With a sigma-deviation of 0.14 and 1.18. The bigger deviation can be explained by the approximation using the Lorentz profile, which is only exact in the limit of small damping. The damping with $I_2 = 360\,\text{mA}$ shows a larger deviation than the damping with $I_1 = 280\,\text{mA}$.
+Using python, i've fitted the data to the exact brit-wigner function, which is the exact solution of the forced oscillation.
+\begin{equation}
+    A(\omega) = \frac{A_0 \cdot \omega_0^2}{\sqrt{{\left(\omega_0^2 - \omega^2 \right)}^2 + {\left( 2\gamma\omega \right)}^2}}
+\end{equation}
+
+using this fit, the damping constant is given by $\gamma$ and the resonance frequency is given by $\omega_0$. The results are:
+\begin{align}
+    \gamma_{280} = \qty{0.0981}{\hertz} \\
+    \gamma_{360} = \qty{0.165}{\hertz} 
+\end{align}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.95\textwidth]{img/A3_pyhton.png}
+    \caption{Resonance curve for a damping current of 280\,mA and 360\,mA fitted with the exact brit-wigner function.}\label{fig:resonance_curve_fit}
+\end{figure}
+
+This sows the exact deviation by assuming a lorentz profile.
+
+Overall, the experiment provided valuable insights into the behavior of oscillating systems and their response to external forces.
+
+
 
 \clearpage
 
@@ -304,16 +425,30 @@ The error of the amplitude is estimated to be $\Delta a = 0.2\,\text{Skt}$, whic
 \begin{figure}[H]
     \centering
     \includegraphics[width=\textwidth]{img/A2_280mA.jpeg}
-    \caption{Amplitude decay for a damping current of 280\,mA.}
-    \label{fig:amplitude_decay_280_appendix}
+    \caption{Amplitude decay for a damping current of 280\,mA.}\label{fig:amplitude_decay_280_appendix}
 \end{figure}
 
 \begin{figure}[H]
     \centering
     \includegraphics[width=\textwidth]{img/A2_360mA.jpeg}
-    \caption{Amplitude decay for a damping current of 360\,mA.}
-    \label{fig:amplitude_decay_360_appendix}
+    \caption{Amplitude decay for a damping current of 360\,mA.}\label{fig:amplitude_decay_360_appendix}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{img/A3_280mA.jpeg}
+    \caption{Resonance curve for a damping current of 280\,mA.}\label{fig:resonance_curve_280_appendix}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{img/A3_360mA.jpeg}
+    \caption{Resonance curve for a damping current of 360\,mA.}\label{fig:resonance_curve_360_appendix}
 \end{figure}
 
 
+\section{Python Code}
+The following code was used to analyze the data and generate the plots in this report. It includes the necessary functions for fitting the data to the theoretical models and calculating the relevant parameters.
+
+\include{code/V13.tex}
 \end{document}

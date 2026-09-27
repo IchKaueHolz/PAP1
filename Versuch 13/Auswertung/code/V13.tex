@@ -1,0 +1,301 @@
+
+
+    
+    \(T_0\) berechnen
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{1}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{k+kn}{import}\PY{+w}{ }\PY{n+nn}{numpy}\PY{+w}{ }\PY{k}{as}\PY{+w}{ }\PY{n+nn}{np}
+\PY{k+kn}{import}\PY{+w}{ }\PY{n+nn}{uncertainties}\PY{+w}{ }\PY{k}{as}\PY{+w}{ }\PY{n+nn}{unc}
+\PY{k+kn}{import}\PY{+w}{ }\PY{n+nn}{uncertainties}\PY{n+nn}{.}\PY{n+nn}{unumpy}\PY{+w}{ }\PY{k}{as}\PY{+w}{ }\PY{n+nn}{unp}
+\PY{k+kn}{import}\PY{+w}{ }\PY{n+nn}{matplotlib}\PY{n+nn}{.}\PY{n+nn}{pyplot}\PY{+w}{ }\PY{k}{as}\PY{+w}{ }\PY{n+nn}{plt}
+\PY{k+kn}{from}\PY{+w}{ }\PY{n+nn}{scipy}\PY{n+nn}{.}\PY{n+nn}{optimize}\PY{+w}{ }\PY{k+kn}{import} \PY{n}{curve\PYZus{}fit}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{2}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{n}{T} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{array}\PY{p}{(}\PY{p}{[}\PY{l+m+mf}{39.61}\PY{p}{,} \PY{l+m+mf}{39.72}\PY{p}{,} \PY{l+m+mf}{39.73}\PY{p}{]}\PY{p}{)}
+
+\PY{n}{unc\PYZus{}T} \PY{o}{=} \PY{l+m+mf}{0.25}
+
+\PY{n}{T} \PY{o}{=} \PY{n}{unp}\PY{o}{.}\PY{n}{uarray}\PY{p}{(}\PY{n}{T}\PY{p}{,} \PY{n}{unc\PYZus{}T}\PY{p}{)}
+\PY{n}{T\PYZus{}0} \PY{o}{=} \PY{n}{T}\PY{o}{/}\PY{l+m+mi}{20}
+\PY{n}{T\PYZus{}0}
+\PY{n}{T\PYZus{}fin\PYZus{}err} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{sqrt}\PY{p}{(}\PY{p}{(}\PY{n}{np}\PY{o}{.}\PY{n}{std}\PY{p}{(}\PY{n}{unp}\PY{o}{.}\PY{n}{nominal\PYZus{}values}\PY{p}{(}\PY{n}{T\PYZus{}0}\PY{p}{)}\PY{p}{,} \PY{n}{ddof}\PY{o}{=}\PY{l+m+mi}{1}\PY{p}{)} \PY{o}{/} \PY{n}{np}\PY{o}{.}\PY{n}{sqrt}\PY{p}{(}\PY{n+nb}{len}\PY{p}{(}\PY{n}{T\PYZus{}0}\PY{p}{)}\PY{p}{)}\PY{p}{)}\PY{o}{*}\PY{o}{*}\PY{l+m+mi}{2} \PY{o}{+} \PY{l+m+mf}{0.013}\PY{o}{*}\PY{o}{*}\PY{l+m+mi}{2}\PY{p}{)}
+\PY{n}{T\PYZus{}fin} \PY{o}{=} \PY{n}{unc}\PY{o}{.}\PY{n}{ufloat}\PY{p}{(}
+    \PY{n+nb}{float}\PY{p}{(}\PY{n}{np}\PY{o}{.}\PY{n}{mean}\PY{p}{(}\PY{n}{unp}\PY{o}{.}\PY{n}{nominal\PYZus{}values}\PY{p}{(}\PY{n}{T\PYZus{}0}\PY{p}{)}\PY{p}{)}\PY{p}{)}\PY{p}{,}
+    \PY{n+nb}{float}\PY{p}{(}\PY{n}{T\PYZus{}fin\PYZus{}err}\PY{p}{)}
+\PY{p}{)}
+\PY{n+nb}{print}\PY{p}{(}\PY{n}{T\PYZus{}fin}\PY{p}{)}
+\PY{n+nb}{print}\PY{p}{(}\PY{l+m+mi}{1}\PY{o}{/}\PY{n}{T\PYZus{}fin}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+1.984+/-0.013
+0.5039+/-0.0033
+    \end{Verbatim}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{3}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{n}{i1\PYZus{}run1} \PY{o}{=} \PY{p}{[}\PY{l+m+mf}{20.0}\PY{p}{,} \PY{l+m+mf}{16.5}\PY{p}{,} \PY{l+m+mf}{13.6}\PY{p}{,} \PY{l+m+mf}{11.2}\PY{p}{,} \PY{l+m+mf}{9.2}\PY{p}{,} \PY{l+m+mf}{7.6}\PY{p}{,} \PY{l+m+mf}{6.2}\PY{p}{,} \PY{l+m+mf}{5.0}\PY{p}{,} \PY{l+m+mf}{4.0}\PY{p}{,} \PY{l+m+mf}{3.2}\PY{p}{,} \PY{l+m+mf}{2.6}\PY{p}{,} \PY{l+m+mf}{2.1}\PY{p}{,} \PY{l+m+mf}{1.7}\PY{p}{,} \PY{l+m+mf}{1.3}\PY{p}{,} \PY{l+m+mf}{1.0}\PY{p}{,} \PY{l+m+mf}{0.8}\PY{p}{,} \PY{l+m+mf}{0.6}\PY{p}{,} \PY{l+m+mf}{0.5}\PY{p}{]}
+\PY{n}{i1\PYZus{}run2} \PY{o}{=} \PY{p}{[}\PY{l+m+mf}{20.0}\PY{p}{,} \PY{l+m+mf}{16.2}\PY{p}{,} \PY{l+m+mf}{13.5}\PY{p}{,} \PY{l+m+mf}{11.1}\PY{p}{,} \PY{l+m+mf}{9.0}\PY{p}{,} \PY{l+m+mf}{7.4}\PY{p}{,} \PY{l+m+mf}{6.0}\PY{p}{,} \PY{l+m+mf}{5.0}\PY{p}{,} \PY{l+m+mf}{4.0}\PY{p}{,} \PY{l+m+mf}{3.2}\PY{p}{,} \PY{l+m+mf}{2.6}\PY{p}{,} \PY{l+m+mf}{2.0}\PY{p}{,} \PY{l+m+mf}{1.6}\PY{p}{,} \PY{l+m+mf}{1.3}\PY{p}{,} \PY{l+m+mf}{1.0}\PY{p}{,} \PY{l+m+mf}{0.8}\PY{p}{,} \PY{l+m+mf}{0.6}\PY{p}{,} \PY{l+m+mf}{0.4}\PY{p}{]}
+
+\PY{n}{i2\PYZus{}run1} \PY{o}{=} \PY{p}{[}\PY{l+m+mf}{20.0}\PY{p}{,} \PY{l+m+mf}{14.6}\PY{p}{,} \PY{l+m+mf}{10.7}\PY{p}{,} \PY{l+m+mf}{7.8}\PY{p}{,} \PY{l+m+mf}{5.6}\PY{p}{,} \PY{l+m+mf}{4.1}\PY{p}{,} \PY{l+m+mf}{2.9}\PY{p}{,} \PY{l+m+mf}{2.0}\PY{p}{,} \PY{l+m+mf}{1.4}\PY{p}{,} \PY{l+m+mf}{1.0}\PY{p}{,} \PY{l+m+mf}{0.7}\PY{p}{,} \PY{l+m+mf}{0.5}\PY{p}{,} \PY{l+m+mf}{0.3}\PY{p}{]}
+\PY{n}{i2\PYZus{}run2} \PY{o}{=} \PY{p}{[}\PY{l+m+mf}{20.0}\PY{p}{,} \PY{l+m+mf}{14.8}\PY{p}{,} \PY{l+m+mf}{10.7}\PY{p}{,} \PY{l+m+mf}{7.8}\PY{p}{,} \PY{l+m+mf}{5.6}\PY{p}{,} \PY{l+m+mf}{4.1}\PY{p}{,} \PY{l+m+mf}{2.9}\PY{p}{,} \PY{l+m+mf}{2.0}\PY{p}{,} \PY{l+m+mf}{1.4}\PY{p}{,} \PY{l+m+mf}{1.0}\PY{p}{,} \PY{l+m+mf}{0.6}\PY{p}{,} \PY{l+m+mf}{0.2}\PY{p}{]}
+
+\PY{k}{def}\PY{+w}{ }\PY{n+nf}{calculate\PYZus{}averages}\PY{p}{(}\PY{n}{run1}\PY{p}{,} \PY{n}{run2}\PY{p}{,} \PY{n}{n\PYZus{}max}\PY{p}{)}\PY{p}{:}
+    \PY{n}{averages} \PY{o}{=} \PY{p}{[}\PY{p}{]}
+    \PY{k}{for} \PY{n}{i} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{n}{n\PYZus{}max}\PY{p}{)}\PY{p}{:}
+        \PY{n}{values} \PY{o}{=} \PY{p}{[}\PY{p}{]}
+        \PY{k}{if} \PY{n}{i} \PY{o}{\PYZlt{}} \PY{n+nb}{len}\PY{p}{(}\PY{n}{run1}\PY{p}{)}\PY{p}{:} \PY{n}{values}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{run1}\PY{p}{[}\PY{n}{i}\PY{p}{]}\PY{p}{)}
+        \PY{k}{if} \PY{n}{i} \PY{o}{\PYZlt{}} \PY{n+nb}{len}\PY{p}{(}\PY{n}{run2}\PY{p}{)}\PY{p}{:} \PY{n}{values}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{run2}\PY{p}{[}\PY{n}{i}\PY{p}{]}\PY{p}{)}
+        
+        \PY{k}{if} \PY{n}{values}\PY{p}{:}
+            \PY{n}{avg} \PY{o}{=} \PY{n+nb}{sum}\PY{p}{(}\PY{n}{values}\PY{p}{)} \PY{o}{/} \PY{n+nb}{len}\PY{p}{(}\PY{n}{values}\PY{p}{)}
+            \PY{n}{averages}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{avg}\PY{p}{)}
+        \PY{k}{else}\PY{p}{:}
+            \PY{n}{averages}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{k+kc}{None}\PY{p}{)}
+    \PY{k}{return} \PY{n}{averages}
+
+
+
+\PY{c+c1}{\PYZsh{} Process averages}
+\PY{n}{i1\PYZus{}avg} \PY{o}{=} \PY{n}{calculate\PYZus{}averages}\PY{p}{(}\PY{n}{i1\PYZus{}run1}\PY{p}{,} \PY{n}{i1\PYZus{}run2}\PY{p}{,} \PY{n+nb}{len}\PY{p}{(}\PY{n}{i1\PYZus{}run1}\PY{p}{)}\PY{p}{)}
+\PY{n}{i2\PYZus{}avg} \PY{o}{=} \PY{n}{calculate\PYZus{}averages}\PY{p}{(}\PY{n}{i2\PYZus{}run1}\PY{p}{,} \PY{n}{i2\PYZus{}run2}\PY{p}{,}  \PY{n+nb}{len}\PY{p}{(}\PY{n}{i2\PYZus{}run1}\PY{p}{)}\PY{p}{)}
+
+
+\PY{c+c1}{\PYZsh{}print(\PYZdq{}Averages for Damping Current 1:\PYZdq{}, i1\PYZus{}avg)}
+\PY{c+c1}{\PYZsh{}print(\PYZdq{}Averages for Damping Current 2:\PYZdq{}, i2\PYZus{}avg)}
+\PY{c+c1}{\PYZsh{}}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{4}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{n}{plt}\PY{o}{.}\PY{n}{errorbar}\PY{p}{(}\PY{n+nb}{range}\PY{p}{(}\PY{n+nb}{len}\PY{p}{(}\PY{n}{i1\PYZus{}avg}\PY{p}{)}\PY{p}{)}\PY{p}{,} \PY{n}{i1\PYZus{}avg}\PY{p}{,} \PY{n}{yerr}\PY{o}{=}\PY{l+m+mf}{0.2}\PY{p}{,} \PY{n}{fmt}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{.}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{label}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Damping Current 1}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{capsize}\PY{o}{=}\PY{l+m+mi}{3}\PY{p}{)}
+\PY{n}{plt}\PY{o}{.}\PY{n}{errorbar}\PY{p}{(}\PY{n+nb}{range}\PY{p}{(}\PY{n+nb}{len}\PY{p}{(}\PY{n}{i2\PYZus{}avg}\PY{p}{)}\PY{p}{)}\PY{p}{,} \PY{n}{i2\PYZus{}avg}\PY{p}{,} \PY{n}{yerr}\PY{o}{=}\PY{l+m+mf}{0.2}\PY{p}{,} \PY{n}{fmt}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{.}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{label}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Damping Current 2}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{capsize}\PY{o}{=}\PY{l+m+mi}{3}\PY{p}{)}
+\PY{n}{plt}\PY{o}{.}\PY{n}{xlabel}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Number of Oscillations}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+\PY{n}{plt}\PY{o}{.}\PY{n}{ylabel}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Amplitude (Skt)}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+\PY{n}{plt}\PY{o}{.}\PY{n}{title}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Amplitude vs Number of Oscillations}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+\PY{n}{plt}\PY{o}{.}\PY{n}{legend}\PY{p}{(}\PY{p}{)}
+\PY{n}{plt}\PY{o}{.}\PY{n}{yscale}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{log}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+\PY{n}{plt}\PY{o}{.}\PY{n}{grid}\PY{p}{(}\PY{p}{)}
+\PY{n}{plt}\PY{o}{.}\PY{n}{grid}\PY{p}{(}\PY{n}{which}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{minor}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{linestyle}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{:}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{linewidth}\PY{o}{=}\PY{l+m+mf}{0.5}\PY{p}{)}
+
+\PY{n}{popt1}\PY{p}{,} \PY{n}{pcov1} \PY{o}{=} \PY{n}{curve\PYZus{}fit}\PY{p}{(}\PY{k}{lambda} \PY{n}{x}\PY{p}{,} \PY{n}{a}\PY{p}{,} \PY{n}{b}\PY{p}{:} \PY{n}{a} \PY{o}{*} \PY{n}{np}\PY{o}{.}\PY{n}{exp}\PY{p}{(}\PY{n}{b} \PY{o}{*} \PY{n}{x}\PY{p}{)}\PY{p}{,} \PY{n+nb}{range}\PY{p}{(}\PY{n+nb}{len}\PY{p}{(}\PY{n}{i1\PYZus{}avg}\PY{p}{)}\PY{p}{)}\PY{p}{,} \PY{n}{i1\PYZus{}avg}\PY{p}{,} \PY{n}{p0}\PY{o}{=}\PY{p}{(}\PY{l+m+mi}{20}\PY{p}{,} \PY{o}{\PYZhy{}}\PY{l+m+mf}{0.2}\PY{p}{)}\PY{p}{)}
+\PY{n}{popt2}\PY{p}{,} \PY{n}{pcov2} \PY{o}{=} \PY{n}{curve\PYZus{}fit}\PY{p}{(}\PY{k}{lambda} \PY{n}{x}\PY{p}{,} \PY{n}{a}\PY{p}{,} \PY{n}{b}\PY{p}{:} \PY{n}{a} \PY{o}{*} \PY{n}{np}\PY{o}{.}\PY{n}{exp}\PY{p}{(}\PY{n}{b} \PY{o}{*} \PY{n}{x}\PY{p}{)}\PY{p}{,} \PY{n+nb}{range}\PY{p}{(}\PY{n+nb}{len}\PY{p}{(}\PY{n}{i2\PYZus{}avg}\PY{p}{)}\PY{p}{)}\PY{p}{,} \PY{n}{i2\PYZus{}avg}\PY{p}{,} \PY{n}{p0}\PY{o}{=}\PY{p}{(}\PY{l+m+mi}{20}\PY{p}{,} \PY{o}{\PYZhy{}}\PY{l+m+mf}{0.2}\PY{p}{)}\PY{p}{)}
+
+\PY{n+nb}{print}\PY{p}{(}\PY{l+s+sa}{f}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Fitted parameters for Damping Current 1: a = }\PY{l+s+si}{\PYZob{}}\PY{n}{popt1}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{l+s+si}{\PYZcb{}}\PY{l+s+s2}{, b = }\PY{l+s+si}{\PYZob{}}\PY{n}{popt1}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{l+s+si}{\PYZcb{}}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\PY{n+nb}{print}\PY{p}{(}\PY{l+s+sa}{f}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Fitted parameters for Damping Current 2: a = }\PY{l+s+si}{\PYZob{}}\PY{n}{popt2}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{l+s+si}{\PYZcb{}}\PY{l+s+s2}{, b = }\PY{l+s+si}{\PYZob{}}\PY{n}{popt2}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{l+s+si}{\PYZcb{}}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+
+\PY{n}{plt}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n+nb}{range}\PY{p}{(}\PY{n+nb}{len}\PY{p}{(}\PY{n}{i1\PYZus{}avg}\PY{p}{)}\PY{p}{)}\PY{p}{,} \PY{n}{popt1}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]} \PY{o}{*} \PY{n}{np}\PY{o}{.}\PY{n}{exp}\PY{p}{(}\PY{n}{popt1}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]} \PY{o}{*} \PY{n}{np}\PY{o}{.}\PY{n}{array}\PY{p}{(}\PY{n+nb}{range}\PY{p}{(}\PY{n+nb}{len}\PY{p}{(}\PY{n}{i1\PYZus{}avg}\PY{p}{)}\PY{p}{)}\PY{p}{)}\PY{p}{)}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{r\PYZhy{}\PYZhy{}}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{label}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Fit Damping Current 1}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+\PY{n}{plt}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n+nb}{range}\PY{p}{(}\PY{n+nb}{len}\PY{p}{(}\PY{n}{i2\PYZus{}avg}\PY{p}{)}\PY{p}{)}\PY{p}{,} \PY{n}{popt2}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]} \PY{o}{*} \PY{n}{np}\PY{o}{.}\PY{n}{exp}\PY{p}{(}\PY{n}{popt2}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]} \PY{o}{*} \PY{n}{np}\PY{o}{.}\PY{n}{array}\PY{p}{(}\PY{n+nb}{range}\PY{p}{(}\PY{n+nb}{len}\PY{p}{(}\PY{n}{i2\PYZus{}avg}\PY{p}{)}\PY{p}{)}\PY{p}{)}\PY{p}{)}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{g\PYZhy{}\PYZhy{}}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{label}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Fit Damping Current 2}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+\PY{n}{plt}\PY{o}{.}\PY{n}{legend}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+Fitted parameters for Damping Current 1: a = 20.141418645517, b =
+-0.2019534759495409
+Fitted parameters for Damping Current 2: a = 20.14544028297295, b =
+-0.3215491353551395
+    \end{Verbatim}
+
+            \begin{tcolorbox}[breakable, size=fbox, boxrule=.5pt, pad at break*=1mm, opacityfill=0]
+\prompt{Out}{outcolor}{4}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+<matplotlib.legend.Legend at 0x1e5bf37c050>
+\end{Verbatim}
+\end{tcolorbox}
+        
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{code/V13_files/V13_4_2.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{5}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{n}{d1} \PY{o}{=} \PY{n}{unc}\PY{o}{.}\PY{n}{ufloat}\PY{p}{(}\PY{o}{\PYZhy{}}\PY{l+m+mf}{0.21}\PY{p}{,} \PY{l+m+mf}{0.05}\PY{p}{)}
+\PY{n}{d2} \PY{o}{=} \PY{n}{unc}\PY{o}{.}\PY{n}{ufloat}\PY{p}{(}\PY{o}{\PYZhy{}}\PY{l+m+mf}{0.35}\PY{p}{,} \PY{l+m+mf}{0.05}\PY{p}{)}
+
+\PY{n}{delta\PYZus{}280} \PY{o}{=} \PY{n}{d1}\PY{o}{/}\PY{n}{T\PYZus{}fin}
+\PY{n}{delta\PYZus{}360} \PY{o}{=} \PY{n}{d2}\PY{o}{/}\PY{n}{T\PYZus{}fin}
+\PY{n+nb}{print}\PY{p}{(}\PY{l+s+sa}{f}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Damping constant for 280 mA: }\PY{l+s+si}{\PYZob{}}\PY{n}{delta\PYZus{}280}\PY{l+s+si}{\PYZcb{}}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\PY{n+nb}{print}\PY{p}{(}\PY{l+s+sa}{f}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Damping constant for 360 mA: }\PY{l+s+si}{\PYZob{}}\PY{n}{delta\PYZus{}360}\PY{l+s+si}{\PYZcb{}}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\PY{n+nb}{print}\PY{p}{(}\PY{l+s+sa}{f}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Fitted by python: Damping constant for 280 mA (exponential): }\PY{l+s+si}{\PYZob{}}\PY{n}{popt1}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{o}{/}\PY{n}{T\PYZus{}fin}\PY{l+s+si}{\PYZcb{}}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\PY{n+nb}{print}\PY{p}{(}\PY{l+s+sa}{f}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Fitted by python: Damping constant for 360 mA (exponential): }\PY{l+s+si}{\PYZob{}}\PY{n}{popt2}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{o}{/}\PY{n}{T\PYZus{}fin}\PY{l+s+si}{\PYZcb{}}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+Damping constant for 280 mA: -0.106+/-0.025
+Damping constant for 360 mA: -0.176+/-0.025
+Fitted by python: Damping constant for 280 mA (exponential): -0.1018+/-0.0007
+Fitted by python: Damping constant for 360 mA (exponential): -0.1620+/-0.0011
+    \end{Verbatim}
+
+    Excercise 3
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{6}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{n}{f} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{array}\PY{p}{(}\PY{p}{[}\PY{l+m+mi}{300}\PY{p}{,} \PY{l+m+mi}{500}\PY{p}{,} \PY{l+m+mi}{700}\PY{p}{,} \PY{l+m+mi}{900}\PY{p}{,} \PY{l+m+mi}{1100}\PY{p}{,} \PY{l+m+mi}{1300}\PY{p}{,} \PY{l+m+mi}{1500}\PY{p}{,} \PY{l+m+mi}{1600}\PY{p}{,} \PY{l+m+mi}{1700}\PY{p}{,} \PY{l+m+mi}{1800}\PY{p}{,} \PY{l+m+mi}{1850}\PY{p}{,} \PY{l+m+mi}{1900}\PY{p}{,} \PY{l+m+mi}{1950}\PY{p}{,} \PY{l+m+mi}{1960}\PY{p}{,} \PY{l+m+mi}{1970}\PY{p}{,} \PY{l+m+mi}{1980}\PY{p}{,} \PY{l+m+mi}{1990}\PY{p}{,} \PY{l+m+mi}{2000}\PY{p}{,} \PY{l+m+mi}{2010}\PY{p}{,} \PY{l+m+mi}{2020}\PY{p}{,} \PY{l+m+mi}{2030}\PY{p}{,} \PY{l+m+mi}{2040}\PY{p}{,} \PY{l+m+mi}{2050}\PY{p}{,} \PY{l+m+mi}{2060}\PY{p}{,} \PY{l+m+mi}{2070}\PY{p}{,} \PY{l+m+mi}{2080}\PY{p}{,} \PY{l+m+mi}{2090}\PY{p}{,} \PY{l+m+mi}{2100}\PY{p}{,} \PY{l+m+mi}{2150}\PY{p}{,} \PY{l+m+mi}{2200}\PY{p}{,} \PY{l+m+mi}{2250}\PY{p}{,} \PY{l+m+mi}{2300}\PY{p}{,} \PY{l+m+mi}{2500}\PY{p}{,} \PY{l+m+mi}{2700}\PY{p}{,} \PY{l+m+mi}{2900}\PY{p}{,} \PY{l+m+mi}{3100}\PY{p}{]}\PY{p}{)} \PY{o}{/} \PY{l+m+mi}{4000}
+
+\PY{n}{b\PYZus{}I1} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{array}\PY{p}{(}\PY{p}{[}\PY{l+m+mf}{0.4}\PY{p}{,} \PY{l+m+mf}{0.4}\PY{p}{,} \PY{l+m+mf}{0.4}\PY{p}{,} \PY{l+m+mf}{0.5}\PY{p}{,} \PY{l+m+mf}{0.55}\PY{p}{,} \PY{l+m+mf}{0.7}\PY{p}{,} \PY{l+m+mf}{0.9}\PY{p}{,} \PY{l+m+mf}{1.0}\PY{p}{,} \PY{l+m+mf}{1.3}\PY{p}{,} \PY{l+m+mf}{1.8}\PY{p}{,} \PY{l+m+mf}{2.2}\PY{p}{,} \PY{l+m+mf}{2.8}\PY{p}{,} \PY{l+m+mf}{3.8}\PY{p}{,} \PY{l+m+mf}{4.3}\PY{p}{,} \PY{l+m+mf}{4.6}\PY{p}{,} \PY{l+m+mf}{4.9}\PY{p}{,} \PY{l+m+mf}{5.3}\PY{p}{,} \PY{l+m+mf}{5.7}\PY{p}{,} \PY{l+m+mf}{5.9}\PY{p}{,} \PY{l+m+mf}{6.1}\PY{p}{,} \PY{l+m+mf}{6.1}\PY{p}{,} \PY{l+m+mf}{6.0}\PY{p}{,} \PY{l+m+mf}{5.7}\PY{p}{,} \PY{l+m+mf}{5.2}\PY{p}{,} \PY{l+m+mf}{4.8}\PY{p}{,} \PY{l+m+mf}{4.5}\PY{p}{,} \PY{l+m+mf}{4.2}\PY{p}{,} \PY{l+m+mf}{3.8}\PY{p}{,} \PY{l+m+mf}{2.6}\PY{p}{,} \PY{l+m+mf}{2.0}\PY{p}{,} \PY{l+m+mf}{1.6}\PY{p}{,} \PY{l+m+mf}{1.3}\PY{p}{,} \PY{l+m+mf}{0.8}\PY{p}{,} \PY{l+m+mf}{0.6}\PY{p}{,} \PY{l+m+mf}{0.4}\PY{p}{,} \PY{l+m+mf}{0.3}\PY{p}{]}\PY{p}{)}
+
+\PY{n}{b\PYZus{}I2} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{array}\PY{p}{(}\PY{p}{[}\PY{l+m+mf}{0.4}\PY{p}{,} \PY{l+m+mf}{0.5}\PY{p}{,} \PY{l+m+mf}{0.5}\PY{p}{,} \PY{l+m+mf}{0.5}\PY{p}{,} \PY{l+m+mf}{0.6}\PY{p}{,} \PY{l+m+mf}{0.7}\PY{p}{,} \PY{l+m+mf}{0.8}\PY{p}{,} \PY{l+m+mf}{1.0}\PY{p}{,} \PY{l+m+mf}{1.3}\PY{p}{,} \PY{l+m+mf}{1.7}\PY{p}{,} \PY{l+m+mf}{2.0}\PY{p}{,} \PY{l+m+mf}{2.5}\PY{p}{,} \PY{l+m+mf}{3.1}\PY{p}{,} \PY{l+m+mf}{3.2}\PY{p}{,} \PY{l+m+mf}{3.3}\PY{p}{,} \PY{l+m+mf}{3.4}\PY{p}{,} \PY{l+m+mf}{3.6}\PY{p}{,} \PY{l+m+mf}{3.7}\PY{p}{,} \PY{l+m+mf}{3.8}\PY{p}{,} \PY{l+m+mf}{3.8}\PY{p}{,} \PY{l+m+mf}{3.7}\PY{p}{,} \PY{l+m+mf}{3.7}\PY{p}{,} \PY{l+m+mf}{3.6}\PY{p}{,} \PY{l+m+mf}{3.5}\PY{p}{,} \PY{l+m+mf}{3.4}\PY{p}{,} \PY{l+m+mf}{3.2}\PY{p}{,} \PY{l+m+mf}{3.0}\PY{p}{,} \PY{l+m+mf}{2.9}\PY{p}{,} \PY{l+m+mf}{2.3}\PY{p}{,} \PY{l+m+mf}{1.8}\PY{p}{,} \PY{l+m+mf}{1.5}\PY{p}{,} \PY{l+m+mf}{1.3}\PY{p}{,} \PY{l+m+mf}{0.7}\PY{p}{,} \PY{l+m+mf}{0.6}\PY{p}{,} \PY{l+m+mf}{0.4}\PY{p}{,} \PY{l+m+mf}{0.4}\PY{p}{]}\PY{p}{)}
+
+\PY{n}{err} \PY{o}{=} \PY{l+m+mf}{0.2}
+\PY{n}{omega} \PY{o}{=} \PY{l+m+mi}{2} \PY{o}{*} \PY{n}{np}\PY{o}{.}\PY{n}{pi} \PY{o}{*} \PY{n}{f}
+
+
+\PY{k}{def}\PY{+w}{ }\PY{n+nf}{amplitude\PYZus{}curve}\PY{p}{(}\PY{n}{omega}\PY{p}{,} \PY{n}{A\PYZus{}0}\PY{p}{,} \PY{n}{omega\PYZus{}0}\PY{p}{,} \PY{n}{gamma}\PY{p}{)}\PY{p}{:}
+    \PY{k}{return} \PY{n}{A\PYZus{}0} \PY{o}{*} \PY{n}{omega\PYZus{}0}\PY{o}{*}\PY{o}{*}\PY{l+m+mi}{2} \PY{o}{/} \PY{n}{np}\PY{o}{.}\PY{n}{sqrt}\PY{p}{(}\PY{p}{(}\PY{n}{omega\PYZus{}0}\PY{o}{*}\PY{o}{*}\PY{l+m+mi}{2} \PY{o}{\PYZhy{}} \PY{n}{omega}\PY{o}{*}\PY{o}{*}\PY{l+m+mi}{2}\PY{p}{)}\PY{o}{*}\PY{o}{*}\PY{l+m+mi}{2} \PY{o}{+} \PY{p}{(}\PY{l+m+mi}{2} \PY{o}{*} \PY{n}{gamma} \PY{o}{*} \PY{n}{omega}\PY{p}{)}\PY{o}{*}\PY{o}{*}\PY{l+m+mi}{2}\PY{p}{)}
+
+
+\PY{n}{fit\PYZus{}results} \PY{o}{=} \PY{p}{\PYZob{}}\PY{p}{\PYZcb{}}
+\PY{k}{for} \PY{n}{label}\PY{p}{,} \PY{n}{amplitudes} \PY{o+ow}{in} \PY{p}{\PYZob{}}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{I1}\PY{l+s+s2}{\PYZdq{}}\PY{p}{:} \PY{n}{b\PYZus{}I1}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{I2}\PY{l+s+s2}{\PYZdq{}}\PY{p}{:} \PY{n}{b\PYZus{}I2}\PY{p}{\PYZcb{}}\PY{o}{.}\PY{n}{items}\PY{p}{(}\PY{p}{)}\PY{p}{:}
+    \PY{n}{initial\PYZus{}guess} \PY{o}{=} \PY{p}{(}\PY{l+m+mf}{0.2}\PY{p}{,} \PY{n}{omega}\PY{p}{[}\PY{n}{np}\PY{o}{.}\PY{n}{argmax}\PY{p}{(}\PY{n}{amplitudes}\PY{p}{)}\PY{p}{]}\PY{p}{,} \PY{l+m+mf}{0.05}\PY{p}{)}
+    \PY{n}{parameters}\PY{p}{,} \PY{n}{covariance} \PY{o}{=} \PY{n}{curve\PYZus{}fit}\PY{p}{(}
+        \PY{n}{amplitude\PYZus{}curve}\PY{p}{,}
+        \PY{n}{omega}\PY{p}{,}
+        \PY{n}{amplitudes}\PY{p}{,}
+        \PY{n}{p0}\PY{o}{=}\PY{n}{initial\PYZus{}guess}\PY{p}{,}
+        \PY{n}{sigma}\PY{o}{=}\PY{n}{np}\PY{o}{.}\PY{n}{full\PYZus{}like}\PY{p}{(}\PY{n}{omega}\PY{p}{,} \PY{n}{err}\PY{p}{)}\PY{p}{,}
+        \PY{n}{absolute\PYZus{}sigma}\PY{o}{=}\PY{k+kc}{True}\PY{p}{,}
+        \PY{n}{bounds}\PY{o}{=}\PY{p}{(}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{]}\PY{p}{,} \PY{p}{[}\PY{n}{np}\PY{o}{.}\PY{n}{inf}\PY{p}{,} \PY{n}{np}\PY{o}{.}\PY{n}{inf}\PY{p}{,} \PY{n}{np}\PY{o}{.}\PY{n}{inf}\PY{p}{]}\PY{p}{)}\PY{p}{,}
+        \PY{n}{x\PYZus{}scale}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{jac}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,}
+        \PY{n}{maxfev}\PY{o}{=}\PY{l+m+mi}{10000}\PY{p}{,}
+    \PY{p}{)}
+    
+    \PY{n}{A\PYZus{}0}\PY{p}{,} \PY{n}{omega\PYZus{}0}\PY{p}{,} \PY{n}{gamma} \PY{o}{=} \PY{n}{parameters}
+    \PY{n}{fit\PYZus{}results}\PY{p}{[}\PY{n}{label}\PY{p}{]} \PY{o}{=} \PY{p}{(}\PY{n}{parameters}\PY{p}{,} \PY{n}{covariance}\PY{p}{)}
+    \PY{n+nb}{print}\PY{p}{(}\PY{l+s+sa}{f}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+si}{\PYZob{}}\PY{n}{label}\PY{l+s+si}{\PYZcb{}}\PY{l+s+s2}{: A\PYZus{}0 = }\PY{l+s+si}{\PYZob{}}\PY{n}{A\PYZus{}0}\PY{l+s+si}{:}\PY{l+s+s2}{.6f}\PY{l+s+si}{\PYZcb{}}\PY{l+s+s2}{, omega\PYZus{}0 = }\PY{l+s+si}{\PYZob{}}\PY{n}{omega\PYZus{}0}\PY{l+s+si}{:}\PY{l+s+s2}{.6f}\PY{l+s+si}{\PYZcb{}}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+    \PY{n+nb}{print}\PY{p}{(}\PY{l+s+sa}{f}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+si}{\PYZob{}}\PY{n}{label}\PY{l+s+si}{\PYZcb{}}\PY{l+s+s2}{: gamma = }\PY{l+s+si}{\PYZob{}}\PY{n}{gamma}\PY{l+s+si}{:}\PY{l+s+s2}{.6f}\PY{l+s+si}{\PYZcb{}}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+    \PY{n+nb}{print}\PY{p}{(}\PY{l+s+sa}{f}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+si}{\PYZob{}}\PY{n}{label}\PY{l+s+si}{\PYZcb{}}\PY{l+s+s2}{: gamma = }\PY{l+s+si}{\PYZob{}}\PY{n}{gamma}\PY{+w}{ }\PY{o}{*}\PY{+w}{ }\PY{l+m+mi}{4000}\PY{l+s+si}{:}\PY{l+s+s2}{.3f}\PY{l+s+si}{\PYZcb{}}\PY{l+s+s2}{ rad/s = }\PY{l+s+si}{\PYZob{}}\PY{n}{gamma}\PY{+w}{ }\PY{o}{*}\PY{+w}{ }\PY{l+m+mi}{4000}\PY{+w}{ }\PY{o}{/}\PY{+w}{ }\PY{p}{(}\PY{l+m+mi}{2}\PY{+w}{ }\PY{o}{*}\PY{+w}{ }\PY{n}{np}\PY{o}{.}\PY{n}{pi}\PY{p}{)}\PY{l+s+si}{:}\PY{l+s+s2}{.3f}\PY{l+s+si}{\PYZcb{}}\PY{l+s+s2}{ Hz}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+    \PY{n+nb}{print}\PY{p}{(}\PY{l+s+sa}{f}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+si}{\PYZob{}}\PY{n}{label}\PY{l+s+si}{\PYZcb{}}\PY{l+s+s2}{: FWHM = }\PY{l+s+si}{\PYZob{}}\PY{l+m+mi}{2}\PY{+w}{ }\PY{o}{*}\PY{+w}{ }\PY{n}{gamma}\PY{+w}{ }\PY{o}{*}\PY{+w}{ }\PY{l+m+mi}{4000}\PY{+w}{ }\PY{o}{/}\PY{+w}{ }\PY{p}{(}\PY{l+m+mi}{2}\PY{+w}{ }\PY{o}{*}\PY{+w}{ }\PY{n}{np}\PY{o}{.}\PY{n}{pi}\PY{p}{)}\PY{l+s+si}{:}\PY{l+s+s2}{.3f}\PY{l+s+si}{\PYZcb{}}\PY{l+s+s2}{ Hz}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+I1: A\_0 = 0.374702, omega\_0 = 3.183433
+I1: gamma = 0.098050
+I1: gamma = 392.200 rad/s = 62.421 Hz
+I1: FWHM = 124.841 Hz
+I2: A\_0 = 0.386554, omega\_0 = 3.182402
+I2: gamma = 0.165132
+I2: gamma = 660.529 rad/s = 105.126 Hz
+I2: FWHM = 210.253 Hz
+    \end{Verbatim}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{22}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{n}{fig}\PY{p}{,} \PY{p}{(}\PY{n}{ax1}\PY{p}{,} \PY{n}{ax2}\PY{p}{)} \PY{o}{=} \PY{n}{plt}\PY{o}{.}\PY{n}{subplots}\PY{p}{(}\PY{n}{figsize}\PY{o}{=}\PY{p}{(}\PY{l+m+mi}{10}\PY{p}{,} \PY{l+m+mi}{7}\PY{p}{)}\PY{p}{,} \PY{n}{ncols}\PY{o}{=}\PY{l+m+mi}{2}\PY{p}{,} \PY{n}{sharex}\PY{o}{=}\PY{k+kc}{True}\PY{p}{,} \PY{n}{sharey}\PY{o}{=}\PY{k+kc}{True}\PY{p}{)}
+
+\PY{n}{ax1}\PY{o}{.}\PY{n}{errorbar}\PY{p}{(}\PY{n}{f}\PY{p}{,} \PY{n}{b\PYZus{}I1}\PY{p}{,} \PY{n}{yerr}\PY{o}{=}\PY{n}{err}\PY{p}{,} \PY{n}{fmt}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{.}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{label}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Damping Current 1}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{capsize}\PY{o}{=}\PY{l+m+mi}{3}\PY{p}{)}
+\PY{n}{ax2}\PY{o}{.}\PY{n}{errorbar}\PY{p}{(}\PY{n}{f}\PY{p}{,} \PY{n}{b\PYZus{}I2}\PY{p}{,} \PY{n}{yerr}\PY{o}{=}\PY{n}{err}\PY{p}{,} \PY{n}{fmt}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{.}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{label}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Damping Current 2}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{capsize}\PY{o}{=}\PY{l+m+mi}{3}\PY{p}{)}
+\PY{n}{ax1}\PY{o}{.}\PY{n}{grid}\PY{p}{(}\PY{p}{)}
+\PY{n}{ax2}\PY{o}{.}\PY{n}{grid}\PY{p}{(}\PY{p}{)}
+
+\PY{n}{ax1}\PY{o}{.}\PY{n}{plot}\PY{p}{(}
+    \PY{n}{f}\PY{p}{,}
+    \PY{n}{amplitude\PYZus{}curve}\PY{p}{(}\PY{l+m+mi}{2} \PY{o}{*} \PY{n}{np}\PY{o}{.}\PY{n}{pi} \PY{o}{*} \PY{n}{f}\PY{p}{,} \PY{o}{*}\PY{n}{fit\PYZus{}results}\PY{p}{[}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{I1}\PY{l+s+s2}{\PYZdq{}}\PY{p}{]}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{)}\PY{p}{,}
+    \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{r\PYZhy{}\PYZhy{}}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,}
+    \PY{n}{label}\PY{o}{=}\PY{l+s+sa}{rf}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Fit Damping Current 1  \PYZdl{}}\PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{gamma\PYZdl{} = }\PY{l+s+si}{\PYZob{}}\PY{n}{fit\PYZus{}results}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{I1}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{[}\PY{l+m+mi}{2}\PY{p}{]}\PY{l+s+si}{:}\PY{l+s+s2}{.3f}\PY{l+s+si}{\PYZcb{}}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,}
+\PY{p}{)}
+\PY{n}{ax2}\PY{o}{.}\PY{n}{plot}\PY{p}{(}
+    \PY{n}{f}\PY{p}{,}
+    \PY{n}{amplitude\PYZus{}curve}\PY{p}{(}\PY{l+m+mi}{2} \PY{o}{*} \PY{n}{np}\PY{o}{.}\PY{n}{pi} \PY{o}{*} \PY{n}{f}\PY{p}{,} \PY{o}{*}\PY{n}{fit\PYZus{}results}\PY{p}{[}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{I2}\PY{l+s+s2}{\PYZdq{}}\PY{p}{]}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{)}\PY{p}{,}
+    \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{r\PYZhy{}\PYZhy{}}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,}
+    \PY{n}{label}\PY{o}{=}\PY{l+s+sa}{rf}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Fit Damping Current 2  \PYZdl{}}\PY{l+s+s2}{\PYZbs{}}\PY{l+s+s2}{gamma\PYZdl{} = }\PY{l+s+si}{\PYZob{}}\PY{n}{fit\PYZus{}results}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{I2}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{[}\PY{l+m+mi}{2}\PY{p}{]}\PY{l+s+si}{:}\PY{l+s+s2}{.3f}\PY{l+s+si}{\PYZcb{}}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,}
+\PY{p}{)}
+
+
+\PY{n}{ax1}\PY{o}{.}\PY{n}{set\PYZus{}ylabel}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Amplitude (Skt)}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\PY{n}{ax2}\PY{o}{.}\PY{n}{set\PYZus{}ylabel}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Amplitude (Skt)}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\PY{n}{ax1}\PY{o}{.}\PY{n}{set\PYZus{}xlabel}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Frequency (Hz)}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\PY{n}{ax2}\PY{o}{.}\PY{n}{set\PYZus{}xlabel}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Frequency (Hz)}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\PY{n}{ax2}\PY{o}{.}\PY{n}{set\PYZus{}title}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Resonance Curve for I = 360 mA}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\PY{n}{ax1}\PY{o}{.}\PY{n}{set\PYZus{}title}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Resonance Curve for I = 280 mA}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\PY{n}{ax1}\PY{o}{.}\PY{n}{legend}\PY{p}{(}\PY{p}{)}
+\PY{n}{ax2}\PY{o}{.}\PY{n}{legend}\PY{p}{(}\PY{p}{)}
+\PY{n}{plt}\PY{o}{.}\PY{n}{tight\PYZus{}layout}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{code/V13_files/V13_8_0.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{8}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{n}{w\PYZus{}0\PYZus{}280} \PY{o}{=} \PY{n}{unc}\PY{o}{.}\PY{n}{ufloat}\PY{p}{(}\PY{l+m+mf}{0.505}\PY{p}{,} \PY{l+m+mf}{0.005}\PY{p}{)} \PY{o}{*} \PY{l+m+mi}{2} \PY{o}{*} \PY{l+m+mf}{3.141}
+\PY{n}{w\PYZus{}0\PYZus{}360} \PY{o}{=} \PY{n}{unc}\PY{o}{.}\PY{n}{ufloat}\PY{p}{(}\PY{l+m+mf}{0.506}\PY{p}{,} \PY{l+m+mf}{0.005}\PY{p}{)} \PY{o}{*} \PY{l+m+mi}{2} \PY{o}{*} \PY{l+m+mf}{3.141}
+
+
+\PY{n}{Q\PYZus{}280} \PY{o}{=} \PY{n}{w\PYZus{}0\PYZus{}280} \PY{o}{/}\PY{p}{(} \PY{n}{delta\PYZus{}280} \PY{o}{*} \PY{l+m+mi}{2}\PY{p}{)}
+\PY{n}{Q\PYZus{}360} \PY{o}{=} \PY{n}{w\PYZus{}0\PYZus{}360} \PY{o}{/}\PY{p}{(} \PY{n}{delta\PYZus{}360} \PY{o}{*} \PY{l+m+mi}{2}\PY{p}{)}
+\PY{n+nb}{print}\PY{p}{(}\PY{l+s+sa}{f}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Quality factor for 280 mA: }\PY{l+s+si}{\PYZob{}}\PY{n}{Q\PYZus{}280}\PY{l+s+si}{:}\PY{l+s+s2}{.3uP}\PY{l+s+si}{\PYZcb{}}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\PY{n+nb}{print}\PY{p}{(}\PY{l+s+sa}{f}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Quality factor for 360 mA: }\PY{l+s+si}{\PYZob{}}\PY{n}{Q\PYZus{}360}\PY{l+s+si}{:}\PY{l+s+s2}{.3uP}\PY{l+s+si}{\PYZcb{}}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+Quality factor for 280 mA: -14.99±3.57
+Quality factor for 360 mA: -9.01±1.29
+    \end{Verbatim}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{9}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{n}{win\PYZus{}280} \PY{o}{=} \PY{n}{unc}\PY{o}{.}\PY{n}{ufloat}\PY{p}{(}\PY{l+m+mf}{0.4}\PY{p}{,} \PY{l+m+mf}{0.2}\PY{p}{)}
+\PY{n}{win\PYZus{}360} \PY{o}{=} \PY{n}{unc}\PY{o}{.}\PY{n}{ufloat}\PY{p}{(}\PY{l+m+mf}{0.4}\PY{p}{,} \PY{l+m+mf}{0.2}\PY{p}{)}
+
+\PY{n}{wmax\PYZus{}280} \PY{o}{=} \PY{n}{unc}\PY{o}{.}\PY{n}{ufloat}\PY{p}{(}\PY{l+m+mf}{6.1}\PY{p}{,} \PY{l+m+mf}{0.2}\PY{p}{)}
+\PY{n}{wmax\PYZus{}360} \PY{o}{=} \PY{n}{unc}\PY{o}{.}\PY{n}{ufloat}\PY{p}{(}\PY{l+m+mf}{3.8}\PY{p}{,} \PY{l+m+mf}{0.2}\PY{p}{)}
+
+\PY{n+nb}{print}\PY{p}{(}\PY{l+s+sa}{f}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Quality factor for 280 mA (measured): }\PY{l+s+si}{\PYZob{}}\PY{n}{wmax\PYZus{}280}\PY{o}{/}\PY{n}{win\PYZus{}280}\PY{l+s+si}{:}\PY{l+s+s2}{.3uP}\PY{l+s+si}{\PYZcb{}}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\PY{n+nb}{print}\PY{p}{(}\PY{l+s+sa}{f}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Quality factor for 360 mA (measured): }\PY{l+s+si}{\PYZob{}}\PY{n}{wmax\PYZus{}360}\PY{o}{/}\PY{n}{win\PYZus{}360}\PY{l+s+si}{:}\PY{l+s+s2}{.3uP}\PY{l+s+si}{\PYZcb{}}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+Quality factor for 280 mA (measured): 15.25±7.64
+Quality factor for 360 mA (measured): 9.50±4.78
+    \end{Verbatim}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{10}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{n+nb}{print}\PY{p}{(}\PY{n}{delta\PYZus{}280}\PY{o}{.}\PY{n}{s}\PY{p}{)}
+\PY{n}{sigma\PYZus{}err\PYZus{}delta\PYZus{}280} \PY{o}{=} \PY{p}{(}\PY{o}{\PYZhy{}}\PY{n}{delta\PYZus{}280}\PY{o}{.}\PY{n}{n} \PY{o}{\PYZhy{}} \PY{l+m+mf}{0.110}\PY{p}{)}\PY{o}{/}\PY{n}{np}\PY{o}{.}\PY{n}{sqrt}\PY{p}{(}\PY{n}{delta\PYZus{}280}\PY{o}{.}\PY{n}{s}\PY{o}{*}\PY{o}{*}\PY{l+m+mi}{2} \PY{o}{+} \PY{l+m+mf}{0.016}\PY{o}{*}\PY{o}{*}\PY{l+m+mi}{2}\PY{p}{)}
+\PY{n}{sigma\PYZus{}err\PYZus{}delta\PYZus{}360} \PY{o}{=} \PY{p}{(}\PY{o}{\PYZhy{}}\PY{n}{delta\PYZus{}360}\PY{o}{.}\PY{n}{n} \PY{o}{\PYZhy{}} \PY{l+m+mf}{0.141}\PY{p}{)}\PY{o}{/}\PY{n}{np}\PY{o}{.}\PY{n}{sqrt}\PY{p}{(}\PY{n}{delta\PYZus{}360}\PY{o}{.}\PY{n}{s}\PY{o}{*}\PY{o}{*}\PY{l+m+mi}{2} \PY{o}{+} \PY{l+m+mf}{0.016}\PY{o}{*}\PY{o}{*}\PY{l+m+mi}{2}\PY{p}{)}
+
+\PY{n+nb}{print}\PY{p}{(}\PY{l+s+sa}{f}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Sigma error for delta\PYZus{}280: }\PY{l+s+si}{\PYZob{}}\PY{n}{sigma\PYZus{}err\PYZus{}delta\PYZus{}280}\PY{l+s+si}{:}\PY{l+s+s2}{.3f}\PY{l+s+si}{\PYZcb{}}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\PY{n+nb}{print}\PY{p}{(}\PY{l+s+sa}{f}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Sigma error for delta\PYZus{}360: }\PY{l+s+si}{\PYZob{}}\PY{n}{sigma\PYZus{}err\PYZus{}delta\PYZus{}360}\PY{l+s+si}{:}\PY{l+s+s2}{.3f}\PY{l+s+si}{\PYZcb{}}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+0.02520712463532635
+Sigma error for delta\_280: -0.140
+Sigma error for delta\_360: 1.184
+    \end{Verbatim}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{ }{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+
+\end{Verbatim}
+\end{tcolorbox}
+
