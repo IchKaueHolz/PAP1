@@ -1,0 +1,258 @@
+\documentclass[12pt,a4paper,titlepage]{scrartcl}
+
+\usepackage{comment}
+\usepackage[main=ngerman,english]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{geometry}
+\geometry{left=2.5cm,right=2.5cm,top=2.5cm,bottom=3cm,head=29pt,foot=25pt}
+\setlength{\footheight}{25pt}
+\usepackage{microtype}
+\usepackage{amsmath,amssymb,mathtools}
+\numberwithin{equation}{section}
+\numberwithin{table}{section}
+\numberwithin{figure}{section}
+\usepackage{siunitx}
+\sisetup{locale=US, separate-uncertainty=true, per-mode=fraction}
+\usepackage{booktabs}
+\usepackage{multirow}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage[automark]{scrlayer-scrpage}
+\usepackage[most]{tcolorbox}
+\usepackage{hyperref}
+\usepackage{pdfpages}
+\usepackage{csvsimple-l3}
+\usepackage{longtable}
+\usepackage{graphicx}
+
+%\input{../../jupyterpackages.tex}
+
+% jupyter nbconvert --to latex 'Path'
+% enferne usepackages und begin{document} und end{document}
+% \input in main.tex mit \input{Path}
+
+
+\newcommand{\pdfabbildung}[2]{%
+    \refstepcounter{figure}%
+    \addcontentsline{lof}{figure}{\protect\numberline{\thefigure}#1}%
+    \label{#2}%
+}
+
+\newcommand{\pdftabelle}[2]{%
+    \refstepcounter{table}%
+    \addcontentsline{lot}{table}{\protect\numberline{\thetable}#1}%
+    \label{#2}%
+}
+
+
+\hypersetup{colorlinks=true, linkcolor=blue!60!black, urlcolor=blue!60!black, citecolor=blue!60!black}
+
+\clearpairofpagestyles
+
+\chead{%
+    \versuch\hfill\autor\\
+    \rule{\textwidth}{0.2pt}%
+}
+\cfoot{%
+    \rule{\textwidth}{0.2pt}\\[-0.5ex]
+    \pagemark\ 
+}
+\addtokomafont{pagefoot}{\small}
+\setlength{\parindent}{0pt}
+
+\newtcolorbox{resultbox}[1][]{ 
+    enhanced,
+    colback=black!4!white,
+    colframe=black!65!black,
+    boxrule=0.8pt,
+    arc=0.0mm,
+    title=#1,
+    fonttitle=\bfseries,
+    %drop shadow
+}
+
+
+\newcommand{\versuch}{Versuch 42}
+\newcommand{\titel}{Wärmekapazität}
+\newcommand{\praktikum}{Physikalisches Anfängerpraktikum 1}
+\newcommand{\autor}{Jonathan Gießen}
+\newcommand{\gruppe}{Gruppe 8}
+\newcommand{\datum}{18. September 2026}
+\newcommand{\betreuer}{Tim Kluge}
+
+\begin{document}
+
+\pagestyle{scrheadings}
+
+\begin{titlepage}
+
+
+
+    \centering
+    \vspace*{4cm}
+    {\large Universität Heidelberg\par}
+    {\small Fakultät für Physik und Astronomie\par}
+    {\Large \praktikum\par}
+    \vspace{0.8cm}
+    {\LARGE \bfseries \versuch\ -- \titel\par}
+    \vspace{1.5cm}
+
+    \begin{tabular}{ll}
+        \textbf{Autor:} & \autor\\
+        \textbf{Gruppe:} & \gruppe\\
+        \textbf{Betreuer:} & \betreuer\\
+        \textbf{Versuchsdatum:} & \datum\\
+    \end{tabular}
+
+    \vfill
+    \hrulefill\
+\end{titlepage}
+
+\tableofcontents
+
+\bigskip
+\begin{tcolorbox}[colback=gray!5,colframe=gray!60,boxrule=0.8pt,arc=0.01mm,title=KI-Hinweis]
+    Für die sprachliche Formulierung dieses Protokolls wurde in der Einleitung \ref{sec:Einleitung} und Grundlagen \ref{sec:Grundlagen und Theorie} KI-gestützte Textgenerierung verwendet. 
+\end{tcolorbox}
+
+\clearpage
+
+
+\section{Einleitung}\label{sec:Einleitung}
+
+Im Rahmen dieses Versuchs wird die spezifische und molare Wärmekapazität verschiedener Festkörper (Aluminium, Blei und Graphit) experimentell bestimmt. Ziel ist es, das thermische Verhalten dieser Materialien zu untersuchen und die klassische Vorhersage des Dulong-Petit'schen Gesetzes mit dem quantenmechanischen Debye-Modell zu vergleichen. Gemäß den Beschreibungen in der Versuchsanleitung "PAP1-Skript (dragged).pdf" erfolgen die Messungen in zwei unterschiedlichen Temperaturbereichen, um die deutliche Temperaturabhängigkeit der Wärmekapazität zu demonstrieren.
+
+Im ersten Versuchsteil wird die spezifische Wärme bei hohen Temperaturen (zwischen $20^{\circ}\mathrm{C}$ und $100^{\circ}\mathrm{C}$) mithilfe der Mischungsmethode in einem Wasserkalorimeter ermittelt. Im zweiten Teil wird die Wärmekapazität im Tieftemperaturbereich (zwischen $20^{\circ}\mathrm{C}$ und $-195^{\circ}\mathrm{C}$) gemessen, indem die Probekörper in flüssigem Stickstoff abgekühlt und die dabei verdampfte Stickstoffmenge bilanziert wird.
+
+\section{Grundlagen und Theorie}\label{sec:Grundlagen und Theorie}
+
+\subsection{Wärmekapazität und Molwärme}
+Wird einem Körper, bei dem kein Phasenübergang stattfindet, die Wärmemenge $Q$ zugeführt, so ändert sich seine Temperatur um $\Delta T$. Die Proportionalitätskonstante wird als Wärmekapazität $C$ bezeichnet:
+\begin{equation}
+C = \frac{Q}{\Delta T}
+\end{equation}
+Um eine vom Probekörper unabhängige Materialkonstante zu erhalten, wird die Wärmekapazität auf die Masse $m$ normiert, was die spezifische Wärmekapazität $c$ liefert:
+\begin{equation}
+c = \frac{Q}{m \Delta T}
+\end{equation}
+Für den Vergleich von Festkörpern auf atomarer Ebene ist zudem die molare Wärmekapazität (Molwärme) $c_{mol}$ von Bedeutung, welche die Wärmekapazität pro Mol beschreibt ($M$ ist die molare Masse):
+\begin{equation}
+c_{mol} = \frac{M}{m} \frac{Q}{\Delta T}
+\end{equation}
+
+\subsection{Modelle der Festkörperphysik}
+
+\textbf{Das Dulong-Petit'sche Gesetz}\
+In der klassischen Betrachtung schwingen die $N_A$ Atomrümpfe eines Mols harmonisch um ihre Gleichgewichtslage im Kristallgitter. Nach dem Äquipartitionsprinzip trägt jeder der drei Schwingungsfreiheitsgrade im zeitlichen Mittel die Energie $k T$ bei (je $\frac{1}{2} k T$ für kinetische und potentielle Energie). Die innere Energie $U_{Mol}$ ergibt sich somit zu $3 N_A k T = 3 R T$. Daraus resultiert für die spezifische Molwärme ein temperaturunabhängiger Wert:
+\begin{equation}
+c_{mol, DP} = 3 R \approx 25,\mathrm{\frac{J}{K \cdot mol}}
+\end{equation}
+Dieses Gesetz liefert für viele Metalle bei Zimmertemperatur gute Vorhersagen, versagt jedoch bei leichten Elementen (wie Kohlenstoff/Diamant) und allgemein bei tiefen Temperaturen.
+
+\textbf{Einstein- und Debye-Modell}\
+Um das Abfallen der Wärmekapazität bei tiefen Temperaturen zu erklären, führte Einstein das Konzept quantisierter Energiezustände von Oszillatoren ein. Dieses Modell wurde von Peter Debye entscheidend verbessert, indem er nicht von unabhängigen Atomen, sondern von gekoppelten Gitterschwingungen (Phononen) ausging. Er näherte das Schwingungsspektrum an und führte eine materialabhängige Grenzfrequenz ein, aus der sich die Debye-Temperatur $\Theta_D$ ergibt.
+Nach dem Debye-Modell geht die spezifische Molwärme für hohe Temperaturen ($T \gg \Theta_D$) in den klassischen Grenzwert $3R$ nach Dulong-Petit über. Für tiefe Temperaturen ($T \rightarrow 0$) fällt sie hingegen proportional zu $T^3$ ab\,\cite{PAPskript}.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{img/Debye_Model.png}
+    \caption{Verlauf von spezifischen Molwärmen nach dem Debye-Modell}\label{fig:Debye-Modell}
+\end{figure}
+
+\subsection{Messmethoden zur Bestimmung der spezifischen Wärme}
+
+\textbf{Mischungsmethode im Wasserkalorimeter}\
+Die Messung bei hohen Temperaturen beruht auf dem Prinzip des Wärmeaustauschs. Ein auf $T_1$ erhitzter Probekörper wird in ein Wasserkalorimeter (mit Wassertemperatur $T_2$) gegeben. Nach dem Energiesatz ist die vom Probekörper abgegebene Wärme gleich der vom Wasser und Kalorimeter aufgenommenen Wärme (unter Vernachlässigung von Verlusten):
+\begin{equation}
+m_x c_x (T_1 - \overline{T}) = (m_W c_W + W) (\overline{T} - T_2)
+\end{equation}
+Hierbei ist $m_x$ die Masse und $c_x$ die gesuchte spezifische Wärmekapazität der Probe. $m_W$ und $c_W$ beziehen sich auf das Wasser. $\overline{T}$ ist die sich einstellende Mischungstemperatur. Die Konstante $W$ ist der Wasserwert (die Wärmekapazität) des Kalorimeters. Auflösen nach $c_x$ liefert:
+\begin{equation}
+c_x = \frac{(m_W c_W + W)(\overline{T} - T_2)}{m_x (T_1 - \overline{T})}
+\end{equation}
+
+\textbf{Messung mit flüssigem Stickstoff}\
+Für den Tieftemperaturbereich wird ein Probekörper mit Raumtemperatur ($T_1$) in flüssigen Stickstoff getaucht, welcher eine Siedetemperatur von $T_2 = -195,8^{\circ}\mathrm{C}$ aufweist. Die vom Probekörper abgegebene Wärmemenge führt dazu, dass eine Masse $m_V$ des Stickstoffs verdampft. Mit der spezifischen Verdampfungswärme $Q_V$ des Stickstoffs gilt das thermodynamische Gleichgewicht:
+\begin{equation}
+Q_V m_V = m_x c_x (T_1 - T_2)
+\end{equation}
+Aus der experimentell bestimmten verdampften Masse $m_V$ lässt sich somit die mittlere spezifische Wärme $c_x$ für diesen Temperaturbereich berechnen.
+
+
+\subsection{Literaturwerte}
+
+
+
+
+
+\section{Messprotokoll}
+
+\subsection{Versuchsaufbau und Aufgaben}
+\begin{comment}
+    
+\includepdf[
+    pages=-,
+    width=\textwidth,
+    height=0.95\textheight,
+    keepaspectratio,
+    pagecommand={\thispagestyle{scrheadings}},
+    pagecommand*={\thispagestyle{scrheadings}\section{Messprotokoll}\subsection{Versuchsaufbau und Aufgaben}}
+]{../Messprotokoll 34.pdf}
+
+\end{comment}
+
+\subsection{Durchführung}
+
+\section{Auswertung}
+
+\subsection{Aufgabe 1:Exemplarische Berechnung an einem ausgewählten Tröpfchen}
+
+
+
+
+\clearpage
+
+\listoffigures
+
+
+\listoftables
+
+\begin{thebibliography}{5}
+    \bibitem{PAPskript} Dr. J.Wagner, \emph{Physikalisches Anfängerpraktikum}, Stand 11/2024
+    \bibitem{ilberg1988physikalisches} W. Ilberg, M. Krötzsch, \emph{Physikalisches Praktikum für Anfänger}, BSB B. G. Teubner Verlagsgesellschaft, Leipzig (1985).
+\end{thebibliography}
+
+
+
+
+\begin{comment}
+
+\begin{table}[H]
+    \centering
+    \caption{Mess- und Geräteparameter für die exemplarische Berechnung (Messung 28).}
+    \label{tab:parameter_messung_28}
+    \begin{tabular}{ll}
+        \toprule
+        \textbf{Größe} & \textbf{Wert} \\
+        \midrule
+        Fallstrecke & $s_1 = 10\,\text{Skt} = 5.00 \cdot 10^{-4}\,\text{m}$ \\
+        Fallzeit & $t_1 = 11.85\,\text{s}$ \\
+        Steigstrecke & $s_2 = 10\,\text{Skt} = 5.00 \cdot 10^{-4}\,\text{m}$ \\
+        Steigzeit & $t_2 = 18.19\,\text{s}$ \\
+        Skalenteilung & $1\,\text{Skt} = 5.00 \cdot 10^{-5}\,\text{m}$ \\
+        Kondensatorspannung & $U = 500\,\text{V}$ \\
+        Plattenabstand & $d = 6.00 \cdot 10^{-3}\,\text{m}$ \\
+        Luftdruck & $p = 100285\,\text{Pa}$ \\
+        Erdbeschleunigung & $g = 9.81\,\frac{\text{m}}{\text{s}^2}$ \\
+        Dichtedifferenz & $\rho = \rho_{\text{Öl}} - \rho_{\text{Luft}} = 871.21\,\frac{\text{kg}}{\text{m}^3}$ \\
+        Unkorrigierte Luftviskosität & $\eta_0 = 1.81 \cdot 10^{-5}\,\text{Pa}\cdot\text{s}$ \\
+        Cunningham-Konstante & $b = 7.78 \cdot 10^{-3}\,\text{Pa}\cdot\text{m}$ \\
+        \bottomrule
+    \end{tabular}
+\end{table}
+\end{comment}
+\end{document}
