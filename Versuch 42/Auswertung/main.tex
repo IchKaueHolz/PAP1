@@ -334,6 +334,7 @@ Die Abweichung vom Literaturwerten berechnet sich nach der Formel:
 \end{align}
 
 \begin{resultbox}[Ergebnisse der spezifischen Wärmekapazitäten und Molwärmen]
+    Die experimentell bestimmen spezifischen Wärmekapazitäten im Bereich von \qty{20}{\degreeCelsius} bis \qty{100}{\degreeCelsius} betragen:
     \begin{table}[H]
         \centering
         \caption{Abweichung der experimentellen Werte von den Literaturwerten}
@@ -341,13 +342,29 @@ Die Abweichung vom Literaturwerten berechnet sich nach der Formel:
             \toprule
             \textbf{Probe} & \textbf{Spez. Wärmekapazität} & \textbf{Abweichung von Literaturwerten} \\
             \midrule
-            Graphit & \num{0.65(28)} & \num{0.21} \\
-            Aluminium & \num{0.79(25)} & \num{0.43} \\
-            Blei & \num{0.11(7)} & \num{0.31} \\
+            Graphit & \qty{0.65(28)}{\joule\per\gram\kelvin} & $\num{0.21}\sigma$ (Diamant)\\
+            Aluminium & \qty{0.79(25)}{\joule\per\gram\kelvin} & $\num{0.43}\sigma$ \\
+            Blei & \qty{0.11(7)}{\joule\per\gram\kelvin} & $\num{0.31}\sigma$ \\
             \bottomrule
         \end{tabular}
     \end{table}
 \end{resultbox}
+
+
+\section{Bestimmen der spezifischen Wärmekapazitäten im Tieftemperaturbereich}
+Die spezifische Wärmekapazität im Tieftemperaturbereich wird durch die Messung der verdampften Stickstoffmenge bestimmt. Die Masse des verdampften Stickstoffs $m_V$ wird aus der Differenz der Masse des Dewargefäßes vor und nach dem Eintauchen der Probe berechnet. Die spezifische Wärmekapazität $c_x$ wird dann mit der Formel:
+\begin{equation}
+c_x = \frac{Q_V m_V}{m_x (T_1 - T_2)}
+\end{equation}
+berechnet, wobei $Q_V$ die Verdampfungswärme des Stickstoffs ist. Die Fehlerformel für die spezifische Wärmekapazität lautet:
+\begin{equation}
+    \begin{aligned}
+    \Delta c_x^2 &= \left(\frac{Q_V}{m_x (T_1 - T_2)} \Delta m_V\right)^2 + \left(\frac{Q_V m_V}{m_x (T_1 - T_2)^2} \Delta T_1\right)^2 \\
+     &+ \left(\frac{Q_V m_V}{m_x (T_1 - T_2)^2} \Delta T_2\right)^2 + \left(\frac{Q_V m_V}{m_x^2 (T_1 - T_2)} \Delta m_x\right)^2
+    \end{aligned}
+\end{equation}  
+
+
 
 
 \clearpage
