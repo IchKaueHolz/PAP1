@@ -116,7 +116,7 @@
 
 \bigskip
 \begin{tcolorbox}[colback=gray!5,colframe=gray!60,boxrule=0.8pt,arc=0.01mm,title=KI-Hinweis]
-    Für die sprachliche Formulierung dieses Protokolls wurde in der Einleitung \ref{sec:Einleitung} und Grundlagen \ref{sec:Grundlagen und Theorie} KI-gestützte Textgenerierung verwendet. 
+    Für die sprachliche Formulierung dieses Protokolls wurde in der Einleitung\,\ref{sec:Einleitung} und Grundlagen\,\ref{sec:Grundlagen und Theorie} KI-gestützte Textgenerierung verwendet. 
 \end{tcolorbox}
 
 \clearpage
@@ -168,15 +168,15 @@ Nach dem Debye-Modell geht die spezifische Molwärme für hohe Temperaturen ($T 
 \textbf{Mischungsmethode im Wasserkalorimeter}\
 Die Messung bei hohen Temperaturen beruht auf dem Prinzip des Wärmeaustauschs. Ein auf $T_1$ erhitzter Probekörper wird in ein Wasserkalorimeter (mit Wassertemperatur $T_2$) gegeben. Nach dem Energiesatz ist die vom Probekörper abgegebene Wärme gleich der vom Wasser und Kalorimeter aufgenommenen Wärme (unter Vernachlässigung von Verlusten):
 \begin{equation}
-m_x c_x (T_1 - \overline{T}) = (m_W c_W + W) (\overline{T} - T_2)
+m_x c_x (T_1 - \overline{T}) = (m_W c_W + W) (\overline{T} - T_2)\label{eq:Wärmeverhältnis}
 \end{equation}
 Hierbei ist $m_x$ die Masse und $c_x$ die gesuchte spezifische Wärmekapazität der Probe. $m_W$ und $c_W$ beziehen sich auf das Wasser. $\overline{T}$ ist die sich einstellende Mischungstemperatur. Die Konstante $W$ ist der Wasserwert (die Wärmekapazität) des Kalorimeters. Auflösen nach $c_x$ liefert:
 \begin{equation}
-c_x = \frac{(m_W c_W + W)(\overline{T} - T_2)}{m_x (T_1 - \overline{T})}
+c_x = \frac{(m_W c_W + W)(\overline{T} - T_2)}{m_x (T_1 - \overline{T})}\label{eq:spez_kapazität_kalorimeter}
 \end{equation}
 
 \textbf{Messung mit flüssigem Stickstoff}\
-Für den Tieftemperaturbereich wird ein Probekörper mit Raumtemperatur ($T_1$) in flüssigen Stickstoff getaucht, welcher eine Siedetemperatur von $T_2 = -195,8^{\circ}\mathrm{C}$ aufweist. Die vom Probekörper abgegebene Wärmemenge führt dazu, dass eine Masse $m_V$ des Stickstoffs verdampft. Mit der spezifischen Verdampfungswärme $Q_V$ des Stickstoffs gilt das thermodynamische Gleichgewicht:
+Für den Tieftemperaturbereich wird ein Probekörper mit Raumtemperatur ($T_1$) in flüssigen Stickstoff getaucht, welcher eine Siedetemperatur von $T_2 = -195.8^{\circ}\mathrm{C}$ aufweist. Die vom Probekörper abgegebene Wärmemenge führt dazu, dass eine Masse $m_V$ des Stickstoffs verdampft. Mit der spezifischen Verdampfungswärme $Q_V$ des Stickstoffs gilt das thermodynamische Gleichgewicht:
 \begin{equation}
 Q_V m_V = m_x c_x (T_1 - T_2)
 \end{equation}
@@ -190,22 +190,20 @@ Bestimmte Werte werden für die Auswertung benötigt. Sie sind in folgender Tabe
     \centering
     \caption{Kenngrößen für die Auswertung.}
     \begin{tabular}{ll}
-        \toprule
-        \textbf{Kenngrößen} \\
+        \textbf{Kenngrößen:} \\
         \midrule
-        Siedetemperatur von fl. Stickstoff & $T_S = -195,8\,^{\circ}\mathrm{C}$ \\ 
+        Siedetemperatur von fl. Stickstoff & $T_S = -195.8\,^{\circ}\mathrm{C}$ \\ 
         Verdampfungswärme von fl. Stickstoff & $Q_V = 199\,\mathrm{J/g}$ \\ 
-        Rel. Atommasse von Blei & $M_{\mathrm{Pb}} = 207,2\,\mathrm{g/mol}$ \\ 
-        Rel. Atommasse von Aluminium & $M_{\mathrm{Al}} = 26,98\,\mathrm{g/mol}$ \\ 
-        Rel. Atommasse von Graphit & $M_{\mathrm{C}} = 12,01\,\mathrm{g/mol}$ \\ 
+        Rel. Atommasse von Blei & $M_{\mathrm{Pb}} = 207.2\,\mathrm{g/mol}$ \\ 
+        Rel. Atommasse von Aluminium & $M_{\mathrm{Al}} = 26.98\,\mathrm{g/mol}$ \\ 
+        Rel. Atommasse von Graphit & $M_{\mathrm{C}} = 12.01\,\mathrm{g/mol}$ \\ 
         \bottomrule
         & \\
-        \toprule
         \multicolumn{2}{l}{\textbf{Literaturwerte:}} \\ 
         \midrule
-        Spez. Wärme von Blei (300 K) & $c_{\mathrm{PB}} = 0,129\,\mathrm{J/(gK)}$ \\ 
-        Spez. Wärme von Aluminium (300 K) & $c_{\mathrm{Al}} = 0,90\,\mathrm{J/(gK)}$ \\ 
-        Spez. Wärme von Graphit (300 K) & $c_{\mathrm{C}} = 0,709\,\mathrm{J/(gK)}$ \\ 
+        Spez. Wärme von Blei (300 K) & $c_{\mathrm{PB}} = 0.129\,\mathrm{J/(gK)}$ \\ 
+        Spez. Wärme von Aluminium (300 K) & $c_{\mathrm{Al}} = 0.90\,\mathrm{J/(gK)}$ \\ 
+        Spez. Wärme von Graphit (300 K) & $c_{\mathrm{C}} = 0.709\,\mathrm{J/(gK)}$ \\ 
         & \\
         Debye-Temperatur von Blei (Aus Abb. 2) & $\Theta_{D,\mathrm{Pb}} = 95\,\mathrm{K}$ \\ 
         Debye-Temperatur von Aluminium (Aus Abb. 2) & $\Theta_{D,\mathrm{Al}} = 430\,\mathrm{K}$ \\ 
@@ -234,11 +232,122 @@ Bestimmte Werte werden für die Auswertung benötigt. Sie sind in folgender Tabe
 
 \subsection{Durchführung}
 
-\section{Auswertung}
+\subsection{Aufgabe 1: Bestimmen des Wasserwertes des Kalorimeters}
+Der Wasserwert wird durch Extrapolation der Messwerte für Heißes Wasser im Kalorimeter bestimmt. Die Messwerte werden in einem Diagramm aufgetragen, und die Temperaturänderung des Wassers wird gegen die Zeit aufgetragen. 
 
-\subsection{Aufgabe 1:Exemplarische Berechnung an einem ausgewählten Tröpfchen}
+Die Fehler der Messwerte werden durch die Unsicherheit des Thermometers und der Unsicherheit des Ablesens bestimmt. Da nur Differenzen gemessen werden kann als $Delta T_\text{thermometer} = 0.03\%$ angenommen werden. Die Unsicherheit des Ablesens wird auf $\qty{0.1}{\degreeCelsius}$ geschätzt. Die Gesamtunsicherheit der Temperaturdifferenz wird dann durch die Wurzel der Summe der Quadrate der beiden Unsicherheiten berechnet und ergibt sich für jeden Wert auf \qty{0.1}{\degreeCelsius}
 
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{img/A1.png}
+    \caption{Diagramm zur Bestimmung des Wasserwertes des Kalorimeters}\label{fig:kalorimeter}
+\end{figure}
 
+Durch Extrapolieren ergibt sich eine Mischtemperatur von $\overline{T} = \qty{52.72(13)}{\degreeCelsius}$
+Die Werte werden hier noch einmal in einer Tabelle zusammengefasst:
+\begin{table}[H]
+    \centering
+    \caption{Messwerte zur Bestimmung des Wasserwertes des Kalorimeters}
+    \begin{tabular}{cc}
+        \toprule
+        \textbf{Größe} & \textbf{Wert} \\
+        \midrule
+        Mischtemperatur & $\overline{T} = \qty{52.72(13)}{\degreeCelsius}$ \\
+        Temperatur des heißen Wassers & $T_1 = \qty{54.7(3)}{\degreeCelsius}$ \\
+        Temperatur des Kalorimeters & $T_2 = \qty{24.10(15)}{\degreeCelsius}$ \\
+        Masse des leeren Kalorimeters & $m_K = \qty{254.90(5)}{\gram}$ \\
+        Masse des Wassers mit Kalorimeter & $m_{W+K} = \qty{571.80(5)}{\gram}$ \\
+        Spezifische Wärme des Wassers & $c_W = \qty{4.186(4)}{\joule\per\gram\per\kelvin}$ \\
+        \bottomrule
+    \end{tabular}
+\end{table}
+
+Durch Umstellen der Gleichung\,\ref{eq:Wärmeverhältnis} beträgt die Formel zur Berechnung des Wasserwertes\,$W$:
+\begin{align}
+    W &= m_w c_w \frac{T_1 - \overline{T}}{\overline{T} - T_2}\\
+        &\quad \intertext{mit $m_w = m_{W+K} - m_K$} 
+        \Delta W^2 &= \left(c_w \frac{T_1 - \overline{T}}{\overline{T} - T_2} \Delta m_w\right)^2 + \left(m_w \frac{T_1 - \overline{T}}{\overline{T} - T_2} \Delta c_w\right)^2 + \left(m_w c_w \frac{\overline{T} - T_2 + T_1 - \overline{T}}{(\overline{T} - T_2)^2} \Delta T_1\right)^2 + \dots \\
+        &\dots \left(m_w c_w \frac{- (T_1 - T_2)}{(\overline{T} - T_2)^2} \Delta \overline{T}\right)^2 + \left(m_w c_w \frac{-(T_1 - \overline{T})}{(\overline{T} - T_2)^2} \Delta T_2\right)^2\\
+        \bigskip
+    \Rightarrow W &= \qty{92(16)}{\joule\per\gram}
+\end{align}
+
+\begin{resultbox}[Ergebnis]
+    Der Wasserwert des Kalorimeters beträgt:
+    \begin{equation}
+        W = \qty{92(16)}{\joule\per\gram}
+    \end{equation}
+\end{resultbox}
+
+\section{Bestimmen der spezifischen Wärmekapazitäten und Molwärmen}
+
+Mithilfe von Gleichung \ref{eq:spez_kapazität_kalorimeter} kann die Wärmekapazität der Proben berechnet werden.
+
+Die Fehlerformel der Gleichung \ref{eq:spez_kapazität_kalorimeter}
+\begin{equation}
+    c_x = \frac{(m_W c_W + W)(\overline{T} - T_2)}{m_x (T_1 - \overline{T})}
+\end{equation}
+
+beträgt:
+
+\begin{equation}
+    \begin{aligned}
+        \Delta c_x^2 &= \left(\frac{(m_W c_W + W)(\overline{T} - T_2)}{m_x (T_1 - \overline{T})^2} \Delta T_1\right)^2 \\ &+ \left(\frac{(m_W c_W + W)(\overline{T} - T_2)}{m_x (T_1 - \overline{T})^2} \Delta \overline{T}\right)^2 \\&+
+         \left(\frac{(m_W c_W + W)}{m_x (T_1 - \overline{T})} \Delta T_2\right)^2 \\ &+ \left(\frac{(m_W c_W + W)(\overline{T} - T_2)}{m_x^2 (T_1 - \overline{T})} \Delta m_x\right)^2
+    \end{aligned} 
+\end{equation}
+
+Die gemessenen Werte aus dem Messprotokoll betragen:
+\begin{table}[H]
+    \centering
+    \caption{Messwerte zur Bestimmung der spezifischen Wärmekapazitäten und Molwärmen}
+    \begin{tabular}{lcccc}
+        \toprule
+        \textbf{Probe} & \textbf{Masse} & \textbf{Temp Misch} & \textbf{Temp Wasser} & \textbf{Temp Probekörper}\\
+        & $m_x$ [g] & $\overline{T}$ [°C] & $T_2$ [°C] & $T_1$ [°C] \\
+        \midrule
+        Graphit & \num{125.10(5)} & \num{28.8(1.2)} & \num{24.8(1.2)} & \num{98.6(1.7)} \\
+        Aluminium & \num{155.70(5)} & \num{34.4(1.3)} & \num{28.7(1.2)} & \num{99.9(1.7)} \\
+        Blei & \num{601.30(5)} & \num{36.7(1.3)} & \num{33.8(1.3)} & \num{100.0(1.7)} \\
+        \bottomrule
+    \end{tabular}
+\end{table}
+
+Aus diesen Werten ergeben sich die spezifischen Wärmekapazitäten und Molwärmen der Proben:
+\begin{table}[H]
+    \centering
+    \caption{Ergebnisse der spezifischen Wärmekapazitäten und Molwärmen}
+    \begin{tabular}{lccc}
+        \toprule
+        \textbf{Probe} & \textbf{Molare Masse} & \textbf{Spezifische Wärmekapazität} & \textbf{Molwärme} \\
+        & $M [\text{g/mol}]$ & $c_x [\text{J/(gK)}]$ & $c_{mol} [\text{J/(molK)}]$ \\
+        \midrule
+        Graphit & 12.01 & \num{0.65(28)} & \num{8(4)} \\
+        Aluminium & 26.98 & \num{0.79(25)} & \num{21(7)} \\
+        Blei & 207.2 & \num{0.11(7)} & \num{22(14)} \\
+    \end{tabular}
+\end{table}
+
+Die Abweichung vom Literaturwerten berechnet sich nach der Formel:
+\begin{align}
+    \sigma = \frac{|c_\text{exp} - c_\text{lit}|}{\Delta c_\text{exp}}
+\end{align}
+
+\begin{resultbox}[Ergebnisse der spezifischen Wärmekapazitäten und Molwärmen]
+    \begin{table}[H]
+        \centering
+        \caption{Abweichung der experimentellen Werte von den Literaturwerten}
+        \begin{tabular}{lcc}
+            \toprule
+            \textbf{Probe} & \textbf{Spez. Wärmekapazität} & \textbf{Abweichung von Literaturwerten} \\
+            \midrule
+            Graphit & \num{0.65(28)} & \num{0.21} \\
+            Aluminium & \num{0.79(25)} & \num{0.43} \\
+            Blei & \num{0.11(7)} & \num{0.31} \\
+            \bottomrule
+        \end{tabular}
+    \end{table}
+\end{resultbox}
 
 
 \clearpage
