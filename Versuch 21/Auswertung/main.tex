@@ -265,7 +265,7 @@ Die Fehlerformel beträgt:
 
 
 \begin{equation}
-    \Delta F = \sqrt{\left(\frac{t\cdot M_{Mol}}{z * m} \Delta I \right)^2 + \left(\frac{I\cdot M_{Mol}}{z * m} \Delta t\right)^2 + \left(\frac{I\cdot t\cdot M_{Mol}}{z * m^2} \Delta m\right)^2}
+    \Delta F = \sqrt{\left(\frac{t\cdot M_{Mol}}{z m} \Delta I \right)^2 + \left(\frac{I\cdot M_{Mol}}{z m} \Delta t\right)^2 + \left(\frac{I\cdot t\cdot M_{Mol}}{z m^2} \Delta m\right)^2}
 \end{equation}
 
 Es ergeben sich folgende Werte:
@@ -383,29 +383,32 @@ Die Abweichung vom Literaturwert beträgt:
 \end{equation}
 
 
-\begin{resultbox}
-    Die mithilfe der Gasvolumina bestimmte Faraday-Konstante beträgt:
-    
-\begin{align}
-        F &= \qty{9.37(16)e4}{\coulomb\per\mol}
-    \end{align}
-    Die Abweichung vom Literaturwert beträgt:
-    
-\begin{align}
-        \sigma &= 1.84\sigma    
-    \end{align}
-\end{resultbox}
-
 Nun wird die Faraday-Konstante zusätzlich durch die Messung des Sauerstoffvolumens bestimmt ($z=4$). Die Berechnungen ergeben:
 \begin{align}
-    n &= \frac{V_{O2}}{V_{Mol}} &&= \qty{9.06(11)e-4}{\mol} \\
-    F &= \frac{Q}{z \cdot n} &&= \qty{9.45(17)e4}{\coulomb\per\mol}
+    n_{O2} &= \frac{V_{O2}}{V_{Mol}} &&= \qty{9.06(11)e-4}{\mol} \\
+    F_{O2} &= \frac{Q}{z \cdot n} &&= \qty{9.45(17)e4}{\coulomb\per\mol}
 \end{align}
 
 Die Abweichung vom Literaturwert beträgt:
 \begin{align}
-        \sigma &= 1.15\sigma    
+        \sigma_{O2} &= 1.15\sigma    
 \end{align}
+
+
+\begin{resultbox}[Ergebnis]
+    Die mithilfe der Gasvolumina bestimmte Faraday-Konstante beträgt:
+    
+\begin{align}
+        F_{H2} &= \qty{9.37(16)e4}{\coulomb\per\mol}\\
+        F_{O2} &= \qty{9.45(17)e4}{\coulomb\per\mol}
+    \end{align}
+    Die Abweichung vom Literaturwert beträgt:
+    
+\begin{align}
+        \sigma_{H2} &= 1.84\sigma\\
+        \sigma_{O2} &= 1.15\sigma
+    \end{align}
+\end{resultbox}
 
 
 \section{Diskussion}
@@ -413,21 +416,22 @@ Die Abweichung vom Literaturwert beträgt:
 Die Faraday-Konstante wurde in diesem Versuch auf zwei verschiedene Arten bestimmt: durch die Messung der Masse von Kupfer, das bei der Elektrolyse von Kupfersulfat abgeschieden wurde, und durch die Messung des Volumens von Wasserstoff, das bei der Elektrolyse von Wasser abgeschieden wurde.
 
 \paragraph{Bestimmung durch Massenmessung}
-Die Bestimmung der Faraday-Konstante durch die Messung der Masse von Kupfer ergab einen Wert von $F_{Anode} = \qty{8.79(27)e4}{\coulomb\per\mol}$ und $F_{Kathode} = \qty{9.11(28)e4}{\coulomb\per\mol}$, wobei die Abweichungen in Sigma-Einheiten für die Massenbestimmung bei 3.29$\sigma$ (Anode) und 1.97$\sigma$ (Kathode) liegen. Beide dieser Werte lagen innerhalb der Unsicherheitsgrenzen des Literaturwertes von $F = \qty{9.648455(27)e4}{\coulomb\per\mol}$, was auf eine gute Übereinstimmung hinweist. Die Hauptquellen der Unsicherheiten in der Methode können hauptsächlich auf das Abspülen der Elektroden und den dadaruch entstanddenen Masseverlust zurückgeführt werden. Außerdem hat das Einstellen der Stroms und die Messung der Zeit zu Beginn des Veruschs zu einer größeren Unsicherheit geführt, als angenommen, da die Stromstärke nicht sofort konstant war. (Somit war die übertragene Ladung geringer als angenommen, was zu einer Unterschätzung der Faraday-Konstante führte.) Es ist des weiteren möglich, dass nebenreaktionen an der Anode und Kathode aufgetreten sind, die die Masse der Elektroden beeinflusst haben. Diese Nebenreaktionen könnten zu einer Abweichung von den theoretischen Erwartungen geführt haben. 
+Die Bestimmung der Faraday-Konstante durch die Messung der Masse von Kupfer ergab einen Wert von $F_{Anode} = \qty{8.79(27)e4}{\coulomb\per\mol}$ und $F_{Kathode} = \qty{9.11(28)e4}{\coulomb\per\mol}$, wobei die Abweichungen in Sigma-Einheiten für die Massenbestimmung bei 3.29$\sigma$ (Anode) und 1.97$\sigma$ (Kathode) liegen. Dies überschreitet Unsicherheit und deutet auf einen Systematischen Fehler hin. Die Hauptquellen der Unsicherheiten in der Methode können hauptsächlich auf das Abspülen der Elektroden und den dadaruch entstanddenen Masseverlust zurückgeführt werden. Außerdem hat das Einstellen der Stroms und die Messung der Zeit zu Beginn des Veruschs zu einer größeren Unsicherheit geführt, als angenommen, da die Stromstärke nicht sofort konstant war. (Somit war die übertragene Ladung geringer als angenommen, was zu einer Unterschätzung der Faraday-Konstante führte.) Es ist des weiteren möglich, dass nebenreaktionen an der Anode und Kathode aufgetreten sind, die die Masse der Elektroden beeinflusst haben. Diese Nebenreaktionen könnten zu einer Abweichung von den theoretischen Erwartungen geführt haben.
 
 
 
 \paragraph{Bestimmung durch Volumen}
- Die Bestimmung durch die Messung des Volumens von Wasserstoff ergab einen Wert von $F = \qty{9.45(17)e4}{\coulomb\per\mol}$, die Abweichung liegt bei 1.84$\sigma$. Dies deutet auf einen systematischen Fehler hin, der die Messung beeinflusst hat. Mögliche Ursachen für diese Abweichung könnten die ungenaue Bestimmung der Volumina durch die Gasblase, wodruch der hydrostatische Druck nicht komplett ausgeglichen wurde, oder die ungenaue Bestimmung des Dampfdrucks des Wassers bei der gegebenen Temperatur sein. Eine weitere Fehlerquelle ist, dass die Wasserlösung mit Schwefelsäure versetzt war, um die Leitfähigkeit zu erhöhen. Auch hier könnten Nebenreaktionen an der Anode und Kathode aufgetreten sein, wie die Reaktion von Schwefelsäure zu Perlschwefelsäure, die die Menge an abgeschiedenem Wasserstoff beeinflusst haben. Diese Nebenreaktionen könnten zu einer Abweichung von den theoretischen Erwartungen geführt haben.
+Die Bestimmung durch die Messung des Volumens von Wasserstoff ergab einen Wert von $F = \qty{9.37(17)e4}{\coulomb\per\mol}$, die Abweichung liegt bei 1.84$\sigma$. Die Messung des Volumens von Wasserstof resultiert in einem Wert von $F_{O2} = \qty{9.45(17)e4}{\coulomb\per\mol}$ ($1.15\sigma$). Der Literaturwert beträgt $F_{Literatur} = \qty{9.65e4}{\coulomb\per\mol}$. Die Abweichungen liegen innerhalb der Unsicherheiten, was auf eine gute Übereinstimmung mit dem Literaturwert hinweist.
+Grundsätzlich bestätigt dies die Messmethode, deuet aber auf einen systematischen Fehler hin, der die Messung beeinflusst hat. Mögliche Ursachen für diese Abweichung könnten die ungenaue Bestimmung der Volumina durch die Gasblase, wodruch der hydrostatische Druck nicht komplett ausgeglichen wurde, oder die ungenaue Bestimmung des Dampfdrucks des Wassers bei der gegebenen Temperatur sein. Eine weitere Fehlerquelle ist, dass die Wasserlösung mit Schwefelsäure versetzt war, um die Leitfähigkeit zu erhöhen. Auch hier könnten Nebenreaktionen an der Anode und Kathode aufgetreten sein, wie die Reaktion von Schwefelsäure zu Perlschwefelsäure, die die Menge an abgeschiedenem Sauerstoff beeinflusst haben. //
+Dies erklärt auch den Unterscheid ($F_{O2} > F_{H2}$) zwischen den beiden Messungen. Durch die Nebenreaktion ist die Sauerstoffmenge kleiner als erwartet, somit sinkt die Teilchenzahl $n$ und die Faraday-Konstante steigt. 
 
-
- Im Ganzen kann man aber feshalten, dass die Bestimmung der Faraday-Konstante durch die Messung der Masse von Kupfer eine bessere Übereinstimmung mit dem Literaturwert aufweist als die Bestimmung durch die Messung des Volumens von Wasserstoff. Die Massenbestimmung ist daher als zuverlässiger anzusehen, während die Volumenbestimmung durch systematische Fehler beeinflusst wurde.
+Im Ganzen kann man aber festhalten, dass die Bestimmung der Faraday-Konstante durch die Messung des Volumens von Wasserstoff eine bessere Übereinstimmung mit dem Literaturwert aufweist, als die Bestimmung durch die Messung der Masse von Kupfer, da das Abspülen der Elektroden und die Nebenreaktionen leicher zur Verfälschung der Ergebnisse führen können. 
 
  \section{Fazit}
- Zum Schluss kann man sagen, dass die Bestimmung der Faraday-Konstante durch die Elektrolyse erfolgreich durchgeführt wurde. Die Bestimmung durch die Messung der Masse von Kupfer ergab eine gute Übereinstimmung mit dem Literaturwert, während die Bestimmung durch die Messung des Volumens von Wasserstoff durch systematische Fehler beeinflusst wurde. Insgesamt zeigt der Versuch die Bedeutung der Faraday-Konstante in der Elektrochemie und bietet einen praktischen Einblick in die Prinzipien der Elektrolyse. Der Versuch hat mich sehr interessiert und es war schon cool zu sehen, als das Wasser in Wasserstoff und Sauerstoff zerlegt wurde. Nun weiß ich ganz sicher, wie die Faraday-Konstante definiert ist:
+Insgesamt zeigt der Versuch die Bedeutung der Faraday-Konstante in der Elektrochemie und bietet einen praktischen Einblick in die Prinzipien der Elektrolyse. Der Versuch hat mich sehr interessiert und es war schon cool zu sehen, als das Wasser in Wasserstoff und Sauerstoff zerlegt wurde. Nun weiß ich ganz sicher, wie die Faraday-Konstante definiert ist:
 
  \begin{equation}
-     F = e \cdot N_A\text{!!}
+     F = e \cdot N_A \underbrace{!}_{\text{Keine Fakultät}}
  \end{equation}
 
 
