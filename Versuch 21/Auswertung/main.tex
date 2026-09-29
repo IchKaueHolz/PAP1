@@ -192,7 +192,7 @@ Näherungsweise entspricht der Dampfdruck der Schwefelsäure $p_D^{\ce{H2SO4}}$ 
 
 
 \begin{equation}
-    p = p_L + p_D^{H_2SO4} = p_L + 0.9 \cdot p_D^{H_2O}
+    p = p_L - p_D^{H_2SO4} = p_L - 0.9 \cdot p_D^{H_2O}
 \end{equation}
 
 
@@ -360,10 +360,10 @@ Mithilfe von Gleichung \ref{eq:calc_Volumes} und \ref{eq:calc_Faraday} kann die 
 
 
 \begin{align}
-    p &= p_L + 0.9 * p_D^{H2O} &&= \qty{1034.1(1.8)}{\milli\bar} \\
-    V_{Mol} &= \frac{p_0}{p} \cdot \frac{T}{T_0} \cdot V_{Mol,0} &&= \qty{23.77(8)}{\liter\per\mol} \\
-    n &= \frac{V_{H2}}{V_{Mol}} &&= \qty{1.918(11)e-3}{\mol} \\
-    F &= \frac{Q}{z \cdot n} &&= \qty{8.93(14)e4}{\coulomb\per\mol}
+    p &= p_L - 0.9 * p_D^{H2O} &&= \qty{985.3(1.8)}{\milli\bar} \\
+    V_{Mol} &= \frac{p_0}{p} \cdot \frac{T}{T_0} \cdot V_{Mol,0} &&= \qty{24.95(17)}{\liter\per\mol} \\
+    n &= \frac{V_{H2}}{V_{Mol}} &&= \qty{1.827(15)e-3}{\mol} \\
+    F &= \frac{Q}{z \cdot n} &&= \qty{9.37(16)e4}{\coulomb\per\mol}
 \end{align}
 
 Die Fehlerformeln der Berechnungen betragen:
@@ -379,7 +379,7 @@ Die Fehlerformeln der Berechnungen betragen:
 Die Abweichung vom Literaturwert beträgt:
 
 \begin{equation}
-    \sigma = \frac{|F - F_{Literatur}|}{\Delta F} \Rightarrow 5.38\sigma
+    \sigma = \frac{|F - F_{Literatur}|}{\Delta F} \Rightarrow 1.84\sigma
 \end{equation}
 
 
@@ -387,14 +387,25 @@ Die Abweichung vom Literaturwert beträgt:
     Die mithilfe der Gasvolumina bestimmte Faraday-Konstante beträgt:
     
 \begin{align}
-        F &= \qty{8.93(14)e4}{\coulomb\per\mol}
+        F &= \qty{9.37(16)e4}{\coulomb\per\mol}
     \end{align}
     Die Abweichung vom Literaturwert beträgt:
     
 \begin{align}
-        \sigma &= 5.38\sigma    
+        \sigma &= 1.84\sigma    
     \end{align}
 \end{resultbox}
+
+Nun wird die Faraday-Konstante zusätzlich durch die Messung des Sauerstoffvolumens bestimmt ($z=4$). Die Berechnungen ergeben:
+\begin{align}
+    n &= \frac{V_{O2}}{V_{Mol}} &&= \qty{9.06(11)e-4}{\mol} \\
+    F &= \frac{Q}{z \cdot n} &&= \qty{9.45(17)e4}{\coulomb\per\mol}
+\end{align}
+
+Die Abweichung vom Literaturwert beträgt:
+\begin{align}
+        \sigma &= 1.15\sigma    
+\end{align}
 
 
 \section{Diskussion}
@@ -407,7 +418,7 @@ Die Bestimmung der Faraday-Konstante durch die Messung der Masse von Kupfer erga
 
 
 \paragraph{Bestimmung durch Volumen}
- Die Bestimmung durch die Messung des Volumens von Wasserstoff ergab einen Wert von $F = \qty{8.93(14)e4}{\coulomb\per\mol}$., die Abweichung liegt bei 5.38$\sigma$. Dies deutet auf einen systematischen Fehler hin, der die Messung beeinflusst hat. Mögliche Ursachen für diese Abweichung könnten die ungenaue Bestimmung der Volumina durch die Gasblase, wodruch der hydrostatische Druck nicht komplett ausgeglichen wurde, oder die ungenaue Bestimmung des Dampfdrucks des Wassers bei der gegebenen Temperatur sein. Eine weitere Fehlerquelle ist, dass die Wasserlösung mit Schwefelsäure versetzt war, um die Leitfähigkeit zu erhöhen. Auch hier könnten Nebenreaktionen an der Anode und Kathode aufgetreten sein, wie die Reaktion von Schwefelsäure zu Perlschwefelsäure, die die Menge an abgeschiedenem Wasserstoff beeinflusst haben. Diese Nebenreaktionen könnten zu einer Abweichung von den theoretischen Erwartungen geführt haben.
+ Die Bestimmung durch die Messung des Volumens von Wasserstoff ergab einen Wert von $F = \qty{9.45(17)e4}{\coulomb\per\mol}$, die Abweichung liegt bei 1.84$\sigma$. Dies deutet auf einen systematischen Fehler hin, der die Messung beeinflusst hat. Mögliche Ursachen für diese Abweichung könnten die ungenaue Bestimmung der Volumina durch die Gasblase, wodruch der hydrostatische Druck nicht komplett ausgeglichen wurde, oder die ungenaue Bestimmung des Dampfdrucks des Wassers bei der gegebenen Temperatur sein. Eine weitere Fehlerquelle ist, dass die Wasserlösung mit Schwefelsäure versetzt war, um die Leitfähigkeit zu erhöhen. Auch hier könnten Nebenreaktionen an der Anode und Kathode aufgetreten sein, wie die Reaktion von Schwefelsäure zu Perlschwefelsäure, die die Menge an abgeschiedenem Wasserstoff beeinflusst haben. Diese Nebenreaktionen könnten zu einer Abweichung von den theoretischen Erwartungen geführt haben.
 
 
  Im Ganzen kann man aber feshalten, dass die Bestimmung der Faraday-Konstante durch die Messung der Masse von Kupfer eine bessere Übereinstimmung mit dem Literaturwert aufweist als die Bestimmung durch die Messung des Volumens von Wasserstoff. Die Massenbestimmung ist daher als zuverlässiger anzusehen, während die Volumenbestimmung durch systematische Fehler beeinflusst wurde.
