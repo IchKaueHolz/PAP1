@@ -1,0 +1,294 @@
+
+
+    
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{24}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{k+kn}{import}\PY{+w}{ }\PY{n+nn}{numpy}\PY{+w}{ }\PY{k}{as}\PY{+w}{ }\PY{n+nn}{np}
+\PY{k+kn}{import}\PY{+w}{ }\PY{n+nn}{uncertainties}\PY{+w}{ }\PY{k}{as}\PY{+w}{ }\PY{n+nn}{unc}
+\end{Verbatim}
+\end{tcolorbox}
+
+    Wasserwert bestimmen - Fehlerrechnung
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{25}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{n}{T} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{array}\PY{p}{(}\PY{p}{[}\PY{l+m+mf}{52.7}\PY{p}{,} \PY{l+m+mf}{52.6}\PY{p}{,} \PY{l+m+mf}{52.4}\PY{p}{,} \PY{l+m+mf}{52.4}\PY{p}{,} \PY{l+m+mf}{52.3}\PY{p}{,} \PY{l+m+mf}{52.2}\PY{p}{,} \PY{l+m+mf}{52.2}\PY{p}{,} \PY{l+m+mf}{52.1}\PY{p}{,} \PY{l+m+mf}{52.0}\PY{p}{,} \PY{l+m+mf}{51.9}\PY{p}{,} \PY{l+m+mf}{51.8}\PY{p}{]}\PY{p}{)}
+\PY{n}{err} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{array}\PY{p}{(}\PY{n}{np}\PY{o}{.}\PY{n}{sqrt}\PY{p}{(}\PY{p}{[}\PY{n}{T}\PY{o}{*}\PY{l+m+mf}{0.003}\PY{o}{*}\PY{o}{*}\PY{l+m+mi}{2} \PY{o}{+} \PY{p}{(}\PY{l+m+mf}{0.1}\PY{p}{)}\PY{o}{*}\PY{o}{*}\PY{l+m+mi}{2}\PY{p}{]}\PY{p}{)}\PY{p}{)}
+\PY{n}{err}
+\end{Verbatim}
+\end{tcolorbox}
+
+            \begin{tcolorbox}[breakable, size=fbox, boxrule=.5pt, pad at break*=1mm, opacityfill=0]
+\prompt{Out}{outcolor}{25}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+array([[0.10234403, 0.10233963, 0.10233084, 0.10233084, 0.10232644,
+        0.10232204, 0.10232204, 0.10231764, 0.10231324, 0.10230885,
+        0.10230445]])
+\end{Verbatim}
+\end{tcolorbox}
+        
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{26}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{n}{T\PYZus{}bar} \PY{o}{=} \PY{n}{unc}\PY{o}{.}\PY{n}{ufloat}\PY{p}{(}\PY{l+m+mf}{52.72}\PY{p}{,} \PY{l+m+mf}{0.13}\PY{p}{)}
+\PY{n}{T1} \PY{o}{=} \PY{n}{unc}\PY{o}{.}\PY{n}{ufloat}\PY{p}{(}\PY{l+m+mf}{54.7}\PY{p}{,} \PY{l+m+mf}{0.3}\PY{p}{)}
+\PY{n}{T2} \PY{o}{=} \PY{n}{unc}\PY{o}{.}\PY{n}{ufloat}\PY{p}{(}\PY{l+m+mf}{24.10}\PY{p}{,} \PY{l+m+mf}{0.15}\PY{p}{)}
+\PY{n}{M\PYZus{}WK} \PY{o}{=} \PY{n}{unc}\PY{o}{.}\PY{n}{ufloat}\PY{p}{(}\PY{l+m+mf}{571.80}\PY{p}{,} \PY{l+m+mf}{0.05}\PY{p}{)}
+\PY{n}{M\PYZus{}K} \PY{o}{=} \PY{n}{unc}\PY{o}{.}\PY{n}{ufloat}\PY{p}{(}\PY{l+m+mf}{254.90}\PY{p}{,} \PY{l+m+mf}{0.05}\PY{p}{)}
+\PY{n}{c\PYZus{}w} \PY{o}{=} \PY{n}{unc}\PY{o}{.}\PY{n}{ufloat}\PY{p}{(}\PY{l+m+mf}{4.186}\PY{p}{,} \PY{l+m+mf}{0.004}\PY{p}{)}
+
+\PY{n}{W} \PY{o}{=} \PY{p}{(}\PY{n}{M\PYZus{}WK} \PY{o}{\PYZhy{}} \PY{n}{M\PYZus{}K}\PY{p}{)} \PY{o}{*} \PY{n}{c\PYZus{}w} \PY{o}{*} \PY{p}{(}\PY{n}{T1} \PY{o}{\PYZhy{}} \PY{n}{T\PYZus{}bar}\PY{p}{)} \PY{o}{/} \PY{p}{(}\PY{n}{T\PYZus{}bar} \PY{o}{\PYZhy{}} \PY{n}{T2}\PY{p}{)}
+\PY{n}{W}
+\end{Verbatim}
+\end{tcolorbox}
+
+            \begin{tcolorbox}[breakable, size=fbox, boxrule=.5pt, pad at break*=1mm, opacityfill=0]
+\prompt{Out}{outcolor}{26}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+91.77344276729578+/-15.332799420676757
+\end{Verbatim}
+\end{tcolorbox}
+        
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{27}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{n}{T\PYZus{}bar\PYZus{}graphit} \PY{o}{=} \PY{l+m+mf}{28.8}
+\PY{n}{T\PYZus{}bar\PYZus{}alu} \PY{o}{=} \PY{l+m+mf}{34.4}
+\PY{n}{T\PYZus{}bar\PYZus{}blei} \PY{o}{=} \PY{l+m+mf}{36.7}
+
+\PY{n}{T\PYZus{}bar\PYZus{}graphit} \PY{o}{=} \PY{n}{unc}\PY{o}{.}\PY{n}{ufloat}\PY{p}{(}\PY{n}{T\PYZus{}bar\PYZus{}graphit}\PY{p}{,} \PY{p}{(}\PY{n}{T\PYZus{}bar\PYZus{}graphit}\PY{o}{*}\PY{l+m+mf}{0.003}\PY{o}{+}\PY{l+m+mi}{1}\PY{p}{)}\PY{o}{*}\PY{o}{*}\PY{l+m+mi}{2} \PY{o}{+} \PY{l+m+mf}{0.1}\PY{o}{*}\PY{o}{*}\PY{l+m+mi}{2}\PY{p}{)}
+\PY{n}{T\PYZus{}bar\PYZus{}alu} \PY{o}{=} \PY{n}{unc}\PY{o}{.}\PY{n}{ufloat}\PY{p}{(}\PY{n}{T\PYZus{}bar\PYZus{}alu}\PY{p}{,} \PY{p}{(}\PY{n}{T\PYZus{}bar\PYZus{}alu}\PY{o}{*}\PY{l+m+mf}{0.003}\PY{o}{+}\PY{l+m+mi}{1}\PY{p}{)}\PY{o}{*}\PY{o}{*}\PY{l+m+mi}{2} \PY{o}{+} \PY{l+m+mf}{0.1}\PY{o}{*}\PY{o}{*}\PY{l+m+mi}{2}\PY{p}{)}
+\PY{n}{T\PYZus{}bar\PYZus{}blei} \PY{o}{=} \PY{n}{unc}\PY{o}{.}\PY{n}{ufloat}\PY{p}{(}\PY{n}{T\PYZus{}bar\PYZus{}blei}\PY{p}{,} \PY{p}{(}\PY{n}{T\PYZus{}bar\PYZus{}blei}\PY{o}{*}\PY{l+m+mf}{0.003}\PY{o}{+}\PY{l+m+mi}{1}\PY{p}{)}\PY{o}{*}\PY{o}{*}\PY{l+m+mi}{2} \PY{o}{+} \PY{l+m+mf}{0.1}\PY{o}{*}\PY{o}{*}\PY{l+m+mi}{2}\PY{p}{)}
+
+\PY{n}{T\PYZus{}bar\PYZus{}graphit}\PY{p}{,} \PY{n}{T\PYZus{}bar\PYZus{}alu}\PY{p}{,} \PY{n}{T\PYZus{}bar\PYZus{}blei}
+\end{Verbatim}
+\end{tcolorbox}
+
+            \begin{tcolorbox}[breakable, size=fbox, boxrule=.5pt, pad at break*=1mm, opacityfill=0]
+\prompt{Out}{outcolor}{27}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+(28.8+/-1.1902649600000001,
+ 34.4+/-1.2270502399999998,
+ 36.7+/-1.2423220100000003)
+\end{Verbatim}
+\end{tcolorbox}
+        
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{28}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{n}{T1\PYZus{}graphit} \PY{o}{=}\PY{l+m+mf}{98.6}
+\PY{n}{T1\PYZus{}alu} \PY{o}{=} \PY{l+m+mf}{99.9}
+\PY{n}{T1\PYZus{}blei} \PY{o}{=} \PY{l+m+mi}{100}
+
+\PY{n}{T1\PYZus{}graphit} \PY{o}{=} \PY{n}{unc}\PY{o}{.}\PY{n}{ufloat}\PY{p}{(}\PY{n}{T1\PYZus{}graphit}\PY{p}{,} \PY{p}{(}\PY{n}{T1\PYZus{}graphit}\PY{o}{*}\PY{l+m+mf}{0.003}\PY{o}{+}\PY{l+m+mi}{1}\PY{p}{)}\PY{o}{*}\PY{o}{*}\PY{l+m+mi}{2} \PY{o}{+} \PY{l+m+mf}{0.1}\PY{o}{*}\PY{o}{*}\PY{l+m+mi}{2}\PY{p}{)}
+\PY{n}{T1\PYZus{}alu} \PY{o}{=} \PY{n}{unc}\PY{o}{.}\PY{n}{ufloat}\PY{p}{(}\PY{n}{T1\PYZus{}alu}\PY{p}{,} \PY{p}{(}\PY{n}{T1\PYZus{}alu}\PY{o}{*}\PY{l+m+mf}{0.003}\PY{o}{+}\PY{l+m+mi}{1}\PY{p}{)}\PY{o}{*}\PY{o}{*}\PY{l+m+mi}{2} \PY{o}{+} \PY{l+m+mf}{0.1}\PY{o}{*}\PY{o}{*}\PY{l+m+mi}{2}\PY{p}{)}
+\PY{n}{T1\PYZus{}blei} \PY{o}{=} \PY{n}{unc}\PY{o}{.}\PY{n}{ufloat}\PY{p}{(}\PY{n}{T1\PYZus{}blei}\PY{p}{,} \PY{p}{(}\PY{n}{T1\PYZus{}blei}\PY{o}{*}\PY{l+m+mf}{0.003}\PY{o}{+}\PY{l+m+mi}{1}\PY{p}{)}\PY{o}{*}\PY{o}{*}\PY{l+m+mi}{2} \PY{o}{+} \PY{l+m+mf}{0.1}\PY{o}{*}\PY{o}{*}\PY{l+m+mi}{2}\PY{p}{)}
+
+\PY{n}{T1\PYZus{}graphit}\PY{p}{,} \PY{n}{T1\PYZus{}alu}\PY{p}{,} \PY{n}{T1\PYZus{}blei}
+\end{Verbatim}
+\end{tcolorbox}
+
+            \begin{tcolorbox}[breakable, size=fbox, boxrule=.5pt, pad at break*=1mm, opacityfill=0]
+\prompt{Out}{outcolor}{28}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+(98.6+/-1.6890976400000002,
+ 99.9+/-1.6992200900000003,
+ 100.0+/-1.7000000000000002)
+\end{Verbatim}
+\end{tcolorbox}
+        
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{29}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{n}{T2\PYZus{}graphit} \PY{o}{=} \PY{l+m+mf}{24.8}
+\PY{n}{T2\PYZus{}alu} \PY{o}{=} \PY{l+m+mf}{28.7}
+\PY{n}{T2\PYZus{}blei} \PY{o}{=} \PY{l+m+mf}{33.8}
+
+\PY{n}{T2\PYZus{}graphit} \PY{o}{=} \PY{n}{unc}\PY{o}{.}\PY{n}{ufloat}\PY{p}{(}\PY{n}{T2\PYZus{}graphit}\PY{p}{,} \PY{p}{(}\PY{n}{T2\PYZus{}graphit}\PY{o}{*}\PY{l+m+mf}{0.003}\PY{o}{+}\PY{l+m+mi}{1}\PY{p}{)}\PY{o}{*}\PY{o}{*}\PY{l+m+mi}{2} \PY{o}{+} \PY{l+m+mf}{0.1}\PY{o}{*}\PY{o}{*}\PY{l+m+mi}{2}\PY{p}{)}
+\PY{n}{T2\PYZus{}alu} \PY{o}{=} \PY{n}{unc}\PY{o}{.}\PY{n}{ufloat}\PY{p}{(}\PY{n}{T2\PYZus{}alu}\PY{p}{,} \PY{p}{(}\PY{n}{T2\PYZus{}alu}\PY{o}{*}\PY{l+m+mf}{0.003}\PY{o}{+}\PY{l+m+mi}{1}\PY{p}{)}\PY{o}{*}\PY{o}{*}\PY{l+m+mi}{2} \PY{o}{+} \PY{l+m+mf}{0.1}\PY{o}{*}\PY{o}{*}\PY{l+m+mi}{2}\PY{p}{)}
+\PY{n}{T2\PYZus{}blei} \PY{o}{=} \PY{n}{unc}\PY{o}{.}\PY{n}{ufloat}\PY{p}{(}\PY{n}{T2\PYZus{}blei}\PY{p}{,} \PY{p}{(}\PY{n}{T2\PYZus{}blei}\PY{o}{*}\PY{l+m+mf}{0.003}\PY{o}{+}\PY{l+m+mi}{1}\PY{p}{)}\PY{o}{*}\PY{o}{*}\PY{l+m+mi}{2} \PY{o}{+} \PY{l+m+mf}{0.1}\PY{o}{*}\PY{o}{*}\PY{l+m+mi}{2}\PY{p}{)}
+
+\PY{n}{T2\PYZus{}graphit}\PY{p}{,} \PY{n}{T2\PYZus{}alu}\PY{p}{,} \PY{n}{T2\PYZus{}blei}
+
+\PY{n}{M\PYZus{}WK} \PY{o}{=} \PY{n}{unc}\PY{o}{.}\PY{n}{ufloat}\PY{p}{(}\PY{l+m+mf}{571.80}\PY{p}{,} \PY{l+m+mf}{0.05}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{30}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{n}{M\PYZus{}alu} \PY{o}{=} \PY{n}{unc}\PY{o}{.}\PY{n}{ufloat}\PY{p}{(}\PY{l+m+mf}{155.70}\PY{p}{,} \PY{l+m+mf}{0.05}\PY{p}{)}
+\PY{n}{M\PYZus{}graphit} \PY{o}{=} \PY{n}{unc}\PY{o}{.}\PY{n}{ufloat}\PY{p}{(}\PY{l+m+mf}{125.1}\PY{p}{,} \PY{l+m+mf}{0.05}\PY{p}{)}
+\PY{n}{M\PYZus{}blei} \PY{o}{=} \PY{n}{unc}\PY{o}{.}\PY{n}{ufloat}\PY{p}{(}\PY{l+m+mf}{601.3}\PY{p}{,} \PY{l+m+mf}{0.05}\PY{p}{)}
+
+\PY{k}{def}\PY{+w}{ }\PY{n+nf}{c\PYZus{}x}\PY{p}{(}\PY{n}{T\PYZus{}bar}\PY{p}{,} \PY{n}{T1}\PY{p}{,} \PY{n}{T2}\PY{p}{,} \PY{n}{M\PYZus{}WK}\PY{p}{,} \PY{n}{M\PYZus{}K}\PY{p}{,} \PY{n}{M\PYZus{}x}\PY{p}{,} \PY{n}{c\PYZus{}w}\PY{p}{,} \PY{n}{W}\PY{p}{)}\PY{p}{:}
+    \PY{k}{return} \PY{p}{(}\PY{p}{(}\PY{n}{M\PYZus{}WK}\PY{o}{\PYZhy{}}\PY{n}{M\PYZus{}K}\PY{p}{)} \PY{o}{*} \PY{n}{c\PYZus{}w} \PY{o}{+} \PY{n}{W}\PY{p}{)} \PY{o}{*} \PY{p}{(}\PY{n}{T\PYZus{}bar} \PY{o}{\PYZhy{}} \PY{n}{T2}\PY{p}{)} \PY{o}{/} \PY{p}{(}\PY{n}{M\PYZus{}x} \PY{o}{*} \PY{p}{(}\PY{n}{T1} \PY{o}{\PYZhy{}} \PY{n}{T\PYZus{}bar}\PY{p}{)}\PY{p}{)}
+
+\PY{n}{c\PYZus{}graphit} \PY{o}{=} \PY{n}{c\PYZus{}x}\PY{p}{(}\PY{n}{T\PYZus{}bar\PYZus{}graphit}\PY{p}{,} \PY{n}{T1\PYZus{}graphit}\PY{p}{,} \PY{n}{T2\PYZus{}graphit}\PY{p}{,} \PY{n}{M\PYZus{}WK}\PY{p}{,} \PY{n}{M\PYZus{}K}\PY{p}{,} \PY{n}{M\PYZus{}graphit}\PY{p}{,} \PY{n}{c\PYZus{}w}\PY{p}{,} \PY{n}{W}\PY{p}{)}
+\PY{n}{c\PYZus{}alu} \PY{o}{=} \PY{n}{c\PYZus{}x}\PY{p}{(}\PY{n}{T\PYZus{}bar\PYZus{}alu}\PY{p}{,} \PY{n}{T1\PYZus{}alu}\PY{p}{,} \PY{n}{T2\PYZus{}alu}\PY{p}{,} \PY{n}{M\PYZus{}WK}\PY{p}{,} \PY{n}{M\PYZus{}K}\PY{p}{,} \PY{n}{M\PYZus{}alu}\PY{p}{,} \PY{n}{c\PYZus{}w}\PY{p}{,} \PY{n}{W}\PY{p}{)}
+\PY{n}{c\PYZus{}blei} \PY{o}{=} \PY{n}{c\PYZus{}x}\PY{p}{(}\PY{n}{T\PYZus{}bar\PYZus{}blei}\PY{p}{,} \PY{n}{T1\PYZus{}blei}\PY{p}{,} \PY{n}{T2\PYZus{}blei}\PY{p}{,} \PY{n}{M\PYZus{}WK}\PY{p}{,} \PY{n}{M\PYZus{}K}\PY{p}{,} \PY{n}{M\PYZus{}blei}\PY{p}{,} \PY{n}{c\PYZus{}w}\PY{p}{,} \PY{n}{W}\PY{p}{)}
+
+\PY{n}{c\PYZus{}graphit}\PY{p}{,} \PY{n}{c\PYZus{}alu}\PY{p}{,} \PY{n}{c\PYZus{}blei}
+\end{Verbatim}
+\end{tcolorbox}
+
+            \begin{tcolorbox}[breakable, size=fbox, boxrule=.5pt, pad at break*=1mm, opacityfill=0]
+\prompt{Out}{outcolor}{30}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+(0.6497114481559947+/-0.27901180030316236,
+ 0.7927170575410322+/-0.24955725485096497,
+ 0.10806283184814067+/-0.06656439580119576)
+\end{Verbatim}
+\end{tcolorbox}
+        
+    Molwärme
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{31}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{n}{mm\PYZus{}graphit} \PY{o}{=} \PY{n}{unc}\PY{o}{.}\PY{n}{ufloat}\PY{p}{(}\PY{l+m+mf}{12.01}\PY{p}{,} \PY{l+m+mf}{0.01}\PY{p}{)}
+\PY{n}{mm\PYZus{}alu} \PY{o}{=} \PY{n}{unc}\PY{o}{.}\PY{n}{ufloat}\PY{p}{(}\PY{l+m+mf}{26.98}\PY{p}{,} \PY{l+m+mf}{0.01}\PY{p}{)}
+\PY{n}{mm\PYZus{}blei} \PY{o}{=} \PY{n}{unc}\PY{o}{.}\PY{n}{ufloat}\PY{p}{(}\PY{l+m+mf}{207.2}\PY{p}{,} \PY{l+m+mf}{0.1}\PY{p}{)}
+
+\PY{n}{c\PYZus{}mol\PYZus{}graphit} \PY{o}{=} \PY{n}{c\PYZus{}graphit} \PY{o}{*} \PY{n}{mm\PYZus{}graphit}
+\PY{n}{c\PYZus{}mol\PYZus{}alu} \PY{o}{=} \PY{n}{c\PYZus{}alu} \PY{o}{*} \PY{n}{mm\PYZus{}alu}
+\PY{n}{c\PYZus{}mol\PYZus{}blei} \PY{o}{=} \PY{n}{c\PYZus{}blei} \PY{o}{*} \PY{n}{mm\PYZus{}blei}
+\PY{n}{c\PYZus{}mol\PYZus{}graphit}\PY{p}{,} \PY{n}{c\PYZus{}mol\PYZus{}alu}\PY{p}{,} \PY{n}{c\PYZus{}mol\PYZus{}blei}
+\end{Verbatim}
+\end{tcolorbox}
+
+            \begin{tcolorbox}[breakable, size=fbox, boxrule=.5pt, pad at break*=1mm, opacityfill=0]
+\prompt{Out}{outcolor}{31}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+(7.803034492353496+/-3.350938020255876,
+ 21.387506212457048+/-6.733059402409609,
+ 22.390618758934746+/-13.792147043423116)
+\end{Verbatim}
+\end{tcolorbox}
+        
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{32}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{n}{c\PYZus{}blei\PYZus{}lit} \PY{o}{=} \PY{l+m+mf}{0.129}
+\PY{n}{c\PYZus{}alu\PYZus{}lit} \PY{o}{=} \PY{l+m+mf}{0.90}
+\PY{n}{c\PYZus{}graphit\PYZus{}lit} \PY{o}{=} \PY{l+m+mf}{0.709}
+
+\PY{k}{def}\PY{+w}{ }\PY{n+nf}{sigma}\PY{p}{(}\PY{n}{c\PYZus{}exp}\PY{p}{,} \PY{n}{c\PYZus{}lit}\PY{p}{)}\PY{p}{:}
+    \PY{k}{return} \PY{n+nb}{abs}\PY{p}{(}\PY{p}{(}\PY{n}{c\PYZus{}exp}\PY{o}{.}\PY{n}{n} \PY{o}{\PYZhy{}} \PY{n}{c\PYZus{}lit}\PY{p}{)} \PY{o}{/} \PY{n}{c\PYZus{}exp}\PY{o}{.}\PY{n}{s}\PY{p}{)} 
+
+\PY{n}{sigma}\PY{p}{(}\PY{n}{c\PYZus{}graphit}\PY{p}{,} \PY{n}{c\PYZus{}graphit\PYZus{}lit}\PY{p}{)}\PY{p}{,} \PY{n}{sigma}\PY{p}{(}\PY{n}{c\PYZus{}alu}\PY{p}{,} \PY{n}{c\PYZus{}alu\PYZus{}lit}\PY{p}{)}\PY{p}{,} \PY{n}{sigma}\PY{p}{(}\PY{n}{c\PYZus{}blei}\PY{p}{,} \PY{n}{c\PYZus{}blei\PYZus{}lit}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+            \begin{tcolorbox}[breakable, size=fbox, boxrule=.5pt, pad at break*=1mm, opacityfill=0]
+\prompt{Out}{outcolor}{32}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+(0.2124947825847683, 0.42989310217824356, 0.31454004651963235)
+\end{Verbatim}
+\end{tcolorbox}
+        
+    Verdampfungsrate
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{33}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{n}{m\PYZus{}begin} \PY{o}{=} \PY{n}{unc}\PY{o}{.}\PY{n}{ufloat}\PY{p}{(}\PY{l+m+mf}{445.00}\PY{p}{,} \PY{l+m+mf}{0.05}\PY{p}{)}
+\PY{n}{m\PYZus{}end} \PY{o}{=} \PY{n}{unc}\PY{o}{.}\PY{n}{ufloat}\PY{p}{(}\PY{l+m+mf}{444.50}\PY{p}{,} \PY{l+m+mf}{0.05}\PY{p}{)}
+\PY{n}{m\PYZus{}evap} \PY{o}{=} \PY{n}{m\PYZus{}begin} \PY{o}{\PYZhy{}} \PY{n}{m\PYZus{}end}
+\PY{n}{time} \PY{o}{=} \PY{n}{unc}\PY{o}{.}\PY{n}{ufloat}\PY{p}{(}\PY{l+m+mi}{120}\PY{p}{,} \PY{l+m+mi}{3}\PY{p}{)}
+
+\PY{n}{m\PYZus{}verdunstung} \PY{o}{=} \PY{n}{m\PYZus{}evap}\PY{o}{/}\PY{n}{time}
+\PY{n}{m\PYZus{}verdunstung}
+\end{Verbatim}
+\end{tcolorbox}
+
+            \begin{tcolorbox}[breakable, size=fbox, boxrule=.5pt, pad at break*=1mm, opacityfill=0]
+\prompt{Out}{outcolor}{33}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+0.004166666666666667+/-0.0005983919423477113
+\end{Verbatim}
+\end{tcolorbox}
+        
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{34}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{n}{m1\PYZus{}graphit} \PY{o}{=} \PY{n}{unc}\PY{o}{.}\PY{n}{ufloat}\PY{p}{(}\PY{l+m+mf}{444.4}\PY{p}{,} \PY{l+m+mf}{0.05}\PY{p}{)}
+\PY{n}{m2\PYZus{}graphit} \PY{o}{=} \PY{n}{unc}\PY{o}{.}\PY{n}{ufloat}\PY{p}{(}\PY{l+m+mf}{425.2}\PY{p}{,} \PY{l+m+mf}{0.05}\PY{p}{)}
+\PY{n}{t\PYZus{}graphit} \PY{o}{=} \PY{n}{unc}\PY{o}{.}\PY{n}{ufloat}\PY{p}{(}\PY{l+m+mi}{39}\PY{p}{,} \PY{l+m+mi}{3}\PY{p}{)}
+
+\PY{n}{m1\PYZus{}alu} \PY{o}{=} \PY{n}{unc}\PY{o}{.}\PY{n}{ufloat}\PY{p}{(}\PY{l+m+mf}{425.1}\PY{p}{,} \PY{l+m+mf}{0.05}\PY{p}{)}
+\PY{n}{m2\PYZus{}alu} \PY{o}{=} \PY{n}{unc}\PY{o}{.}\PY{n}{ufloat}\PY{p}{(}\PY{l+m+mf}{398.6}\PY{p}{,} \PY{l+m+mf}{0.05}\PY{p}{)}
+\PY{n}{t\PYZus{}alu} \PY{o}{=} \PY{n}{unc}\PY{o}{.}\PY{n}{ufloat}\PY{p}{(}\PY{l+m+mi}{105}\PY{p}{,} \PY{l+m+mi}{3}\PY{p}{)}
+
+\PY{n}{m1\PYZus{}blei} \PY{o}{=} \PY{n}{unc}\PY{o}{.}\PY{n}{ufloat}\PY{p}{(}\PY{l+m+mf}{398.5}\PY{p}{,} \PY{l+m+mf}{0.05}\PY{p}{)}
+\PY{n}{m2\PYZus{}blei} \PY{o}{=} \PY{n}{unc}\PY{o}{.}\PY{n}{ufloat}\PY{p}{(}\PY{l+m+mf}{379.9}\PY{p}{,} \PY{l+m+mf}{0.05}\PY{p}{)}
+\PY{n}{t\PYZus{}blei} \PY{o}{=} \PY{n}{unc}\PY{o}{.}\PY{n}{ufloat}\PY{p}{(}\PY{l+m+mi}{106}\PY{p}{,} \PY{l+m+mi}{3}\PY{p}{)}
+
+\PY{n}{T\PYZus{}1} \PY{o}{=} \PY{n}{unc}\PY{o}{.}\PY{n}{ufloat}\PY{p}{(}\PY{l+m+mf}{24.10}\PY{p}{,} \PY{l+m+mf}{0.15}\PY{p}{)}
+\PY{n}{T\PYZus{}2} \PY{o}{=} \PY{n}{unc}\PY{o}{.}\PY{n}{ufloat}\PY{p}{(}\PY{o}{\PYZhy{}}\PY{l+m+mf}{195.8}\PY{p}{,} \PY{l+m+mf}{0.15}\PY{p}{)}
+
+\PY{n}{Q\PYZus{}v} \PY{o}{=} \PY{l+m+mi}{199}
+
+\PY{n}{M\PYZus{}graphit} \PY{o}{=} \PY{l+m+mf}{43.2}
+\PY{n}{M\PYZus{}alu} \PY{o}{=} \PY{l+m+mf}{33.4}
+\PY{n}{M\PYZus{}blei} \PY{o}{=} \PY{l+m+mf}{137.7}
+
+
+\PY{n}{ttc\PYZus{}x} \PY{o}{=} \PY{k}{lambda} \PY{n}{m1}\PY{p}{,} \PY{n}{m2}\PY{p}{,} \PY{n}{t}\PY{p}{,} \PY{n}{Q\PYZus{}v}\PY{p}{,} \PY{n}{m\PYZus{}x}\PY{p}{,} \PY{n}{m\PYZus{}verdunstung}\PY{p}{,} \PY{n}{T\PYZus{}1}\PY{p}{,} \PY{n}{T\PYZus{}2}\PY{p}{:} \PY{n}{Q\PYZus{}v} \PY{o}{*} \PY{p}{(}\PY{n}{m1} \PY{o}{\PYZhy{}} \PY{n}{m2} \PY{o}{\PYZhy{}} \PY{n}{m\PYZus{}verdunstung}\PY{o}{*}\PY{n}{t}\PY{p}{)} \PY{o}{/} \PY{p}{(}\PY{n}{m\PYZus{}x} \PY{o}{*} \PY{p}{(}\PY{n}{T\PYZus{}1} \PY{o}{\PYZhy{}} \PY{n}{T\PYZus{}2}\PY{p}{)}\PY{p}{)}
+
+\PY{n}{ttc\PYZus{}graphit} \PY{o}{=} \PY{n}{ttc\PYZus{}x}\PY{p}{(}\PY{n}{m1\PYZus{}graphit}\PY{p}{,} \PY{n}{m2\PYZus{}graphit}\PY{p}{,} \PY{n}{t\PYZus{}graphit}\PY{p}{,} \PY{n}{Q\PYZus{}v}\PY{p}{,} \PY{n}{M\PYZus{}graphit}\PY{p}{,} \PY{n}{m\PYZus{}verdunstung}\PY{p}{,} \PY{n}{T\PYZus{}1}\PY{p}{,} \PY{n}{T\PYZus{}2}\PY{p}{)}
+\PY{n}{ttc\PYZus{}alu} \PY{o}{=} \PY{n}{ttc\PYZus{}x}\PY{p}{(}\PY{n}{m1\PYZus{}alu}\PY{p}{,} \PY{n}{m2\PYZus{}alu}\PY{p}{,} \PY{n}{t\PYZus{}alu}\PY{p}{,} \PY{n}{Q\PYZus{}v}\PY{p}{,} \PY{n}{M\PYZus{}alu}\PY{p}{,} \PY{n}{m\PYZus{}verdunstung}\PY{p}{,} \PY{n}{T\PYZus{}1}\PY{p}{,} \PY{n}{T\PYZus{}2}\PY{p}{)}
+\PY{n}{ttc\PYZus{}blei} \PY{o}{=} \PY{n}{ttc\PYZus{}x}\PY{p}{(}\PY{n}{m1\PYZus{}blei}\PY{p}{,} \PY{n}{m2\PYZus{}blei}\PY{p}{,} \PY{n}{t\PYZus{}blei}\PY{p}{,} \PY{n}{Q\PYZus{}v}\PY{p}{,} \PY{n}{M\PYZus{}blei}\PY{p}{,} \PY{n}{m\PYZus{}verdunstung}\PY{p}{,} \PY{n}{T\PYZus{}1}\PY{p}{,} \PY{n}{T\PYZus{}2}\PY{p}{)}
+
+\PY{l+s+sa}{f}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+si}{\PYZob{}}\PY{n}{ttc\PYZus{}graphit}\PY{l+s+si}{=:}\PY{l+s+s1}{.3uP}\PY{l+s+si}{\PYZcb{}}\PY{l+s+s1}{, }\PY{l+s+si}{\PYZob{}}\PY{n}{ttc\PYZus{}alu}\PY{l+s+si}{=:}\PY{l+s+s1}{.3uP}\PY{l+s+si}{\PYZcb{}}\PY{l+s+s1}{, }\PY{l+s+si}{\PYZob{}}\PY{n}{ttc\PYZus{}blei}\PY{l+s+si}{=:}\PY{l+s+s1}{.3uP}\PY{l+s+si}{\PYZcb{}}\PY{l+s+s1}{\PYZsq{}}
+\end{Verbatim}
+\end{tcolorbox}
+
+            \begin{tcolorbox}[breakable, size=fbox, boxrule=.5pt, pad at break*=1mm, opacityfill=0]
+\prompt{Out}{outcolor}{34}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+'ttc\_graphit=0.39880±0.00163, ttc\_alu=0.70615±0.00267,
+ttc\_blei=0.119336±0.000640'
+\end{Verbatim}
+\end{tcolorbox}
+        
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{37}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{n}{sigma}\PY{p}{(}\PY{n}{ttc\PYZus{}graphit}\PY{p}{,} \PY{n}{c\PYZus{}graphit\PYZus{}lit}\PY{p}{)}\PY{p}{,} \PY{n}{sigma}\PY{p}{(}\PY{n}{ttc\PYZus{}alu}\PY{p}{,} \PY{n}{c\PYZus{}alu\PYZus{}lit}\PY{p}{)}\PY{p}{,} \PY{n}{sigma}\PY{p}{(}\PY{n}{ttc\PYZus{}blei}\PY{p}{,} \PY{n}{c\PYZus{}blei\PYZus{}lit}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+            \begin{tcolorbox}[breakable, size=fbox, boxrule=.5pt, pad at break*=1mm, opacityfill=0]
+\prompt{Out}{outcolor}{37}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+(190.56674844560186, 72.50864182579888, 15.098434100037155)
+\end{Verbatim}
+\end{tcolorbox}
+        
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{40}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{n}{sigma\PYZus{}messungen} \PY{o}{=} \PY{k}{lambda} \PY{n}{c\PYZus{}ht}\PY{p}{,} \PY{n}{c\PYZus{}tt}\PY{p}{:} \PY{n+nb}{abs}\PY{p}{(}\PY{p}{(}\PY{n}{c\PYZus{}ht}\PY{o}{.}\PY{n}{n} \PY{o}{\PYZhy{}} \PY{n}{c\PYZus{}tt}\PY{o}{.}\PY{n}{n}\PY{p}{)} \PY{o}{/} \PY{n}{np}\PY{o}{.}\PY{n}{sqrt}\PY{p}{(}\PY{n}{c\PYZus{}ht}\PY{o}{.}\PY{n}{s}\PY{o}{*}\PY{o}{*}\PY{l+m+mi}{2} \PY{o}{+} \PY{n}{c\PYZus{}tt}\PY{o}{.}\PY{n}{s}\PY{o}{*}\PY{o}{*}\PY{l+m+mi}{2}\PY{p}{)}\PY{p}{)}
+
+\PY{l+s+sa}{f}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+si}{\PYZob{}}\PY{n}{sigma\PYZus{}messungen}\PY{p}{(}\PY{n}{ttc\PYZus{}graphit}\PY{p}{,}\PY{+w}{ }\PY{n}{c\PYZus{}graphit}\PY{p}{)}\PY{l+s+si}{=:}\PY{l+s+s1}{.3f}\PY{l+s+si}{\PYZcb{}}\PY{l+s+s1}{, }\PY{l+s+si}{\PYZob{}}\PY{n}{sigma\PYZus{}messungen}\PY{p}{(}\PY{n}{ttc\PYZus{}alu}\PY{p}{,}\PY{+w}{ }\PY{n}{c\PYZus{}alu}\PY{p}{)}\PY{l+s+si}{=:}\PY{l+s+s1}{.3f}\PY{l+s+si}{\PYZcb{}}\PY{l+s+s1}{, }\PY{l+s+si}{\PYZob{}}\PY{n}{sigma\PYZus{}messungen}\PY{p}{(}\PY{n}{ttc\PYZus{}blei}\PY{p}{,}\PY{+w}{ }\PY{n}{c\PYZus{}blei}\PY{p}{)}\PY{l+s+si}{=:}\PY{l+s+s1}{.3f}\PY{l+s+si}{\PYZcb{}}\PY{l+s+s1}{\PYZsq{}}
+\end{Verbatim}
+\end{tcolorbox}
+
+            \begin{tcolorbox}[breakable, size=fbox, boxrule=.5pt, pad at break*=1mm, opacityfill=0]
+\prompt{Out}{outcolor}{40}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+'sigma\_messungen(ttc\_graphit, c\_graphit)=0.899, sigma\_messungen(ttc\_alu,
+c\_alu)=0.347, sigma\_messungen(ttc\_blei, c\_blei)=0.169'
+\end{Verbatim}
+\end{tcolorbox}
+        
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{ }{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+
+\end{Verbatim}
+\end{tcolorbox}
+
