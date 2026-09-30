@@ -116,7 +116,7 @@
 
 \bigskip
 \begin{tcolorbox}[colback=gray!5,colframe=gray!60,boxrule=0.8pt,arc=0.01mm,title=KI-Hinweis]
-    Für die sprachliche Formulierung dieses Protokolls wurde in der Einleitung\,\ref{sec:Einleitung} und Grundlagen\,\ref{sec:Grundlagen und Theorie} KI-gestützte Textgenerierung verwendet. 
+    Für die sprachliche Formulierung dieses Protokolls wurde in der Einleitung\,\ref{sec:Einleitung} und Grundlagen\,\ref{sec:grundlagen-und-theorie} KI-gestützte Textgenerierung verwendet. 
 \end{tcolorbox}
 
 \clearpage
@@ -128,7 +128,7 @@ Im Rahmen dieses Versuchs wird die spezifische und molare Wärmekapazität versc
 
 Im ersten Versuchsteil wird die spezifische Wärme bei hohen Temperaturen (zwischen $20^{\circ}\mathrm{C}$ und $100^{\circ}\mathrm{C}$) mithilfe der Mischungsmethode in einem Wasserkalorimeter ermittelt. Im zweiten Teil wird die Wärmekapazität im Tieftemperaturbereich (zwischen $20^{\circ}\mathrm{C}$ und $-195^{\circ}\mathrm{C}$) gemessen, indem die Probekörper in flüssigem Stickstoff abgekühlt und die dabei verdampfte Stickstoffmenge bilanziert wird.
 
-\section{Grundlagen und Theorie}\label{sec:Grundlagen und Theorie}
+\section{Grundlagen und Theorie}\label{sec:grundlagen-und-theorie}
 
 \subsection{Wärmekapazität und Molwärme}
 Wird einem Körper, bei dem kein Phasenübergang stattfindet, die Wärmemenge $Q$ zugeführt, so ändert sich seine Temperatur um $\Delta T$. Die Proportionalitätskonstante wird als Wärmekapazität $C$ bezeichnet:
@@ -230,7 +230,7 @@ Bestimmte Werte werden für die Auswertung benötigt. Sie sind in folgender Tabe
 
 
 
-\subsection{Durchführung}
+\section{Durchführung}
 
 \subsection{Aufgabe 1: Bestimmen des Wasserwertes des Kalorimeters}
 Der Wasserwert wird durch Extrapolation der Messwerte für Heißes Wasser im Kalorimeter bestimmt. Die Messwerte werden in einem Diagramm aufgetragen, und die Temperaturänderung des Wassers wird gegen die Zeit aufgetragen. 
@@ -279,7 +279,7 @@ Durch Umstellen der Gleichung\,\ref{eq:Wärmeverhältnis} beträgt die Formel zu
     \end{equation}
 \end{resultbox}
 
-\section{Bestimmen der spezifischen Wärmekapazitäten und Molwärmen}
+\subsection{Aufgabe 2: Bestimmen der spezifischen Wärmekapazitäten und Molwärmen}
 
 Mithilfe von Gleichung \ref{eq:spez_kapazität_kalorimeter} kann die Wärmekapazität der Proben berechnet werden.
 
@@ -351,10 +351,11 @@ Die Abweichung vom Literaturwerten berechnet sich nach der Formel:
 \end{resultbox}
 
 
-\section{Bestimmen der spezifischen Wärmekapazitäten im Tieftemperaturbereich}
+
+\subsection{Aufgabe 3: Bestimmen der spezifischen Wärmekapazitäten im Tieftemperaturbereich}
 Die spezifische Wärmekapazität im Tieftemperaturbereich wird durch die Messung der verdampften Stickstoffmenge bestimmt. Die Masse des verdampften Stickstoffs $m_V$ wird aus der Differenz der Masse des Dewargefäßes vor und nach dem Eintauchen der Probe berechnet. Die spezifische Wärmekapazität $c_x$ wird dann mit der Formel:
 \begin{equation}
-c_x = \frac{Q_V m_V}{m_x (T_1 - T_2)}
+c_x = \frac{Q_V m_V}{m_x (T_1 - T_2)}\label{eq:cxverdunstung}
 \end{equation}
 berechnet, wobei $Q_V$ die Verdampfungswärme des Stickstoffs ist. Die Fehlerformel für die spezifische Wärmekapazität lautet:
 \begin{equation}
@@ -364,6 +365,109 @@ berechnet, wobei $Q_V$ die Verdampfungswärme des Stickstoffs ist. Die Fehlerfor
     \end{aligned}
 \end{equation}  
 
+Bevor die Messung durchführt wird, das Dewargefäß mit flüssigem Stickstoff gefüllt und die Masse des Gefäßes mit Stickstoff bestimmt. Nach zwei Minuten wird nochmals die Masse des Gefäßes mit Stickstoff bestimmt, um die Verdampfungsrate zu bestimmen. 
+
+Die Masse zu Beginn der Messung beträgt $\qty{445.00(5)}{\gram}$ und nach zwei Minuten $\qty{444.50(5)}{\gram}$. Die Verdampfungsrate beträgt somit
+\begin{equation}
+    \frac{m_\text{beginn} - m_\text{end}}{t} = 0.0042(6)
+\end{equation}.
+
+Bei der Berechnung muss die Verdampfungsrate von der Verdampfungsrate ohne Probe abgezogen werden. Gleichung\,\ref{eq:cxverdunstung} wird zu:
+\begin{equation}
+    c_x = \frac{Q_V (m_V - m_\text{verdunstung})}{m_x (T_1 - T_2)}
+\end{equation}
+
+Die Werte betragen:
+\begin{table}[H]
+    \centering
+    \caption{Messwerte zur Bestimmung der spezifischen Wärmekapazitäten im Tieftemperaturbereich}
+    \begin{tabular}{lccc}
+        \toprule
+        \textbf{Probe} & \textbf{Masse Beginn} & \textbf{Masse Ende} & \textbf{Zeit sieden} \\
+        & $m_1 [g]$ & $m_\text{2} [g]$ & $t [s]$ \\
+        \midrule
+        Graphit & \num{444.40(5)} & \num{425.20(5)} & \num{39(3)} \\
+        Aluminium & \num{425.10(5)} & \num{398.60(5)} & \num{105(3)} \\
+        Blei & \num{398.50(5)} & \num{379.90(5)} & \num{106(3)} \\
+        \bottomrule
+    \end{tabular}
+\end{table}
+
+Alle Probekörper waren auf Raumtemperatur ($T_1 = \qty{24.10(15)}{\degreeCelsius}$) und mit der Stickstoff Verdampungswärme $Q_V = \qty{199}{\joule\per\gram}$ ergeben sich folgende spezifische Wärmekapazitäten:
+\begin{table}[H]
+    \centering
+    \caption{Ergebnisse der spezifischen Wärmekapazitäten im Tieftemperaturbereich}
+    \begin{tabular}{lcc}
+        \toprule
+        \textbf{Probe} & \textbf{Spezifische Wärmekapazität} & \textbf{Abweichung Literatur} \\
+        \midrule
+        $c_\text{Graphit}$ & $\qty{0.3988(17)}{\joule\per\gram\kelvin}$ & $\sigma = 190.6$ \\
+        $c_\text{Aluminium}$ & $\qty{0.7062(27)}{\joule\per\gram\kelvin}$ & $\sigma = 72.5$ \\
+        $c_\text{Blei}$ & $\qty{0.1193(7)}{\joule\per\gram\kelvin}$ & $\sigma = 15.1$ \\
+    \end{tabular}
+\end{table}
+
+Nun werden die beiden Wärmekapazitäten verglichen. Die Abweichung der beiden Werte wird mit der Formel:
+\begin{equation}
+    \sigma = \frac{|c_\text{hoch} - c_\text{tief}|}{\sqrt{\Delta c_\text{hoch}^2 + \Delta c_\text{tief}^2}}
+\end{equation}
+berechnet. Die Ergebnisse sind in folgender Tabelle zusammengefasst:
+\begin{table}[H]
+    \centering
+    \caption{Vergleich der spezifischen Wärmekapazitäten im Hoch- und Tieftemperaturbereich}
+    \begin{tabular}{lcc}
+        \toprule
+        \textbf{Probe} & \textbf{Abweichung Hoch- und Tieftemp} \\
+        \midrule
+        Graphit & $\sigma = 0.90$ \\
+        Aluminium & $\sigma = 0.35$ \\
+        Blei & $\sigma = 0.17$ \\
+        \bottomrule
+    \end{tabular}
+\end{table}
+
+
+\begin{resultbox}[Ergebnis]
+    Die gemessenen Wärmekapazitäten betragen:
+    \begin{center}
+        \begin{tabular}{lccc}
+            \toprule
+            & \multicolumn{2}{c}{\textbf{Spezifische Wärmekapazität}} & \textbf{Abweichung} \\
+            \midrule
+            \textbf{Probe} & \textbf{Hochtemp} & \textbf{Tieftemp} & \textbf{Hoch- und Tieftemp} \\
+            \midrule
+            Graphit & $\qty{0.65(28)}{\joule\per\gram\kelvin}$ & $\qty{0.3988(17)}{\joule\per\gram\kelvin}$ & $\sigma = 0.90$ \\
+            Aluminium & $\qty{0.79(25)}{\joule\per\gram\kelvin}$ & $\qty{0.7062(27)}{\joule\per\gram\kelvin}$ & $\sigma = 0.35$ \\
+            Blei & $\qty{0.11(7)}{\joule\per\gram\kelvin}$ & $\qty{0.1193(7)}{\joule\per\gram\kelvin}$ & $\sigma = 0.17$ \\
+            \bottomrule
+        \end{tabular}
+    \end{center}
+\end{resultbox}
+
+
+\section{Diskussion}
+Im vorliegenden Versuch wurden die spezifischen Wärmekapazitäten von Graphit, Aluminium und Blei in zwei unterschiedlichen Temperaturbereichen bestimmt und mit den klassischen sowie quantenmechanischen Modellen der Festkörperphysik verglichen.
+
+\textbf{Hochtemperaturmessung (Mischungsmethode)} \\
+Die experimentell ermittelten spezifischen Wärmekapazitäten im Temperaturbereich von \qty{20}{\degreeCelsius} bis \qty{100}{\degreeCelsius} stimmen im Rahmen ihrer Fehlergrenzen sehr gut mit den Literaturwerten überein (die Abweichungen betragen maximal $\num{0.43}\sigma$). Auffällig sind jedoch die enorm großen relativen Messunsicherheiten. Diese  resultieren maßgeblich aus der systematisch fehleranfälligen Bestimmung des Wasserwertes sowie aus unvermeidbaren Wärmeverlusten an die Umgebung beim schnellen Umsetzen der erhitzten Probekörper in das Kalorimeter. 
+
+
+\textbf{Tieftemperaturmessung und Debye-Modell} \\
+Bei der Messung mit flüssigem Stickstoff fallen zunächst die drastischen Abweichungen der experimentellen Werte von den Literaturwerten auf (bis zu $190\sigma$ bei Graphit). Dies stellt jedoch keinen Messfehler dar, sondern bestätigt das Debye-Modell: Die herangezogenen Literaturwerte beziehen sich auf Raumtemperatur ($300\,\mathrm{K}$). Kühlt man die Festkörper auf Stickstofftemperatur (ca. $77\,\mathrm{K}$) ab, „frieren“ die quantisierten Schwingungsfreiheitsgrade zunehmend ein, wodurch die Wärmekapazität stark abfällt. Dass die Verdampfungsmethode prinzipiell sehr präzise ist, zeigt sich an den erfreulich geringen Messunsicherheiten in diesem Aufgabenteil.
+
+
+\textbf{Vergleich der Temperaturbereiche} \\
+Vergleicht man die spezifischen Wärmekapazitäten beider Temperaturbereiche, spiegeln die gemessenen Mittelwerte qualitativ exakt das erwartete physikalische Verhalten wider, das durch die materialabhängige Debye-Temperatur $\Theta_D$ vorgegeben wird:
+\begin{itemize}
+    \item \textbf{Blei} besitzt eine sehr niedrige Debye-Temperatur von $\Theta_{D} = 95\,\mathrm{K}$. Es befindet sich in beiden Messungen in der Nähe oder deutlich oberhalb dieser Grenze, weshalb sich die spezifische Wärme kaum ändert ($0.11 \rightarrow \qty{0.1193}{\joule\per\gram\kelvin}$) und bereits näherungsweise dem klassischen Dulong-Petit-Gesetz folgt.
+    \item \textbf{Aluminium} ($\Theta_D = 430\,\mathrm{K}$) und \textbf{Graphit} (hier angenähert mit Diamant, $\Theta_D = 2230\,\mathrm{K}$) liegen bei der Tieftemperaturmessung weit unterhalb ihrer Debye-Temperatur. Das Schwingungsspektrum ist dort „härter“ und schwerer anzuregen, was den gemessenen starken Abfall der Wärmekapazität (bei Graphit von $0.65$ auf $\qty{0.3988}{\joule\per\gram\kelvin}$) physikalisch begründet.
+\end{itemize}
+
+\textbf{Zusammenfassung} \\
+Obwohl der Abfall der Wärmekapazität bei niedrigen Temperaturen in den Mittelwerten deutlich zu erkennen ist, fällt die berechnete statistische Signifikanz dieses Unterschieds ($\sigma \le 0.90$) sehr gering aus. Der physikalische Effekt wird hier durch die überproportional großen Messunsicherheiten der Hochtemperatur-Mischungsmethode mathematisch „verschmiert“. Dennoch konnte die deutliche Temperaturabhängigkeit der spezifischen Wärme – und damit das Versagen des klassischen Dulong-Petit-Gesetzes bei tiefen Temperaturen – qualitativ erfolgreich demonstriert werden.
+
+\section{Fazit}
+Insgesamt lässt sich festhalten, dass die experimentell bestimmten spezifischen Wärmekapazitäten der untersuchten Festkörper im Hochtemperaturbereich den Literaturwerten entsprechen und die Abweichungen im Tieftemperaturbereich das Debye-Modell bestätigen. Es war natürlich auch der coolste Versuch :))
 
 
 
