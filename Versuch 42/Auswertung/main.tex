@@ -29,7 +29,7 @@
 \usepackage{longtable}
 \usepackage{graphicx}
 
-%\input{../../jupyterpackages.tex}
+\input{../../jupyterpackages.tex}
 
 % jupyter nbconvert --to latex 'Path'
 % enferne usepackages und begin{document} und end{document}
@@ -118,6 +118,10 @@
 \begin{tcolorbox}[colback=gray!5,colframe=gray!60,boxrule=0.8pt,arc=0.01mm,title=KI-Hinweis]
     Für die sprachliche Formulierung dieses Protokolls wurde in der Einleitung\,\ref{sec:Einleitung} und Grundlagen\,\ref{sec:grundlagen-und-theorie} KI-gestützte Textgenerierung verwendet. 
 \end{tcolorbox}
+\begin{tcolorbox}[colback=gray!5,colframe=gray!60,boxrule=0.8pt,arc=0.01mm,title=Berechnungen der Fehlerformeln]
+    Die Fehlerrechnung wurde mit der Python-Bibliothek \texttt{uncertainties} durchgeführt. Der Code zur Berechnung befindet sich im Anhang
+\end{tcolorbox}
+
 
 \clearpage
 
@@ -266,16 +270,16 @@ Durch Umstellen der Gleichung\,\ref{eq:Wärmeverhältnis} beträgt die Formel zu
 \begin{align}
     W &= m_w c_w \frac{T_1 - \overline{T}}{\overline{T} - T_2}\\
         &\quad \intertext{mit $m_w = m_{W+K} - m_K$} 
-        \Delta W^2 &= \left(c_w \frac{T_1 - \overline{T}}{\overline{T} - T_2} \Delta m_w\right)^2 + \left(m_w \frac{T_1 - \overline{T}}{\overline{T} - T_2} \Delta c_w\right)^2 + \left(m_w c_w \frac{\overline{T} - T_2 + T_1 - \overline{T}}{(\overline{T} - T_2)^2} \Delta T_1\right)^2 + \dots \\
+        \Delta W^2 &= \left(c_w \frac{T_1 - \overline{T}}{\overline{T} - T_2} \Delta m_w\right)^2 + \left(m_w \frac{T_1 - \overline{T}}{\overline{T} - T_2} \Delta c_w\right)^2 + \left(m_w c_w \frac{T_1 - T_2}{(\overline{T} - T_2)^2} \Delta T_1\right)^2 + \dots \\
         &\dots \left(m_w c_w \frac{- (T_1 - T_2)}{(\overline{T} - T_2)^2} \Delta \overline{T}\right)^2 + \left(m_w c_w \frac{-(T_1 - \overline{T})}{(\overline{T} - T_2)^2} \Delta T_2\right)^2\\
         \bigskip
-    \Rightarrow W &= \qty{92(16)}{\joule\per\gram}
+    \Rightarrow W &= \qty{92(16)}{\joule\per\kelvin}
 \end{align}
 
 \begin{resultbox}[Ergebnis]
     Der Wasserwert des Kalorimeters beträgt:
     \begin{equation}
-        W = \qty{92(16)}{\joule\per\gram}
+        W = \qty{92(16)}{\joule\per\kelvin}
     \end{equation}
 \end{resultbox}
 
@@ -293,7 +297,7 @@ beträgt:
 \begin{equation}
     \begin{aligned}
         \Delta c_x^2 &= \left(\frac{(m_W c_W + W)(\overline{T} - T_2)}{m_x (T_1 - \overline{T})^2} \Delta T_1\right)^2 \\ &+ \left(\frac{(m_W c_W + W)(\overline{T} - T_2)}{m_x (T_1 - \overline{T})^2} \Delta \overline{T}\right)^2 \\&+
-         \left(\frac{(m_W c_W + W)}{m_x (T_1 - \overline{T})} \Delta T_2\right)^2 \\ &+ \left(\frac{(m_W c_W + W)(\overline{T} - T_2)}{m_x^2 (T_1 - \overline{T})} \Delta m_x\right)^2
+         \left(\frac{(m_W c_W + W)}{m_x (T_1 - \overline{T})} \Delta T_2\right)^2 \\ &+ \left(\frac{(m_W c_W + W)(T_1 - T_2)}{m_x^2 (T_1 - \overline{T})^2} \Delta m_x\right)^2
     \end{aligned} 
 \end{equation}
 
