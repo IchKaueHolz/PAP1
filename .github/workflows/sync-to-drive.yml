@@ -3,7 +3,7 @@ name: Sync Repository to Google Drive
 on:
   push:
     branches:
-      - main # Change to 'master' if your default branch uses the older naming convention
+      - master # Change to 'master' if your default branch uses the older naming convention
 
 jobs:
   upload-to-drive:
