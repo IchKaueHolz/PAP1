@@ -3,7 +3,7 @@ name: Sync Repository to Google Drive
 on:
   push:
     branches:
-      - master
+      - main
 
 jobs:
   upload-to-drive:
@@ -13,8 +13,10 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Setup Rclone
-        uses: rclone/rclone-action@v1
+      # Hier installieren wir rclone nativ ohne fehlerhafte Drittanbieter-Aktion
+      - name: Install Rclone
+        run: |
+          sudo -v ; curl https://rclone.org | sudo bash
 
       - name: Configure Rclone & Sync Files
         env:
@@ -31,5 +33,5 @@ jobs:
           root_folder_id = $FOLDER_ID
           EOF
 
-          # Dateien hochladen (sync überschreibt/löscht; 'copy' fügt nur hinzu)
+          # Dateien hochladen (exclude spart Git-Metadaten und den Workflow selbst aus)
           rclone copy . gdrive: --exclude ".git/**" --exclude ".github/**"
