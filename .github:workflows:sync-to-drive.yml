@@ -1,0 +1,26 @@
+name: Sync Repository to Google Drive
+
+on:
+  push:
+    branches:
+      - main # Change to 'master' if your default branch uses the older naming convention
+
+jobs:
+  upload-to-drive:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Step 1: Pull down the repository contents inside the runner
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      # Step 2: Push the files over to your Google Drive folder
+      - name: Upload to Google Drive
+        uses: adityak74/google-drive-upload-git-action@main
+        with:
+          credentials: ${{ secrets.GDRIVE_CREDENTIALS }}
+          filename: |
+            *
+          folderId: ${{ secrets.GDRIVE_FOLDER_ID }}
+          overwrite: "true"
+          mirrorDirectoryStructure: "true"
