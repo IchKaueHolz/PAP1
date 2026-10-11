@@ -3,26 +3,21 @@ name: Sync Repository to Google Drive
 on:
   push:
     branches:
-      - master # Change to 'master' if your default branch uses the older naming convention
+      - main
 
 jobs:
   upload-to-drive:
     runs-on: ubuntu-latest
 
     steps:
-      # Step 1: Pull down the repository contents inside the runner
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      # Step 2: Push the files over to your Google Drive folder
       - name: Upload to Google Drive
-        uses: adityak74/google-drive-upload-git-action@main
+        uses: Jbwasse2/google-drive-upload-action@v2.2.3
         with:
           credentials: ${{ secrets.GDRIVE_CREDENTIALS }}
-          filename: |
-            *
           folderId: ${{ secrets.GDRIVE_FOLDER_ID }}
-          overwrite: "true"
-          mirrorDirectoryStructure: "true"
-          #  Add this line to force the upload into your storage quota:
-          supportsAllDrives: "true" 
+          # This alternative action forces file upload streams directly 
+          # into the parent directory's allocated account quota pool.
+          uploadPath: '.' 
